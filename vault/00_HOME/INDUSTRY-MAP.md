@@ -34,15 +34,15 @@ related: []
 - [[contract-semantics|Contract Semantics]] · 合约语义 ⭐ `reviewed`
 - [[dispute-mechanism|Dispute Mechanism]] · 争议机制 ⭐ `reviewed`
 - [[event-contract|Event Contract]] · 事件合约 ⭐ `reviewed`
-- [[event-risk|Event Risk]] · 事件风险 ⭐ `seed`
+- [[event-risk|Event Risk]] · 事件风险 ⭐ `reviewed`
 - [[event-var|Event VaR]] · 事件风险价值 ⭐ `seed`
-- [[fully-collateralized-market|Fully Collateralized]] · 全额抵押 ⭐ `seed`
+- [[fully-collateralized-market|Fully Collateralized]] · 全额抵押 ⭐ `reviewed`
 - [[implied-probability|Implied Probability]] · 隐含概率 ⭐ `reviewed`
 - [[inside-information|Inside Information]] · 内幕/重大非公开信息 ⭐ `seed`
 - [[market-integrity|Market Integrity]] · 市场完整性/公平有序交易 ⭐ `seed`
 - [[oracle-risk|Oracle Risk]] · 预言机风险 ⭐ `reviewed`
 - [[outcome-market|Outcome Market]] · 结果市场/结果型合约市场 ⭐ `seed`
-- [[outcome-token|Outcome Token]] · 结果代币 ⭐ `seed`
+- [[outcome-token|Outcome Token]] · 结果代币 ⭐ `reviewed`
 - [[prediction-market|Prediction Market]] · 预测市场 ⭐ `reviewed`
 - [[resolution|Resolution]] · 结果判定/裁决 ⭐ `reviewed`
 - [[resolution-insurance|Resolution Insurance]] · 结果判定保险 ⭐ `reviewed`
@@ -50,9 +50,9 @@ related: []
 - [[resolution-source|Resolution Source]] · 指定结果来源 ⭐ `reviewed`
 - [[combinatorial-market|Combinatorial Market]] · 组合市场 `seed`
 - [[market-maker-incentive|Market Maker Incentive]] · 做市激励计划 `seed`
-- [[multi-outcome-market|Multi-Outcome Market]] · 多结果市场 `seed`
+- [[multi-outcome-market|Multi-Outcome Market]] · 多结果市场 `reviewed`
 - [[scalar-market|Scalar Market]] · 标量市场 `seed`
-- [[settlement-methodology|Settlement Methodology]] · 结算方法论 `seed`
+- [[settlement-methodology|Settlement Methodology]] · 结算方法论 `reviewed`
 
 <!-- /moc:auto -->
 

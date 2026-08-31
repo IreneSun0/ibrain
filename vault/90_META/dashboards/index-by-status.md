@@ -4,7 +4,7 @@
 
 更新: 2026-08-31 · 共 297 条结构化笔记
 
-## reviewed (60)
+## reviewed (66)
 
 - [[260813-first-principle-information-position|First Principle: Information Position (Irene, 2026-08-13)]] · 第一性原理 · 信息位置与规则制定层
 - [[INDUSTRY-MAP|Industry Map]] · 行业地图
@@ -28,9 +28,12 @@
 - [[depth|Depth]] · 盘口深度
 - [[dispute-mechanism|Dispute Mechanism]] · 争议机制
 - [[event-contract|Event Contract]] · 事件合约
+- [[event-risk|Event Risk]] · 事件风险
 - [[exchange|Exchange]] · 交易所/交易场所
 - [[financial-markets|Financial Markets]] · 金融市场
 - [[frontmatter-schema|Frontmatter Schema]] · Frontmatter 字段规范
+- [[fully-collateralized-market|Fully Collateralized]] · 全额抵押
+- [[hybrid-exchange-architecture|Hybrid Exchange]] · 混合式交易架构
 - [[implied-probability|Implied Probability]] · 隐含概率
 - [[inventory-risk|Inventory Risk]] · 库存风险
 - [[knowledge-policies|iBrain Knowledge Policies]] · 知识库治理政策
@@ -45,8 +48,10 @@
 - [[map-tradfi-vs-crypto-integration|TradFi vs Crypto Vertical Integration]] · 传统金融 vs Crypto 纵向一体化
 - [[map-tron-htx-chainup|TRON / HTX / ChainUp Ecosystem]] · TRON·HTX·ChainUp 生态
 - [[market-maker|Market Maker]] · 做市商
+- [[multi-outcome-market|Multi-Outcome Market]] · 多结果市场
 - [[oracle-risk|Oracle Risk]] · 预言机风险
 - [[order-book|Order Book]] · 订单簿/盘口
+- [[outcome-token|Outcome Token]] · 结果代币
 - [[prediction-market|Prediction Market]] · 预测市场
 - [[price-discovery|Price Discovery]] · 价格发现
 - [[relationship-types|Relationship Type Vocabulary]] · 关系类型受控词表
@@ -61,13 +66,14 @@
 - [[resolution-risk|Resolution Risk]] · 结果判定风险
 - [[resolution-source|Resolution Source]] · 指定结果来源
 - [[settlement|Settlement]] · 结算/交割
+- [[settlement-methodology|Settlement Methodology]] · 结算方法论
 - [[slippage|Slippage]] · 滑点
 - [[spread|Spread]] · 买卖价差
 - [[src-2026-08-26-industry-learning-map-xlsx|行业术语与市场结构学习地图 (Excel workbook)]]
 - [[taker|Taker]] · 吃单方/消耗流动性者
 - [[win-safe-truth-triangle|win · safe · truth Triangle (Irene, 2026-08-13)]] · win·safe·truth 三角
 
-## seed (149)
+## seed (143)
 
 - [[anti-money-laundering|AML]] · 反洗钱
 - [[auditability|Auditability]] · 可审计性
@@ -116,19 +122,16 @@
 - [[erc-721|ERC-721]] · NFT非同质化代币标准
 - [[erc-standards|ERC Standard]] · 以太坊代币/接口标准
 - [[ethereum-virtual-machine|EVM]] · 以太坊虚拟机
-- [[event-risk|Event Risk]] · 事件风险
 - [[event-var|Event VaR]] · 事件风险价值
 - [[exchange-vertical-integration|Exchange Vertical Integration]] · 交易所纵向一体化
 - [[execution-risk|Execution Risk]] · 执行风险
 - [[expected-shortfall|Expected Shortfall]] · 预期损失/尾部期望损失
 - [[flowdesk|Flowdesk]]
 - [[forward-contract|Forward]] · 远期合约
-- [[fully-collateralized-market|Fully Collateralized]] · 全额抵押
 - [[funding-rate|Funding Rate]] · 资金费率
 - [[futures-contract|Futures]] · 期货
 - [[gas|Gas]] · 链上计算/资源费
 - [[hedging|Hedging]] · 对冲
-- [[hybrid-exchange-architecture|Hybrid Exchange]] · 混合式交易架构
 - [[initial-margin|Initial Margin]] · 初始保证金
 - [[inside-information|Inside Information]] · 内幕/重大非公开信息
 - [[institutional-conversation-cheatsheet|Institutional Conversation Cheatsheet (workbook)]] · 机构对话速查 · workbook 原文
@@ -149,7 +152,6 @@
 - [[market-maker-incentive|Market Maker Incentive]] · 做市激励计划
 - [[market-risk|Market Risk]] · 市场风险
 - [[model-risk|Model Risk]] · 模型风险
-- [[multi-outcome-market|Multi-Outcome Market]] · 多结果市场
 - [[off-chain|Off-chain]] · 链下
 - [[on-chain|On-chain]] · 链上
 - [[operational-risk|Operational Risk]] · 运营/系统风险
@@ -159,7 +161,6 @@
 - [[order-flow|Order Flow]] · 订单流
 - [[order-flow-network-effect|Order Flow Network Effect]] · 订单流网络效应
 - [[outcome-market|Outcome Market]] · 结果市场/结果型合约市场
-- [[outcome-token|Outcome Token]] · 结果代币
 - [[over-the-counter|OTC]] · 场外交易
 - [[perpetual-futures|Perpetual Futures / Perp]] · 永续合约
 - [[policy-engine|Policy Engine]] · 策略/政策控制引擎
@@ -176,7 +177,6 @@
 - [[request-for-quote|RFQ]] · 询价交易
 - [[risk-engine|Risk Engine]] · 风险引擎
 - [[scalar-market|Scalar Market]] · 标量市场
-- [[settlement-methodology|Settlement Methodology]] · 结算方法论
 - [[settlement-rail|Settlement Rail]] · 结算轨道/资金铁路
 - [[settlement-risk|Settlement Risk]] · 结算风险
 - [[smart-contract|Smart Contract]] · 智能合约

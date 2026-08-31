@@ -166,13 +166,48 @@ def unlink_dead_wikilinks(body: str, dead_targets: set[str]) -> str:
     return re.sub(r"\[\[([^\]]+)\]\]", repl, body)
 
 
+def verify_output(out: Path) -> int:
+    """Final gate: the built tree must contain no private term and nothing above the
+    public tier. Run after `make indexes`, since generated dashboards are rebuilt."""
+    bad_terms: list[tuple[str, str, int]] = []
+    bad_tier: list[str] = []
+    for p in sorted(out.rglob("*")):
+        if p.is_dir() or p.suffix not in (".md", ".yaml", ".yml", ".json", ".base", ".txt"):
+            continue
+        text = p.read_text(encoding="utf-8", errors="replace")
+        rel = p.relative_to(out).as_posix()
+        for term in PRIVATE_TERMS:
+            n = len(re.findall(re.escape(term), text, re.I))
+            if n:
+                bad_terms.append((rel, term, n))
+        if p.suffix == ".md":
+            m = re.search(r"(?m)^confidentiality: (\S+)", text)
+            if m and m.group(1) not in ("public-source",):
+                bad_tier.append(f"{rel}: {m.group(1)}")
+    if not bad_terms and not bad_tier:
+        print(f"verify: OK (no private term, nothing above `public-source`) — {out}")
+        return 0
+    for rel, term, n in bad_terms:
+        print(f"  private term in {rel} ({n}x)")
+    for line in bad_tier:
+        print(f"  tier above public-source — {line}")
+    print(f"verify: {len(bad_terms) + len(bad_tier)} violation(s)")
+    return 1
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(OPS_ROOT / "vault"))
     ap.add_argument("--source", default=None,
                     help="private vault to publish from (default: $VAULT_PATH)")
     ap.add_argument("--check", action="store_true", help="report only, write nothing")
+    ap.add_argument("--verify", action="store_true",
+                    help="audit an already-built tree (run AFTER `make indexes`, which "
+                         "regenerates dashboards and clears transient hits)")
     args = ap.parse_args()
+
+    if args.verify:
+        return verify_output(Path(args.out).resolve())
 
     if args.source:
         root = Path(args.source).expanduser().resolve()

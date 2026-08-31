@@ -75,6 +75,7 @@ publish:
 	$(PY) scripts/build_public_vault.py $(if $(SOURCE),--source $(SOURCE),)
 	$(MAKE) indexes
 	$(MAKE) validate
+	$(PY) scripts/build_public_vault.py --verify
 
 site:
 	$(PY) scripts/build_learning_view.py --out docs/index.html
