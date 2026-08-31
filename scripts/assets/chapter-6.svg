@@ -1,0 +1,36 @@
+<svg viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,sans-serif" font-size="12">
+  <defs><marker id="ar6" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="var(--muted)"/></marker></defs>
+  <text x="10" y="18" fill="var(--muted)" font-size="11">判定生产线故障树 — 事实到支付的每一站, 及它各自的死法</text>
+  <g text-anchor="middle">
+    <rect x="10" y="40" width="100" height="42" rx="9" fill="none" stroke="var(--line)" stroke-dasharray="4 3"/>
+    <text x="60" y="58" fill="var(--muted)">事实发生</text><text x="60" y="74" fill="var(--muted)" font-size="10">现实世界</text>
+    <rect x="150" y="40" width="120" height="42" rx="9" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="210" y="58" fill="var(--ink)" font-weight="700">来源</text><text x="210" y="74" fill="var(--muted)" font-size="10">resolution source</text>
+    <rect x="310" y="40" width="120" height="42" rx="9" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="370" y="58" fill="var(--ink)" font-weight="700">语义</text><text x="370" y="74" fill="var(--muted)" font-size="10">contract semantics</text>
+    <rect x="470" y="40" width="120" height="42" rx="9" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="530" y="58" fill="var(--ink)" font-weight="700">判定机器</text><text x="530" y="74" fill="var(--muted)" font-size="10">oracle + 提议</text>
+    <rect x="630" y="40" width="80" height="42" rx="9" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="670" y="58" fill="var(--ink)" font-weight="700">争议</text><text x="670" y="74" fill="var(--muted)" font-size="10">dispute</text>
+  </g>
+  <g stroke="var(--muted)" marker-end="url(#ar6)">
+    <line x1="110" y1="61" x2="146" y2="61"/><line x1="270" y1="61" x2="306" y2="61"/>
+    <line x1="430" y1="61" x2="466" y2="61"/><line x1="590" y1="61" x2="626" y2="61"/>
+  </g>
+  <g font-size="10.5" fill="var(--warn)" text-anchor="middle">
+    <text x="210" y="104">不出数 · 出得歧义</text><text x="210" y="118">多源打架 · 窗外出数</text>
+    <text x="370" y="104">谓词边界 · 时区截止</text><text x="370" y="118">例外沉默 · 完备性缺口</text>
+    <text x="530" y="104">提议操纵 · 投票可买</text><text x="530" y="118">激励不足 · 喂假数据</text>
+    <text x="670" y="104">门槛太高 · 期限太长</text><text x="670" y="118">终审不公</text>
+  </g>
+  <g text-anchor="middle">
+    <rect x="290" y="150" width="160" height="42" rx="9" fill="var(--done-soft)" stroke="var(--done)"/>
+    <text x="370" y="168" fill="var(--ink)" font-weight="700">支付 $1 / $0</text>
+    <text x="370" y="184" fill="var(--muted)" font-size="10">settlement methodology 五问收尾</text>
+  </g>
+  <line x1="670" y1="122" x2="455" y2="158" stroke="var(--muted)" marker-end="url(#ar6)"/>
+  <g font-size="10.5" fill="var(--muted)">
+    <text x="10" y="222">行业底数: ~123k 判定请求 → ~957 争议 → 7.12% 改判 — 生产线有真实的、可统计的缺陷率。</text>
+    <text x="10" y="242" fill="var(--accent)">跨市场延伸: 两条生产线判「同一事件」→ 等价性判决 (contract-equivalence) → 沉淀为主键 (canonical-event-id)。</text>
+  </g>
+</svg>

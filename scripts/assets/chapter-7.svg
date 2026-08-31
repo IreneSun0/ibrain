@@ -1,0 +1,33 @@
+<svg viewBox="0 0 720 250" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,sans-serif" font-size="12">
+  <text x="10" y="18" fill="var(--muted)" font-size="11">一笔事件持仓的完整风险地图 — 方向只是八分之一; CRO 的问题是「看对方向后还有什么能让我拿不到钱」</text>
+  <g text-anchor="middle">
+    <rect x="280" y="95" width="160" height="56" rx="12" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+    <text x="360" y="118" fill="var(--ink)" font-weight="700">事件持仓</text>
+    <text x="360" y="136" fill="var(--muted)" font-size="10.5">event-var 聚合的对象</text>
+  </g>
+  <g font-size="11" text-anchor="middle">
+    <rect x="30" y="40" width="130" height="36" rx="8" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="95" y="57" fill="var(--ink)">方向风险</text><text x="95" y="71" fill="var(--muted)" font-size="9.5">事件走向 — 唯一被普遍管理的</text>
+    <rect x="210" y="40" width="130" height="36" rx="8" fill="var(--def-bg)" stroke="var(--warn)"/>
+    <text x="275" y="57" fill="var(--ink)">判定风险</text><text x="275" y="71" fill="var(--muted)" font-size="9.5">对了也可能裁错 (第六章)</text>
+    <rect x="390" y="40" width="130" height="36" rx="8" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="455" y="57" fill="var(--ink)">流动性风险</text><text x="455" y="71" fill="var(--muted)" font-size="9.5">临判定深度蒸发</text>
+    <rect x="570" y="40" width="130" height="36" rx="8" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="635" y="57" fill="var(--ink)">对手方风险</text><text x="635" y="71" fill="var(--muted)" font-size="9.5">显性归零 · 隐性上位</text>
+    <rect x="30" y="180" width="130" height="36" rx="8" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="95" y="197" fill="var(--ink)">集中风险</text><text x="95" y="211" fill="var(--muted)" font-size="9.5">跨 venue 押同一事件</text>
+    <rect x="210" y="180" width="130" height="36" rx="8" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="275" y="197" fill="var(--ink)">结算风险</text><text x="275" y="211" fill="var(--muted)" font-size="9.5">判对了钱在路上出事</text>
+    <rect x="390" y="180" width="130" height="36" rx="8" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="455" y="197" fill="var(--ink)">监管风险</text><text x="455" y="211" fill="var(--muted)" font-size="9.5">规则改写 — 双向</text>
+    <rect x="570" y="180" width="130" height="36" rx="8" fill="var(--def-bg)" stroke="var(--warn)"/>
+    <text x="635" y="197" fill="var(--ink)">操纵/内幕</text><text x="635" y="211" fill="var(--muted)" font-size="9.5">价格·事件·判定三面</text>
+  </g>
+  <g stroke="var(--line)">
+    <line x1="95" y1="76" x2="300" y2="98"/><line x1="275" y1="76" x2="330" y2="95"/>
+    <line x1="455" y1="76" x2="395" y2="95"/><line x1="635" y1="76" x2="425" y2="98"/>
+    <line x1="95" y1="180" x2="300" y2="150"/><line x1="275" y1="180" x2="330" y2="152"/>
+    <line x1="455" y1="180" x2="395" y2="152"/><line x1="635" y1="180" x2="425" y2="150"/>
+  </g>
+  <text x="10" y="240" fill="var(--accent)" font-size="10.5">判定风险与操纵/内幕: 传统风控框架里没有对应格子 — 这两项要单独建账。</text>
+</svg>

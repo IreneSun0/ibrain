@@ -1,0 +1,53 @@
+filters:
+  and:
+    - 'file.hasProperty("type")'
+    - 'note.type == "person" or note.type == "organization" or note.type == "exchange-venue" or note.type == "protocol-network" or note.type == "market-maker-fund" or note.type == "regulator" or note.type == "jurisdiction"'
+properties:
+  note.type:
+    displayName: 类型
+  note.importance:
+    displayName: 优先级
+  note.status:
+    displayName: 状态
+  note.last_verified:
+    displayName: 最后核实
+  note.title_zh:
+    displayName: 中文名
+views:
+  - type: table
+    name: 全部实体
+    order:
+      - file.name
+      - note.title_zh
+      - note.type
+      - note.importance
+      - note.status
+      - note.last_verified
+    sort:
+      - property: note.importance
+        direction: ASC
+      - property: file.name
+        direction: ASC
+  - type: cards
+    name: 一线实体
+    filters:
+      and:
+        - 'note.importance == "tier-1"'
+    order:
+      - file.name
+      - note.title_zh
+      - note.type
+      - note.last_verified
+  - type: table
+    name: 现任职务待复核
+    filters:
+      and:
+        - 'note.type == "person"'
+    order:
+      - file.name
+      - note.title_zh
+      - note.last_verified
+      - note.status
+    sort:
+      - property: note.last_verified
+        direction: ASC

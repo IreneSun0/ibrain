@@ -1,0 +1,29 @@
+<svg viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,sans-serif" font-size="12">
+  <defs><marker id="ar8" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="var(--muted)"/></marker></defs>
+  <text x="10" y="18" fill="var(--muted)" font-size="11">从数据到机构动作的价值链 — 81 关的合龙图: 前两级是基础设施, 第三级是机构动作</text>
+  <g text-anchor="middle">
+    <rect x="20" y="45" width="200" height="80" rx="12" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+    <text x="120" y="70" fill="var(--ink)" font-weight="700">数据层</text>
+    <text x="120" y="90" fill="var(--muted)" font-size="10.5">主键 · 等价性 · 判定状态</text>
+    <text x="120" y="106" fill="var(--muted)" font-size="10.5">行情+链上+语义+监管 四源</text>
+    <rect x="270" y="45" width="200" height="80" rx="12" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+    <text x="370" y="70" fill="var(--ink)" font-weight="700">风险引擎</text>
+    <text x="370" y="90" fill="var(--muted)" font-size="10.5">event-var · 集中度 · 压力退出</text>
+    <text x="370" y="106" fill="var(--muted)" font-size="10.5">日历驱动 · 判定状态机</text>
+    <rect x="520" y="45" width="185" height="80" rx="12" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="612" y="70" fill="var(--ink)" font-weight="700">政策引擎 (机构侧)</text>
+    <text x="612" y="90" fill="var(--muted)" font-size="10.5">放行 / 拦截 / 降额 / 升级</text>
+    <text x="612" y="106" fill="var(--muted)" font-size="10.5">风险偏好是客户主权</text>
+  </g>
+  <g stroke="var(--muted)" marker-end="url(#ar8)">
+    <line x1="220" y1="85" x2="266" y2="85"/><line x1="470" y1="85" x2="516" y2="85"/>
+  </g>
+  <g font-size="10.5" fill="var(--muted)" text-anchor="middle">
+    <text x="243" y="75">事实</text><text x="493" y="75">读数</text>
+  </g>
+  <g font-size="10.5" fill="var(--muted)">
+    <text x="20" y="160">底座: auditability — 四问全程存证 (什么数据 / 什么规则 / 谁决定 / 什么结果), 我们卖它, 所以先穿上它。</text>
+    <text x="20" y="182" fill="var(--ink)" font-weight="700">机构为「能写进 if 语句的数据」付费 — event risk infrastructure 的终局不是仪表盘, 是自动驾驶的风控政策。</text>
+    <text x="20" y="204" fill="var(--accent)">三命题定位: event-risk-infrastructure (整条链) · settlement-intelligence (数据层的判定/结算面) · friction-not-prediction (卖摩擦消除, 不卖预测)。</text>
+  </g>
+</svg>

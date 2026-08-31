@@ -1,0 +1,42 @@
+<svg viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,sans-serif" font-size="12">
+  <text x="10" y="18" fill="var(--muted)" font-size="11">盘口是一个阶梯 — $10,000 市价买单如何吃穿三档 (第一章练习的原图)</text>
+  <!-- bid side -->
+  <g>
+    <rect x="60" y="150" width="130" height="22" rx="4" fill="var(--done-soft)" stroke="var(--done)"/>
+    <text x="70" y="166" fill="var(--ink)">bid 0.50 × 12,000</text>
+    <rect x="80" y="122" width="110" height="22" rx="4" fill="var(--done-soft)" stroke="var(--done)"/>
+    <text x="90" y="138" fill="var(--ink)">bid 0.51 × 6,000</text>
+    <text x="60" y="196" fill="var(--done)" font-size="11">买方阶梯 (你卖出时从上往下吃)</text>
+  </g>
+  <!-- spread -->
+  <g text-anchor="middle">
+    <line x1="255" y1="60" x2="255" y2="175" stroke="var(--line)" stroke-dasharray="3 3"/>
+    <text x="255" y="52" fill="var(--warn)" font-size="11">spread 0.01</text>
+  </g>
+  <!-- ask side ladder -->
+  <g>
+    <rect x="320" y="94" width="100" height="22" rx="4" fill="var(--accent-soft)" stroke="var(--accent)"/>
+    <text x="330" y="110" fill="var(--ink)">ask 0.52 × 5,000</text>
+    <rect x="340" y="122" width="130" height="22" rx="4" fill="var(--accent-soft)" stroke="var(--accent)"/>
+    <text x="350" y="138" fill="var(--ink)">ask 0.53 × 8,000</text>
+    <rect x="360" y="150" width="190" height="22" rx="4" fill="var(--accent-soft)" stroke="var(--accent)"/>
+    <text x="370" y="166" fill="var(--ink)">ask 0.55 × 20,000</text>
+    <text x="320" y="196" fill="var(--accent)" font-size="11">卖方阶梯 (你买入时从下往上吃)</text>
+  </g>
+  <!-- order flow arrows -->
+  <g stroke="var(--warn)" fill="none" stroke-width="2">
+    <path d="M600 70 C560 78, 470 88, 424 102"/>
+    <path d="M600 78 C570 96, 500 116, 474 130"/>
+    <path d="M600 86 C580 116, 570 140, 554 158"/>
+  </g>
+  <g fill="var(--warn)">
+    <text x="598" y="62" font-size="11" font-weight="700">$10k 买单</text>
+    <text x="598" y="110" font-size="10.5">① $2,600 吃完一档</text>
+    <text x="598" y="126" font-size="10.5">② $4,240 吃完二档</text>
+    <text x="598" y="142" font-size="10.5">③ $3,160 进第三档</text>
+  </g>
+  <g font-size="11">
+    <text x="10" y="222" fill="var(--ink)" font-weight="700">均价 0.5335 · 滑点 2.6%</text>
+    <text x="200" y="222" fill="var(--muted)">— 屏幕价 0.52 只属于第一档的第一美元; 你的规模属于整个阶梯 (mark-to-liquidity)。</text>
+  </g>
+</svg>

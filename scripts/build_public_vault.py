@@ -1,0 +1,308 @@
+#!/usr/bin/env python3
+"""build_public_vault.py — deterministic private vault → publishable vault.
+
+The private vault is the single source of truth. This script materialises the
+subset that may be published, so that redaction is a reviewable artifact rather
+than a promise. Every exclusion rule is declared at the top of this file and
+every decision is written to `PUBLICATION.md` in the output tree.
+
+Rules are conservative: a note is published only if it survives *all* filters.
+
+  python3 scripts/build_public_vault.py            # build ./vault from $VAULT_PATH
+  python3 scripts/build_public_vault.py --check    # report only, write nothing
+
+No LLM. No network. Deterministic ordering throughout.
+"""
+from __future__ import annotations
+
+import argparse
+import os
+import re
+import shutil
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from brainlib import OPS_ROOT, iter_notes
+
+# ── exclusion policy ─────────────────────────────────────────────────────────
+#
+# The *mechanism* lives here and is domain-agnostic. The *values* — which trees are
+# private, which files to withhold, which sections to strip — are site-specific and
+# are loaded from the local, untracked `publish_rewrites.yaml`. Naming your private
+# trees in a public repo tells the world exactly what you are hiding.
+#
+# Defaults below are the generic ones that apply to any vault built with this tooling.
+
+DEFAULT_EXCLUDE_DIRS = ("01_INBOX", "99_ARCHIVE")
+DEFAULT_EXCLUDE_SUBPATHS = (
+    ("90_META", "health-reports"),
+    ("90_META", "import-reports"),
+    ("90_META", "review-queues"),
+)
+DEFAULT_EXCLUDE_FILES = (
+    "BUILD-REPORT.md", "IMPORT-REPORT.md", "IMPORT_REQUIRED.md",
+    "VAULT-HEALTH-REPORT.md", "UNRESOLVED-QUESTIONS.md", "OBSIDIAN-SETUP.md",
+)
+
+# Confidentiality tiers that never publish.
+BLOCK_CONFIDENTIALITY = {"confidential", "strictly-private"}
+
+SECTION_END = r"(?=\n## |\n<!-- timeline -->|\Z)"
+
+# ── deterministic rewrites ────────────────────────────────────────────────────
+# Applied to every published note, in order. These exist so that re-publishing
+# is reproducible: nothing here depends on a human remembering to edit a file.
+# Local, untracked: see publish_rewrites.example.yaml for the format.
+REWRITES_FILE = Path(__file__).resolve().parent / "publish_rewrites.yaml"
+
+
+def _config() -> dict:
+    import yaml
+    if not REWRITES_FILE.exists():
+        return {}
+    return yaml.safe_load(REWRITES_FILE.read_text(encoding="utf-8")) or {}
+
+
+def load_private_terms() -> tuple[str, ...]:
+    """Terms that must not survive into the published tree. Site-specific by nature —
+    a redaction list committed to the public repo reconstructs what it redacted."""
+    return tuple(_config().get("private_terms") or ())
+
+
+def load_rewrites() -> list[tuple[str, str, bool]]:
+    """Text rewrites live in a data file so this module stays a readable statement of
+    the *exclusion* policy (the security surface). Rewrites are cosmetic by comparison:
+    they remove project-specific framing from text that is otherwise publishable."""
+    data = _config()
+    # Literal by default: most rules are exact strings, and treating those as regex
+    # is how you get a rule that silently matches nothing (or crashes on `**`).
+    return [(r["match"], r["replace"], bool(r.get("regex"))) for r in (data.get("rewrites") or [])]
+
+
+REWRITES = load_rewrites()
+PRIVATE_TERMS = load_private_terms()
+
+_cfg = _config()
+EXCLUDE_DIRS = tuple(DEFAULT_EXCLUDE_DIRS) + tuple(_cfg.get("exclude_dirs") or ())
+EXCLUDE_SUBPATHS = tuple(DEFAULT_EXCLUDE_SUBPATHS) + tuple(
+    tuple(x) for x in (_cfg.get("exclude_subpaths") or ()))
+EXCLUDE_FILES = tuple(DEFAULT_EXCLUDE_FILES) + tuple(_cfg.get("exclude_files") or ())
+STRIP_SECTIONS = tuple(_cfg.get("strip_sections") or ())
+ALLOW_CONFIDENTIAL_PREFIXES = tuple(_cfg.get("allow_confidential_prefixes") or ())
+
+
+def apply_rewrites(text: str) -> str:
+    for pat, repl, is_regex in REWRITES:
+        text = re.sub(pat, repl, text) if is_regex else text.replace(pat, repl)
+    return text
+
+
+def relabel_confidentiality(fm: str) -> str:
+    """Publishing a note makes it public. Carrying `internal` into the public tree
+    would be a lie, and would break `--max-confidentiality public-source` for
+    anyone reusing this tooling on the published vault."""
+    return re.sub(r"(?m)^confidentiality: (?!public-source)\S+.*$",
+                  "confidentiality: public-source", fm)
+
+
+def rel_of(path: Path, root: Path) -> str:
+    return path.relative_to(root).as_posix()
+
+
+def exclusion_reason(path: Path, root: Path, fm: dict) -> str | None:
+    rel = path.relative_to(root)
+    parts = rel.parts
+    posix = rel.as_posix()
+    if parts[0] in EXCLUDE_DIRS:
+        return "private tree"
+    if parts[:2] in EXCLUDE_SUBPATHS:
+        return "private sub-tree"
+    if posix in EXCLUDE_FILES:
+        return "vault-ops artifact / private dashboard"
+    conf = str(fm.get("confidentiality") or "")
+    if conf in BLOCK_CONFIDENTIALITY:
+        if posix.startswith(ALLOW_CONFIDENTIAL_PREFIXES):
+            return None
+        return f"confidentiality: {conf}"
+    return None
+
+
+def strip_sections(body: str) -> str:
+    for head in STRIP_SECTIONS:
+        body = re.sub(rf"\n## {re.escape(head)}[^\n]*\n.*?{SECTION_END}", "\n", body, flags=re.DOTALL)
+    return body
+
+
+def drop_fm_refs(text: str, dead_ids: set[str]) -> str:
+    """Remove frontmatter list items whose id resolves to an unpublished note."""
+    out, i, lines = [], 0, text.split("\n")
+    while i < len(lines):
+        line = lines[i]
+        m = re.match(r'^  - (?:id: )?"?([a-z0-9-]+:[^"\s]+)"?\s*$', line)
+        if m and m.group(1) in dead_ids:
+            i += 1
+            while i < len(lines) and re.match(r"^    \w+:", lines[i]):
+                i += 1
+            continue
+        m2 = re.match(r'^  - "?([a-z0-9-]+:[^"\s]+)"?\s*$', line)
+        if m2 and m2.group(1) in dead_ids:
+            i += 1
+            continue
+        out.append(line)
+        i += 1
+    return "\n".join(out)
+
+
+def unlink_dead_wikilinks(body: str, dead_targets: set[str]) -> str:
+    """`[[dead-target|label]]` → `label` (keep the prose, drop the broken link)."""
+    def repl(m: re.Match) -> str:
+        inner = m.group(1)
+        target = inner.split("|")[0].split("#")[0].strip()
+        label = inner.split("|")[-1].strip() if "|" in inner else target.split("/")[-1]
+        if target in dead_targets or target.split("/")[-1] in dead_targets:
+            return label
+        return m.group(0)
+    return re.sub(r"\[\[([^\]]+)\]\]", repl, body)
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default=str(OPS_ROOT / "vault"))
+    ap.add_argument("--source", default=None,
+                    help="private vault to publish from (default: $VAULT_PATH)")
+    ap.add_argument("--check", action="store_true", help="report only, write nothing")
+    args = ap.parse_args()
+
+    if args.source:
+        root = Path(args.source).expanduser().resolve()
+    else:
+        env = os.environ.get("VAULT_PATH")
+        if not env:
+            print("build_public_vault: pass --source or set VAULT_PATH", file=sys.stderr)
+            return 2
+        root = Path(env).expanduser().resolve()
+    if not (root / "90_META").exists():
+        print(f"build_public_vault: no vault at {root} (pass --source)", file=sys.stderr)
+        return 2
+    out = Path(args.out).resolve()
+    if out == root:
+        print("build_public_vault: refusing to write onto the source vault", file=sys.stderr)
+        return 2
+
+    notes = list(iter_notes(root, include_templates=True))
+    decisions: list[tuple[str, str | None]] = []
+    for n in notes:
+        decisions.append((rel_of(n.path, root), exclusion_reason(n.path, root, n.frontmatter)))
+
+    by_rel = {rel_of(n.path, root): n for n in notes}
+    kept = [r for r, why in decisions if why is None]
+    dropped = [(r, why) for r, why in decisions if why]
+
+    # Cascade: a relationship whose counterparty is withheld would dangle. Drop it
+    # too, and repeat until the published set is closed under required references.
+    REQUIRED_REFS = ("entity_a", "entity_b", "subject")
+    while True:
+        live_ids = {by_rel[r].id for r in kept if by_rel[r].id}
+        newly = []
+        for r in kept:
+            fm = by_rel[r].frontmatter
+            for key in REQUIRED_REFS:
+                v = fm.get(key)
+                if v and str(v) not in live_ids and ":" in str(v):
+                    newly.append((r, "counterparty is not published"))
+                    break
+        if not newly:
+            break
+        drop_now = {r for r, _ in newly}
+        kept = [r for r in kept if r not in drop_now]
+        dropped.extend(newly)
+    kept_set = set(kept)
+    dead_ids = {by_rel[r].id for r, _ in dropped if by_rel[r].id}
+    dead_stems = {Path(r).stem for r, _ in dropped}
+    dead_targets = dead_ids | dead_stems
+
+    print(f"build_public_vault: {len(kept)} published / {len(dropped)} withheld")
+    reasons: dict[str, int] = {}
+    for _, why in dropped:
+        reasons[why] = reasons.get(why, 0) + 1
+    for why, c in sorted(reasons.items(), key=lambda kv: -kv[1]):
+        print(f"  withheld {c:3d}  {why}")
+
+    residual: list[tuple[str, int]] = []
+    written = 0
+    if not args.check:
+        if out.exists():
+            shutil.rmtree(out)
+        out.mkdir(parents=True)
+
+    for rel in sorted(kept_set):
+        note = by_rel[rel]
+        text = note.path.read_text(encoding="utf-8")
+        fm_end = text.find("\n---", 4)
+        fm_part, body_part = (text[: fm_end + 4], text[fm_end + 4 :]) if text.startswith("---") and fm_end > 0 else ("", text)
+        fm_part = relabel_confidentiality(drop_fm_refs(fm_part, dead_ids))
+        body_part = strip_sections(body_part)
+        body_part = unlink_dead_wikilinks(body_part, dead_targets)
+        new = apply_rewrites(fm_part + body_part)
+        hits = sum(len(re.findall(t, new, re.I)) for t in PRIVATE_TERMS)
+        if hits:
+            residual.append((rel, hits))
+        if not args.check:
+            dst = out / apply_rewrites(rel)
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            dst.write_text(new, encoding="utf-8")
+            written += 1
+
+    # non-markdown assets inside published trees (schema json, curriculum yaml…)
+    assets = 0
+    for p in sorted(root.rglob("*")):
+        if p.is_dir() or p.suffix == ".md":
+            continue
+        rel = p.relative_to(root)
+        if rel.parts[0].startswith(".") or rel.parts[0] in EXCLUDE_DIRS:
+            continue
+        if rel.parts[:2] in EXCLUDE_SUBPATHS:
+            continue
+        if p.name in (".DS_Store",) or rel.as_posix() in EXCLUDE_FILES:
+            continue
+        if not args.check:
+            dst = out / apply_rewrites(rel.as_posix())
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            if p.suffix in (".yaml", ".yml", ".json", ".txt"):
+                dst.write_text(apply_rewrites(p.read_text(encoding="utf-8")), encoding="utf-8")
+            else:
+                shutil.copy2(p, dst)
+        assets += 1
+
+    if residual:
+        total = sum(c for _, c in residual)
+        print(f"  ⚠ {len(residual)} published note(s) still mention private terms ({total} hits) — needs a human pass:")
+        for rel, c in sorted(residual, key=lambda kv: -kv[1])[:15]:
+            print(f"      {c:3d}  {rel}")
+
+    if not args.check:
+        manifest = [
+            "# Publication manifest",
+            "",
+            "Generated by `scripts/build_public_vault.py` — do not edit by hand.",
+            "",
+            f"- published notes: **{written}**",
+            f"- copied assets: **{assets}**",
+            f"- withheld notes: **{len(dropped)}**",
+            "",
+            "## Why notes were withheld",
+            "",
+            "| reason | count |",
+            "|---|---:|",
+        ]
+        for why, c in sorted(reasons.items(), key=lambda kv: -kv[1]):
+            manifest.append(f"| {why} | {c} |")
+        manifest += ["", "Withheld titles are intentionally not listed.", ""]
+        (out.parent / "PUBLICATION.md").write_text("\n".join(manifest), encoding="utf-8")
+        print(f"  wrote {written} notes + {assets} assets → {out}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

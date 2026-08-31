@@ -1,0 +1,215 @@
+{
+ "nodes": [
+  {
+   "id": "n-binance",
+   "type": "file",
+   "file": "03_ENTITIES/exchanges-venues/binance.md",
+   "x": -520,
+   "y": -300,
+   "width": 260,
+   "height": 90,
+   "color": "4"
+  },
+  {
+   "id": "n-okx",
+   "type": "file",
+   "file": "03_ENTITIES/exchanges-venues/okx.md",
+   "x": -200,
+   "y": -300,
+   "width": 240,
+   "height": 90,
+   "color": "4"
+  },
+  {
+   "id": "n-bybit",
+   "type": "file",
+   "file": "03_ENTITIES/exchanges-venues/bybit.md",
+   "x": 120,
+   "y": -300,
+   "width": 240,
+   "height": 90,
+   "color": "4"
+  },
+  {
+   "id": "n-bitget",
+   "type": "file",
+   "file": "03_ENTITIES/exchanges-venues/bitget.md",
+   "x": 440,
+   "y": -300,
+   "width": 240,
+   "height": 90,
+   "color": "4"
+  },
+  {
+   "id": "n-htx",
+   "type": "file",
+   "file": "03_ENTITIES/exchanges-venues/htx.md",
+   "x": 760,
+   "y": -300,
+   "width": 240,
+   "height": 90,
+   "color": "1"
+  },
+  {
+   "id": "n-hl",
+   "type": "file",
+   "file": "03_ENTITIES/exchanges-venues/hyperliquid-hip4.md",
+   "x": 120,
+   "y": -80,
+   "width": 260,
+   "height": 90,
+   "color": "5"
+  },
+  {
+   "id": "n-poly",
+   "type": "file",
+   "file": "03_ENTITIES/exchanges-venues/polymarket.md",
+   "x": -520,
+   "y": 140,
+   "width": 250,
+   "height": 90,
+   "color": "6"
+  },
+  {
+   "id": "n-kalshi",
+   "type": "file",
+   "file": "03_ENTITIES/exchanges-venues/kalshi.md",
+   "x": -200,
+   "y": 140,
+   "width": 240,
+   "height": 90,
+   "color": "6"
+  },
+  {
+   "id": "n-pf",
+   "type": "file",
+   "file": "03_ENTITIES/exchanges-venues/predict-fun.md",
+   "x": 120,
+   "y": 140,
+   "width": 240,
+   "height": 90,
+   "color": "6"
+  },
+  {
+   "id": "n-yzi",
+   "type": "text",
+   "text": "**YZi Labs** (CZ + Yi He 家族办公室)\n投 Predict.fun / Opinion",
+   "x": 440,
+   "y": 140,
+   "width": 280,
+   "height": 100,
+   "color": "3"
+  },
+  {
+   "id": "n-ice",
+   "type": "file",
+   "file": "03_ENTITIES/organizations/intercontinental-exchange.md",
+   "x": -520,
+   "y": 360,
+   "width": 250,
+   "height": 90,
+   "color": "2"
+  },
+  {
+   "id": "n-sig",
+   "type": "file",
+   "file": "03_ENTITIES/market-makers-funds/susquehanna.md",
+   "x": -200,
+   "y": 360,
+   "width": 240,
+   "height": 90,
+   "color": "2"
+  },
+  {
+   "id": "n-wm",
+   "type": "file",
+   "file": "03_ENTITIES/market-makers-funds/wintermute.md",
+   "x": 120,
+   "y": 360,
+   "width": 240,
+   "height": 90,
+   "color": "2"
+  },
+  {
+   "id": "n-lineage",
+   "type": "file",
+   "file": "06_RELATIONSHIPS/alumni-networks/chinese-exchange-lineage.md",
+   "x": 760,
+   "y": -80,
+   "width": 260,
+   "height": 90,
+   "color": "3"
+  },
+  {
+   "id": "n-legend",
+   "type": "text",
+   "text": "图例: 红=制裁隔离 · 紫=链即所 · 青=事件venue · 绿=资本/MM · 黄=人脉\n每条边带类型; 详图见 map-exchange-power.md",
+   "x": -520,
+   "y": -460,
+   "width": 560,
+   "height": 100
+  }
+ ],
+ "edges": [
+  {
+   "id": "e1",
+   "fromNode": "n-ice",
+   "toNode": "n-poly",
+   "label": "invested-in $2B"
+  },
+  {
+   "id": "e2",
+   "fromNode": "n-ice",
+   "toNode": "n-okx",
+   "label": "invested-in $25B (单源)"
+  },
+  {
+   "id": "e3",
+   "fromNode": "n-sig",
+   "toNode": "n-kalshi",
+   "label": "provides-liquidity-to"
+  },
+  {
+   "id": "e4",
+   "fromNode": "n-wm",
+   "toNode": "n-poly",
+   "label": "provides-liquidity-to"
+  },
+  {
+   "id": "e5",
+   "fromNode": "n-wm",
+   "toNode": "n-kalshi",
+   "label": "provides-liquidity-to"
+  },
+  {
+   "id": "e6",
+   "fromNode": "n-yzi",
+   "toNode": "n-pf",
+   "label": "invested-in"
+  },
+  {
+   "id": "e7",
+   "fromNode": "n-binance",
+   "toNode": "n-pf",
+   "label": "distributes (Wallet)"
+  },
+  {
+   "id": "e8",
+   "fromNode": "n-binance",
+   "toNode": "n-okx",
+   "label": "competes-with"
+  },
+  {
+   "id": "e9",
+   "fromNode": "n-lineage",
+   "toNode": "n-binance",
+   "label": "alumni: OKCoin→Binance"
+  },
+  {
+   "id": "e10",
+   "fromNode": "n-poly",
+   "toNode": "n-kalshi",
+   "label": "competes-with"
+  }
+ ]
+}

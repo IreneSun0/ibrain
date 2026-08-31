@@ -1,0 +1,144 @@
+# 主线通关路径 (speedrun) — 由终局能力反向收集硬前置闭包得出。
+# 81 关 = 52 个终局与机构对话支点 + 29 个闭包拉进的前置; 其余 62 概念 = 支线 (可跳过, 按需顺路)。
+# 章节内按拓扑序排列 (apply 校验: 每关的主线前置必须出现在它之前)。
+# 消费者: compute_score.py (concept 分 = 主线完成率) + build_learning_view.py (通关视图)。
+
+chapters:
+  - n: 0
+    title: "序章 · 钱与风险的地图"
+    question: "为什么这个市场存在? 谁需要它?"
+    concepts:
+      - concept:financial-markets
+      - concept:price-discovery
+      - concept:exchange
+      - concept:market-maker
+      - concept:clearing
+      - concept:clearinghouse
+      - concept:settlement
+  - n: 1
+    title: "第一章 · 盘口的语言"
+    question: "我能以这个价格成交多少? 大单会把价格推多远?"
+    concepts:
+      - concept:order-book
+      - concept:bid
+      - concept:ask
+      - concept:spread
+      - concept:depth
+      - concept:maker
+      - concept:taker
+      - concept:liquidity
+      - concept:slippage
+      - concept:adverse-selection
+      - concept:inventory-risk
+      - concept:central-limit-order-book
+  - n: 2
+    title: "第二章 · 风险的合约形态"
+    question: "我真正暴露于哪个 underlying? 最坏要付多少?"
+    concepts:
+      - concept:derivative
+      - concept:underlying
+      - concept:option
+      - concept:binary-option
+      - concept:hedging
+      - concept:basis-risk
+      - concept:leverage
+      - concept:collateral
+      - concept:margin
+      - concept:cross-margin
+  - n: 3
+    title: "第三章 · 链上最小集"
+    question: "哪些必须上链? 哪些链下更合理? 信任假设是什么?"
+    concepts:
+      - concept:ledger
+      - concept:consensus
+      - concept:blockchain
+      - concept:smart-contract
+      - concept:token
+      - concept:oracle
+      - concept:on-chain
+      - concept:off-chain
+      - concept:erc-standards
+      - concept:erc-20
+      - concept:erc-721
+      - concept:erc-1155
+      - concept:automated-market-maker
+  - n: 4
+    title: "第四章 · 钱的管道"
+    question: "钱在哪个平台? 能否自由转移? 谁能冻结?"
+    concepts:
+      - concept:custody
+      - concept:custody-segregation
+      - concept:settlement-rail
+      - concept:stablecoin
+  - n: 5
+    title: "第五章 · 事件市场本体"
+    question: "这个 contract 到底承诺什么?"
+    concepts:
+      - concept:event-risk
+      - concept:event-contract
+      - concept:outcome-market
+      - concept:prediction-market
+      - concept:outcome-token
+      - concept:implied-probability
+      - concept:multi-outcome-market
+      - concept:fully-collateralized-market
+      - concept:hybrid-exchange-architecture
+      - concept:market-maker-incentive
+  - n: 6
+    title: "第六章 · 结算与争议"
+    question: "谁决定事实? 裁错了怎么办?"
+    concepts:
+      - concept:resolution
+      - concept:resolution-source
+      - concept:contract-semantics
+      - concept:oracle-risk
+      - concept:dispute-mechanism
+      - concept:resolution-risk
+      - concept:resolution-insurance
+      - concept:settlement-methodology
+      - concept:contract-equivalence
+      - concept:canonical-event-id
+  - n: 7
+    title: "第七章 · 机构风险语言"
+    question: "看对方向以后, 还有什么能让我拿不到钱或被迫退出?"
+    concepts:
+      - concept:value-at-risk
+      - concept:event-var
+      - concept:counterparty-risk
+      - concept:liquidity-risk
+      - concept:concentration-risk
+      - concept:settlement-risk
+      - concept:jurisdiction
+      - concept:regulatory-risk
+      - concept:regulatory-access
+      - concept:inside-information
+      - concept:market-integrity
+  - n: 8
+    title: "终章 · 从知识到系统"
+    question: "把以上一切说成一个机构愿意付费的故事。"
+    concepts:
+      - concept:data-infrastructure
+      - concept:auditability
+      - concept:risk-engine
+      - concept:policy-engine
+
+# 支线归章 (视图把非主线概念按 domain 折叠到最近的章; build 校验全覆盖)
+side_domain_chapter:
+  financial-markets: 0
+  exchanges: 0
+  market-microstructure: 1
+  derivatives: 2
+  blockchain: 3
+  tron-ecosystem: 3
+  crypto-market-structure: 4
+  stablecoins-wallets-payments: 4
+  industry-strategy: 8
+  prediction-outcome-markets: 5
+  institutional-risk: 7
+  regulation-compliance: 7
+
+# 练习题库 → 章 (旧 stage 命名的存量题库)
+exercise_chapter:
+  stage-1-financial-markets: 0
+  stage-2-exchanges: 0
+  stage-3-microstructure: 1

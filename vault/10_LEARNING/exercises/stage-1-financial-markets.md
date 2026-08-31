@@ -1,0 +1,87 @@
+---
+id: "deck:exercises-stage-1"
+type: flashcard-deck
+title: Exercises Stage 1 Financial Markets
+title_zh: 练习题 · Stage 1 金融市场
+aliases: []
+status: seed
+importance: tier-1
+domains:
+  - learning
+  - financial-markets
+tags:
+  - exercises
+  - bootcamp
+created: 2026-08-27
+updated: 2026-08-27
+confidence: high
+epistemic_status: mixed
+confidentiality: public-source
+sources: []
+related: []
+---
+
+# 练习题 · Stage 1 金融市场 (v1, 2026-08-27)
+
+> 用法: 先盲答再看答案; 每题自评 0/0.5/1 分; 正确率与错题记入当日日志。
+> 题型: [忆]回忆 · [算]计算 · [判]案例判断 · [英]英语表达 · [话]模拟对话。
+
+## Q1 [忆] 金融市场存在的理由
+不看笔记: 金融市场解决什么问题? 谁需要它? (两句话)
+> **参考**: 把资本从有钱的人/机构配置给需要资金的人/机构 (融资), 并把风险从不想承担的人转移给愿意承担的人 (风险转移)。需要它的是: 要钱的企业/政府、要收益的投资者、要卸风险的生产者与要接风险的投机者。
+> **给分点**: 说出「配置资本」+「转移风险」两个功能各 0.5; 只说「买卖东西的地方」= 0。
+
+## Q2 [忆] 链条默画
+脱稿画出「资本 → 中介 → venue → 清算 → 结算」链, 并在每一环标出: 钱在哪、谁承担什么风险。
+> **参考**: 投资者资金 → broker (代理, 操作风险)/dealer (自有资产负债表, 价格风险) → exchange/venue (订单撮合, 平台/技术风险) → clearing (义务确认+净额+保证金, 对手方风险集中到 CCP) → settlement (钱与资产最终易手, 结算风险)。
+> **给分点**: 五环齐 0.4; 每环风险标对各 0.12。这是 Stage 1 完成判据, 必须满分才算过。
+
+## Q3 [忆] broker vs dealer
+一句话说清 broker 和 dealer 的本质区别, 并回答: 为什么这个区别对客户重要?
+> **参考**: broker 代客传单、不担价格风险; dealer 用自己的资产负债表和你交易、自己扛库存。对客户重要因为: dealer 可能直接是你的对手方 — 它的报价里含它的风险补偿, 它的利益与你不完全一致。
+> **给分点**: 区别 0.5; 「对手方利益冲突」视角 0.5。
+
+## Q4 [忆] 做市商的两大成本
+做市商持续双边报价, 它在怕什么? 说出两大风险及各自的缓解手段。
+> **参考**: ① 逆向选择 (对手方信息更好, 只在报价不利时成交) — 缓解: 拉宽 spread 为知情流收费; ② 库存风险 (未对冲头寸暴露于价格波动) — 缓解: 对冲。
+> **给分点**: 两个风险各 0.3, 两个缓解各 0.2。(这是 frontmatter 语义关系的直接考察: adverse-selection/inventory-risk → risk-of market-maker)
+
+## Q5 [忆] clearinghouse 瀑布
+CCP 为什么敢站到每笔成交中间? 说出它吸收违约的资金瀑布顺序。
+> **参考**: 违约者保证金 → 违约者违约基金份额 → CCP 自有资本 (skin in the game) → 存活会员违约基金 → (极端) 追加摊派。它敢, 因为风险被保证金+互助化基金分层吸收。
+> **给分点**: 「成为所有买方的卖方/卖方的买方」0.3; 瀑布层次顺序大体对 0.7。
+
+## Q6 [算] 净额清算的意义
+A 欠 B $8M, B 欠 C $6M, C 欠 A $5M。双边逐笔结算要动多少钱? 经 CCP 多边净额后各自净头寸是多少, 要动多少钱?
+> **参考**: 双边 = 8+6+5 = $19M 流动。净额: A = -8+5 = -3 (净付 $3M); B = +8-6 = +2 (净收 $2M); C = +6-5 = +1 (净收 $1M)。净额后只需 $3M 流动 (A 付, B 收 2, C 收 1)。结算量从 19 降到 3, 这就是清算存在的资本效率理由。
+> **给分点**: 双边总额 0.3; 三个净头寸各 0.15; 结论「净额压缩结算量/风险」0.25。
+
+## Q7 [判] 新闻拆解
+「某新能源公司发行 5 年期公司债 $500M, 由两家投行承销, 部分买家是保险公司, 同时公司用利率互换把浮动利率换成固定。」— 指出: 谁在配置资本? 谁在转移什么风险? 结算走哪条轨?
+> **参考**: 保险公司 (资金盈余方) 向公司配置资本 (debt, 固定收益+优先受偿); 公司用 swap 把利率风险转移给互换对手方 (通常是 dealer 银行); 债券结算走证券结算系统 (DvP), 互换现金流走双边/清算所。
+> **给分点**: 资本配置方向 0.3; 风险转移识别 (利率风险经 swap) 0.4; 结算轨 0.3。
+
+## Q8 [判] equity vs debt 的风险语言
+同一家公司, 你持有它的股票和它的债券。公司破产清算时两者的命运差异? 公司业绩暴涨时呢? 用「受偿顺序」和「收益上限」两个词回答。
+> **参考**: 破产: 债券受偿顺序优先, 股票是剩余索取权 (最后、常归零)。暴涨: 债券收益固定有上限 (还本付息), 股票上不封顶。所以 debt 的核心风险是违约, equity 的核心特征是剩余价值的双向暴露。
+> **给分点**: 两个场景各 0.5, 必须用对两个关键词。
+
+## Q9 [英] Price discovery, 60 秒
+用英语向一个聪明的外行解释 price discovery, 并落到预测市场为什么有信息价值。60–90 秒, 录音。
+> **参考骨架**: "Price discovery is how a market compresses scattered information into one number. Every trader acts on what they know, and the price is the running vote. That's exactly why prediction market prices carry information — a price of 0.62 on an event is the market's live estimate that it happens. Not because anyone is smart alone, but because the price aggregates everyone's stakes."
+> **给分点**: 概念对 0.4; 落到 PM 0.3; 流畅度/不卡壳 0.3。
+
+## Q10 [英] 口径卡产出
+写出 market maker 的两版英文一句话: ① 讲给外行; ② 讲给机构 CRO。(写下来, 明天复述)
+> **参考**: ① "A market maker is a firm that always quotes both a buy and a sell price, so you can trade instantly — they earn the spread for taking that risk." ② "Market makers are the liquidity backbone — they warehouse inventory risk and adverse selection, and their quoting behavior is what turns a listed contract into a tradable one."
+> **给分点**: 两版语域区分明显 0.5; 各自准确 0.5。
+
+## Q11 [话] 机构挑战
+一位传统基金合伙人说: "事件合约? 那不就是体育博彩换了个说法吗。" 用一段话回应 (中文), 要求用到「风险转移」「价格发现」「清算」三个概念。
+> **参考骨架**: 博彩是庄家定赔率、玩家对庄家、输赢即结束; 事件市场是参与者互为对手方、价格由交易连续发现、头寸可随时进出对冲真实业务风险 (航司对冲天气、基金对冲政策), 且在受监管清算框架内结算。判断标准不是「标的是不是事件」, 而是「有没有风险转移功能 + 价格发现机制 + 中立清算」。CFTC 把它按衍生品监管, 正是这个逻辑。
+> **给分点**: 三概念各 0.25 且用得对; 整体说服力 0.25。
+
+## Q12 [话] 实战应用 (curriculum 原题)
+用一段话向机构解释:「事件风险为什么属于金融市场而不是博彩」— 但这次从**机构自身资产负债表**出发讲。
+> **参考骨架**: 机构的组合里本来就躺着事件敞口 (选举→政策→利率; 判决→个股; 地缘→供应链), 只是没有被单独计量。事件合约只是把这层一直存在的风险显性化、可交易化。问题不是「要不要碰事件风险」— 你已经在承担它 — 而是「要不要给它一个可对冲的市场和一个计量框架 (event-var)」。
+> **给分点**: 「敞口本已存在」视角 0.5; 自然带出计量/对冲需求 0.5。

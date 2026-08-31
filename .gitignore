@@ -1,0 +1,39 @@
+# ── Python ──
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+
+# ── Secrets / credentials (never commit; secret_scan.py also enforces) ──
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*credentials*
+*.cookie
+*token*.json
+*seed-phrase*
+*mnemonic*
+
+# ── OS noise ──
+.DS_Store
+Thumbs.db
+
+# ── Local state ──
+.claude/settings.local.json
+*.log
+
+# generated console builds (rebuild with `make console`)
+dist/
+
+# generated site (built by `make site`; deployed by .github/workflows/pages.yml)
+docs/
+
+# local redaction config — never commit (it reconstructs what was redacted)
+scripts/publish_rewrites.yaml
+
+# private console panels (strategy view) — never commit
+scripts/console_template.private.html

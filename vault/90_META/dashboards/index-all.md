@@ -1,0 +1,303 @@
+# Index — All Notes | 全量索引
+
+> 生成文件 · `generate_indexes.py` · 手改会被覆盖。
+
+更新: 2026-08-31
+
+- `book:options-futures-hull` — [[book-options-futures-hull|Options, Futures, and Other Derivatives (John Hull)]] · 《期权、期货及其他衍生品》
+- `book:trading-and-exchanges` — [[book-trading-and-exchanges|Trading and Exchanges (Larry Harris)]] · 《交易与交易所》
+- `case:dome-acquisition` — [[case-dome-acquisition|Polymarket Acquires Dome - The Venue Absorbed the Aggregator]] · Polymarket 收购 Dome · 场馆吞掉聚合层
+- `case:kalshi-khamenei-settlement` — [[case-kalshi-khamenei-settlement|Kalshi Khamenei Market Settlement (2026-03)]] · Kalshi Khamenei 市场结算案
+- `case:uma-dispute-trilogy` — [[case-uma-dispute-trilogy|UMA Dispute Trilogy 2025-2026]] · UMA 裁决争议三连案
+- `concept:adverse-selection` — [[adverse-selection|Adverse Selection]] · 逆向选择/被更懂的人交易
+- `concept:anti-money-laundering` — [[anti-money-laundering|AML]] · 反洗钱
+- `concept:ask` — [[ask|Ask]] · 卖一/卖价
+- `concept:auditability` — [[auditability|Auditability]] · 可审计性
+- `concept:automated-market-maker` — [[automated-market-maker|AMM]] · 自动做市商
+- `concept:basis-risk` — [[basis-risk|Basis Risk]] · 基差风险/不完美对冲风险
+- `concept:bid` — [[bid|Bid]] · 买一/买价
+- `concept:binary-option` — [[binary-option|Binary/Digital Option]] · 二元/数字期权
+- `concept:block` — [[block|Block]] · 区块
+- `concept:blockchain` — [[blockchain|Blockchain]] · 区块链
+- `concept:bridge` — [[bridge|Bridge]] · 跨链桥
+- `concept:broker` — [[broker|Broker]] · 经纪商
+- `concept:call-option` — [[call-option|Call Option]] · 看涨期权
+- `concept:canonical-event-id` — [[canonical-event-id|Canonical Event ID]] · 统一事件标识
+- `concept:capital-requirements` — [[capital-requirements|Capital Requirements]] · 资本充足/最低资本要求
+- `concept:central-limit-order-book` — [[central-limit-order-book|CLOB]] · 中央限价订单簿
+- `concept:centralized-exchange` — [[centralized-exchange|CEX]] · 中心化加密交易所
+- `concept:clearing` — [[clearing|Clearing]] · 清算
+- `concept:clearinghouse` — [[clearinghouse|Clearinghouse]] · 清算所/中央对手方
+- `concept:collateral` — [[collateral|Collateral]] · 抵押品/担保资产
+- `concept:combinatorial-market` — [[combinatorial-market|Combinatorial Market]] · 组合市场
+- `concept:concentration-risk` — [[concentration-risk|Concentration Risk]] · 集中度风险
+- `concept:consensus` — [[consensus|Consensus]] · 共识机制
+- `concept:contract-equivalence` — [[contract-equivalence|Contract Equivalence]] · 合约等价性
+- `concept:contract-semantics` — [[contract-semantics|Contract Semantics]] · 合约语义
+- `concept:counterparty-risk` — [[counterparty-risk|Counterparty Risk]] · 交易对手风险
+- `concept:credit-risk` — [[credit-risk|Credit Risk]] · 信用风险
+- `concept:cross-margin` — [[cross-margin|Cross Margin]] · 跨品种/跨头寸保证金
+- `concept:custody` — [[custody|Custody]] · 托管
+- `concept:custody-segregation` — [[custody-segregation|Custody Segregation]] · 客户资产隔离托管
+- `concept:data-infrastructure` — [[data-infrastructure|Data Infrastructure]] · 数据基础设施
+- `concept:dealer` — [[dealer|Dealer]] · 交易商/自营商
+- `concept:debt` — [[debt|Debt]] · 债权/债务工具
+- `concept:decentralized-exchange` — [[decentralized-exchange|DEX]] · 去中心化交易所
+- `concept:delegated-proof-of-stake` — [[delegated-proof-of-stake|DPoS]] · 委托权益证明
+- `concept:depth` — [[depth|Depth]] · 盘口深度
+- `concept:derivative` — [[derivative|Derivative]] · 衍生品
+- `concept:dispute-mechanism` — [[dispute-mechanism|Dispute Mechanism]] · 争议机制
+- `concept:distribution` — [[distribution|Distribution]] · 用户分发/入口
+- `concept:double-spending` — [[double-spending|Double Spending]] · 双重支付
+- `concept:equity` — [[equity|Equity]] · 股权/股票
+- `concept:erc-1155` — [[erc-1155|ERC-1155]] · 多代币标准
+- `concept:erc-20` — [[erc-20|ERC-20]] · 同质化代币标准
+- `concept:erc-721` — [[erc-721|ERC-721]] · NFT非同质化代币标准
+- `concept:erc-standards` — [[erc-standards|ERC Standard]] · 以太坊代币/接口标准
+- `concept:ethereum-virtual-machine` — [[ethereum-virtual-machine|EVM]] · 以太坊虚拟机
+- `concept:event-contract` — [[event-contract|Event Contract]] · 事件合约
+- `concept:event-risk` — [[event-risk|Event Risk]] · 事件风险
+- `concept:event-var` — [[event-var|Event VaR]] · 事件风险价值
+- `concept:exchange` — [[exchange|Exchange]] · 交易所/交易场所
+- `concept:exchange-vertical-integration` — [[exchange-vertical-integration|Exchange Vertical Integration]] · 交易所纵向一体化
+- `concept:execution-risk` — [[execution-risk|Execution Risk]] · 执行风险
+- `concept:expected-shortfall` — [[expected-shortfall|Expected Shortfall]] · 预期损失/尾部期望损失
+- `concept:financial-markets` — [[financial-markets|Financial Markets]] · 金融市场
+- `concept:forward-contract` — [[forward-contract|Forward]] · 远期合约
+- `concept:fully-collateralized-market` — [[fully-collateralized-market|Fully Collateralized]] · 全额抵押
+- `concept:funding-rate` — [[funding-rate|Funding Rate]] · 资金费率
+- `concept:futures-contract` — [[futures-contract|Futures]] · 期货
+- `concept:gas` — [[gas|Gas]] · 链上计算/资源费
+- `concept:hedging` — [[hedging|Hedging]] · 对冲
+- `concept:hybrid-exchange-architecture` — [[hybrid-exchange-architecture|Hybrid Exchange]] · 混合式交易架构
+- `concept:implied-probability` — [[implied-probability|Implied Probability]] · 隐含概率
+- `concept:initial-margin` — [[initial-margin|Initial Margin]] · 初始保证金
+- `concept:inside-information` — [[inside-information|Inside Information]] · 内幕/重大非公开信息
+- `concept:inventory-risk` — [[inventory-risk|Inventory Risk]] · 库存风险
+- `concept:jurisdiction` — [[jurisdiction|Jurisdiction]] · 司法辖区/适用法域
+- `concept:know-your-customer` — [[know-your-customer|KYC]] · 了解你的客户/身份验证
+- `concept:know-your-transaction` — [[know-your-transaction|KYT]] · 了解交易/链上交易监控
+- `concept:layer-1` — [[layer-1|L1]] · 第一层/基础公链
+- `concept:layer-2` — [[layer-2|L2]] · 第二层扩容网络
+- `concept:ledger` — [[ledger|Ledger]] · 账本
+- `concept:leverage` — [[leverage|Leverage]] · 杠杆
+- `concept:liquidation` — [[liquidation|Liquidation]] · 强制平仓
+- `concept:liquidity` — [[liquidity|Liquidity]] · 流动性
+- `concept:liquidity-provider` — [[liquidity-provider|Liquidity Provider]] · 流动性提供者
+- `concept:liquidity-risk` — [[liquidity-risk|Liquidity Risk]] · 流动性风险
+- `concept:maintenance-margin` — [[maintenance-margin|Maintenance Margin]] · 维持保证金
+- `concept:maker` — [[maker|Maker]] · 挂单方/提供流动性者
+- `concept:margin` — [[margin|Margin]] · 保证金
+- `concept:market-integrity` — [[market-integrity|Market Integrity]] · 市场完整性/公平有序交易
+- `concept:market-maker` — [[market-maker|Market Maker]] · 做市商
+- `concept:market-maker-incentive` — [[market-maker-incentive|Market Maker Incentive]] · 做市激励计划
+- `concept:market-risk` — [[market-risk|Market Risk]] · 市场风险
+- `concept:model-risk` — [[model-risk|Model Risk]] · 模型风险
+- `concept:multi-outcome-market` — [[multi-outcome-market|Multi-Outcome Market]] · 多结果市场
+- `concept:off-chain` — [[off-chain|Off-chain]] · 链下
+- `concept:on-chain` — [[on-chain|On-chain]] · 链上
+- `concept:operational-risk` — [[operational-risk|Operational Risk]] · 运营/系统风险
+- `concept:option` — [[option|Option]] · 期权
+- `concept:oracle` — [[oracle|Oracle]] · 预言机/外部事实输入层
+- `concept:oracle-risk` — [[oracle-risk|Oracle Risk]] · 预言机风险
+- `concept:order-book` — [[order-book|Order Book]] · 订单簿/盘口
+- `concept:order-flow` — [[order-flow|Order Flow]] · 订单流
+- `concept:order-flow-network-effect` — [[order-flow-network-effect|Order Flow Network Effect]] · 订单流网络效应
+- `concept:outcome-market` — [[outcome-market|Outcome Market]] · 结果市场/结果型合约市场
+- `concept:outcome-token` — [[outcome-token|Outcome Token]] · 结果代币
+- `concept:over-the-counter` — [[over-the-counter|OTC]] · 场外交易
+- `concept:perpetual-futures` — [[perpetual-futures|Perpetual Futures / Perp]] · 永续合约
+- `concept:policy-engine` — [[policy-engine|Policy Engine]] · 策略/政策控制引擎
+- `concept:portfolio-margin` — [[portfolio-margin|Portfolio Margin]] · 组合保证金
+- `concept:prediction-market` — [[prediction-market|Prediction Market]] · 预测市场
+- `concept:price-discovery` — [[price-discovery|Price Discovery]] · 价格发现
+- `concept:price-impact` — [[price-impact|Price Impact]] · 价格冲击
+- `concept:prime-brokerage` — [[prime-brokerage|Prime Brokerage]] · 主经纪/机构交易综合服务
+- `concept:private-key` — [[private-key|Private Key]] · 私钥
+- `concept:proof-of-stake` — [[proof-of-stake|PoS]] · 权益证明
+- `concept:proof-of-work` — [[proof-of-work|PoW]] · 工作量证明
+- `concept:public-key` — [[public-key|Public Key]] · 公钥
+- `concept:put-option` — [[put-option|Put Option]] · 看跌期权
+- `concept:regulatory-access` — [[regulatory-access|Regulatory Access]] · 监管准入
+- `concept:regulatory-risk` — [[regulatory-risk|Regulatory Risk]] · 监管风险
+- `concept:request-for-quote` — [[request-for-quote|RFQ]] · 询价交易
+- `concept:resolution` — [[resolution|Resolution]] · 结果判定/裁决
+- `concept:resolution-insurance` — [[resolution-insurance|Resolution Insurance]] · 结果判定保险
+- `concept:resolution-risk` — [[resolution-risk|Resolution Risk]] · 结果判定风险
+- `concept:resolution-source` — [[resolution-source|Resolution Source]] · 指定结果来源
+- `concept:risk-engine` — [[risk-engine|Risk Engine]] · 风险引擎
+- `concept:scalar-market` — [[scalar-market|Scalar Market]] · 标量市场
+- `concept:settlement` — [[settlement|Settlement]] · 结算/交割
+- `concept:settlement-methodology` — [[settlement-methodology|Settlement Methodology]] · 结算方法论
+- `concept:settlement-rail` — [[settlement-rail|Settlement Rail]] · 结算轨道/资金铁路
+- `concept:settlement-risk` — [[settlement-risk|Settlement Risk]] · 结算风险
+- `concept:slippage` — [[slippage|Slippage]] · 滑点
+- `concept:smart-contract` — [[smart-contract|Smart Contract]] · 智能合约
+- `concept:smart-order-routing` — [[smart-order-routing|Smart Order Routing]] · 智能订单路由
+- `concept:solidity` — [[solidity|Solidity]] · Solidity智能合约语言
+- `concept:spread` — [[spread|Spread]] · 买卖价差
+- `concept:stablecoin` — [[stablecoin|Stablecoin]] · 稳定币
+- `concept:swap` — [[swap|Swap]] · 互换
+- `concept:taker` — [[taker|Taker]] · 吃单方/消耗流动性者
+- `concept:token` — [[token|Token]] · 代币/链上资产单位
+- `concept:token-economy` — [[token-economy|Token Economy]] · 代币经济
+- `concept:transaction` — [[transaction|Transaction]] · 交易/状态更新指令
+- `concept:trc-20` — [[trc-20|TRC-20]] · TRON同质化代币标准
+- `concept:tron-bandwidth` — [[tron-bandwidth|Bandwidth (TRON)]] · TRON带宽资源
+- `concept:tron-energy` — [[tron-energy|Energy (TRON)]] · TRON能量/计算资源
+- `concept:tron-energy-delegation` — [[tron-energy-delegation|Energy Delegation]] · Energy委托
+- `concept:tron-power` — [[tron-power|TRON Power]] · TRON投票权资源
+- `concept:underlying` — [[underlying|Underlying]] · 标的/底层变量
+- `concept:value-at-risk` — [[value-at-risk|VaR]] · 风险价值
+- `concept:variation-margin` — [[variation-margin|Variation Margin]] · 变动保证金
+- `concept:venue` — [[venue|Venue]] · 交易场所
+- `concept:wallet` — [[wallet|Wallet]] · 钱包
+- `curr:curriculum-source-map` — [[curriculum-source-map|Curriculum Source Map (workbook)]] · 学习地图 · workbook 原文
+- `curr:main-curriculum` — [[curriculum|Prediction Market Industry Curriculum]] · 行业主课程 · 8 阶段
+- `dash:industry-map` — [[INDUSTRY-MAP|Industry Map]] · 行业地图
+- `dash:people-and-power-map` — [[PEOPLE-AND-POWER-MAP|People & Power Map]] · 人物与权力图
+- `deck:exercises-stage-1` — [[stage-1-financial-markets|Exercises Stage 1 Financial Markets]] · 练习题 · Stage 1 金融市场
+- `deck:exercises-stage-2` — [[stage-2-exchanges|Exercises Stage 2 Exchanges]] · 练习题 · Stage 2 交易所
+- `deck:exercises-stage-3` — [[stage-3-microstructure|Exercises Stage 3 Microstructure]] · 练习题 · Stage 3 微观结构
+- `deck:flashcards-readme` — [[README-flashcards|Flashcards — Rules & Index]] · 闪卡 · 规则与索引
+- `deck:institutional-questions` — [[deck-institutional-questions|Deck — Institutional Questions]] · 闪卡 · 机构对话八问
+- `jurisdiction:european-union` — [[european-union|European Union]] · 欧盟
+- `jurisdiction:hong-kong` — [[hong-kong|Hong Kong]] · 香港
+- `jurisdiction:indonesia` — [[indonesia|Indonesia]] · 印度尼西亚
+- `jurisdiction:singapore` — [[singapore|Singapore]] · 新加坡
+- `jurisdiction:united-states` — [[united-states|United States]] · 美国
+- `lesson:chapter-0` — [[chapter-0-lessons|Course Ch.0 Money and Risk]] · 课程 · 序章 钱与风险的地图
+- `lesson:chapter-1` — [[chapter-1-lessons|Course Ch.1 The Order Book Language]] · 课程 · 第一章 盘口的语言
+- `lesson:chapter-2` — [[chapter-2-lessons|Course Ch.2 Contracts That Shape Risk]] · 课程 · 第二章 风险的合约形态
+- `lesson:chapter-3` — [[chapter-3-lessons|Course Ch.3 Minimal On-chain Kit]] · 课程 · 第三章 链上最小集
+- `lesson:chapter-4` — [[chapter-4-lessons|Course Ch.4 The Money Pipes]] · 课程 · 第四章 钱的管道
+- `lesson:chapter-5` — [[chapter-5-lessons|Course Ch.5 Event Markets Proper]] · 课程 · 第五章 事件市场本体
+- `lesson:chapter-6` — [[chapter-6-lessons|Course Ch.6 Resolution and Disputes]] · 课程 · 第六章 结算与争议
+- `lesson:chapter-7` — [[chapter-7-lessons|Course Ch.7 Institutional Risk Language]] · 课程 · 第七章 机构风险语言
+- `lesson:chapter-8` — [[chapter-8-lessons|Course Ch.8 Three Infrastructure Theses]] · 课程 · 终章 三条基础设施命题
+- `meta:frontmatter-schema` — [[frontmatter-schema|Frontmatter Schema]] · Frontmatter 字段规范
+- `meta:knowledge-policies` — [[knowledge-policies|iBrain Knowledge Policies]] · 知识库治理政策
+- `meta:relationship-types` — [[relationship-types|Relationship Type Vocabulary]] · 关系类型受控词表
+- `mmf:amber-group` — [[amber-group|Amber Group / Amber International]] · Amber (AMBR)
+- `mmf:b2c2` — [[b2c2|B2C2]]
+- `mmf:cumberland-drw` — [[cumberland-drw|Cumberland / DRW]] · Cumberland (DRW)
+- `mmf:falconx` — [[falconx|FalconX]]
+- `mmf:flowdesk` — [[flowdesk|Flowdesk]]
+- `mmf:gsr` — [[gsr|GSR]] · GSR Markets
+- `mmf:jane-street` — [[jane-street|Jane Street]]
+- `mmf:jump-crypto` — [[jump-crypto|Jump Crypto]]
+- `mmf:susquehanna` — [[susquehanna|Susquehanna (SIG)]] · 海纳国际集团
+- `mmf:wintermute` — [[wintermute|Wintermute]]
+- `moc:chinese-exchange-lineage` — [[chinese-exchange-lineage|Chinese Exchange Talent Lineage]] · 华人交易所人脉谱系
+- `moc:map-crypto-capital-flow` — [[map-crypto-capital-flow|Crypto Capital Flow]] · 加密资本流 (stablecoin→chain→exchange→MM→OTC)
+- `moc:map-event-risk-cross-asset` — [[map-event-risk-cross-asset|Event Risk → Cross-Asset Portfolio Map]] · 事件风险跨资产传导图
+- `moc:map-exchange-power` — [[map-exchange-power|Exchange Ecosystem Power Map]] · 交易所生态权力图
+- `moc:map-financial-market-stack` — [[map-financial-market-stack|Financial Market Stack]] · 金融市场栈
+- `moc:map-prediction-distribution-liquidity` — [[map-prediction-distribution-liquidity|Prediction Market Distribution & Liquidity]] · 预测市场分发与底层流动性
+- `moc:map-prediction-value-chain` — [[map-prediction-value-chain|Prediction Market Value Chain]] · 预测市场价值链
+- `moc:map-tradfi-vs-crypto-integration` — [[map-tradfi-vs-crypto-integration|TradFi vs Crypto Vertical Integration]] · 传统金融 vs Crypto 纵向一体化
+- `moc:map-tron-htx-chainup` — [[map-tron-htx-chainup|TRON / HTX / ChainUp Ecosystem]] · TRON·HTX·ChainUp 生态
+- `org:adjacent-markets` — [[adjacent-markets|Adjacent (adjacent.markets)]] · Adjacent 指数
+- `org:chainalysis` — [[chainalysis|Chainalysis]]
+- `org:chainup` — [[chainup|ChainUp]] · ChainUp (链上科技)
+- `org:circle` — [[circle|Circle]] · Circle (USDC 发行方)
+- `org:dome` — [[dome|Dome (domeapi.io)]] · Dome (已被收购关停)
+- `org:finfeedapi` — [[finfeedapi|FinFeedAPI (API Bricks)]] · FinFeedAPI
+- `org:fireblocks` — [[fireblocks|Fireblocks]]
+- `org:intercontinental-exchange` — [[intercontinental-exchange|Intercontinental Exchange (ICE)]] · 洲际交易所
+- `org:kairos` — [[kairos|Kairos (kairos.trade)]] · Kairos 预测市场终端
+- `org:metaculus` — [[metaculus|Metaculus]] · Metaculus (预测聚合平台)
+- `org:opticodds` — [[opticodds|OpticOdds]]
+- `org:predexon` — [[predexon|Predexon]]
+- `org:tatum` — [[tatum|Tatum]]
+- `org:tether` — [[tether|Tether]] · Tether (USDT 发行方)
+- `orig:260813-first-principle-information-position` — [[260813-first-principle-information-position|First Principle: Information Position (Irene, 2026-08-13)]] · 第一性原理 · 信息位置与规则制定层
+- `orig:win-safe-truth-triangle` — [[win-safe-truth-triangle|win · safe · truth Triangle (Irene, 2026-08-13)]] · win·safe·truth 三角
+- `person:ben-zhou` — [[ben-zhou|Ben Zhou]] · 周本
+- `person:bobby-lee` — [[bobby-lee|Bobby Lee]] · 李启元
+- `person:changpeng-zhao-cz` — [[changpeng-zhao-cz|Changpeng Zhao (CZ)]] · 赵长鹏
+- `person:du-jun` — [[du-jun|Du Jun]] · 杜均
+- `person:gracy-chen` — [[gracy-chen|Gracy Chen]] · 陈瑞
+- `person:jeff-yan` — [[jeff-yan|Jeff Yan]] · 徐冲 (Jeff Yan)
+- `person:jihan-wu` — [[jihan-wu|Jihan Wu]] · 吴忌寒
+- `person:justin-sun` — [[justin-sun|Justin Sun]] · 孙宇晨
+- `person:leon-li` — [[leon-li|Leon Li (Li Lin)]] · 李林
+- `person:luana-lopes-lara` — [[luana-lopes-lara|Luana Lopes Lara]] · 卢阿娜·洛佩斯·拉拉
+- `person:michael-izhaky` — [[michael-izhaky|Michael Izhaky]]
+- `person:richard-teng` — [[richard-teng|Richard Teng]]
+- `person:shayne-coplan` — [[shayne-coplan|Shayne Coplan]] · 谢恩·科普兰
+- `person:star-xu` — [[star-xu|Star Xu (Xu Mingxing)]] · 徐明星
+- `person:tarek-mansour` — [[tarek-mansour|Tarek Mansour]] · 塔雷克·曼苏尔
+- `person:yi-he` — [[yi-he|Yi He]] · 何一
+- `protocol:bittorrent-chain` — [[bittorrent-chain|BTTC]] · BitTorrent Chain
+- `protocol:bnb-chain` — [[bnb-chain|BNB Chain]] · 币安链
+- `protocol:chainlink` — [[chainlink|Chainlink]] · Chainlink (预言机)
+- `protocol:ethereum` — [[ethereum|Ethereum]] · 以太坊
+- `protocol:justlend` — [[justlend|JUST / JustLend DAO]] · TRON借贷与DeFi体系
+- `protocol:mantle` — [[mantle|Mantle]]
+- `protocol:morph` — [[morph|Morph]]
+- `protocol:polygon` — [[polygon|Polygon]]
+- `protocol:pyth-network` — [[pyth-network|Pyth Network]] · Pyth (预言机)
+- `protocol:sunpump` — [[sunpump|SunPump]] · TRON meme公平发行平台
+- `protocol:tron` — [[tron|TRON]] · 波场
+- `protocol:uma` — [[uma|UMA]] · UMA (乐观预言机)
+- `protocol:winklink` — [[winklink|WINkLink]] · TRON预言机网络
+- `protocol:x-layer` — [[x-layer|X Layer]] · X Layer (OKX L2)
+- `regulator:cftc` — [[cftc|CFTC]] · 美国商品期货交易委员会
+- `regulator:hk-sfc` — [[hk-sfc|Hong Kong SFC]] · 香港证监会
+- `regulator:mas` — [[mas|MAS]] · 新加坡金融管理局
+- `regulator:ojk-indonesia` — [[ojk-indonesia|OJK (Indonesia)]] · 印尼金融服务管理局
+- `regulator:sec` — [[sec|SEC]] · 美国证券交易委员会
+- `rel:binance--distributes--predict-fun` — [[rel-binance--distributes--predict-fun|Binance (Wallet) → distributes → Predict.fun]]
+- `rel:changpeng-zhao-cz--co-founded--binance` — [[rel-changpeng-zhao-cz--co-founded--binance|CZ → co-founded → Binance]]
+- `rel:changpeng-zhao-cz--former-executive-of--okx` — [[rel-changpeng-zhao-cz--former-executive-of--okx|CZ → former-executive-of → OKCoin (今 OKX)]]
+- `rel:du-jun--co-founded--chainup` — [[rel-du-jun--co-founded--chainup|Du Jun → co-founded → ChainUp]]
+- `rel:intercontinental-exchange--invested-in--polymarket` — [[rel-intercontinental-exchange--invested-in--polymarket|ICE → invested-in → Polymarket]]
+- `rel:justin-sun--advises--htx` — [[rel-justin-sun--advises--htx|Justin Sun → advises → HTX]]
+- `rel:polymarket--acquired--dome` — [[rel-polymarket--acquired--dome|Polymarket → acquired → Dome]]
+- `rel:polymarket--depends-on--uma` — [[rel-polymarket--depends-on--uma|Polymarket → depends-on → UMA]]
+- `rel:susquehanna--provides-liquidity-to--kalshi` — [[rel-susquehanna--provides-liquidity-to--kalshi|SIG → provides-liquidity-to → Kalshi]]
+- `rel:wintermute--provides-liquidity-to--polymarket` — [[rel-wintermute--provides-liquidity-to--polymarket|Wintermute → provides-liquidity-to → Polymarket]]
+- `rel:yi-he--co-founded--binance` — [[rel-yi-he--co-founded--binance|Yi He → co-founded → Binance]]
+- `report:2026-08-26-cex-lineage` — [[report-2026-08-26-cex-lineage|CEX Ecosystem & Chinese Exchange Talent Lineage (2026-08)]] · CEX 生态与华人交易所人脉谱系 (2026-08 核验)
+- `report:2026-08-26-infra-mm-stablecoins` — [[report-2026-08-26-infra-mm-stablecoins|Infrastructure, Market Makers & Stablecoins Landscape (2026-08)]] · 基础设施 · 做市商 · 稳定币全景 (2026-08 核验)
+- `report:2026-08-26-prediction-venues` — [[report-2026-08-26-prediction-venues|Prediction & Outcome Market Venues (2026-08)]] · 预测市场场馆全景 (2026-08 核验)
+- `report:2026-08-26-regulatory-landscape` — [[report-2026-08-26-regulatory-landscape|Regulatory Landscape for Prediction Markets & Crypto (2026-08)]] · 监管全景 · 预测市场与 crypto (2026-08 核验)
+- `report:2026-08-27-kb-tooling-landscape` — [[report-2026-08-27-kb-tooling-landscape|Knowledge-Base Visualization Tooling Landscape (2026-08)]] · 知识库可视化工具版图 (2026-08 核验)
+- `report:2026-08-27-pm-data-vendors` — [[report-2026-08-27-pm-data-vendors|Prediction-Market Data & API Vendor Landscape (2026-08)]] · 预测市场数据/API 供应商全景 (2026-08 核验)
+- `report:ecosystem-roles-map` — [[ecosystem-roles-map|Ecosystem Roles Map (workbook)]] · 生态游戏版图 · workbook 原文
+- `report:institutional-conversation-cheatsheet` — [[institutional-conversation-cheatsheet|Institutional Conversation Cheatsheet (workbook)]] · 机构对话速查 · workbook 原文
+- `report:research-backlog` — [[RESEARCH-BACKLOG|Research Backlog]] · 研究积压清单
+- `source:2026-08-26-bittorrent-chain-bittorrent-chainwhitepaper-en-pdf` — [[src-2026-08-26-bittorrent-chain-bittorrent-chainwhitepaper-en-pdf|BitTorrent Chain: BitTorrent-ChainWhitepaper_EN.pdf]]
+- `source:2026-08-26-cftc-2026-05105-html` — [[src-2026-08-26-cftc-2026-05105-html|CFTC: 2026-05105.html]]
+- `source:2026-08-26-cftc-9237-26` — [[src-2026-08-26-cftc-9237-26|CFTC: 9237-26]]
+- `source:2026-08-26-cftc-9282-26` — [[src-2026-08-26-cftc-9282-26|CFTC: 9282-26]]
+- `source:2026-08-26-cftc-derivatives-basics-html` — [[src-2026-08-26-cftc-derivatives-basics-html|CFTC: derivatives_basics.html]]
+- `source:2026-08-26-cftc-predictionmarkets` — [[src-2026-08-26-cftc-predictionmarkets|CFTC: PredictionMarkets]]
+- `source:2026-08-26-cftc-understand-contract-markets-html` — [[src-2026-08-26-cftc-understand-contract-markets-html|CFTC: understand_contract_markets.html]]
+- `source:2026-08-26-cme-group-introduction-to-futures-html` — [[src-2026-08-26-cme-group-introduction-to-futures-html|CME Group: introduction-to-futures.html]]
+- `source:2026-08-26-hyperliquid-asset-ids` — [[src-2026-08-26-hyperliquid-asset-ids|Hyperliquid: asset-ids]]
+- `source:2026-08-26-industry-learning-map-xlsx` — [[src-2026-08-26-industry-learning-map-xlsx|行业术语与市场结构学习地图 (Excel workbook)]]
+- `source:2026-08-26-justlend-dao-justlend-whitepaper-en-pdf` — [[src-2026-08-26-justlend-dao-justlend-whitepaper-en-pdf|JustLend DAO: justlend_whitepaper_en.pdf]]
+- `source:2026-08-26-polymarket-overview` — [[src-2026-08-26-polymarket-overview|Polymarket: overview]]
+- `source:2026-08-26-polymarket-prices-orderbook` — [[src-2026-08-26-polymarket-prices-orderbook|Polymarket: prices-orderbook]]
+- `source:2026-08-26-polymarket-resolution` — [[src-2026-08-26-polymarket-resolution|Polymarket: resolution]]
+- `source:2026-08-26-tron-dao-bandwidth-and-energy` — [[src-2026-08-26-tron-dao-bandwidth-and-energy|TRON DAO: bandwidth-and-energy]]
+- `source:2026-08-26-tron-dao-how-tron-works` — [[src-2026-08-26-tron-dao-how-tron-works|TRON DAO: how-tron-works]]
+- `source:2026-08-26-tron-dao-resource-model` — [[src-2026-08-26-tron-dao-resource-model|TRON DAO: resource-model]]
+- `source:2026-08-26-tron-dao-tron-network` — [[src-2026-08-26-tron-dao-tron-network|TRON DAO: tron.network]]
+- `source:2026-08-26-winklink-winklink-org` — [[src-2026-08-26-winklink-winklink-org|WINkLink: winklink.org]]
+- `source:2026-08-27-ec-mica-targeted-consultation` — [[src-2026-08-27-ec-mica-targeted-consultation|Targeted consultation on the review of the MiCA Regulation (EC DG FISMA)]]
+- `source:2026-08-27-predictrails-cftc-comment` — [[src-2026-08-27-predictrails-cftc-comment|PredictRails comment to CFTC Prediction Markets ANPRM (comment 115352)]]
+- `venue:binance` — [[binance|Binance]] · 币安
+- `venue:bitget` — [[bitget|Bitget]]
+- `venue:bybit` — [[bybit|Bybit]]
+- `venue:htx` — [[htx|HTX]] · 火币 HTX
+- `venue:hyperliquid-hip4` — [[hyperliquid-hip4|Hyperliquid HIP-4]] · Hyperliquid 结果市场
+- `venue:kalshi` — [[kalshi|Kalshi]]
+- `venue:manifold-markets` — [[manifold-markets|Manifold Markets]] · Manifold (玩钱市场)
+- `venue:okx` — [[okx|OKX]] · 欧易
+- `venue:opinion-labs` — [[opinion-labs|Opinion (Opinion Labs)]] · Opinion (opinion.trade)
+- `venue:polymarket` — [[polymarket|Polymarket]]
+- `venue:predict-fun` — [[predict-fun|Predict.fun]]
+- `venue:predictit` — [[predictit|PredictIt]]

@@ -1,0 +1,229 @@
+{
+ "$comment": "Machine-readable frontmatter schema for iBrain. Consumed by validate_frontmatter.py. Human doc: frontmatter-schema.md. A source note does not self-reference, but the validator requires at least one locator (url, content_hash, or archive_path); URL-only evidence remains mutable. Concept-level typed relations live in concept-page frontmatter `related` (string id = legacy untyped, or {id, rel, note}); vocabulary in allowed_concept_relation_types, human doc: 90_META/taxonomy/relationship-types.md.",
+ "required_fields": [
+  "id",
+  "type",
+  "title",
+  "status",
+  "created",
+  "updated",
+  "confidence",
+  "epistemic_status",
+  "confidentiality"
+ ],
+ "recommended_fields": [
+  "title_zh",
+  "aliases",
+  "importance",
+  "domains",
+  "tags",
+  "sources",
+  "related"
+ ],
+ "id_pattern": "^[a-z0-9-]+:[a-z0-9._-]+$",
+ "allowed_types": [
+  "concept",
+  "person",
+  "organization",
+  "exchange-venue",
+  "protocol-network",
+  "market-maker-fund",
+  "regulator",
+  "jurisdiction",
+  "event",
+  "case-study",
+  "relationship",
+  "source",
+  "book-course",
+  "hypothesis",
+  "decision",
+  "question",
+  "meeting",
+  "research-report",
+  "original",
+  "moc",
+  "dashboard",
+  "policy",
+  "taxonomy",
+  "template",
+  "curriculum",
+  "study-session",
+  "flashcard-deck",
+  "report",
+  "product",
+  "token-asset",
+  "lesson"
+ ],
+ "allowed_status": [
+  "stub",
+  "seed",
+  "draft",
+  "reviewed",
+  "verified",
+  "stale",
+  "archived"
+ ],
+ "allowed_importance": [
+  "tier-1",
+  "tier-2",
+  "tier-3"
+ ],
+ "allowed_confidence": [
+  "high",
+  "medium",
+  "low",
+  "unknown"
+ ],
+ "allowed_epistemic_status": [
+  "confirmed",
+  "inference",
+  "hypothesis",
+  "rumor-unverified",
+  "mixed",
+  "unknown"
+ ],
+ "allowed_confidentiality": [
+  "public-source",
+  "internal",
+  "confidential",
+  "strictly-private"
+ ],
+ "allowed_source_types": [
+  "user-direct",
+  "conversation",
+  "meeting",
+  "official-documentation",
+  "regulatory-filing",
+  "regulatory-announcement",
+  "company-announcement",
+  "research-paper",
+  "book",
+  "course",
+  "reputable-media",
+  "industry-report",
+  "social-media",
+  "secondary-analysis",
+  "unverified-claim"
+ ],
+ "allowed_reliability": [
+  "high",
+  "medium",
+  "low"
+ ],
+ "allowed_domains": [
+  "financial-markets",
+  "exchanges",
+  "market-microstructure",
+  "derivatives",
+  "blockchain",
+  "crypto-market-structure",
+  "stablecoins-wallets-payments",
+  "prediction-outcome-markets",
+  "institutional-risk",
+  "regulation-compliance",
+  "tron-ecosystem",
+  "industry-strategy",
+  "people-networks",
+  "meta",
+  "learning"
+ ],
+ "type_specific_required": {
+  "source": [
+   "source_type",
+   "reliability",
+   "accessed_at"
+  ],
+  "relationship": [
+   "entity_a",
+   "entity_b",
+   "relationship_type",
+   "relationship_status",
+   "evidence"
+  ],
+  "person": [
+   "importance"
+  ],
+  "organization": [
+   "importance"
+  ]
+ },
+ "date_fields": [
+  "created",
+  "updated",
+  "last_verified",
+  "review_after",
+  "accessed_at",
+  "published_at",
+  "start_date",
+  "end_date",
+  "deadline"
+ ],
+ "list_fields": [
+  "aliases",
+  "domains",
+  "tags",
+  "sources",
+  "related",
+  "prerequisites",
+  "evidence"
+ ],
+ "source_locator_fields": [
+  "url",
+  "content_hash",
+  "archive_path"
+ ],
+ "verified_requires_sources": true,
+ "verified_requires_last_verified_types": [
+  "person",
+  "organization",
+  "exchange-venue",
+  "market-maker-fund",
+  "protocol-network",
+  "regulator"
+ ],
+ "allowed_relationship_types": [
+  "founded",
+  "co-founded",
+  "worked-at",
+  "former-executive-of",
+  "executive-of",
+  "advises",
+  "alumnus-of",
+  "controls",
+  "governs",
+  "invested-in",
+  "backed-by",
+  "acquired",
+  "partners-with",
+  "integrates-with",
+  "competes-with",
+  "provides-liquidity-to",
+  "provides-infrastructure-to",
+  "built-on",
+  "settles-on",
+  "regulated-by",
+  "distributes",
+  "depends-on",
+  "spun-out-of"
+ ],
+ "allowed_relationship_status": [
+  "active",
+  "ended",
+  "disputed",
+  "unknown"
+ ],
+ "verified_sources_exempt_types": [
+  "source"
+ ],
+ "allowed_concept_relation_types": [
+  "special-case-of",
+  "component-of",
+  "mechanism-of",
+  "risk-of",
+  "mitigated-by",
+  "measured-by",
+  "contrasts-with",
+  "instantiated-by",
+  "see-also"
+ ]
+}

@@ -1,0 +1,635 @@
+# 概念语义关联层 · 判断数据 (2026-08-27, Claude seed, 待 Irene 复核)
+#
+# 本文件是一次性判断记录: apply_concept_relations.py 把它合入各概念页 frontmatter 后,
+# frontmatter 即唯一真理源; 后续修正直接改页面, 不回写本文件。
+#
+# 判断纪律 (见 90_META/taxonomy/relationship-types.md 概念级词表):
+# - prerequisites 只填硬前置 (「不先懂 A 就真的看不懂本页」), 不填传递闭包, 不填泛泛相关;
+#   为空 = 判断过的空 (词汇层根概念可自立理解)。
+# - relations 读法 =「本页 —rel→ 目标」, 每条边只存一次 (语义主语侧), 反向由展示层渲染。
+# - instantiated-by 只挂库内实体页内容能支撑的实例; 抽象过程/度量/风险类概念 (price-discovery,
+#   spread, hedging, event-var, resolution 等) 不硬挂实体 — 库里无对应实体页, 判断为「不挂」而非遗漏。
+#   风险概念有库内实证案例的用 see-also 挂 (如 oracle-risk → uma)。
+# - risk-engine / policy-engine 为 tier-1 但库内暂无可支撑的实体实例 (ChainUp 是白标交易所技术,
+#   不能凭联想升格为风控引擎实例) — 留空, 待实体层扩充。
+
+concepts:
+
+  # ── Stage 1 · financial-markets ──────────────────────────────
+  concept:financial-markets:
+    prerequisites: []
+    relations: []
+  concept:equity:
+    prerequisites: []
+    relations: []   # 对照边存 debt 页 (其定义引用股权受偿顺序)
+  concept:debt:
+    prerequisites: []
+    relations:
+      - {id: "concept:equity", rel: contrasts-with, note: "固定上限收益+优先受偿 vs 剩余索取权+收益不封顶"}
+  concept:price-discovery:
+    prerequisites: ["concept:financial-markets"]
+    relations: []
+  concept:broker:
+    prerequisites: []
+    relations:
+      - {id: "concept:dealer", rel: contrasts-with, note: "代理传单不担价格风险 vs 用自有资产负债表直接成为对手方"}
+  concept:dealer:
+    prerequisites: []
+    relations: []
+  concept:market-maker:
+    prerequisites: []
+    relations:
+      - {id: "concept:liquidity-provider", rel: special-case-of, note: "最专业的一类流动性提供者: 持续双边报价+管理库存与信息风险"}
+      - {id: "mmf:wintermute", rel: instantiated-by, note: "2026-05 官宣进入预测市场做市 (Polymarket+Kalshi 双场馆)"}
+      - {id: "mmf:susquehanna", rel: instantiated-by, note: "Kalshi 首个旗舰机构做市商 (2024-04 起)"}
+      - {id: "mmf:jane-street", rel: instantiated-by, note: "顶级量化做市商"}
+  concept:liquidity-provider:
+    prerequisites: []
+    relations: []
+  concept:clearing:
+    prerequisites: []
+    relations: []
+  concept:clearinghouse:
+    prerequisites: ["concept:clearing"]
+    relations:
+      - {id: "venue:kalshi", rel: instantiated-by, note: "Kalshi Klear = 自有 DCO 清算所 (2024-08)"}
+  concept:settlement:
+    prerequisites: []
+    relations: []
+
+  # ── Stage 2 · exchanges ──────────────────────────────────────
+  concept:exchange:
+    prerequisites: ["concept:financial-markets"]
+    relations:
+      - {id: "concept:venue", rel: special-case-of, note: "venue 泛指一切可完成交易的场所, exchange 是其中有集中规则与撮合的一类"}
+  concept:venue:
+    prerequisites: ["concept:exchange"]   # 定义以「比 exchange 更宽泛」表述, 学习序在后
+    relations: []
+
+  # ── Stage 3 · market-microstructure ──────────────────────────
+  concept:order-book:
+    prerequisites: []
+    relations: []
+  concept:central-limit-order-book:
+    prerequisites: ["concept:order-book"]
+    relations:
+      - {id: "concept:order-book", rel: special-case-of, note: "集中化+价格/时间优先撮合的订单簿"}
+      - {id: "concept:price-discovery", rel: mechanism-of, note: "集中限价单竞价是最经典的价格发现机制"}
+      - {id: "venue:polymarket", rel: instantiated-by, note: "链下 CLOB 撮合 (hybrid 架构的链下半)"}
+      - {id: "venue:kalshi", rel: instantiated-by, note: "受监管 DCM 上的 CLOB"}
+      - {id: "venue:hyperliquid-hip4", rel: instantiated-by, note: "Hyperliquid L1 链上 CLOB"}
+  concept:bid:
+    prerequisites: []
+    relations:
+      - {id: "concept:order-book", rel: component-of}
+  concept:ask:
+    prerequisites: []
+    relations:
+      - {id: "concept:order-book", rel: component-of}
+  concept:spread:
+    prerequisites: ["concept:bid", "concept:ask"]   # 定义字面 = best ask − best bid
+    relations: []
+  concept:depth:
+    prerequisites: ["concept:order-book"]
+    relations: []
+  concept:maker:
+    prerequisites: ["concept:order-book"]
+    relations:
+      - {id: "concept:taker", rel: contrasts-with, note: "挂单等待、赚价差/返佣 vs 立即成交、付更高费用与冲击成本"}
+  concept:taker:
+    prerequisites: ["concept:order-book"]
+    relations: []
+  concept:liquidity:
+    prerequisites: []
+    relations:
+      - {id: "concept:depth", rel: measured-by}
+      - {id: "concept:spread", rel: measured-by}
+      - {id: "concept:slippage", rel: measured-by}
+  concept:slippage:
+    prerequisites: ["concept:depth"]   # 滑点的机制 = 大单吃穿深度档位
+    relations:
+      - {id: "concept:execution-risk", rel: component-of, note: "执行风险清单里最常见的一项"}
+      - {id: "concept:price-impact", rel: contrasts-with, note: "你付出的均价与预期之差 vs 你把市场价格推走多远 — 常被混用"}
+  concept:price-impact:
+    prerequisites: ["concept:depth"]
+    relations: []
+  concept:adverse-selection:
+    prerequisites: ["concept:market-maker"]
+    relations:
+      - {id: "concept:market-maker", rel: risk-of, note: "做市两大成本之一: 知情对手只在报价不利时来成交"}
+      - {id: "concept:spread", rel: mitigated-by, note: "做市商拉宽价差为知情流付费"}
+  concept:inventory-risk:
+    prerequisites: ["concept:market-maker"]
+    relations:
+      - {id: "concept:market-maker", rel: risk-of, note: "做市两大成本之一: 未对冲库存暴露于价格波动"}
+      - {id: "concept:adverse-selection", rel: contrasts-with, note: "库存价格风险 vs 信息不对称风险 — 做市的两大成本来源"}
+      - {id: "concept:hedging", rel: mitigated-by}
+  concept:execution-risk:
+    prerequisites: []
+    relations:
+      - {id: "concept:smart-order-routing", rel: mitigated-by, note: "自动分单到最优 venue 降低滑点/漏单"}
+  concept:automated-market-maker:
+    prerequisites: ["concept:smart-contract"]
+    relations:
+      - {id: "concept:central-limit-order-book", rel: contrasts-with, note: "公式+资金池定价 vs 订单撮合定价; 无需传统 MM 即可冷启动"}
+      - {id: "concept:price-discovery", rel: mechanism-of, note: "与 CLOB 并列的另一条定价机制路线"}
+  concept:request-for-quote:
+    prerequisites: ["concept:market-maker"]
+    relations:
+      - {id: "concept:central-limit-order-book", rel: contrasts-with, note: "定向询价保护大单意图 vs 公开盘口透明但暴露"}
+  concept:order-flow:
+    prerequisites: []
+    relations: []
+
+  # ── Stage 4 · derivatives ────────────────────────────────────
+  concept:derivative:
+    prerequisites: []
+    relations: []
+  concept:underlying:
+    prerequisites: ["concept:derivative"]   # underlying 是 derivative 语境里的术语
+    relations: []
+  concept:forward-contract:
+    prerequisites: ["concept:derivative"]
+    relations:
+      - {id: "concept:derivative", rel: special-case-of}
+      - {id: "concept:counterparty-risk", rel: see-also, note: "定制双边 OTC 合同, 无 CCP 介入, 违约风险双边裸露"}
+  concept:futures-contract:
+    prerequisites: ["concept:forward-contract"]
+    relations:
+      - {id: "concept:forward-contract", rel: special-case-of, note: "标准化+交易所交易+清算体系管理保证金, 是与 forward 的本质区别"}
+  concept:option:
+    prerequisites: ["concept:derivative"]
+    relations:
+      - {id: "concept:derivative", rel: special-case-of}
+      - {id: "concept:futures-contract", rel: contrasts-with, note: "权利而非义务 — 权利金换非对称收益 vs 双向义务+保证金"}
+  concept:call-option:
+    prerequisites: ["concept:option"]
+    relations:
+      - {id: "concept:option", rel: special-case-of}
+      - {id: "concept:put-option", rel: contrasts-with, note: "从上涨获利 vs 从下跌获利/尾部保护"}
+  concept:put-option:
+    prerequisites: ["concept:option"]
+    relations:
+      - {id: "concept:option", rel: special-case-of}
+  concept:binary-option:
+    prerequisites: ["concept:option"]
+    relations:
+      - {id: "concept:option", rel: special-case-of, note: "支付只有固定金额或 0, 无连续 payoff"}
+  concept:swap:
+    prerequisites: ["concept:derivative"]
+    relations:
+      - {id: "concept:derivative", rel: special-case-of}
+  concept:perpetual-futures:
+    prerequisites: ["concept:futures-contract"]
+    relations:
+      - {id: "concept:futures-contract", rel: special-case-of, note: "去掉到期日, 用资金费率锚定现货"}
+  concept:funding-rate:
+    prerequisites: ["concept:perpetual-futures"]
+    relations:
+      - {id: "concept:perpetual-futures", rel: mechanism-of, note: "多空定期互付, 把 perp 价格拉回现货"}
+  concept:margin:
+    prerequisites: ["concept:leverage"]   # 不懂杠杆就不懂为什么需要保证金
+    relations:
+      - {id: "concept:collateral", rel: special-case-of, note: "制度化、按风险动态计算的抵押品"}
+      - {id: "concept:clearing", rel: mechanism-of, note: "清算体系用保证金吸收价格波动、压低违约概率"}
+  concept:initial-margin:
+    prerequisites: ["concept:margin"]
+    relations:
+      - {id: "concept:margin", rel: component-of, note: "开仓门槛"}
+  concept:maintenance-margin:
+    prerequisites: ["concept:margin"]
+    relations:
+      - {id: "concept:margin", rel: component-of, note: "持仓底线"}
+      - {id: "concept:initial-margin", rel: contrasts-with, note: "开仓门槛 vs 持仓底线 — 跌破后者触发补仓或强平"}
+  concept:variation-margin:
+    prerequisites: ["concept:margin"]
+    relations:
+      - {id: "concept:margin", rel: component-of, note: "每日盯市结算未实现盈亏"}
+  concept:cross-margin:
+    prerequisites: ["concept:margin"]
+    relations:
+      - {id: "concept:margin", rel: special-case-of, note: "允许相关头寸风险互抵的保证金模式"}
+  concept:portfolio-margin:
+    prerequisites: ["concept:margin"]
+    relations:
+      - {id: "concept:margin", rel: special-case-of, note: "按整个组合净风险计算的保证金模式"}
+      - {id: "concept:cross-margin", rel: contrasts-with, note: "全组合情景/风险模型 vs 头寸两两互抵"}
+      - {id: "concept:value-at-risk", rel: see-also, note: "SPAN/VaR 型风险模型是其计算内核"}
+  concept:collateral:
+    prerequisites: []
+    relations: []
+  concept:leverage:
+    prerequisites: []
+    relations: []
+  concept:liquidation:
+    prerequisites: ["concept:margin"]
+    relations:
+      - {id: "concept:leverage", rel: risk-of, note: "流动性差时强平本身冲击价格并形成连锁"}
+  concept:hedging:
+    prerequisites: []
+    relations: []
+  concept:basis-risk:
+    prerequisites: ["concept:hedging"]
+    relations:
+      - {id: "concept:hedging", rel: risk-of, note: "对冲工具与被对冲风险不完全相同, 抵消不完全"}
+  concept:value-at-risk:
+    prerequisites: []
+    relations: []
+  concept:expected-shortfall:
+    prerequisites: ["concept:value-at-risk"]   # 定义字面建立在 VaR 之上
+    relations:
+      - {id: "concept:value-at-risk", rel: contrasts-with, note: "尾部平均损失 vs 阈值损失概率 — 监管从 VaR 转向 ES 的原因"}
+
+  # ── Stage 5 · blockchain ─────────────────────────────────────
+  concept:ledger:
+    prerequisites: []
+    relations: []
+  concept:blockchain:
+    prerequisites: ["concept:ledger", "concept:consensus"]   # 定义两大成分: 共享账本 + 共识定序
+    relations: []
+  concept:transaction:
+    prerequisites: []
+    relations:
+      - {id: "concept:block", rel: component-of}
+  concept:block:
+    prerequisites: ["concept:transaction"]
+    relations:
+      - {id: "concept:blockchain", rel: component-of}
+  concept:consensus:
+    prerequisites: []
+    relations:
+      - {id: "concept:blockchain", rel: mechanism-of, note: "让互不信任的节点就同一账本历史达成一致"}
+  concept:double-spending:
+    prerequisites: []
+    relations:
+      - {id: "concept:ledger", rel: risk-of, note: "数字资产可复制 — 无共识的数字账本的根本威胁"}
+      - {id: "concept:consensus", rel: mitigated-by, note: "PoW/PoS 使重写交易历史在经济上昂贵"}
+  concept:proof-of-work:
+    prerequisites: ["concept:consensus"]
+    relations:
+      - {id: "concept:consensus", rel: special-case-of}
+  concept:proof-of-stake:
+    prerequisites: ["concept:consensus"]
+    relations:
+      - {id: "concept:consensus", rel: special-case-of}
+      - {id: "concept:proof-of-work", rel: contrasts-with, note: "质押经济惩罚 vs 算力成本竞争"}
+      - {id: "protocol:ethereum", rel: instantiated-by, note: "最大 PoS 智能合约链"}
+  concept:delegated-proof-of-stake:
+    prerequisites: ["concept:proof-of-stake"]
+    relations:
+      - {id: "concept:proof-of-stake", rel: special-case-of, note: "持币者投票选出有限验证节点集合"}
+      - {id: "protocol:tron", rel: instantiated-by, note: "27 个 Super Representatives 由 TRX 质押投票选出"}
+  concept:private-key:
+    prerequisites: []
+    relations:
+      - {id: "concept:wallet", rel: component-of}
+  concept:public-key:
+    prerequisites: ["concept:private-key"]   # 定义 =「由私钥推导」
+    relations:
+      - {id: "concept:wallet", rel: component-of}
+  concept:wallet:
+    prerequisites: ["concept:private-key"]   # 「币不装在手机里」— 不懂密钥就不懂钱包本质
+    relations:
+      - {id: "concept:distribution", rel: mechanism-of, note: "钱包正在成为 crypto 的金融分发入口"}
+  concept:smart-contract:
+    prerequisites: ["concept:blockchain"]
+    relations: []
+  concept:solidity:
+    prerequisites: ["concept:smart-contract", "concept:ethereum-virtual-machine"]
+    relations: []
+  concept:token:
+    prerequisites: ["concept:smart-contract"]
+    relations: []
+  concept:gas:
+    prerequisites: ["concept:transaction"]
+    relations:
+      - {id: "concept:blockchain", rel: mechanism-of, note: "计量并定价稀缺计算/存储资源, 防垃圾交易"}
+  concept:ethereum-virtual-machine:
+    prerequisites: ["concept:smart-contract"]
+    relations:
+      - {id: "protocol:ethereum", rel: instantiated-by, note: "EVM 标准的母体; 众多兼容链复用其字节码与工具生态"}
+  concept:erc-standards:
+    prerequisites: ["concept:smart-contract"]
+    relations: []
+  concept:erc-20:
+    prerequisites: ["concept:token", "concept:erc-standards"]
+    relations:
+      - {id: "concept:erc-standards", rel: special-case-of, note: "同质化 token 接口"}
+  concept:erc-721:
+    prerequisites: ["concept:token", "concept:erc-standards"]
+    relations:
+      - {id: "concept:erc-standards", rel: special-case-of, note: "非同质化 (每个 id 唯一) token 接口"}
+      - {id: "concept:erc-20", rel: contrasts-with, note: "每个 token id 唯一 vs 单位彼此等价"}
+  concept:erc-1155:
+    prerequisites: ["concept:erc-20", "concept:erc-721"]   # 其意义 = 对两者局限的泛化
+    relations:
+      - {id: "concept:erc-standards", rel: special-case-of, note: "一约多 token + 批量操作 — 适合一个市场多个 outcome token"}
+  concept:trc-20:
+    prerequisites: ["concept:erc-20"]   # 定义字面 =「TRON 上类似 ERC-20 的标准」
+    relations:
+      - {id: "concept:stablecoin", rel: see-also, note: "TRON 上 USDT 的载体标准 — 最大稳定币结算流量的技术形态"}
+  concept:layer-1:
+    prerequisites: ["concept:blockchain"]
+    relations:
+      - {id: "protocol:ethereum", rel: instantiated-by}
+      - {id: "protocol:tron", rel: instantiated-by}
+  concept:layer-2:
+    prerequisites: ["concept:layer-1"]
+    relations:
+      - {id: "protocol:x-layer", rel: instantiated-by, note: "OKX 系 Ethereum L2 (OKB 为唯一 gas)"}
+      - {id: "protocol:mantle", rel: instantiated-by, note: "Bybit 生态系 Ethereum L2"}
+  concept:bridge:
+    prerequisites: ["concept:blockchain"]
+    relations: []
+  concept:oracle:
+    prerequisites: ["concept:smart-contract"]   # 链只知道链内状态 — oracle 的存在理由
+    relations:
+      - {id: "protocol:chainlink", rel: instantiated-by, note: "价格类结算主流选择; Polymarket 2026 起价格市场采用"}
+      - {id: "protocol:pyth-network", rel: instantiated-by, note: "第一方金融数据 oracle (交易公司/交易所直发)"}
+      - {id: "protocol:winklink", rel: instantiated-by, note: "TRON 生态 oracle"}
+  concept:on-chain:
+    prerequisites: ["concept:blockchain"]
+    relations: []
+  concept:off-chain:
+    prerequisites: ["concept:blockchain"]
+    relations:
+      - {id: "concept:on-chain", rel: contrasts-with, note: "快而便宜但信任假设强 vs 可验证可组合但受链的速度与成本限制"}
+  concept:hybrid-exchange-architecture:
+    prerequisites: ["concept:on-chain", "concept:off-chain"]
+    relations:
+      - {id: "venue:polymarket", rel: instantiated-by, note: "链下 CLOB 撮合 + Polygon 链上 USDC 全额抵押结算"}
+  concept:tron-bandwidth:
+    prerequisites: ["concept:transaction"]
+    relations:
+      - {id: "concept:tron-energy", rel: see-also, note: "TRON 双资源模型 — 带宽计字节, 能量计算力"}
+  concept:tron-energy:
+    prerequisites: ["concept:smart-contract"]
+    relations:
+      - {id: "concept:gas", rel: contrasts-with, note: "质押换配额 vs 逐笔付费 — TRON 与 Ethereum 的资源定价哲学差异"}
+  concept:tron-energy-delegation:
+    prerequisites: ["concept:tron-energy"]
+    relations:
+      - {id: "protocol:justlend", rel: instantiated-by, note: "JustLend 的 Energy Rental 市场"}
+  concept:tron-power:
+    prerequisites: ["concept:delegated-proof-of-stake"]
+    relations:
+      - {id: "concept:delegated-proof-of-stake", rel: mechanism-of, note: "TRON DPoS 的投票权载体, 用于选 SR"}
+
+  # ── Stage 6 · crypto-market-structure + stablecoin/wallet ────
+  concept:centralized-exchange:
+    prerequisites: ["concept:exchange"]
+    relations:
+      - {id: "concept:exchange", rel: special-case-of}
+      - {id: "concept:decentralized-exchange", rel: contrasts-with, note: "内部账本+托管撮合 vs 链上合约+自托管结算 — 谁托管、谁能冻结完全不同"}
+      - {id: "venue:binance", rel: instantiated-by}
+      - {id: "venue:okx", rel: instantiated-by}
+  concept:decentralized-exchange:
+    prerequisites: ["concept:exchange", "concept:smart-contract"]
+    relations:
+      - {id: "concept:exchange", rel: special-case-of}
+  concept:custody:
+    prerequisites: []
+    relations:
+      - {id: "org:fireblocks", rel: instantiated-by, note: "机构 MPC 托管/结算基础设施"}
+  concept:data-infrastructure:
+    prerequisites: []
+    relations:
+      - {id: "org:predexon", rel: instantiated-by, note: "预测市场数据层; 独特资产 = UMA 裁决/争议数据"}
+      - {id: "org:finfeedapi", rel: instantiated-by, note: "把交易所行情 schema 套到事件市场的跨资产数据商"}
+  concept:distribution:
+    prerequisites: []
+    relations:
+      - {id: "venue:binance", rel: instantiated-by, note: "~300M 用户 — 行业最大分发入口 (公司口径)"}
+  concept:exchange-vertical-integration:
+    prerequisites: ["concept:centralized-exchange"]
+    relations:
+      - {id: "venue:binance", rel: instantiated-by, note: "撮合+托管+钱包+BNB Chain+平台币+launchpad 全栈"}
+      - {id: "concept:distribution", rel: see-also, note: "垂直整合的战略目的 = 把用户资金生命周期每一环收进自己的分发栈"}
+  concept:order-flow-network-effect:
+    prerequisites: ["concept:order-flow", "concept:liquidity"]
+    relations:
+      - {id: "concept:exchange-vertical-integration", rel: see-also, note: "交易所两大护城河 — 流动性飞轮与全栈锁定"}
+  concept:over-the-counter:
+    prerequisites: ["concept:order-book"]   # 定义 =「不通过公开订单簿」
+    relations:
+      - {id: "concept:order-book", rel: contrasts-with, note: "双边协商避免公开盘口冲击 vs 集中透明但暴露交易意图"}
+      - {id: "mmf:b2c2", rel: instantiated-by, note: "机构 OTC 流动性商"}
+  concept:prime-brokerage:
+    prerequisites: []
+    relations:
+      - {id: "mmf:falconx", rel: instantiated-by, note: "机构 crypto prime broker"}
+  concept:regulatory-access:
+    prerequisites: []
+    relations:
+      - {id: "concept:jurisdiction", rel: see-also, note: "准入按辖区切割, 一地一牌"}
+      - {id: "venue:kalshi", rel: instantiated-by, note: "CFTC DCM (2020) + 自有 DCO — 监管准入即产品护城河"}
+  concept:risk-engine:
+    prerequisites: ["concept:margin"]   # 核心输入是保证金/头寸风险
+    relations: []   # tier-1 但库内暂无可支撑的实体实例, 见文件头判断
+  concept:policy-engine:
+    prerequisites: ["concept:risk-engine"]   # 消费风险引擎的输出
+    relations:
+      - {id: "concept:risk-engine", rel: contrasts-with, note: "风险引擎算出风险, 政策引擎决定放不放行"}
+  concept:settlement-rail:
+    prerequisites: ["concept:settlement"]
+    relations:
+      - {id: "protocol:tron", rel: instantiated-by, note: "全球 USDT 主结算轨 — 承载近半流通 USDT, 季度结算 $2.1T"}
+  concept:smart-order-routing:
+    prerequisites: ["concept:venue", "concept:depth"]
+    relations: []
+  concept:token-economy:
+    prerequisites: ["concept:token"]
+    relations:
+      - {id: "concept:exchange-vertical-integration", rel: mechanism-of, note: "平台币把费用、激励与治理锁进自家栈"}
+  concept:stablecoin:
+    prerequisites: ["concept:token"]
+    relations:
+      - {id: "concept:token", rel: special-case-of, note: "锚定稳定价值的 token"}
+      - {id: "org:tether", rel: instantiated-by, note: "USDT — 约六成稳定币供应"}
+      - {id: "org:circle", rel: instantiated-by, note: "USDC 发行方"}
+      - {id: "concept:settlement-rail", rel: see-also, note: "稳定币+公链共同构成 crypto 的事实结算轨"}
+
+  # ── Stage 7 · prediction-outcome-markets ─────────────────────
+  concept:prediction-market:
+    prerequisites: ["concept:price-discovery"]   # 其信息价值的来源
+    relations:
+      - {id: "concept:outcome-market", rel: special-case-of, note: "以现实事件概率为对象的 outcome market"}
+      - {id: "venue:polymarket", rel: instantiated-by}
+      - {id: "venue:kalshi", rel: instantiated-by}
+  concept:outcome-market:
+    prerequisites: []
+    relations:
+      - {id: "venue:hyperliquid-hip4", rel: instantiated-by, note: "链上 CLOB venue 的 outcome-market 扩展 (HIP-4)"}
+  concept:event-contract:
+    prerequisites: ["concept:derivative"]
+    relations:
+      - {id: "concept:derivative", rel: special-case-of, note: "支付取决于现实事件的衍生合约 (CFTC 语境按 DCM 事件合约归类)"}
+      - {id: "concept:binary-option", rel: see-also, note: "支付结构经济等同, 法律分类不同 — 摊开 payoff 图即二元期权"}
+      - {id: "venue:kalshi", rel: instantiated-by, note: "美国联邦持牌事件合约交易所"}
+  concept:event-risk:
+    prerequisites: []
+    relations:
+      - {id: "concept:event-var", rel: measured-by}
+      - {id: "concept:event-contract", rel: see-also, note: "event risk 被合约化之后才可持有、交易、对冲"}
+  concept:event-var:
+    prerequisites: ["concept:value-at-risk", "concept:event-risk"]
+    relations:
+      - {id: "concept:value-at-risk", rel: special-case-of, note: "按具体事件情景聚合跨 venue/跨工具头寸的 VaR"}
+  concept:outcome-token:
+    prerequisites: ["concept:token"]
+    relations:
+      - {id: "concept:token", rel: special-case-of, note: "代表特定结果支付权的 token"}
+      - {id: "concept:outcome-market", rel: component-of, note: "outcome market 的可转让构件"}
+      - {id: "concept:erc-1155", rel: see-also, note: "Polymarket CTF 用 ERC-1155 一约承载多结果 token"}
+  concept:implied-probability:
+    prerequisites: ["concept:prediction-market"]
+    relations:
+      - {id: "concept:price-discovery", rel: see-also, note: "概率读数 = 价格发现的输出; 偏差来自费率、流动性与时间价值"}
+  concept:fully-collateralized-market:
+    prerequisites: ["concept:collateral"]
+    relations:
+      - {id: "concept:margin", rel: contrasts-with, note: "全额抵押无违约链条但资本效率低 — CFTC 2026 保证金化提案的核心权衡"}
+      - {id: "venue:polymarket", rel: instantiated-by, note: "USDC 全额抵押结算"}
+      - {id: "venue:hyperliquid-hip4", rel: instantiated-by, note: "HIP-4 全额抵押模型"}
+  concept:resolution:
+    prerequisites: ["concept:event-contract"]
+    relations: []
+  concept:resolution-source:
+    prerequisites: ["concept:resolution"]
+    relations:
+      - {id: "concept:contract-semantics", rel: component-of, note: "语义五要素 (谓词/阈值/时间窗/来源/例外) 之一"}
+  concept:contract-semantics:
+    prerequisites: ["concept:event-contract"]
+    relations: []
+  concept:dispute-mechanism:
+    prerequisites: ["concept:resolution"]
+    relations:
+      - {id: "concept:resolution", rel: mechanism-of, note: "resolution 的纠错程序层: 挑战/投票/仲裁/运营方裁定"}
+      - {id: "protocol:uma", rel: instantiated-by, note: "optimistic oracle + 质押挑战 + DVM 代币投票终裁"}
+  concept:oracle-risk:
+    prerequisites: ["concept:oracle"]
+    relations:
+      - {id: "concept:oracle", rel: risk-of}
+      - {id: "concept:dispute-mechanism", rel: mitigated-by, note: "争议程序是 oracle 出错后的纠错层"}
+      - {id: "protocol:uma", rel: see-also, note: "2025-26 三连争议实证乐观预言机结构缺陷 (投票权可买/挑战激励不足/语义缝隙)"}
+  concept:resolution-risk:
+    prerequisites: ["concept:resolution"]
+    relations:
+      - {id: "concept:resolution", rel: risk-of}
+      - {id: "concept:oracle-risk", rel: contrasts-with, note: "规则语义歧义 (来源如实也可能裁错) vs 数据管道/机制失效"}
+      - {id: "concept:dispute-mechanism", rel: mitigated-by}
+      - {id: "concept:resolution-insurance", rel: mitigated-by, note: "候选工具 — 方向对但裁错的风险转移"}
+  concept:resolution-insurance:
+    prerequisites: ["concept:resolution-risk"]
+    relations: []
+  concept:settlement-methodology:
+    prerequisites: ["concept:resolution", "concept:settlement"]
+    relations:
+      - {id: "concept:settlement-rail", rel: see-also, note: "规则链第四层「通过什么轨道支付」即结算轨选择"}
+  concept:contract-equivalence:
+    prerequisites: ["concept:contract-semantics"]
+    relations:
+      - {id: "concept:basis-risk", rel: see-also, note: "等价性判定失败 = 跨 venue 对冲的 basis risk 来源 (Kalshi vs Polymarket 同题合约)"}
+      - {id: "org:dome", rel: instantiated-by, note: "跨平台市场匹配 API (get-matching-markets)"}
+  concept:canonical-event-id:
+    prerequisites: ["concept:contract-equivalence"]
+    relations:
+      - {id: "concept:event-var", rel: mechanism-of, note: "跨 venue 敞口聚合的标识基础 — 没有它 exposure 无法可靠汇总"}
+      - {id: "org:opticodds", rel: instantiated-by, note: "只返回真正跨平台事件的 canonical 标识符语义 — 本赛道最锋利"}
+  concept:multi-outcome-market:
+    prerequisites: ["concept:outcome-market"]
+    relations:
+      - {id: "concept:outcome-market", rel: special-case-of, note: "N 个互斥结果, 每结果一个 outcome token"}
+      - {id: "concept:implied-probability", rel: see-also, note: "全部结果价格之和理论 = 1, 偏离即套利空间或费率痕迹"}
+  concept:scalar-market:
+    prerequisites: ["concept:outcome-market"]
+    relations:
+      - {id: "concept:outcome-market", rel: special-case-of, note: "结算值为连续数值, 支付线性映射"}
+      - {id: "concept:binary-option", rel: contrasts-with, note: "连续线性支付 vs 0/1 支付"}
+  concept:combinatorial-market:
+    prerequisites: ["concept:multi-outcome-market", "concept:implied-probability"]
+    relations:
+      - {id: "concept:outcome-market", rel: special-case-of, note: "直接为联合/条件概率定价"}
+  concept:inside-information:
+    prerequisites: []
+    relations:
+      - {id: "concept:adverse-selection", rel: see-also, note: "事件市场的知情流 = 微观结构逆向选择在语义层的镜像"}
+  concept:market-integrity:
+    prerequisites: []
+    relations:
+      - {id: "concept:inside-information", rel: see-also, note: "事件市场 integrity 的头号威胁 — 定义事件的人可以交易它"}
+  concept:market-maker-incentive:
+    prerequisites: ["concept:market-maker"]
+    relations:
+      - {id: "concept:order-flow-network-effect", rel: see-also, note: "无自然流动性时的人工点火 — 用返佣让飞轮先转起来"}
+
+  # ── Stage 8 · institutional-risk + regulation ────────────────
+  concept:market-risk:
+    prerequisites: []
+    relations:
+      - {id: "concept:value-at-risk", rel: measured-by}
+      - {id: "concept:expected-shortfall", rel: measured-by}
+  concept:liquidity-risk:
+    prerequisites: ["concept:liquidity"]
+    relations:
+      - {id: "concept:market-risk", rel: contrasts-with, note: "无法按价变现的损失 vs 价格变动的损失 — 账面盈利 ≠ 可兑现"}
+  concept:credit-risk:
+    prerequisites: []
+    relations:
+      - {id: "concept:prime-brokerage", rel: risk-of, note: "PB/OTC/margin 体系引入信用敞口"}
+      - {id: "concept:counterparty-risk", rel: contrasts-with, note: "借贷偿付能力 vs 交易/托管/清算链条的履约 — 常被混用"}
+  concept:counterparty-risk:
+    prerequisites: []
+    relations:
+      - {id: "concept:over-the-counter", rel: risk-of, note: "无 CCP 的双边交易是对手方风险的裸露形态"}
+      - {id: "concept:clearinghouse", rel: mitigated-by, note: "CCP 成为所有人的对手方 + 保证金/违约基金瀑布"}
+      - {id: "concept:collateral", rel: mitigated-by}
+      - {id: "concept:custody-segregation", rel: mitigated-by, note: "平台破产时客户资产不被当作公司财产"}
+  concept:settlement-risk:
+    prerequisites: ["concept:settlement"]
+    relations:
+      - {id: "concept:settlement", rel: risk-of, note: "成交后资产/现金未按预期交付 — 方向看对也可能收不到钱"}
+  concept:operational-risk:
+    prerequisites: []
+    relations: []
+  concept:model-risk:
+    prerequisites: []
+    relations:
+      - {id: "concept:value-at-risk", rel: risk-of, note: "VaR/ES 自身是模型 — 模型错则风险容量错, backtest 不是免罪"}
+  concept:concentration-risk:
+    prerequisites: []
+    relations:
+      - {id: "concept:event-var", rel: see-also, note: "同一事件的跨 venue/跨工具持仓 = 事件维度的集中风险, event-var 正是其度量"}
+  concept:regulatory-risk:
+    prerequisites: ["concept:jurisdiction"]
+    relations:
+      - {id: "concept:regulatory-access", rel: mitigated-by, note: "持牌是一级缓解, 但牌照本身可变可撤"}
+  concept:jurisdiction:
+    prerequisites: []
+    relations:
+      - {id: "jurisdiction:united-states", rel: instantiated-by, note: "CFTC DCM 路径 — 事件合约唯一联邦合法框架"}
+      - {id: "jurisdiction:singapore", rel: instantiated-by, note: "无持牌路径, GRA 认定非法赌博并封禁 — 同一产品两种法域命运"}
+  concept:anti-money-laundering:
+    prerequisites: []
+    relations: []
+  concept:know-your-customer:
+    prerequisites: []
+    relations:
+      - {id: "concept:anti-money-laundering", rel: mechanism-of, note: "准入身份控制"}
+  concept:know-your-transaction:
+    prerequisites: ["concept:know-your-customer"]
+    relations:
+      - {id: "concept:know-your-customer", rel: contrasts-with, note: "KYC 看人, KYT 看钱 — crypto AML 必须两者都有"}
+      - {id: "concept:anti-money-laundering", rel: mechanism-of, note: "资金来源与链上关联分析"}
+      - {id: "org:chainalysis", rel: instantiated-by, note: "链上 KYT/情报供应商"}
+  concept:custody-segregation:
+    prerequisites: ["concept:custody"]
+    relations:
+      - {id: "concept:custody", rel: component-of, note: "客户资产与公司资产的账务与保管隔离"}
+  concept:capital-requirements:
+    prerequisites: []
+    relations: []
+  concept:auditability:
+    prerequisites: []
+    relations:
+      - {id: "concept:data-infrastructure", rel: see-also, note: "审计能力 = 数据基础设施的输出 — 可重建当时的数据/规则/决定"}

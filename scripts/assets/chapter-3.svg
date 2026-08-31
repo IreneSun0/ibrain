@@ -1,0 +1,29 @@
+<svg viewBox="0 0 720 250" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,sans-serif" font-size="12">
+  <defs><marker id="ar3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="var(--muted)"/></marker></defs>
+  <text x="10" y="18" fill="var(--muted)" font-size="11">链上积木塔 — 每层长在下一层上; oracle 是塔与现实世界唯一的桥</text>
+  <g text-anchor="middle">
+    <rect x="60" y="196" width="300" height="34" rx="8" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="210" y="218" fill="var(--ink)" font-weight="700">ledger 账本 <tspan fill="var(--muted)" font-weight="400">谁拥有什么</tspan></text>
+    <rect x="60" y="156" width="300" height="34" rx="8" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="210" y="178" fill="var(--ink)" font-weight="700">consensus 共识 <tspan fill="var(--muted)" font-weight="400">谁说了算 = 昂贵的说谎</tspan></text>
+    <rect x="60" y="116" width="300" height="34" rx="8" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="210" y="138" fill="var(--ink)" font-weight="700">blockchain <tspan fill="var(--muted)" font-weight="400">不可篡改的共享历史</tspan></text>
+    <rect x="60" y="76" width="300" height="34" rx="8" fill="var(--accent-soft)" stroke="var(--accent)"/>
+    <text x="210" y="98" fill="var(--ink)" font-weight="700">smart contract <tspan fill="var(--muted)" font-weight="400">自动执行的承诺</tspan></text>
+    <rect x="60" y="36" width="300" height="34" rx="8" fill="var(--accent-soft)" stroke="var(--accent)"/>
+    <text x="210" y="58" fill="var(--ink)" font-weight="700">token <tspan fill="var(--muted)" font-weight="400">可编程的权利 (ERC-20/721/1155)</tspan></text>
+  </g>
+  <!-- oracle bridge -->
+  <g>
+    <rect x="470" y="76" width="120" height="60" rx="10" fill="var(--def-bg)" stroke="var(--warn)" stroke-width="1.5"/>
+    <text x="530" y="100" fill="var(--ink)" font-weight="700" text-anchor="middle">oracle</text>
+    <text x="530" y="118" fill="var(--muted)" font-size="10.5" text-anchor="middle">谁的数据算数</text>
+    <line x1="466" y1="106" x2="366" y2="98" stroke="var(--warn)" marker-end="url(#ar3)"/>
+    <rect x="620" y="76" width="90" height="60" rx="10" fill="none" stroke="var(--line)" stroke-dasharray="4 3"/>
+    <text x="665" y="100" fill="var(--muted)" text-anchor="middle" font-size="11">现实世界</text>
+    <text x="665" y="118" fill="var(--muted)" text-anchor="middle" font-size="10.5">赛果·判决·价格</text>
+    <line x1="616" y1="106" x2="596" y2="106" stroke="var(--warn)" marker-end="url(#ar3)"/>
+    <text x="470" y="160" fill="var(--warn)" font-size="10.5">合约的诚实上限 = oracle 的诚实下限</text>
+  </g>
+  <text x="10" y="244" fill="var(--muted)" font-size="10.5">判断题口诀: 多方互不信任 + 需要共享状态 → 上链; 否则数据库更快更便宜。Polymarket: 结算上链、撮合链下。</text>
+</svg>

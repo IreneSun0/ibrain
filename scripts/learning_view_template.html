@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iBrain · 主线通关</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --panel:#ffffff; --ink:#1c2330; --muted:#68738a; --line:#e3e7ee;
+    --accent:#2f6fed; --accent-soft:#e8f0ff;
+    --done:#2e9e6b; --done-soft:#e6f5ee;
+    --pill:#eef1f6; --pill-hover:#e2e8f2; --focus-ring:#2f6fed;
+    --def-bg:#f2f5fa; --note:#8a93a8; --warn:#d98324; --shadow:0 1px 3px rgba(20,30,60,.08);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#12151c; --panel:#1a1f2a; --ink:#e7ebf4; --muted:#98a2b8; --line:#2a3140;
+      --accent:#6f9bff; --accent-soft:#233150;
+      --done:#3db584; --done-soft:#173327;
+      --pill:#232937; --pill-hover:#2c3446; --def-bg:#202633; --note:#7f8aa3;
+      --shadow:0 1px 3px rgba(0,0,0,.4);
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);
+    font:14px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;}
+  a{color:var(--accent);text-decoration:none}
+  .top{position:sticky;top:0;z-index:9;background:var(--panel);border-bottom:1px solid var(--line);
+    padding:10px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:var(--shadow)}
+  .top h1{font-size:16px;margin:0;white-space:nowrap}
+  .top .sub{color:var(--muted);font-size:12px;font-weight:400}
+  .progress-wrap{flex:1;min-width:160px;max-width:380px}
+  .progress-label{font-size:12px;color:var(--muted);margin-bottom:2px}
+  .progress{height:8px;background:var(--pill);border-radius:5px;overflow:hidden}
+  .progress>div{height:100%;background:var(--done);width:0%}
+  #search{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;
+    padding:6px 10px;font-size:13px;width:190px}
+  #search:focus{outline:2px solid var(--focus-ring);outline-offset:1px}
+
+  .training{margin:14px 20px 0;padding:12px 16px;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;box-shadow:var(--shadow);display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+  .training .count{font-size:13px;line-height:1.6}
+  .training .count b{font-size:17px}
+  .training .bars{flex:1;min-width:240px;display:flex;flex-direction:column;gap:6px}
+  .sbar{display:flex;align-items:center;gap:8px;font-size:12px}
+  .sbar .lbl{width:70px;color:var(--muted);white-space:nowrap}
+  .sbar .track{flex:1;height:9px;background:var(--pill);border-radius:5px;position:relative;overflow:hidden}
+  .sbar .fill{height:100%;border-radius:5px;background:var(--accent)}
+  .sbar .goal{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--warn)}
+  .sbar .val{width:64px;text-align:right;font-variant-numeric:tabular-nums}
+  .training .now{font-size:12px;color:var(--muted)}
+  .training .now b{color:var(--ink)}
+
+  .nextup{margin:14px 20px 0;padding:12px 16px;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;box-shadow:var(--shadow);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .nextup .big{font-size:14px;background:var(--accent);color:#fff;border:none;border-radius:10px;
+    padding:8px 16px;cursor:pointer;font-weight:600}
+  .nextup .hint{color:var(--muted);font-size:12px}
+
+  .layout{display:flex;gap:18px;padding:14px 20px 40px;align-items:flex-start}
+  .path{flex:1.15;min-width:0}
+  .focus{flex:1;min-width:340px;position:sticky;top:64px;max-height:calc(100vh - 80px);overflow:auto}
+  @media (max-width: 980px){
+    .layout{flex-direction:column}
+    .focus{position:static;max-height:none;width:100%}
+  }
+
+  .chapter{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:14px;
+    padding:14px 16px;box-shadow:var(--shadow)}
+  .ch-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .ch-title{font-size:15px;font-weight:700}
+  .ch-prog{font-size:11px;color:var(--muted);margin-left:auto;white-space:nowrap}
+  .ch-q{color:var(--muted);font-size:12px;margin:2px 0 8px}
+  .ch-q::before{content:"❝ ";color:var(--accent)}
+  .this-week{font-size:11px;color:#fff;background:var(--done);border-radius:6px;padding:1px 8px}
+
+  .quests{display:flex;flex-direction:column;gap:2px}
+  .quest{display:flex;align-items:center;gap:10px;padding:5px 8px;border-radius:9px;cursor:pointer;font-size:13.5px}
+  .quest:hover{background:var(--pill-hover)}
+  .quest .num{width:26px;text-align:right;color:var(--muted);font-size:11px;font-variant-numeric:tabular-nums;flex:0 0 auto}
+  .quest .mark{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff}
+  .quest.done .mark{background:var(--done);border-color:var(--done)}
+  .quest.done{color:var(--muted)}
+  .quest.current{background:var(--accent-soft)}
+  .quest.current .mark{border-color:var(--accent)}
+  .quest.current .name{font-weight:700}
+  .quest.active{outline:2px solid var(--focus-ring);outline-offset:-1px}
+  .quest .en{color:var(--muted);font-size:11px;margin-left:4px}
+  .quest.dim{opacity:.22}
+
+  details.fold{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
+  details.fold summary{cursor:pointer;color:var(--muted);font-size:12.5px;user-select:none}
+  details.fold summary:hover{color:var(--ink)}
+  .side-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .spill{border:1px dashed var(--line);background:transparent;border-radius:14px;padding:3px 10px;
+    font-size:12px;color:var(--muted);cursor:pointer}
+  .spill:hover{background:var(--pill)}
+  .spill.done{border-style:solid;color:var(--done)}
+
+  .ex{margin-top:8px;border:1px solid var(--line);border-radius:9px;padding:8px 12px}
+  .ex .ex-t{font-size:13px;font-weight:600}
+  .ex .ex-kind{font-size:11px;color:var(--accent);background:var(--accent-soft);border-radius:5px;padding:0 6px;margin-right:6px}
+  .ex .ex-body{font-size:13px;margin:4px 0;white-space:pre-wrap}
+  .ex .ans{margin-top:6px}
+  .ex .ans>button, .qa button{font-size:12px;border:1px solid var(--line);background:var(--pill);color:var(--ink);
+    border-radius:7px;padding:2px 10px;cursor:pointer}
+  .ex .ans .ans-body{display:none;font-size:12.5px;color:var(--muted);border-left:3px solid var(--done);
+    padding:6px 10px;margin-top:6px;white-space:pre-wrap;background:var(--def-bg);border-radius:0 8px 8px 0}
+  .ex .ans.open .ans-body{display:block}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+  .empty{color:var(--muted);font-size:13px}
+  .empty h3{color:var(--ink)}
+  .f-where{font-size:12px;color:var(--muted)}
+  .f-where .cur{color:var(--accent);font-weight:700}
+  .f-title{font-size:21px;font-weight:800;margin:2px 0 0}
+  .f-en{color:var(--muted);font-size:13px;margin:1px 0 8px}
+  .f-def{background:var(--def-bg);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+    padding:8px 12px;font-size:13.5px;margin:10px 0}
+  .sec{margin-top:14px}
+  .sec>h4{font-size:12px;letter-spacing:.4px;color:var(--muted);margin:0 0 6px}
+  .sec .txt{font-size:13.5px;white-space:pre-wrap}
+  .pills{display:flex;flex-wrap:wrap;gap:6px}
+  .pill{border:1px solid var(--line);background:var(--pill);border-radius:14px;padding:3px 10px;
+    font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;line-height:1.5}
+  .pill:hover{background:var(--pill-hover)}
+  .pill .st{width:8px;height:8px;border-radius:50%;flex:0 0 auto;border:1.5px solid var(--muted)}
+  .pill.done .st{background:var(--done);border-color:var(--done)}
+  .pill .tag{font-size:10px;color:var(--muted)}
+  .rel-row{display:flex;align-items:flex-start;gap:8px;padding:4px 0;font-size:13px;flex-wrap:wrap}
+  .rel-tag{flex:0 0 auto;font-size:11px;border-radius:5px;padding:0 6px;line-height:1.7;margin-top:1px;
+    background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+  .rel-body{flex:1;min-width:200px}
+  .rel-note{display:block;color:var(--note);font-size:12px}
+  .qa{margin:8px 0;padding:8px 12px;border:1px solid var(--line);border-radius:9px}
+  .qa .q{font-size:13px;font-weight:600}
+  .qa .a{display:none;margin-top:6px;font-size:13px;color:var(--muted)}
+  .qa.open .a{display:block}
+  .res a{display:block;font-size:13px;margin:2px 0}
+  .foot{margin-top:14px;border-top:1px dashed var(--line);padding-top:8px;font-size:12px;color:var(--muted)}
+  mark{background:transparent;color:var(--accent);font-weight:700}
+
+  /* ── teaching layer ── */
+  .hook{font-size:14px;margin:10px 0;padding:10px 14px;background:var(--def-bg);border-radius:10px;
+    border-left:3px solid var(--warn);line-height:1.75}
+  .zcard{margin:12px 0;padding:12px 14px;border:1.5px solid var(--accent);border-radius:12px;background:var(--accent-soft)}
+  .zcard .zrow{display:flex;gap:8px;font-size:13.5px;padding:3px 0;align-items:flex-start}
+  .zcard .zk{flex:0 0 auto;font-size:11px;color:var(--accent);font-weight:700;border:1px solid var(--accent);
+    border-radius:5px;padding:0 6px;line-height:1.8;margin-top:1px}
+  .mech{font-size:13.5px;white-space:pre-wrap;line-height:1.8}
+  .trap{display:flex;gap:8px;font-size:13px;padding:5px 0;align-items:flex-start}
+  .trap .tx{flex:0 0 auto;margin-top:1px}
+  .ammo-box{margin:6px 0;padding:10px 12px;border-radius:10px;background:var(--def-bg);border-left:3px solid var(--done)}
+  .ammo-box .en{font-size:13.5px;font-style:italic;line-height:1.7}
+  .ammo-box .use{font-size:12px;color:var(--muted);margin-top:4px}
+  .ch-svg{margin:10px 0 4px}
+  .ch-svg svg{max-width:100%;height:auto}
+  #search-cards{position:absolute;z-index:20;background:var(--panel);border:1px solid var(--line);
+    border-radius:10px;box-shadow:var(--shadow);max-width:460px;padding:6px;display:none}
+  #search-cards .sc{padding:7px 10px;border-radius:8px;cursor:pointer;font-size:12.5px}
+  #search-cards .sc:hover{background:var(--pill-hover)}
+  #search-cards .sc b{display:block;font-size:13px}
+  #search-cards .sc span{color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>iBrain · 主线通关</h1>
+  <div class="progress-wrap">
+    <div class="progress-label" id="prog-label"></div>
+    <div class="progress"><div id="prog-bar"></div></div>
+  </div>
+  <input id="search" type="search" placeholder="搜关卡…">
+</header>
+
+<div class="training" id="training" style="display:none"></div>
+<div class="nextup" id="nextup"></div>
+
+<div class="layout">
+  <main class="path" id="path"></main>
+  <aside class="focus" id="focus"></aside>
+</div>
+
+<script>
+const DATA = /*__DATA__*/{};
+
+const byId = new Map(DATA.nodes.map(n => [n.id, n]));
+const ORDER = DATA.mainOrder;              // id → 1..81
+const TOTAL = Object.keys(ORDER).length;
+const cleared = n => n && (n.status === 'reviewed' || n.status === 'verified');
+const zh = n => n.titleZh || n.title;
+const en = n => (n.titleZh && n.title !== n.titleZh) ? n.title : '';
+const chapterOf = {};
+DATA.chapters.forEach(ch => {
+  ch.concepts.forEach(c => chapterOf[c] = ch);
+  ch.side.forEach(c => chapterOf[c] = ch);
+});
+
+// relations index (single-side storage → both directions)
+const relFwd = new Map(), relRev = new Map();
+const preOf = new Map(), unlockOf = new Map();
+for (const n of DATA.nodes) {
+  if (n.type !== 'concept') continue;
+  preOf.set(n.id, n.prerequisites || []);
+  for (const p of n.prerequisites || []) {
+    if (!unlockOf.has(p)) unlockOf.set(p, []);
+    unlockOf.get(p).push(n.id);
+  }
+  for (const r of n.relations || []) {
+    if (!relFwd.has(n.id)) relFwd.set(n.id, []);
+    relFwd.get(n.id).push(r);
+    if (!relRev.has(r.target)) relRev.set(r.target, []);
+    relRev.get(r.target).push({source: n.id, rel: r.rel, note: r.note});
+  }
+}
+const REL_ZH = {'contrasts-with':'对照','special-case-of':'特例','component-of':'组成',
+  'mechanism-of':'机制','risk-of':'风险','mitigated-by':'缓解','measured-by':'度量',
+  'instantiated-by':'实例','see-also':'另见','':'相关'};
+const REL_ORDER = ['contrasts-with','special-case-of','component-of','mechanism-of','risk-of','mitigated-by','measured-by','see-also',''];
+const FWD_TEXT = {'contrasts-with':['和','对照着学'],'special-case-of':['是','的特例'],
+  'component-of':['是','的组成部分'],'mechanism-of':['是','的机制'],'risk-of':['是','承载的风险'],
+  'mitigated-by':['由','缓解'],'measured-by':['由','度量'],'see-also':['',''],'':['','']};
+const REV_TEXT = {'contrasts-with':['和','对照着学'],'special-case-of':['','是它的特例'],
+  'component-of':['','是它的组成部分'],'mechanism-of':['','是它的机制'],'risk-of':['','是它承载的风险'],
+  'mitigated-by':['它能缓解',''],'measured-by':['它度量',''],'see-also':['',''],'':['','']};
+
+const el = (tag, cls, html) => {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (html !== undefined) e.innerHTML = html;
+  return e;
+};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const typeZh = t => ({'exchange-venue':'venue','market-maker-fund':'做市/基金','organization':'公司',
+  'protocol-network':'协议/链','regulator':'监管','jurisdiction':'法域','person':'人物'})[t] || '';
+
+function currentQuestId() {
+  let best = null, bestIdx = Infinity;
+  for (const [id, idx] of Object.entries(ORDER)) {
+    if (!cleared(byId.get(id)) && idx < bestIdx) { best = id; bestIdx = idx; }
+  }
+  return best;
+}
+
+// ── header progress ──
+function renderHeader() {
+  const done = Object.keys(ORDER).filter(id => cleared(byId.get(id))).length;
+  document.getElementById('prog-label').textContent = `主线 ${done} / ${TOTAL} 关`;
+  document.getElementById('prog-bar').style.width = (done / TOTAL * 100) + '%';
+}
+
+// ── training bar ──
+function todayISO() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+const daysUntil = iso => Math.ceil((new Date(iso + 'T00:00:00') - new Date(todayISO() + 'T00:00:00')) / 86400000);
+let currentWeek = null;
+function renderTraining() {
+  const t = DATA.training;
+  if (!t) return;
+  const box = document.getElementById('training');
+  box.style.display = '';
+  const today = todayISO();
+  currentWeek = (t.weeks || []).find(w => w.start <= today && today <= w.end) || null;
+  const dEv = t.event.date ? daysUntil(t.event.date) : null;
+  box.appendChild(el('div', 'count',
+    `🎯 距达标线 <b>${daysUntil(t.deadline)}</b> 天` +
+    (dEv !== null ? ` · 🎤 距 ${esc(t.event.name)} <b>${dEv}</b> 天` : '')));
+  const bars = el('div', 'bars');
+  const bar = (label, val, goal) => {
+    const row = el('div', 'sbar');
+    row.appendChild(el('span', 'lbl', label));
+    const track = el('div', 'track');
+    const fill = el('div', 'fill');
+    fill.style.width = Math.min(100, val / goal * 83) + '%';
+    const g = el('div', 'goal'); g.style.left = '83%';
+    track.appendChild(fill); track.appendChild(g);
+    row.appendChild(track);
+    row.appendChild(el('span', 'val', `${val} / ${goal}`));
+    return row;
+  };
+  bars.appendChild(bar('行业', t.industry, 60));
+  bars.appendChild(bar('PM', t.pm, 75));
+  box.appendChild(bars);
+  const wk = currentWeek
+    ? `本周 <b>W${currentWeek.n}</b> · ${currentWeek.chapters.length ? '第 ' + currentWeek.chapters.join('+') + ' 章' : '冲刺'}`
+    : (today < ((t.weeks[0] || {}).start || '') ? '开训前' : '训练期外');
+  const tgt = t.nextTarget ? ` · 下个检查点 ${esc(t.nextTarget.date)}: ${esc(t.nextTarget.industry)}/${esc(t.nextTarget.pm)}` : '';
+  box.appendChild(el('div', 'now', wk + tgt));
+}
+
+// ── next up ──
+function renderNextUp() {
+  const box = document.getElementById('nextup');
+  box.innerHTML = '';
+  const cur = currentQuestId();
+  if (!cur) { box.appendChild(el('span', 'hint', '🎉 主线通关!')); return; }
+  const n = byId.get(cur);
+  const btn = el('button', 'big', `▶ 当前关卡 · 第 ${ORDER[cur]} 关 — ${esc(zh(n))}`);
+  btn.onclick = () => focusOn(cur);
+  box.appendChild(btn);
+  const coming = Object.entries(ORDER).filter(([id]) => !cleared(byId.get(id)) && id !== cur)
+    .sort((a, b) => a[1] - b[1]).slice(0, 3);
+  if (coming.length)
+    box.appendChild(el('span', 'hint', coming.map(([id]) => esc(zh(byId.get(id)))).join(' → ')));
+}
+
+// ── chapters ──
+function renderPath() {
+  const main = document.getElementById('path');
+  main.innerHTML = '';
+  const cur = currentQuestId();
+  for (const ch of DATA.chapters) {
+    const card = el('section', 'chapter');
+    card.dataset.ch = ch.n;
+    const head = el('div', 'ch-head');
+    head.appendChild(el('span', 'ch-title', esc(ch.title)));
+    if (currentWeek && (currentWeek.chapters || []).includes(ch.n))
+      head.appendChild(el('span', 'this-week', '本周'));
+    const done = ch.concepts.filter(c => cleared(byId.get(c))).length;
+    head.appendChild(el('span', 'ch-prog', `${done}/${ch.concepts.length}`));
+    card.appendChild(head);
+    if (ch.question) card.appendChild(el('div', 'ch-q', esc(ch.question)));
+    if (ch.svg) {
+      const d = el('details', 'fold');
+      d.open = true;
+      d.appendChild(el('summary', '', '🗺 机制图'));
+      const box = el('div', 'ch-svg');
+      box.innerHTML = ch.svg;  // build-time trusted asset
+      d.appendChild(box);
+      card.appendChild(d);
+    }
+
+    const list = el('div', 'quests');
+    for (const cid of ch.concepts) {
+      const n = byId.get(cid);
+      const isDone = cleared(n), isCur = cid === cur;
+      const q = el('div', 'quest' + (isDone ? ' done' : '') + (isCur ? ' current' : ''));
+      q.dataset.id = cid;
+      q.appendChild(el('span', 'num', ORDER[cid]));
+      q.appendChild(el('span', 'mark', isDone ? '✓' : (isCur ? '▶' : '')));
+      const name = el('span', 'name', esc(zh(n)));
+      q.appendChild(name);
+      if (en(n)) q.appendChild(el('span', 'en', esc(en(n))));
+      q.onclick = () => focusOn(cid);
+      list.appendChild(q);
+    }
+    card.appendChild(list);
+
+    if (ch.side.length) {
+      const d = el('details', 'fold');
+      const doneSide = ch.side.filter(c => cleared(byId.get(c))).length;
+      d.appendChild(el('summary', '', `支线 ×${ch.side.length}` + (doneSide ? ` · ✓ ${doneSide}` : '')));
+      const pills = el('div', 'side-pills');
+      for (const cid of ch.side) {
+        const n = byId.get(cid);
+        const p = el('span', 'spill' + (cleared(n) ? ' done' : ''), esc(zh(n)));
+        p.onclick = () => focusOn(cid);
+        pills.appendChild(p);
+      }
+      d.appendChild(pills);
+      card.appendChild(d);
+    }
+
+    if (ch.exercises.length) {
+      const d = el('details', 'fold');
+      d.appendChild(el('summary', '', `本章练习 ×${ch.exercises.length}`));
+      for (const ex of ch.exercises) {
+        const box = el('div', 'ex');
+        box.appendChild(el('div', 'ex-t', `<span class="ex-kind">${esc(ex.kind)}</span>${esc(ex.title)}`));
+        if (ex.body) box.appendChild(el('div', 'ex-body', esc(ex.body)));
+        if (ex.answer) {
+          const ans = el('div', 'ans');
+          const b = el('button', '', '看答案');
+          b.onclick = () => { ans.classList.toggle('open'); b.textContent = ans.classList.contains('open') ? '收起' : '看答案'; };
+          ans.appendChild(b);
+          ans.appendChild(el('div', 'ans-body', esc(ex.answer)));
+          box.appendChild(ans);
+        }
+        d.appendChild(box);
+      }
+      card.appendChild(d);
+    }
+    main.appendChild(card);
+  }
+}
+
+// ── focus detail (everything inline) ──
+function pillFor(id) {
+  const n = byId.get(id);
+  if (!n) return el('span');
+  const isConcept = n.type === 'concept';
+  const p = el('span', 'pill' + (isConcept && cleared(n) ? ' done' : ''));
+  if (isConcept) p.appendChild(el('span', 'st'));
+  p.appendChild(el('span', '', esc(zh(n))));
+  if (!isConcept) p.appendChild(el('span', 'tag', esc(typeZh(n.type))));
+  else if (!ORDER[id]) p.appendChild(el('span', 'tag', '支线'));
+  if (isConcept) p.onclick = () => focusOn(id);
+  else p.title = n.title;
+  return p;
+}
+function relRow(tag, parts, note, pid) {
+  const row = el('div', 'rel-row');
+  row.appendChild(el('span', 'rel-tag', esc(REL_ZH[tag] ?? tag)));
+  const body = el('span', 'rel-body');
+  if (parts[0]) body.appendChild(document.createTextNode(parts[0] + ' '));
+  body.appendChild(pillFor(pid));
+  if (parts[1]) body.appendChild(document.createTextNode(' ' + parts[1]));
+  if (note) body.appendChild(el('span', 'rel-note', esc(note)));
+  row.appendChild(body);
+  return row;
+}
+
+function focusOn(id, push = true) {
+  const n = byId.get(id);
+  if (!n || n.type !== 'concept') return;
+  if (push) history.replaceState(null, '', '#' + id);
+  document.querySelectorAll('.quest.active').forEach(q => q.classList.remove('active'));
+  const row = document.querySelector(`.quest[data-id="${CSS.escape(id)}"]`);
+  if (row) { row.classList.add('active'); row.scrollIntoView({block: 'nearest', behavior: 'smooth'}); }
+
+  const box = document.getElementById('focus');
+  box.innerHTML = '';
+  const card = el('div', 'card');
+  const ch = chapterOf[id];
+  const where = ORDER[id]
+    ? `<span class="cur">第 ${ORDER[id]} 关 / ${TOTAL}</span> · ${esc(ch ? ch.title : '')}` +
+      (cleared(n) ? ' · ✓ 已过' : (id === currentQuestId() ? ' · ▶ 当前' : ''))
+    : `支线 · ${esc(ch ? ch.title : '')}` + (cleared(n) ? ' · ✓' : '');
+  card.appendChild(el('div', 'f-where', where));
+  card.appendChild(el('h2', 'f-title', esc(zh(n))));
+  if (en(n)) card.appendChild(el('div', 'f-en', esc(en(n))));
+
+  const content = n.content || {};
+  const lesson = (DATA.lessons || {})[id];
+  const addTxt = (title, txt) => {
+    if (!txt) return;
+    const s = el('div', 'sec');
+    s.appendChild(el('h4', '', title));
+    s.appendChild(el('div', 'txt', esc(txt)));
+    card.appendChild(s);
+  };
+  const bullets = txt => (txt || '').split('\n').map(l => l.replace(/^- /, '').trim()).filter(Boolean);
+
+  if (lesson) {
+    // teaching order: hook → compressed card → mechanism → traps
+    if (lesson.hook) card.appendChild(el('div', 'hook', esc(lesson.hook)));
+    if (lesson.card) {
+      const zc = el('div', 'zcard');
+      for (const line of bullets(lesson.card)) {
+        const m = line.match(/^(本质|数字|实例)[::]\s*(.*)$/s);
+        const row = el('div', 'zrow');
+        row.appendChild(el('span', 'zk', m ? esc(m[1]) : '·'));
+        row.appendChild(el('span', '', esc(m ? m[2] : line)));
+        zc.appendChild(row);
+      }
+      card.appendChild(zc);
+    }
+    if (lesson.mechanism) {
+      const s = el('div', 'sec');
+      s.appendChild(el('h4', '', '⚙ 怎么运作'));
+      s.appendChild(el('div', 'mech', esc(lesson.mechanism)));
+      card.appendChild(s);
+    }
+    if (lesson.traps) {
+      const s = el('div', 'sec');
+      s.appendChild(el('h4', '', '⚠ 你会在哪里错'));
+      for (const t of bullets(lesson.traps)) {
+        const row = el('div', 'trap');
+        row.appendChild(el('span', 'tx', '✗'));
+        row.appendChild(el('span', '', esc(t.replace(/^✗\s*/, ''))));
+        s.appendChild(row);
+      }
+      card.appendChild(s);
+    }
+  } else {
+    // side quests fall back to the library page content
+    if (n.definition) card.appendChild(el('div', 'f-def', esc(n.definition)));
+    addTxt('为什么重要', content.why);
+    addTxt('机制怎么运转', content.how);
+    addTxt('例子', content.example);
+    addTxt('常见误解', content.misconceptions);
+    addTxt('实战里怎么用', content.practice);
+  }
+
+  const pres = preOf.get(id) || [];
+  if (pres.length) {
+    const s = el('div', 'sec');
+    s.appendChild(el('h4', '', '⬆ 先懂这些'));
+    const pills = el('div', 'pills');
+    pres.forEach(p => pills.appendChild(pillFor(p)));
+    s.appendChild(pills);
+    card.appendChild(s);
+  }
+  const unlocks = (unlockOf.get(id) || []).filter(u => ORDER[u])
+    .sort((a, b) => ORDER[a] - ORDER[b]);
+  if (unlocks.length) {
+    const s = el('div', 'sec');
+    s.appendChild(el('h4', '', '⬇ 懂它之后解锁'));
+    const pills = el('div', 'pills');
+    unlocks.forEach(u => pills.appendChild(pillFor(u)));
+    s.appendChild(pills);
+    card.appendChild(s);
+  }
+
+  const rows = [];
+  for (const r of relFwd.get(id) || []) {
+    if (r.rel === 'instantiated-by') continue;
+    rows.push({tag: r.rel, o: REL_ORDER.indexOf(r.rel), parts: FWD_TEXT[r.rel] || FWD_TEXT[''], note: r.note, pid: r.target, rev: 0});
+  }
+  for (const r of relRev.get(id) || []) {
+    if (r.rel === 'instantiated-by') continue;
+    rows.push({tag: r.rel, o: REL_ORDER.indexOf(r.rel), parts: REV_TEXT[r.rel] || REV_TEXT[''], note: r.note, pid: r.source, rev: 1});
+  }
+  rows.sort((a, b) => (a.o - b.o) || (a.rev - b.rev));
+  if (rows.length) {
+    const s = el('div', 'sec');
+    s.appendChild(el('h4', '', '🔗 关联'));
+    rows.forEach(r => s.appendChild(relRow(r.tag, r.parts, r.note, r.pid)));
+    card.appendChild(s);
+  }
+
+  const inst = (relFwd.get(id) || []).filter(r => r.rel === 'instantiated-by');
+  if (inst.length) {
+    const s = el('div', 'sec');
+    s.appendChild(el('h4', '', '🌍 真实世界'));
+    for (const r of inst) {
+      const row = el('div', 'rel-row');
+      row.appendChild(el('span', 'rel-tag', '实例'));
+      const body = el('span', 'rel-body');
+      body.appendChild(pillFor(r.target));
+      if (r.note) body.appendChild(el('span', 'rel-note', esc(r.note)));
+      row.appendChild(body);
+      s.appendChild(row);
+    }
+    card.appendChild(s);
+  }
+
+  if (lesson && lesson.ammo) {
+    const s = el('div', 'sec');
+    s.appendChild(el('h4', '', '🎤 对话弹药'));
+    let box = null;
+    for (const line of bullets(lesson.ammo)) {
+      const m = line.match(/^EN[::]\s*(.*)$/s);
+      if (m) {
+        box = el('div', 'ammo-box');
+        box.appendChild(el('div', 'en', esc(m[1])));
+        s.appendChild(box);
+      } else {
+        const use = line.replace(/^用法[::]\s*/, '');
+        (box || s).appendChild(el('div', 'use', '· ' + esc(use)));
+      }
+    }
+    card.appendChild(s);
+  }
+  if (lesson && lesson.drill) {
+    const s = el('div', 'sec');
+    s.appendChild(el('h4', '', '✏ 演算'));
+    const qm = lesson.drill.match(/Q[::]\s*([\s\S]*?)\nA[::]\s*([\s\S]*)/);
+    if (qm) {
+      const q = el('div', 'qa');
+      q.appendChild(el('div', 'q', esc(qm[1].trim())));
+      const b = el('button', '', '看答案');
+      const a = el('div', 'a', esc(qm[2].trim()));
+      b.onclick = () => { q.classList.toggle('open'); b.textContent = q.classList.contains('open') ? '收起' : '看答案'; };
+      q.appendChild(b); q.appendChild(a);
+      s.appendChild(q);
+    } else {
+      s.appendChild(el('div', 'mech', esc(lesson.drill)));
+    }
+    card.appendChild(s);
+  }
+
+  if ((content.recall || []).length) {
+    const s = el('div', 'sec');
+    s.appendChild(el('h4', '', '🗣 盲答'));
+    for (const qa of content.recall) {
+      const q = el('div', 'qa');
+      q.appendChild(el('div', 'q', esc(qa.q)));
+      const b = el('button', '', '看答案');
+      const a = el('div', 'a', esc(qa.a));
+      b.onclick = () => { q.classList.toggle('open'); b.textContent = q.classList.contains('open') ? '收起' : '看答案'; };
+      q.appendChild(b); q.appendChild(a);
+      s.appendChild(q);
+    }
+    card.appendChild(s);
+  }
+
+  if ((n.resources || []).length) {
+    const s = el('div', 'sec res');
+    s.appendChild(el('h4', '', '📎 原始资源'));
+    for (const r of n.resources) {
+      const a = el('a', '', '↗ ' + esc(r.title));
+      a.href = r.url; a.target = '_blank'; a.rel = 'noopener';
+      s.appendChild(a);
+    }
+    card.appendChild(s);
+  }
+
+  box.appendChild(card);
+  box.scrollTop = 0;
+}
+
+function renderEmptyFocus() {
+  const cur = currentQuestId();
+  if (cur) { focusOn(cur, false); return; }
+  document.getElementById('focus').innerHTML = '';
+}
+
+// search — filter quests + instant compressed-card answers
+const scPanel = el('div', '');
+scPanel.id = 'search-cards';
+document.body.appendChild(scPanel);
+function essenceOf(id) {
+  const l = (DATA.lessons || {})[id];
+  if (l && l.card) {
+    const m = l.card.match(/本质[::]\s*(.*)/);
+    if (m) return m[1].split('\n')[0];
+  }
+  const n = byId.get(id);
+  return (n.definition || '').slice(0, 60);
+}
+document.getElementById('search').addEventListener('input', e => {
+  const q = e.target.value.trim().toLowerCase();
+  const hits = [];
+  document.querySelectorAll('.quest').forEach(p => {
+    const n = byId.get(p.dataset.id);
+    const hit = !q || zh(n).toLowerCase().includes(q) || n.title.toLowerCase().includes(q) || n.id.includes(q);
+    p.classList.toggle('dim', !hit);
+    if (q && hit) hits.push(p.dataset.id);
+  });
+  if (q && hits.length) {
+    scPanel.innerHTML = '';
+    for (const id of hits.slice(0, 3)) {
+      const n = byId.get(id);
+      const row = el('div', 'sc');
+      row.innerHTML = `<b>${esc(zh(n))}${ORDER[id] ? ' · 第 ' + ORDER[id] + ' 关' : ' · 支线'}</b><span>${esc(essenceOf(id))}</span>`;
+      row.onclick = () => { scPanel.style.display = 'none'; focusOn(id); };
+      scPanel.appendChild(row);
+    }
+    const r = e.target.getBoundingClientRect();
+    scPanel.style.left = Math.max(8, r.right - 460) + 'px';
+    scPanel.style.top = (r.bottom + 6) + 'px';
+    scPanel.style.display = 'block';
+  } else {
+    scPanel.style.display = 'none';
+  }
+});
+document.addEventListener('click', e => {
+  if (!scPanel.contains(e.target) && e.target.id !== 'search') scPanel.style.display = 'none';
+});
+document.getElementById('search').addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const first = document.querySelector('.quest:not(.dim)');
+    if (first) focusOn(first.dataset.id);
+  }
+});
+
+renderHeader();
+renderTraining();
+renderNextUp();
+renderPath();
+const initial = location.hash.slice(1);
+if (initial && byId.has(initial)) focusOn(initial, false); else renderEmptyFocus();
+</script>
+</body>
+</html>

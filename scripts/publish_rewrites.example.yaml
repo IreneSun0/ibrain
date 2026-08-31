@@ -1,0 +1,37 @@
+# Local redaction config for scripts/build_public_vault.py — COPY, DO NOT COMMIT.
+#
+#   cp scripts/publish_rewrites.example.yaml scripts/publish_rewrites.yaml
+#
+# `publish_rewrites.yaml` is git-ignored on purpose: a committed list of redacted
+# terms, together with the before/after text, reconstructs exactly what was removed.
+# Keep it local; it is site-specific configuration, not part of the tool.
+
+# Terms that must never survive into the published tree. build_public_vault.py counts
+# occurrences after all rewrites and reports any note that still contains one.
+private_terms:
+  - acme-internal-codename
+
+# Cosmetic text rewrites, applied in order to every published note and text asset.
+# Literal by default; set `regex: true` to use a Python regular expression
+# (`replace` may then use \1-style backreferences).
+rewrites:
+  - match: "Implications for AcmeCorp"
+    replace: "In Practice"
+  - match: "(?m)^(\\s*- )acme$"
+    replace: "\\1industry-strategy"
+    regex: true
+  - match: "/Users/[^\\s`)\\]]+"
+    replace: "(local path redacted)"
+    regex: true
+
+# Site-specific exclusion policy. The generic defaults (01_INBOX, 99_ARCHIVE,
+# vault-ops reports) are built into build_public_vault.py; these are added to them.
+exclude_dirs:
+  - 08_PRIVATE_PROJECT
+exclude_subpaths: []          # e.g. [["10_LEARNING", "plan"]]
+exclude_files:
+  - 00_HOME/PRIVATE-DASHBOARD.md
+strip_sections:               # section headings removed from every published note
+  - Implications for AcmeCorp
+allow_confidential_prefixes:  # deliberate exceptions to the confidentiality ceiling
+  - 09_ORIGINALS/

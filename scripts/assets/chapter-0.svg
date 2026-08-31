@@ -1,0 +1,36 @@
+<svg viewBox="0 0 720 190" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,sans-serif" font-size="12">
+  <defs><marker id="ar0" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="var(--muted)"/></marker></defs>
+  <text x="10" y="18" fill="var(--muted)" font-size="11">一笔钱的完整旅程 — 每一环: 上=谁, 下=承担什么风险</text>
+  <g text-anchor="middle">
+    <rect x="10" y="40" width="110" height="46" rx="9" fill="var(--accent-soft)" stroke="var(--accent)"/>
+    <text x="65" y="59" fill="var(--ink)" font-weight="700">资本</text>
+    <text x="65" y="76" fill="var(--muted)" font-size="10.5">投资者 / 对冲者</text>
+    <rect x="160" y="40" width="110" height="46" rx="9" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="215" y="59" fill="var(--ink)" font-weight="700">中介</text>
+    <text x="215" y="76" fill="var(--muted)" font-size="10.5">broker / dealer</text>
+    <rect x="310" y="40" width="110" height="46" rx="9" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="365" y="59" fill="var(--ink)" font-weight="700">venue</text>
+    <text x="365" y="76" fill="var(--muted)" font-size="10.5">撮合 + 价格发现</text>
+    <rect x="460" y="40" width="110" height="46" rx="9" fill="var(--pill)" stroke="var(--line)"/>
+    <text x="515" y="59" fill="var(--ink)" font-weight="700">清算</text>
+    <text x="515" y="76" fill="var(--muted)" font-size="10.5">净额 + 保证金 + CCP</text>
+    <rect x="600" y="40" width="110" height="46" rx="9" fill="var(--done-soft)" stroke="var(--done)"/>
+    <text x="655" y="59" fill="var(--ink)" font-weight="700">结算</text>
+    <text x="655" y="76" fill="var(--muted)" font-size="10.5">钱真正易手</text>
+  </g>
+  <g stroke="var(--muted)" marker-end="url(#ar0)">
+    <line x1="120" y1="63" x2="156" y2="63"/><line x1="270" y1="63" x2="306" y2="63"/>
+    <line x1="420" y1="63" x2="456" y2="63"/><line x1="570" y1="63" x2="596" y2="63"/>
+  </g>
+  <g text-anchor="middle" font-size="10.5" fill="var(--warn)">
+    <text x="65" y="108">市场风险</text>
+    <text x="215" y="108">操作 / 代理风险</text>
+    <text x="365" y="108">平台 / 托管风险</text>
+    <text x="515" y="108">对手方风险</text>
+    <text x="655" y="108">结算风险</text>
+  </g>
+  <g font-size="11" fill="var(--muted)">
+    <text x="10" y="140">事件市场对照: Kalshi 走完整链条 (DCM + 自有清算所 Kalshi Klear);</text>
+    <text x="10" y="158">Polymarket 用「链上全额抵押」把清算环压缩掉 — 钱在开仓时已锁进合约, 违约无从发生。</text>
+  </g>
+</svg>

@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Hard gates (frontmatter, duplicate ids, links, confidentiality)
+        run: |
+          python scripts/validate_frontmatter.py
+          python scripts/detect_duplicate_ids.py
+          python scripts/check_wikilinks.py
+          python scripts/check_confidentiality.py
+      - name: No secrets in the tree
+        run: python scripts/secret_scan.py
+      - name: Nothing above the public tier may be published
+        run: |
+          python - <<'PY'
+          import sys; sys.path.insert(0, "scripts")
+          import export_graph as eg
+          levels = {n["confidentiality"] for n in eg.build()["nodes"]}
+          assert levels <= {"public-source"}, f"published vault leaked tiers: {levels}"
+          print(f"confidentiality gate: OK ({levels})")
+          PY
+      - name: Tests
+        run: python -m pytest tests/ -q
+      - name: Site builds
+        run: |
+          python scripts/build_learning_view.py --out /tmp/index.html
+          python scripts/build_console.py --public-only --max-confidentiality public-source
