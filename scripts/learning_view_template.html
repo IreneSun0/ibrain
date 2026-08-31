@@ -79,7 +79,7 @@
   .quest{display:flex;align-items:center;gap:10px;padding:5px 8px;border-radius:9px;cursor:pointer;font-size:13.5px}
   .quest:hover{background:var(--pill-hover)}
   .quest .num{width:26px;text-align:right;color:var(--muted);font-size:11px;font-variant-numeric:tabular-nums;flex:0 0 auto}
-  .quest .mark{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);flex:0 0 auto;
+  .quest .mark{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);flex:0 0 auto;cursor:pointer;
     display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff}
   .quest.done .mark{background:var(--done);border-color:var(--done)}
   .quest.done{color:var(--muted)}
@@ -189,7 +189,23 @@ const DATA = /*__DATA__*/{};
 const byId = new Map(DATA.nodes.map(n => [n.id, n]));
 const ORDER = DATA.mainOrder;              // id → 1..81
 const TOTAL = Object.keys(ORDER).length;
-const cleared = n => n && (n.status === 'reviewed' || n.status === 'verified');
+// Progress belongs to the reader, not to the author. A note's `status` is an
+// editorial field (how finished the writing is); showing it as "you cleared this"
+// would greet every first-time visitor with a completed course.
+const PROGRESS_KEY = 'ibrain.progress.v1';
+let PROGRESS = new Set();
+try { PROGRESS = new Set(JSON.parse(localStorage.getItem(PROGRESS_KEY) || '[]')); } catch (e) {}
+function saveProgress() {
+  try { localStorage.setItem(PROGRESS_KEY, JSON.stringify([...PROGRESS])); } catch (e) {}
+}
+const cleared = n => !!n && PROGRESS.has(n.id);
+function toggleDone(id) {
+  if (PROGRESS.has(id)) PROGRESS.delete(id); else PROGRESS.add(id);
+  saveProgress();
+  renderHeader(); renderNextUp(); renderPath();
+  const row = document.querySelector(`.quest[data-id="${CSS.escape(id)}"]`);
+  if (row) row.scrollIntoView({block: 'nearest'});
+}
 const zh = n => n.titleZh || n.title;
 const en = n => (n.titleZh && n.title !== n.titleZh) ? n.title : '';
 const chapterOf = {};
@@ -341,7 +357,10 @@ function renderPath() {
       const q = el('div', 'quest' + (isDone ? ' done' : '') + (isCur ? ' current' : ''));
       q.dataset.id = cid;
       q.appendChild(el('span', 'num', ORDER[cid]));
-      q.appendChild(el('span', 'mark', isDone ? '✓' : (isCur ? '▶' : '')));
+      const mark = el('span', 'mark', isDone ? '✓' : (isCur ? '▶' : ''));
+      mark.title = isDone ? '标记为未完成' : '标记为已完成';
+      mark.onclick = ev => { ev.stopPropagation(); toggleDone(cid); };
+      q.appendChild(mark);
       const name = el('span', 'name', esc(zh(n)));
       q.appendChild(name);
       if (en(n)) q.appendChild(el('span', 'en', esc(en(n))));
