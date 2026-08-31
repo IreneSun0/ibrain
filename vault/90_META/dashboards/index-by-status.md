@@ -4,7 +4,7 @@
 
 更新: 2026-08-31 · 共 297 条结构化笔记
 
-## reviewed (97)
+## reviewed (110)
 
 - [[260813-first-principle-information-position|First Principle: Information Position (Irene, 2026-08-13)]] · 第一性原理 · 信息位置与规则制定层
 - [[INDUSTRY-MAP|Industry Map]] · 行业地图
@@ -14,9 +14,11 @@
 - [[adverse-selection|Adverse Selection]] · 逆向选择/被更懂的人交易
 - [[ask|Ask]] · 卖一/卖价
 - [[auditability|Auditability]] · 可审计性
+- [[automated-market-maker|AMM]] · 自动做市商
 - [[basis-risk|Basis Risk]] · 基差风险/不完美对冲风险
 - [[bid|Bid]] · 买一/买价
 - [[binary-option|Binary/Digital Option]] · 二元/数字期权
+- [[blockchain|Blockchain]] · 区块链
 - [[book-options-futures-hull|Options, Futures, and Other Derivatives (John Hull)]] · 《期权、期货及其他衍生品》
 - [[book-trading-and-exchanges|Trading and Exchanges (Larry Harris)]] · 《交易与交易所》
 - [[canonical-event-id|Canonical Event ID]] · 统一事件标识
@@ -26,6 +28,7 @@
 - [[clearinghouse|Clearinghouse]] · 清算所/中央对手方
 - [[collateral|Collateral]] · 抵押品/担保资产
 - [[concentration-risk|Concentration Risk]] · 集中度风险
+- [[consensus|Consensus]] · 共识机制
 - [[contract-equivalence|Contract Equivalence]] · 合约等价性
 - [[contract-semantics|Contract Semantics]] · 合约语义
 - [[counterparty-risk|Counterparty Risk]] · 交易对手风险
@@ -38,6 +41,10 @@
 - [[depth|Depth]] · 盘口深度
 - [[derivative|Derivative]] · 衍生品
 - [[dispute-mechanism|Dispute Mechanism]] · 争议机制
+- [[erc-1155|ERC-1155]] · 多代币标准
+- [[erc-20|ERC-20]] · 同质化代币标准
+- [[erc-721|ERC-721]] · NFT非同质化代币标准
+- [[erc-standards|ERC Standard]] · 以太坊代币/接口标准
 - [[event-contract|Event Contract]] · 事件合约
 - [[event-risk|Event Risk]] · 事件风险
 - [[event-var|Event VaR]] · 事件风险价值
@@ -52,6 +59,7 @@
 - [[inventory-risk|Inventory Risk]] · 库存风险
 - [[jurisdiction|Jurisdiction]] · 司法辖区/适用法域
 - [[knowledge-policies|iBrain Knowledge Policies]] · 知识库治理政策
+- [[ledger|Ledger]] · 账本
 - [[leverage|Leverage]] · 杠杆
 - [[liquidity|Liquidity]] · 流动性
 - [[liquidity-risk|Liquidity Risk]] · 流动性风险
@@ -69,7 +77,10 @@
 - [[market-maker|Market Maker]] · 做市商
 - [[market-maker-incentive|Market Maker Incentive]] · 做市激励计划
 - [[multi-outcome-market|Multi-Outcome Market]] · 多结果市场
+- [[off-chain|Off-chain]] · 链下
+- [[on-chain|On-chain]] · 链上
 - [[option|Option]] · 期权
+- [[oracle|Oracle]] · 预言机/外部事实输入层
 - [[oracle-risk|Oracle Risk]] · 预言机风险
 - [[order-book|Order Book]] · 订单簿/盘口
 - [[outcome-market|Outcome Market]] · 结果市场/结果型合约市场
@@ -96,21 +107,21 @@
 - [[settlement-rail|Settlement Rail]] · 结算轨道/资金铁路
 - [[settlement-risk|Settlement Risk]] · 结算风险
 - [[slippage|Slippage]] · 滑点
+- [[smart-contract|Smart Contract]] · 智能合约
 - [[spread|Spread]] · 买卖价差
 - [[src-2026-08-26-industry-learning-map-xlsx|行业术语与市场结构学习地图 (Excel workbook)]]
 - [[stablecoin|Stablecoin]] · 稳定币
 - [[taker|Taker]] · 吃单方/消耗流动性者
+- [[token|Token]] · 代币/链上资产单位
 - [[underlying|Underlying]] · 标的/底层变量
 - [[value-at-risk|VaR]] · 风险价值
 - [[win-safe-truth-triangle|win · safe · truth Triangle (Irene, 2026-08-13)]] · win·safe·truth 三角
 
-## seed (112)
+## seed (99)
 
 - [[anti-money-laundering|AML]] · 反洗钱
-- [[automated-market-maker|AMM]] · 自动做市商
 - [[bittorrent-chain|BTTC]] · BitTorrent Chain
 - [[block|Block]] · 区块
-- [[blockchain|Blockchain]] · 区块链
 - [[bridge|Bridge]] · 跨链桥
 - [[broker|Broker]] · 经纪商
 - [[call-option|Call Option]] · 看涨期权
@@ -126,7 +137,6 @@
 - [[chapter-7-lessons|Course Ch.7 Institutional Risk Language]] · 课程 · 第七章 机构风险语言
 - [[chapter-8-lessons|Course Ch.8 Three Infrastructure Theses]] · 课程 · 终章 三条基础设施命题
 - [[combinatorial-market|Combinatorial Market]] · 组合市场
-- [[consensus|Consensus]] · 共识机制
 - [[credit-risk|Credit Risk]] · 信用风险
 - [[curriculum-source-map|Curriculum Source Map (workbook)]] · 学习地图 · workbook 原文
 - [[dealer|Dealer]] · 交易商/自营商
@@ -137,10 +147,6 @@
 - [[double-spending|Double Spending]] · 双重支付
 - [[ecosystem-roles-map|Ecosystem Roles Map (workbook)]] · 生态游戏版图 · workbook 原文
 - [[equity|Equity]] · 股权/股票
-- [[erc-1155|ERC-1155]] · 多代币标准
-- [[erc-20|ERC-20]] · 同质化代币标准
-- [[erc-721|ERC-721]] · NFT非同质化代币标准
-- [[erc-standards|ERC Standard]] · 以太坊代币/接口标准
 - [[ethereum-virtual-machine|EVM]] · 以太坊虚拟机
 - [[exchange-vertical-integration|Exchange Vertical Integration]] · 交易所纵向一体化
 - [[execution-risk|Execution Risk]] · 执行风险
@@ -157,17 +163,13 @@
 - [[know-your-transaction|KYT]] · 了解交易/链上交易监控
 - [[layer-1|L1]] · 第一层/基础公链
 - [[layer-2|L2]] · 第二层扩容网络
-- [[ledger|Ledger]] · 账本
 - [[liquidation|Liquidation]] · 强制平仓
 - [[liquidity-provider|Liquidity Provider]] · 流动性提供者
 - [[maintenance-margin|Maintenance Margin]] · 维持保证金
 - [[market-risk|Market Risk]] · 市场风险
 - [[model-risk|Model Risk]] · 模型风险
-- [[off-chain|Off-chain]] · 链下
-- [[on-chain|On-chain]] · 链上
 - [[operational-risk|Operational Risk]] · 运营/系统风险
 - [[opinion-labs|Opinion (Opinion Labs)]] · Opinion (opinion.trade)
-- [[oracle|Oracle]] · 预言机/外部事实输入层
 - [[order-flow|Order Flow]] · 订单流
 - [[order-flow-network-effect|Order Flow Network Effect]] · 订单流网络效应
 - [[over-the-counter|OTC]] · 场外交易
@@ -182,7 +184,6 @@
 - [[put-option|Put Option]] · 看跌期权
 - [[request-for-quote|RFQ]] · 询价交易
 - [[scalar-market|Scalar Market]] · 标量市场
-- [[smart-contract|Smart Contract]] · 智能合约
 - [[smart-order-routing|Smart Order Routing]] · 智能订单路由
 - [[solidity|Solidity]] · Solidity智能合约语言
 - [[src-2026-08-26-bittorrent-chain-bittorrent-chainwhitepaper-en-pdf|BitTorrent Chain: BitTorrent-ChainWhitepaper_EN.pdf]]
@@ -206,7 +207,6 @@
 - [[stage-3-microstructure|Exercises Stage 3 Microstructure]] · 练习题 · Stage 3 微观结构
 - [[sunpump|SunPump]] · TRON meme公平发行平台
 - [[swap|Swap]] · 互换
-- [[token|Token]] · 代币/链上资产单位
 - [[token-economy|Token Economy]] · 代币经济
 - [[transaction|Transaction]] · 交易/状态更新指令
 - [[trc-20|TRC-20]] · TRON同质化代币标准

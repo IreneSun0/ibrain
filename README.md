@@ -39,11 +39,13 @@ risk taxonomy, the venues, and the people who run them.
 | typed relationships | 11 |
 | source notes | 21 |
 | prerequisite + semantic edges | 285 |
-| **total notes / links** | **308 / 2,297** |
+| **total notes / links** | **308 / 2,409** |
 
 It is also a **course**: an 81-quest mainline through the material, derived as the
-prerequisite closure of a target skill set, arranged in topological order across
-9 chapters. That is what the [site](https://irenesun0.github.io/ibrain) renders.
+prerequisite closure of a target skill set and arranged in topological order across
+9 chapters. **All 81 are written to full depth** — mechanism, a worked numeric
+example, the common misconceptions, an applied checklist, and active recall on each.
+That is what the [site](https://irenesun0.github.io/ibrain) renders.
 
 ## 2. The engine — the part you can reuse
 
@@ -129,10 +131,13 @@ every markdown write and hands violations straight back to the model.
 ## Status
 
 Note maturity is visible in the frontmatter of every page and in the graph export:
-85 verified, 60 reviewed, 149 seed, 3 stale. Seed notes are structurally complete
-and sourced but are still being expanded; the concept spine is being rewritten to
-full depth chapter by chapter. Nothing is presented as more settled than it is —
-that is the whole point of the tiers.
+110 reviewed, 85 verified, 99 seed, 3 stale.
+
+The 81-quest mainline is complete — every concept on it carries mechanism, a worked
+numeric example, common misconceptions, an applied checklist and active recall
+(median ~2,000 characters of substantive prose). The 62 side-quest concepts are
+structurally complete and sourced but still short; they are being expanded next.
+Nothing is presented as more settled than it is — that is the point of the tiers.
 
 ## License
 
