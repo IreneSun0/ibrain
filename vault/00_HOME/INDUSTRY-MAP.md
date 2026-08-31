@@ -49,7 +49,7 @@ related: []
 - [[resolution-risk|Resolution Risk]] · 结果判定风险 ⭐ `reviewed`
 - [[resolution-source|Resolution Source]] · 指定结果来源 ⭐ `reviewed`
 - [[combinatorial-market|Combinatorial Market]] · 组合市场 `seed`
-- [[market-maker-incentive|Market Maker Incentive]] · 做市激励计划 `seed`
+- [[market-maker-incentive|Market Maker Incentive]] · 做市激励计划 `reviewed`
 - [[multi-outcome-market|Multi-Outcome Market]] · 多结果市场 `reviewed`
 - [[scalar-market|Scalar Market]] · 标量市场 `seed`
 - [[settlement-methodology|Settlement Methodology]] · 结算方法论 `reviewed`
