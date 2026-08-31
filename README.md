@@ -12,7 +12,7 @@
 
 <p align="center">
   <img alt="CI" src="https://github.com/IreneSun0/ibrain/actions/workflows/ci.yml/badge.svg">
-  <img alt="notes" src="https://img.shields.io/badge/notes-297-blue">
+  <img alt="notes" src="https://img.shields.io/badge/notes-308-blue">
   <img alt="code" src="https://img.shields.io/badge/code-Apache--2.0-green">
   <img alt="content" src="https://img.shields.io/badge/content-CC%20BY%204.0-green">
 </p>
@@ -26,7 +26,7 @@ subject, where **the epistemic rules are enforced by CI rather than by good inte
 
 It ships as two things in one repo.
 
-## 1. The vault — 297 notes on prediction market infrastructure
+## 1. The vault — 308 notes on prediction market infrastructure
 
 An interlinked, sourced knowledge base covering how event markets actually work:
 order books, market making, clearing and settlement, oracles and resolution, the
@@ -35,11 +35,11 @@ risk taxonomy, the venues, and the people who run them.
 |  | count |
 |---|---:|
 | concepts | 143 |
-| entities (venues, firms, protocols, regulators, jurisdictions, people) | 71 |
+| entities (venues, firms, protocols, regulators, jurisdictions, people) | 76 |
 | typed relationships | 11 |
 | source notes | 21 |
 | prerequisite + semantic edges | 285 |
-| **total notes / links** | **297 / 1,078** |
+| **total notes / links** | **308 / 2,297** |
 
 It is also a **course**: an 81-quest mainline through the material, derived as the
 prerequisite closure of a target skill set, arranged in topological order across
@@ -47,8 +47,8 @@ prerequisite closure of a target skill set, arranged in topological order across
 
 ## 2. The engine — the part you can reuse
 
-24 Python scripts, 58 tests, a write-time validation hook, 7 Claude Code
-subagents and 12 skills. Point it at your own vault and it enforces the same
+24 Python scripts, 57 tests, a write-time validation hook, 6 Claude Code
+subagents and 11 skills. Point it at your own vault and it enforces the same
 discipline on your domain.
 
 ```bash
@@ -98,8 +98,8 @@ Re-running it is idempotent, and CI runs `make validate` against the result.
 ```
 vault/            the published knowledge base (generated — edit the private vault)
 scripts/          24 deterministic tools: validators, importers, generators, exporters
-tests/            58 tests, including the confidentiality-ceiling regression guards
-.claude/          7 subagents + 12 skills + the write-time validation hook
+tests/            57 tests, including the confidentiality-ceiling regression guards
+.claude/          6 subagents + 11 skills + the write-time validation hook
 docs/             the built site (GitHub Pages)
 ```
 
@@ -129,7 +129,7 @@ every markdown write and hands violations straight back to the model.
 ## Status
 
 Note maturity is visible in the frontmatter of every page and in the graph export:
-85 verified, 36 reviewed, 173 seed, 3 stale. Seed notes are structurally complete
+85 verified, 60 reviewed, 149 seed, 3 stale. Seed notes are structurally complete
 and sourced but are still being expanded; the concept spine is being rewritten to
 full depth chapter by chapter. Nothing is presented as more settled than it is —
 that is the whole point of the tiers.
