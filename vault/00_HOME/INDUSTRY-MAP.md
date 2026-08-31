@@ -35,13 +35,13 @@ related: []
 - [[dispute-mechanism|Dispute Mechanism]] · 争议机制 ⭐ `reviewed`
 - [[event-contract|Event Contract]] · 事件合约 ⭐ `reviewed`
 - [[event-risk|Event Risk]] · 事件风险 ⭐ `reviewed`
-- [[event-var|Event VaR]] · 事件风险价值 ⭐ `seed`
+- [[event-var|Event VaR]] · 事件风险价值 ⭐ `reviewed`
 - [[fully-collateralized-market|Fully Collateralized]] · 全额抵押 ⭐ `reviewed`
 - [[implied-probability|Implied Probability]] · 隐含概率 ⭐ `reviewed`
-- [[inside-information|Inside Information]] · 内幕/重大非公开信息 ⭐ `seed`
-- [[market-integrity|Market Integrity]] · 市场完整性/公平有序交易 ⭐ `seed`
+- [[inside-information|Inside Information]] · 内幕/重大非公开信息 ⭐ `reviewed`
+- [[market-integrity|Market Integrity]] · 市场完整性/公平有序交易 ⭐ `reviewed`
 - [[oracle-risk|Oracle Risk]] · 预言机风险 ⭐ `reviewed`
-- [[outcome-market|Outcome Market]] · 结果市场/结果型合约市场 ⭐ `seed`
+- [[outcome-market|Outcome Market]] · 结果市场/结果型合约市场 ⭐ `reviewed`
 - [[outcome-token|Outcome Token]] · 结果代币 ⭐ `reviewed`
 - [[prediction-market|Prediction Market]] · 预测市场 ⭐ `reviewed`
 - [[resolution|Resolution]] · 结果判定/裁决 ⭐ `reviewed`
