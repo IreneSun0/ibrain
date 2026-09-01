@@ -23,6 +23,9 @@ confidentiality: public-source
 sources:
   - "report:2026-08-27-pm-data-vendors"
 related:
+  - id: "protocol:uma"
+    rel: depends-on
+    note: "独特资产是 UMA 裁决数据: oracle 状态、事件时间线、争议推送"
 ---
 
 # Predexon
@@ -33,7 +36,7 @@ related:
 
 ## Key Facts (CONFIRMED, 一手 changelog + OpenAPI spec)
 
-**退出的能力 (packet 的 Tier B 描述已过期约两个月)**:
+**退出的能力 (早前的 Tier B 描述已过期约两个月)**:
 - 2026-06-21 公告托管式 Trading API 退役 → **2026-06-25 停止交易** → 2026-07-17 最后提现
 - 2026-07-14 匹配端点弃用 → **2026-07-20 起 `/v2/matching-markets` 返回 `410 Gone`**
 - 独立佐证: 今日解析其 OpenAPI v2 spec — **62 个路径中只有 1 个非 GET 方法** (批量钱包身份查询), 零订单/账户/匹配路径。
@@ -61,3 +64,4 @@ related:
 ## Timeline
 
 - **2026-08-27** — 建页 (一手 docs 核验, 证据见 [[report-2026-08-27-pm-data-vendors]])。
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

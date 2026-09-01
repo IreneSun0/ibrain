@@ -1,8 +1,8 @@
 # KNOWLEDGE COVERAGE MATRIX | 知识覆盖矩阵
 
-> 状态词表: `unmapped` / `seeded` / `partially-covered` / `well-covered` / `needs-refresh`。**没有 "complete"** — 缺口永远可见。更新: **2026-08-27 (第二轮: seed packet 导入 + 四路核验 + CodeX 独立审计)**。
+> 状态词表: `unmapped` / `seeded` / `partially-covered` / `well-covered` / `needs-refresh`。**没有 "complete"** — 缺口永远可见。更新: **2026-08-27 (第二轮: 语料导入 + 四路核验 + 独立审计)**。
 
-## ⚠ 覆盖度 ≠ 可靠度 (CodeX 审计 2026-08-27 的核心提醒)
+## ⚠ 覆盖度 ≠ 可靠度 (独立审计 2026-08-27 的核心提醒)
 
 本表衡量的是「**有没有页面**」, 不是「**页面可不可信**」。审计发现: 341 页里 76 页标 `verified`, 但 22 个 source note 中**只有 2 个有 content_hash**, 19 个 URL 来源**无快照** ⟹ 当前的 "verified" 多数意味着「**存在一个引用形状的指向**」, 而不是「**被引材料已保全且确实支持该断言**」。
 **⟹ 例行事实依赖前必须带可见 caveat; GBrain 索引前必须先建保密过滤导出。** 详见 CODEX-AUDIT-REPORT。
@@ -27,7 +27,7 @@
 
 ## 结构性缺口 (跨域)
 
-0. 🔴 **证据保全缺失 (CodeX 审计首要发现)**: 22 个 source note 只有 2 个有 content_hash; 4 份 research report 无外部 URL。**URL 一变就无法证明当初看到的是什么。** → R19, 需 Irene 决定优先级。
+0. 🔴 **证据保全缺失 (独立审计首要发现)**: 22 个 source note 只有 2 个有 content_hash; 4 份 research report 无外部 URL。**URL 一变就无法证明当初看到的是什么。** → R19, 需 Irene 决定优先级。
 1. **对话导出未导入** → 09_ORIGINALS 缺第一手语境。
 2. **行内一手引用未回填**: workbook 概念页的 sources 停在 workbook+URL 登记级; researcher 抓取回填是升 verified 的前提 (R5)。
 3. **04_EVENTS 目录空**: 大事目前记在实体页 timeline; 高价值事件 (2025-10-10 清算风暴 / CZ 赦免 / HTX 制裁) 值得独立事件页。

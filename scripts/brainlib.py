@@ -157,6 +157,8 @@ def iter_notes(root: Path | None = None, include_templates: bool = False):
     root = root or vault_root()
     skip_dirs = {".git", ".obsidian", ".trash", "99_ARCHIVE"}
     for p in sorted(root.rglob("*.md")):
+        if p.name.endswith(".en.md"):
+            continue  # translation sibling — merged into its canonical note by the exporter
         rel_parts = p.relative_to(root).parts
         if any(part in skip_dirs for part in rel_parts):
             continue

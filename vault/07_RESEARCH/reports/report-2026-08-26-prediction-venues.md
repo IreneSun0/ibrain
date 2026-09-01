@@ -29,7 +29,7 @@ related: []
 
 1. **双寡头 + 追赶者格局**: Kalshi (估值 $22B, 年化量自称 $178B, 寻求 $40B) vs Polymarket (ICE 投资, ~$15B, 月量峰值 ~$10.5B, 年化收入 $1B); 两家合计 2026-06 月成交 $44.8B。
 2. **Polymarket 零费率时代结束**: 2026-01 起分品类收 taker 费 (crypto 0.07% / sports 0.03% / politics+finance 0.04%) — **摩擦地形变了, 零和账本的费率参数需要按 2026 新费率表重算美国/离岸双轨口径**。
-3. **Kalshi 的收入真相**: 2025 营收 $263.5M, **sports 占 89%** — 「预测市场」的商业底盘目前是体育, 与税差博彩流判断 (BLUEPRINT 第一波) 一致。
+3. **Kalshi 的收入真相**: 2025 营收 $263.5M, **sports 占 89%** — 「预测市场」的商业底盘目前是体育, 与早期的税差博彩流判断一致。
 4. **结算双轨已成型**: Polymarket 离岸 = UMA (争议三连); Polymarket US (QCX) = CFTC DCM 自认证; Kalshi = 内部判定 + Outcome Review Committee; 价格类 → Chainlink; HIP-4 → 协议内生 mark price。**同一「预测市场」四种结算法学** — [[settlement-methodology]] 分层档案的必要性被行业结构直接证实。
 5. **Kalshi Khamenei 案** (2026-03): 冻结 $54M、语义含糊赔付 ~$2.2M、"death settlement rule" 进 CFTC 备案成文化 — **中心化 venue 的语义缝隙同样爆雷, 且赔付先例已开**。
 6. **Binance Wallet 的预测市场由 Predict.fun 驱动** (2026-04, 2 亿+ 用户入口): hyp-wallet-exchange-embedding 的直接市场证据 — 钱包嵌入已发生, 由 YZi Labs 系资本连线 (Predict.fun 同获 **Susquehanna Crypto** 投资)。

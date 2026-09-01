@@ -74,7 +74,14 @@ def check_note(n: Note, sch: dict, known_ids: set[str] | None = None,
 
     # concept-level typed relations in `related` + prerequisite ids
     # (vocabulary: allowed_concept_relation_types; human doc: 90_META/taxonomy/relationship-types.md)
-    crt = set(sch.get("allowed_concept_relation_types") or [])
+    ENTITY_TYPES = {"person", "organization", "exchange-venue", "protocol-network",
+                    "market-maker-fund", "regulator", "jurisdiction", "product", "token-asset"}
+    # Entity pages carry entity-level relations; concept pages carry concept-level ones.
+    # Checking every `related` against the concept vocabulary rejected valid entity edges.
+    is_entity = str(fm.get("type") or "") in ENTITY_TYPES
+    crt = set(sch.get("allowed_relationship_types" if is_entity
+                      else "allowed_concept_relation_types") or [])
+    vocab_name = "entity" if is_entity else "concept"
     rel_items = fm.get("related") or []
     if isinstance(rel_items, list):
         see_also_count = 0
@@ -85,7 +92,7 @@ def check_note(n: Note, sch: dict, known_ids: set[str] | None = None,
                     errs.append(f"{rel}: related entry {item!r} needs both `id` and `rel`")
                     continue
                 if crt and str(rtype) not in crt:
-                    errs.append(f"{rel}: related rel `{rtype}` not in concept relation vocabulary")
+                    errs.append(f"{rel}: related rel `{rtype}` not in {vocab_name} relation vocabulary")
                 if known_ids is not None and str(tid) not in known_ids:
                     errs.append(f"{rel}: related references unknown id `{tid}`")
                 extra = sorted(set(item.keys()) - {"id", "rel", "note"})

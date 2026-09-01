@@ -22,7 +22,7 @@ related:
 
 # win · safe · truth 三角 (Irene 定, 2026-08-13)
 
-## Original Statement | 结构原文 (BLUEPRINT §1, 摘录)
+## Original Statement | 结构原文 (摘录)
 
 > 三条边互为支撑, 每一条都要做到极致。**任何一条塌了, 另外两条都失去意义。**
 >
@@ -42,7 +42,7 @@ related:
 
 - 2026-08-06 前: 「world-model-for-money」框架 → 被「摩擦优先」取代 (memory: project_world_model_for_money)。
 - 2026-07-27: 「不会大亏」对外框架废弃, 改从「可控制可计算的赢」出发 (win-thesis spec)。
-- 2026-08-13: 三角定稿进 BLUEPRINT, 成为一切新方向的过滤器。
+- 2026-08-13: 三角定稿, 成为一切新方向的过滤器。
 
 <!-- timeline -->
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>iBrain · 主线通关</title>
+<title>iBrain — a prediction-market knowledge base</title>
 <style>
   :root{
     --bg:#f6f7f9; --panel:#ffffff; --ink:#1c2330; --muted:#68738a; --line:#e3e7ee;
@@ -30,13 +30,14 @@
     padding:10px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:var(--shadow)}
   .top h1{font-size:16px;margin:0;white-space:nowrap}
   .top .sub{color:var(--muted);font-size:12px;font-weight:400}
-  .progress-wrap{flex:1;min-width:160px;max-width:380px}
-  .progress-label{font-size:12px;color:var(--muted);margin-bottom:2px}
-  .progress{height:8px;background:var(--pill);border-radius:5px;overflow:hidden}
-  .progress>div{height:100%;background:var(--done);width:0%}
-  #search{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;
-    padding:6px 10px;font-size:13px;width:190px}
-  #search:focus{outline:2px solid var(--focus-ring);outline-offset:1px}
+  .brand{display:flex;align-items:baseline;gap:10px;min-width:0}
+  .tagline{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .seg{display:flex;gap:2px;background:var(--pill);border-radius:8px;padding:2px;flex:0 0 auto}
+  .seg button{border:0;background:transparent;color:var(--muted);font:inherit;font-size:12px;
+    padding:4px 11px;border-radius:6px;cursor:pointer;white-space:nowrap}
+  .seg button:hover{color:var(--ink)}
+  .seg button.on{background:var(--panel);color:var(--ink);box-shadow:var(--shadow)}
+  .seg.lang button{font-size:11.5px;padding:4px 9px}
 
   .training{margin:14px 20px 0;padding:12px 16px;background:var(--panel);border:1px solid var(--line);
     border-radius:12px;box-shadow:var(--shadow);display:flex;gap:22px;align-items:center;flex-wrap:wrap}
@@ -79,14 +80,14 @@
   .quest{display:flex;align-items:center;gap:10px;padding:5px 8px;border-radius:9px;cursor:pointer;font-size:13.5px}
   .quest:hover{background:var(--pill-hover)}
   .quest .num{width:26px;text-align:right;color:var(--muted);font-size:11px;font-variant-numeric:tabular-nums;flex:0 0 auto}
-  .quest .mark{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);flex:0 0 auto;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff}
-  .quest.done .mark{background:var(--done);border-color:var(--done)}
-  .quest.done{color:var(--muted)}
-  .quest.current{background:var(--accent-soft)}
-  .quest.current .mark{border-color:var(--accent)}
-  .quest.current .name{font-weight:700}
-  .quest.active{outline:2px solid var(--focus-ring);outline-offset:-1px}
+  /* No checkbox: a reference list is not a questionnaire. Selection is shown by
+     highlighting the row itself. */
+  .quest.ext .num::before{content:'·';color:var(--line)}
+  .quest.active{background:var(--accent-soft)}
+  .quest.active .name{font-weight:700}
+  .quest.active::before{content:'';position:absolute;left:0;width:3px;height:18px;
+    border-radius:2px;background:var(--accent)}
+  .quest{position:relative}
   .quest .en{color:var(--muted);font-size:11px;margin-left:4px}
   .quest.dim{opacity:.22}
 
@@ -117,6 +118,9 @@
   .f-where .cur{color:var(--accent);font-weight:700}
   .f-title{font-size:21px;font-weight:800;margin:2px 0 0}
   .f-en{color:var(--muted);font-size:13px;margin:1px 0 8px}
+  .f-def p{margin:5px 0}
+  .f-def p:first-child{margin-top:0}
+  .f-def p:last-child{margin-bottom:0}
   .f-def{background:var(--def-bg);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
     padding:8px 12px;font-size:13.5px;margin:10px 0}
   .sec{margin-top:14px}
@@ -157,28 +161,56 @@
   .ammo-box .use{font-size:12px;color:var(--muted);margin-top:4px}
   .ch-svg{margin:10px 0 4px}
   .ch-svg svg{max-width:100%;height:auto}
-  #search-cards{position:absolute;z-index:20;background:var(--panel);border:1px solid var(--line);
-    border-radius:10px;box-shadow:var(--shadow);max-width:460px;padding:6px;display:none}
-  #search-cards .sc{padding:7px 10px;border-radius:8px;cursor:pointer;font-size:12.5px}
-  #search-cards .sc:hover{background:var(--pill-hover)}
-  #search-cards .sc b{display:block;font-size:13px}
-  #search-cards .sc span{color:var(--muted)}
+
+  /* ── ecosystem graph ── */
+  #graph-stage{position:relative;height:calc(100vh - 54px);background:var(--bg)}
+  #graph{display:block;width:100%;height:100%;cursor:grab}
+  #graph.dragging{cursor:grabbing}
+  #graph-legend{position:absolute;left:16px;bottom:16px;background:var(--panel);
+    border:1px solid var(--line);border-radius:10px;padding:10px 12px;box-shadow:var(--shadow);
+    font-size:11.5px;line-height:1.9;max-width:210px}
+  #graph-legend .lg{display:flex;align-items:center;gap:7px;cursor:pointer;user-select:none}
+  #graph-legend .lg.off{opacity:.35}
+  #graph-legend .sw{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  #graph-legend .cap{font-size:10.5px;color:var(--muted);margin-top:6px;line-height:1.5}
+  #graph-hint{position:absolute;right:16px;bottom:16px;font-size:11.5px;color:var(--muted);
+    background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+
+  .rel-row{padding:5px 0;border-bottom:1px dashed var(--line);font-size:12.5px}
+  .rel-row:last-child{border-bottom:0}
+  .rel-verb{display:inline-block;min-width:104px;color:var(--muted);font-size:11.5px}
+  .rel-note{margin:3px 0 0 104px;font-size:11.5px;color:var(--muted);line-height:1.6}
+
+  .txt table,.mech table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12px}
+  .txt th,.txt td,.mech th,.mech td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+  .txt th,.mech th{background:var(--pill);font-weight:600}
+  .txt ul,.txt ol,.mech ul,.mech ol{margin:6px 0 6px 18px;padding:0}
+  .txt li,.mech li{margin:3px 0}
+  .txt p,.mech p{margin:6px 0}
+  .txt p:first-child,.mech p:first-child{margin-top:0}
+  .txt code,.mech code{background:var(--pill);border-radius:4px;padding:1px 4px;font-size:.92em}
+  .txt pre,.mech pre{background:var(--pill);border-radius:8px;padding:9px 11px;overflow-x:auto;font-size:11.5px;line-height:1.55}
+  .txt blockquote,.mech blockquote{margin:6px 0;padding-left:10px;border-left:3px solid var(--line);color:var(--muted)}
 </style>
 </head>
 <body>
 <header class="top">
-  <h1>iBrain · 主线通关</h1>
-  <div class="progress-wrap">
-    <div class="progress-label" id="prog-label"></div>
-    <div class="progress"><div id="prog-bar"></div></div>
+  <div class="brand">
+    <h1>iBrain</h1>
+    <span class="tagline" id="tagline"></span>
   </div>
-  <input id="search" type="search" placeholder="搜关卡…">
+  <div class="seg" id="view"></div>
+  <div class="seg" id="scope"></div>
+  <div class="seg lang" id="lang"></div>
 </header>
 
-<div class="training" id="training" style="display:none"></div>
-<div class="nextup" id="nextup"></div>
+<section id="graph-stage">
+  <canvas id="graph"></canvas>
+  <div id="graph-legend"></div>
+  <div id="graph-hint"></div>
+</section>
 
-<div class="layout">
+<div class="layout" id="layout">
   <main class="path" id="path"></main>
   <aside class="focus" id="focus"></aside>
 </div>
@@ -189,25 +221,56 @@ const DATA = /*__DATA__*/{};
 const byId = new Map(DATA.nodes.map(n => [n.id, n]));
 const ORDER = DATA.mainOrder;              // id → 1..81
 const TOTAL = Object.keys(ORDER).length;
-// Progress belongs to the reader, not to the author. A note's `status` is an
-// editorial field (how finished the writing is); showing it as "you cleared this"
-// would greet every first-time visitor with a completed course.
-const PROGRESS_KEY = 'ibrain.progress.v1';
-let PROGRESS = new Set();
-try { PROGRESS = new Set(JSON.parse(localStorage.getItem(PROGRESS_KEY) || '[]')); } catch (e) {}
-function saveProgress() {
-  try { localStorage.setItem(PROGRESS_KEY, JSON.stringify([...PROGRESS])); } catch (e) {}
-}
-const cleared = n => !!n && PROGRESS.has(n.id);
-function toggleDone(id) {
-  if (PROGRESS.has(id)) PROGRESS.delete(id); else PROGRESS.add(id);
-  saveProgress();
-  renderHeader(); renderNextUp(); renderPath();
-  const row = document.querySelector(`.quest[data-id="${CSS.escape(id)}"]`);
-  if (row) row.scrollIntoView({block: 'nearest'});
-}
-const zh = n => n.titleZh || n.title;
-const en = n => (n.titleZh && n.title !== n.titleZh) ? n.title : '';
+// ── language & scope ─────────────────────────────────────────────────────────
+// This is a public reference, not a personal course tracker: nothing here records
+// "how far you got". Scope is a filter over the same material, and language swaps
+// the whole page rather than printing a second language beside the first.
+const LANG_KEY = 'ibrain.lang', SCOPE_KEY = 'ibrain.scope';
+const store = {
+  get(k, d) { try { return localStorage.getItem(k) || d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+};
+let LANG = store.get(LANG_KEY, (navigator.language || '').toLowerCase().startsWith('zh') ? 'zh' : 'en');
+let SCOPE = store.get(SCOPE_KEY, 'all');   // all | core | extended
+
+const T = {
+  zh: {tagline: '预测市场知识库',
+       all: '全部', core: '核心路径', extended: '延伸',
+       definition: '定义', why: '为什么重要', how: '怎么运作', example: '例子',
+       misconceptions: '常见误解', practice: '实战里怎么用',
+       prereq: '先读这些', unlocks: '读懂它之后', relations: '关联', world: '真实世界',
+       recall: '自测', showAnswer: '看答案', hide: '收起',
+       exercises: '本章练习', diagram: '机制图', extendedIn: '延伸概念',
+       corePath: '核心路径', noEn: '这一条目的英文版尚未撰写，先显示中文。',
+       empty: '从左侧选一个概念开始。', results: '个结果',
+       graph: '生态图谱', concepts: '概念',
+       legendCap: '点图例可显示/隐藏一类；点节点看详情。',
+       graphHint: '滚轮缩放 · 拖背景平移 · 拖节点固定',
+       relatedEntities: '关系'},
+  en: {tagline: 'A prediction-market knowledge base',
+       all: 'All', core: 'Core path', extended: 'Extended',
+       definition: 'Definition', why: 'Why it matters', how: 'How it works', example: 'Example',
+       misconceptions: 'Common misconceptions', practice: 'In practice',
+       prereq: 'Read first', unlocks: 'Unlocks', relations: 'Related', world: 'In the wild',
+       recall: 'Check yourself', showAnswer: 'Show answer', hide: 'Hide',
+       exercises: 'Chapter exercises', diagram: 'Mechanism', extendedIn: 'Extended concepts',
+       corePath: 'Core path', noEn: 'No English text for this entry yet — showing Chinese.',
+       empty: 'Pick a concept on the left to begin.', results: ' results',
+       graph: 'Ecosystem', concepts: 'Concepts',
+       legendCap: 'Click a colour to show/hide it. Click a node for detail.',
+       graphHint: 'Scroll to zoom · drag background to pan · drag a node to pin it',
+       relatedEntities: 'Relationships'},
+};
+const t_ = k => T[LANG][k];
+const isCore = id => ORDER[id] !== undefined;
+
+const nameOf = n => !n ? '' : (LANG === 'en' ? (n.title || n.titleZh) : (n.titleZh || n.title));
+const subOf = n => {
+  if (!n) return '';
+  const other = LANG === 'en' ? n.titleZh : n.title;
+  return other && other !== nameOf(n) ? other : '';
+};
+const zh = nameOf, en = subOf;   // legacy call sites
 const chapterOf = {};
 DATA.chapters.forEach(ch => {
   ch.concepts.forEach(c => chapterOf[c] = ch);
@@ -252,92 +315,440 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':
 const typeZh = t => ({'exchange-venue':'venue','market-maker-fund':'做市/基金','organization':'公司',
   'protocol-network':'协议/链','regulator':'监管','jurisdiction':'法域','person':'人物'})[t] || '';
 
-function currentQuestId() {
-  let best = null, bestIdx = Infinity;
-  for (const [id, idx] of Object.entries(ORDER)) {
-    if (!cleared(byId.get(id)) && idx < bestIdx) { best = id; bestIdx = idx; }
+
+
+// ── minimal markdown → html ──────────────────────────────────────────────────
+// The notes are written in markdown; rendering them as plain text turns emphasis
+// into literal asterisks and tables into pipe soup. Escape first, then re-introduce
+// only the handful of constructs the notes actually use.
+function mdInline(s) {
+  return esc(s)
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/(?<!\w)_([^_]+)_(?!\w)/g, '<em>$1</em>');
+}
+function md(src) {
+  const lines = String(src || '').split('\n');
+  const out = [];
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i];
+    if (!line.trim()) { i++; continue; }
+    // table
+    if (/^\s*\|/.test(line) && i + 1 < lines.length && /^\s*\|[\s:|-]+\|\s*$/.test(lines[i + 1])) {
+      const cells = l => l.trim().replace(/^\||\|$/g, '').split('|').map(c => c.trim());
+      const head = cells(line);
+      i += 2;
+      const rows = [];
+      while (i < lines.length && /^\s*\|/.test(lines[i])) rows.push(cells(lines[i++]));
+      out.push('<table><thead><tr>' + head.map(c => `<th>${mdInline(c)}</th>`).join('') +
+               '</tr></thead><tbody>' +
+               rows.map(r => '<tr>' + r.map(c => `<td>${mdInline(c)}</td>`).join('') + '</tr>').join('') +
+               '</tbody></table>');
+      continue;
+    }
+    // fenced block
+    if (/^```/.test(line)) {
+      i++; const buf = [];
+      while (i < lines.length && !/^```/.test(lines[i])) buf.push(lines[i++]);
+      i++;
+      out.push(`<pre>${esc(buf.join('\n'))}</pre>`);
+      continue;
+    }
+    // list
+    if (/^\s*(?:[-*]|\d+\.)\s+/.test(line)) {
+      const ordered = /^\s*\d+\./.test(line);
+      const items = [];
+      while (i < lines.length && /^\s*(?:[-*]|\d+\.)\s+/.test(lines[i]))
+        items.push(lines[i++].replace(/^\s*(?:[-*]|\d+\.)\s+/, ''));
+      out.push(`<${ordered ? 'ol' : 'ul'}>` + items.map(x => `<li>${mdInline(x)}</li>`).join('') +
+               `</${ordered ? 'ol' : 'ul'}>`);
+      continue;
+    }
+    // blockquote
+    if (/^\s*>/.test(line)) {
+      const buf = [];
+      while (i < lines.length && /^\s*>/.test(lines[i])) buf.push(lines[i++].replace(/^\s*>\s?/, ''));
+      out.push(`<blockquote>${mdInline(buf.join(' '))}</blockquote>`);
+      continue;
+    }
+    // always consume at least one line: a '|' line that is not a real table would
+    // otherwise match none of the branches above and spin here forever
+    const buf = [lines[i++]];
+    while (i < lines.length && lines[i].trim() && !/^\s*(?:[-*]|\d+\.|\||>|```)/.test(lines[i]))
+      buf.push(lines[i++]);
+    out.push(`<p>${mdInline(buf.join(' '))}</p>`);
+  }
+  return out.join('');
+}
+
+// ── ecosystem graph ──────────────────────────────────────────────────────────
+// A force-directed map of who founded, funded, settles on, regulates and provides
+// liquidity to whom. Entities only by default: concepts have their own view, and
+// mixing 143 of them in drowns the ecosystem this is meant to show.
+const ENTITY_TYPES = new Set(DATA.entityTypes || []);
+const TYPE_COLOR = {
+  'person':            '#e0679a',
+  'exchange-venue':    '#4c8fd6',
+  'organization':      '#d98a3c',
+  'market-maker-fund': '#3faa8e',
+  'protocol-network':  '#8a7ad0',
+  'regulator':         '#c9564f',
+  'jurisdiction':      '#8b95a5',
+};
+const TYPE_LABEL = {
+  zh: {'person':'人物','exchange-venue':'交易场馆','organization':'公司/机构',
+       'market-maker-fund':'做市商/基金','protocol-network':'协议/链','regulator':'监管',
+       'jurisdiction':'法域'},
+  en: {'person':'People','exchange-venue':'Venues','organization':'Companies',
+       'market-maker-fund':'Market makers & funds','protocol-network':'Protocols & chains',
+       'regulator':'Regulators','jurisdiction':'Jurisdictions'},
+};
+const REL_LABEL = {
+  zh: {'founded':'创立','co-founded':'共同创立','executive-of':'现任高管',
+       'former-executive-of':'前高管','advises':'顾问','alumnus-of':'共同履历',
+       'invested-in':'投资','backed-by':'获投','acquired':'收购','partners-with':'合作',
+       'integrates-with':'集成','competes-with':'竞争','provides-liquidity-to':'做市',
+       'provides-infrastructure-to':'基础设施','built-on':'构建于','settles-on':'结算于',
+       'regulated-by':'受监管','distributes':'分发','depends-on':'依赖','spun-out-of':'分拆自'},
+  en: {'founded':'founded','co-founded':'co-founded','executive-of':'executive of',
+       'former-executive-of':'former executive of','advises':'advises','alumnus-of':'alumnus of',
+       'invested-in':'invested in','backed-by':'backed by','acquired':'acquired',
+       'partners-with':'partners with','integrates-with':'integrates with',
+       'competes-with':'competes with','provides-liquidity-to':'makes markets for',
+       'provides-infrastructure-to':'provides infrastructure to','built-on':'built on',
+       'settles-on':'settles on','regulated-by':'regulated by','distributes':'distributes',
+       'depends-on':'depends on','spun-out-of':'spun out of'},
+};
+
+const TYPE_ORDER = ['person', 'exchange-venue', 'organization', 'market-maker-fund',
+                    'protocol-network', 'regulator', 'jurisdiction'];
+const ANCHOR = {};
+TYPE_ORDER.forEach((ty, i) => {
+  const a = (i / TYPE_ORDER.length) * Math.PI * 2 - Math.PI / 2;
+  ANCHOR[ty] = {x: Math.cos(a) * 300, y: Math.sin(a) * 230};
+});
+
+let G = null;                      // {nodes, links, sim state}
+let hiddenTypes = new Set();
+
+function buildGraph() {
+  const ns = DATA.nodes.filter(n => ENTITY_TYPES.has(n.type));
+  const idx = new Map(ns.map((n, i) => [n.id, i]));
+  const links = [];
+  const typedPairs = new Set();
+  for (const e of DATA.edges) {
+    if (e.kind === 'erel' || e.kind === 'typed')
+      typedPairs.add([e.source, e.target].sort().join('|'));
+  }
+  const seenLink = new Set();
+  for (const e of DATA.edges) {
+    if (!idx.has(e.source) || !idx.has(e.target)) continue;
+    if (e.kind === 'prereq' || e.kind === 'crel') continue;
+    const pair = [e.source, e.target].sort().join('|');
+    // a bare wikilink between two entities that already have a typed edge says nothing new
+    if (e.kind === 'link' && typedPairs.has(pair)) continue;
+    const key = pair + '|' + (e.relType || e.kind);
+    if (seenLink.has(key)) continue;
+    seenLink.add(key);
+    links.push({s: idx.get(e.source), t: idx.get(e.target), kind: e.kind,
+                rel: e.relType || '', note: e.note || ''});
+  }
+  const deg = new Array(ns.length).fill(0);
+  for (const l of links) { deg[l.s]++; deg[l.t]++; }
+  const nodes = ns.map((n, i) => {
+    const a = i * 2.399963;                             // golden-angle spiral
+    const R = 26 * Math.sqrt(i + 1);
+    return {id: n.id, type: n.type, node: n, deg: deg[i],
+            x: Math.cos(a) * R, y: Math.sin(a) * R,
+            vx: 0, vy: 0, r: 3.6 + Math.pow(deg[i], 0.62) * 2.9, fixed: false};
+  });
+  return {nodes, links, alpha: 1};
+}
+
+function visible(n) { return !hiddenTypes.has(n.type); }
+
+function tick() {
+  const {nodes, links} = G;
+  const a = G.alpha;
+  for (let i = 0; i < nodes.length; i++) {
+    const p = nodes[i];
+    if (!visible(p)) continue;
+    for (let j = i + 1; j < nodes.length; j++) {
+      const q = nodes[j];
+      if (!visible(q)) continue;
+      let dx = q.x - p.x, dy = q.y - p.y;
+      let d2 = dx * dx + dy * dy;
+      if (d2 < 1) { d2 = 1; dx = (Math.random() - 0.5); dy = (Math.random() - 0.5); }
+      if (d2 > 250000) continue;                       // ignore far pairs
+      const f = 5200 / d2;
+      const d = Math.sqrt(d2), fx = dx / d * f, fy = dy / d * f;
+      p.vx -= fx; p.vy -= fy; q.vx += fx; q.vy += fy;
+    }
+  }
+  for (const l of links) {
+    const p = nodes[l.s], q = nodes[l.t];
+    if (!visible(p) || !visible(q)) continue;
+    const dx = q.x - p.x, dy = q.y - p.y;
+    const d = Math.max(1, Math.hypot(dx, dy));
+    const f = (d - 110) * 0.020;
+    const fx = dx / d * f, fy = dy / d * f;
+    p.vx += fx; p.vy += fy; q.vx -= fx; q.vy -= fy;
+  }
+  for (const p of nodes) {
+    if (!visible(p)) continue;
+    // a very weak type nudge only breaks symmetry; the visible clusters come from the
+    // link structure itself, which is what the picture is supposed to show
+    const an = ANCHOR[p.type];
+    if (an) { p.vx += (an.x - p.x) * 0.0012; p.vy += (an.y - p.y) * 0.0012; }
+    p.vx -= p.x * 0.0022; p.vy -= p.y * 0.0022;        // mild gravity to centre
+    if (p.fixed) { p.vx = p.vy = 0; continue; }
+    const sp = Math.hypot(p.vx, p.vy), CAP = 18;        // no node slingshots off-screen
+    if (sp > CAP) { p.vx = p.vx / sp * CAP; p.vy = p.vy / sp * CAP; }
+    p.x += p.vx * a; p.y += p.vy * a;
+    p.vx *= 0.82; p.vy *= 0.82;
+  }
+  G.alpha = Math.max(0.06, G.alpha * 0.994);
+}
+
+const view = {k: 1, x: 0, y: 0};
+let hoverNode = null, dragNode = null, panning = false, last = null;
+
+function drawGraph() {
+  const cv = document.getElementById('graph');
+  const ctx = cv.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const w = cv.clientWidth, h = cv.clientHeight;
+  if (cv.width !== w * dpr || cv.height !== h * dpr) { cv.width = w * dpr; cv.height = h * dpr; }
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+  ctx.save();
+  ctx.translate(w / 2 + view.x, h / 2 + view.y);
+  ctx.scale(view.k, view.k);
+
+  const {nodes, links} = G;
+  const near = new Set();
+  if (hoverNode) {
+    near.add(hoverNode);
+    for (const l of links) {
+      if (nodes[l.s] === hoverNode) near.add(nodes[l.t]);
+      if (nodes[l.t] === hoverNode) near.add(nodes[l.s]);
+    }
+  }
+  const ink = getComputedStyle(document.body).getPropertyValue('--ink').trim() || '#222';
+
+  for (const l of links) {
+    const p = nodes[l.s], q = nodes[l.t];
+    if (!visible(p) || !visible(q)) continue;
+    const lit = hoverNode && (p === hoverNode || q === hoverNode);
+    ctx.strokeStyle = lit ? TYPE_COLOR[hoverNode.type] : ink;
+    ctx.globalAlpha = lit ? 0.75 : (hoverNode ? 0.05 : (l.kind === 'link' ? 0.10 : 0.20));
+    ctx.lineWidth = lit ? 1.6 / view.k : (l.kind === 'link' ? 0.5 : 0.9) / view.k;
+    ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+  }
+
+  if (hoverNode) {
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = `${10 / view.k}px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`;
+    for (const l of links) {
+      const p = nodes[l.s], q = nodes[l.t];
+      if ((p !== hoverNode && q !== hoverNode) || !visible(p) || !visible(q)) continue;
+      const verb = (REL_LABEL[LANG] || {})[l.rel];
+      if (!verb) continue;
+      const mx = (p.x + q.x) / 2, my = (p.y + q.y) / 2;
+      const w = ctx.measureText(verb).width + 8 / view.k;
+      ctx.globalAlpha = 0.92;
+      ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--panel').trim() || '#fff';
+      ctx.fillRect(mx - w / 2, my - 7 / view.k, w, 14 / view.k);
+      ctx.fillStyle = TYPE_COLOR[hoverNode.type];
+      ctx.fillText(verb, mx, my);
+    }
+  }
+
+  ctx.globalAlpha = 1;
+  for (const p of nodes) {
+    if (!visible(p)) continue;
+    const dim = hoverNode && !near.has(p);
+    ctx.globalAlpha = dim ? 0.13 : 1;
+    ctx.fillStyle = TYPE_COLOR[p.type] || '#888';
+    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832); ctx.fill();
+    if (p === hoverNode) {
+      ctx.strokeStyle = TYPE_COLOR[p.type]; ctx.globalAlpha = 0.35;
+      ctx.lineWidth = 3 / view.k;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r + 4 / view.k, 0, 6.2832); ctx.stroke();
+    }
+  }
+
+  const showAll = view.k > 1.6;
+  const fs = 11 / view.k;
+  ctx.font = `${fs}px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`;
+  ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  const placed = [];
+  const wants = nodes.filter(p => visible(p) &&
+      ((hoverNode && near.has(p)) || showAll || p.deg >= 4))
+    .sort((a, b) => (near.has(b) - near.has(a)) || (b.deg - a.deg));
+  for (const p of wants) {
+    const txt = nameOf(p.node);
+    const w = ctx.measureText(txt).width, x = p.x, y = p.y + p.r + 3 / view.k;
+    const box = {x0: x - w / 2, x1: x + w / 2, y0: y, y1: y + fs};
+    // skip a label that would sit on top of one already drawn
+    if (placed.some(q => box.x0 < q.x1 && box.x1 > q.x0 && box.y0 < q.y1 && box.y1 > q.y0)) continue;
+    placed.push(box);
+    ctx.globalAlpha = hoverNode && !near.has(p) ? 0.18 : 0.92;
+    ctx.fillStyle = ink;
+    ctx.fillText(txt, x, y);
+  }
+  ctx.restore();
+}
+
+function fitGraph() {
+  const cv = document.getElementById('graph');
+  const w = cv.clientWidth, h = cv.clientHeight;
+  const vis = G.nodes.filter(visible);
+  if (!vis.length || !w) return;
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  for (const p of vis) {
+    x0 = Math.min(x0, p.x - p.r); x1 = Math.max(x1, p.x + p.r);
+    y0 = Math.min(y0, p.y - p.r); y1 = Math.max(y1, p.y + p.r);
+  }
+  const pad = 48;
+  view.k = Math.min(1.9, Math.max(0.3,
+    Math.min((w - pad * 2) / Math.max(1, x1 - x0), (h - pad * 2) / Math.max(1, y1 - y0))));
+  view.x = -((x0 + x1) / 2) * view.k;
+  view.y = -((y0 + y1) / 2) * view.k;
+}
+
+let settleTicks = 0;
+function graphLoop() {
+  if (document.getElementById('graph-stage').style.display === 'none') return;
+  tick(); 
+  // fit once the layout has taken shape, and keep it framed while it is still moving
+  if (++settleTicks < 220 && settleTicks % 12 === 0 && !dragNode && !panning) fitGraph();
+  drawGraph();
+  requestAnimationFrame(graphLoop);
+}
+
+function toWorld(ev) {
+  const cv = document.getElementById('graph'), b = cv.getBoundingClientRect();
+  return {x: (ev.clientX - b.left - b.width / 2 - view.x) / view.k,
+          y: (ev.clientY - b.top - b.height / 2 - view.y) / view.k};
+}
+function pick(pt) {
+  let best = null, bd = 18 / view.k;
+  for (const p of G.nodes) {
+    if (!visible(p)) continue;
+    const d = Math.hypot(p.x - pt.x, p.y - pt.y);
+    if (d < Math.max(p.r + 4, bd) && (!best || d < bd)) { best = p; bd = d; }
   }
   return best;
 }
 
-// ── header progress ──
-function renderHeader() {
-  const done = Object.keys(ORDER).filter(id => cleared(byId.get(id))).length;
-  document.getElementById('prog-label').textContent = `主线 ${done} / ${TOTAL} 关`;
-  document.getElementById('prog-bar').style.width = (done / TOTAL * 100) + '%';
-}
-
-// ── training bar ──
-function todayISO() {
-  const d = new Date();
-  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
-}
-const daysUntil = iso => Math.ceil((new Date(iso + 'T00:00:00') - new Date(todayISO() + 'T00:00:00')) / 86400000);
-let currentWeek = null;
-function renderTraining() {
-  const t = DATA.training;
-  if (!t) return;
-  const box = document.getElementById('training');
-  box.style.display = '';
-  const today = todayISO();
-  currentWeek = (t.weeks || []).find(w => w.start <= today && today <= w.end) || null;
-  const dEv = t.event.date ? daysUntil(t.event.date) : null;
-  box.appendChild(el('div', 'count',
-    `🎯 距达标线 <b>${daysUntil(t.deadline)}</b> 天` +
-    (dEv !== null ? ` · 🎤 距 ${esc(t.event.name)} <b>${dEv}</b> 天` : '')));
-  const bars = el('div', 'bars');
-  const bar = (label, val, goal) => {
-    const row = el('div', 'sbar');
-    row.appendChild(el('span', 'lbl', label));
-    const track = el('div', 'track');
-    const fill = el('div', 'fill');
-    fill.style.width = Math.min(100, val / goal * 83) + '%';
-    const g = el('div', 'goal'); g.style.left = '83%';
-    track.appendChild(fill); track.appendChild(g);
-    row.appendChild(track);
-    row.appendChild(el('span', 'val', `${val} / ${goal}`));
-    return row;
+function wireGraph() {
+  const cv = document.getElementById('graph');
+  cv.onmousemove = ev => {
+    const pt = toWorld(ev);
+    if (dragNode) { dragNode.x = pt.x; dragNode.y = pt.y; G.alpha = Math.max(G.alpha, 0.35); return; }
+    if (panning && last) { view.x += ev.clientX - last.x; view.y += ev.clientY - last.y; last = {x: ev.clientX, y: ev.clientY}; return; }
+    hoverNode = pick(pt);
+    cv.style.cursor = hoverNode ? 'pointer' : 'grab';
   };
-  bars.appendChild(bar('行业', t.industry, 60));
-  bars.appendChild(bar('PM', t.pm, 75));
-  box.appendChild(bars);
-  const wk = currentWeek
-    ? `本周 <b>W${currentWeek.n}</b> · ${currentWeek.chapters.length ? '第 ' + currentWeek.chapters.join('+') + ' 章' : '冲刺'}`
-    : (today < ((t.weeks[0] || {}).start || '') ? '开训前' : '训练期外');
-  const tgt = t.nextTarget ? ` · 下个检查点 ${esc(t.nextTarget.date)}: ${esc(t.nextTarget.industry)}/${esc(t.nextTarget.pm)}` : '';
-  box.appendChild(el('div', 'now', wk + tgt));
+  cv.onmousedown = ev => {
+    const p = pick(toWorld(ev));
+    if (p) { dragNode = p; p.fixed = true; }
+    else { panning = true; last = {x: ev.clientX, y: ev.clientY}; cv.classList.add('dragging'); }
+  };
+  window.addEventListener('mouseup', () => {
+    if (dragNode) dragNode.fixed = false;
+    dragNode = null; panning = false; last = null;
+    document.getElementById('graph').classList.remove('dragging');
+  });
+  cv.onclick = ev => {
+    const p = pick(toWorld(ev));
+    if (p) { setView('concepts'); focusOn(p.id); }
+  };
+  cv.onwheel = ev => {
+    ev.preventDefault();
+    const k = Math.min(4, Math.max(0.35, view.k * (ev.deltaY < 0 ? 1.12 : 0.89)));
+    view.k = k;
+  };
 }
 
-// ── next up ──
-function renderNextUp() {
-  const box = document.getElementById('nextup');
+function renderLegend() {
+  const box = document.getElementById('graph-legend');
   box.innerHTML = '';
-  const cur = currentQuestId();
-  if (!cur) { box.appendChild(el('span', 'hint', '🎉 主线通关!')); return; }
-  const n = byId.get(cur);
-  const btn = el('button', 'big', `▶ 当前关卡 · 第 ${ORDER[cur]} 关 — ${esc(zh(n))}`);
-  btn.onclick = () => focusOn(cur);
-  box.appendChild(btn);
-  const coming = Object.entries(ORDER).filter(([id]) => !cleared(byId.get(id)) && id !== cur)
-    .sort((a, b) => a[1] - b[1]).slice(0, 3);
-  if (coming.length)
-    box.appendChild(el('span', 'hint', coming.map(([id]) => esc(zh(byId.get(id)))).join(' → ')));
+  const counts = {};
+  for (const p of G.nodes) counts[p.type] = (counts[p.type] || 0) + 1;
+  for (const ty of Object.keys(TYPE_COLOR)) {
+    if (!counts[ty]) continue;
+    const row = el('div', 'lg' + (hiddenTypes.has(ty) ? ' off' : ''));
+    const sw = el('span', 'sw'); sw.style.background = TYPE_COLOR[ty];
+    row.appendChild(sw);
+    row.appendChild(el('span', '', `${TYPE_LABEL[LANG][ty]} · ${counts[ty]}`));
+    row.onclick = () => {
+      hiddenTypes.has(ty) ? hiddenTypes.delete(ty) : hiddenTypes.add(ty);
+      G.alpha = 0.7; renderLegend();
+    };
+    box.appendChild(row);
+  }
+  box.appendChild(el('div', 'cap', t_('legendCap')));
+  document.getElementById('graph-hint').textContent = t_('graphHint');
+}
+
+let VIEW = store.get('ibrain.view', 'graph');   // graph | concepts
+
+function setView(v) {
+  VIEW = v; store.set('ibrain.view', v);
+  const g = document.getElementById('graph-stage'), l = document.getElementById('layout');
+  g.style.display = v === 'graph' ? '' : 'none';
+  l.style.display = v === 'graph' ? 'none' : '';
+  document.getElementById('scope').style.display = v === 'graph' ? 'none' : '';
+  renderTopBar();
+  if (v === 'graph') { G.alpha = Math.max(G.alpha, 0.5); settleTicks = 0; renderLegend(); requestAnimationFrame(graphLoop); }
+}
+
+// ── top bar ──────────────────────────────────────────────────────────────────
+function segButton(container, key, label, active, onPick) {
+  const b = el('button', active ? 'on' : '', label);
+  b.onclick = () => onPick(key);
+  container.appendChild(b);
+}
+
+function renderTopBar() {
+  document.documentElement.lang = LANG === 'en' ? 'en' : 'zh-Hans';
+  document.getElementById('tagline').textContent = t_('tagline');
+
+  const vsel = document.getElementById('view');
+  vsel.innerHTML = '';
+  for (const [k, lbl] of [['graph', t_('graph')], ['concepts', t_('concepts')]])
+    segButton(vsel, k, lbl, VIEW === k, setView);
+
+  const scope = document.getElementById('scope');
+  scope.innerHTML = '';
+  for (const [k, lbl] of [['all', t_('all')], ['core', t_('core')], ['extended', t_('extended')]])
+    segButton(scope, k, lbl, SCOPE === k, k => { SCOPE = k; store.set(SCOPE_KEY, k); renderTopBar(); renderPath(); });
+
+  const lang = document.getElementById('lang');
+  lang.innerHTML = '';
+  for (const [k, lbl] of [['en', 'EN'], ['zh', '中文']])
+    segButton(lang, k, lbl, LANG === k, k => {
+      LANG = k; store.set(LANG_KEY, k);
+      renderTopBar(); renderPath(); renderLegend();
+      const open = document.querySelector('.quest.active');
+      open ? focusOn(open.dataset.id, false) : renderEmptyFocus();
+    });
 }
 
 // ── chapters ──
 function renderPath() {
   const main = document.getElementById('path');
   main.innerHTML = '';
-  const cur = currentQuestId();
   for (const ch of DATA.chapters) {
     const card = el('section', 'chapter');
     card.dataset.ch = ch.n;
     const head = el('div', 'ch-head');
-    head.appendChild(el('span', 'ch-title', esc(ch.title)));
-    if (currentWeek && (currentWeek.chapters || []).includes(ch.n))
-      head.appendChild(el('span', 'this-week', '本周'));
-    const done = ch.concepts.filter(c => cleared(byId.get(c))).length;
-    head.appendChild(el('span', 'ch-prog', `${done}/${ch.concepts.length}`));
+    head.appendChild(el('span', 'ch-title', esc(LANG === 'en' && ch.titleEn ? ch.titleEn : ch.title)));
+    const shown = (SCOPE === 'extended' ? 0 : ch.concepts.length) + (SCOPE === 'core' ? 0 : ch.side.length);
+    head.appendChild(el('span', 'ch-prog', String(shown)));
     card.appendChild(head);
     if (ch.question) card.appendChild(el('div', 'ch-q', esc(ch.question)));
     if (ch.svg) {
@@ -350,51 +761,38 @@ function renderPath() {
       card.appendChild(d);
     }
 
-    const list = el('div', 'quests');
-    for (const cid of ch.concepts) {
-      const n = byId.get(cid);
-      const isDone = cleared(n), isCur = cid === cur;
-      const q = el('div', 'quest' + (isDone ? ' done' : '') + (isCur ? ' current' : ''));
-      q.dataset.id = cid;
-      q.appendChild(el('span', 'num', ORDER[cid]));
-      const mark = el('span', 'mark', isDone ? '✓' : (isCur ? '▶' : ''));
-      mark.title = isDone ? '标记为未完成' : '标记为已完成';
-      mark.onclick = ev => { ev.stopPropagation(); toggleDone(cid); };
-      q.appendChild(mark);
-      const name = el('span', 'name', esc(zh(n)));
-      q.appendChild(name);
-      if (en(n)) q.appendChild(el('span', 'en', esc(en(n))));
-      q.onclick = () => focusOn(cid);
-      list.appendChild(q);
-    }
-    card.appendChild(list);
-
-    if (ch.side.length) {
-      const d = el('details', 'fold');
-      const doneSide = ch.side.filter(c => cleared(byId.get(c))).length;
-      d.appendChild(el('summary', '', `支线 ×${ch.side.length}` + (doneSide ? ` · ✓ ${doneSide}` : '')));
-      const pills = el('div', 'side-pills');
-      for (const cid of ch.side) {
+    // One list, filtered by scope. Core-path entries keep their reading-order number;
+    // extended entries are the same kind of thing without one — not a lower tier.
+    const ids = [];
+    if (SCOPE !== 'extended') ids.push(...ch.concepts);
+    if (SCOPE !== 'core') ids.push(...ch.side);
+    if (ids.length) {
+      const list = el('div', 'quests');
+      for (const cid of ids) {
         const n = byId.get(cid);
-        const p = el('span', 'spill' + (cleared(n) ? ' done' : ''), esc(zh(n)));
-        p.onclick = () => focusOn(cid);
-        pills.appendChild(p);
+        if (!n) continue;
+        const q = el('div', 'quest' + (isCore(cid) ? '' : ' ext'));
+        q.dataset.id = cid;
+        q.appendChild(el('span', 'num', isCore(cid) ? ORDER[cid] : ''));
+        q.appendChild(el('span', 'name', esc(nameOf(n))));
+        if (subOf(n)) q.appendChild(el('span', 'en', esc(subOf(n))));
+        q.onclick = () => focusOn(cid);
+        list.appendChild(q);
       }
-      d.appendChild(pills);
-      card.appendChild(d);
+      card.appendChild(list);
     }
 
     if (ch.exercises.length) {
       const d = el('details', 'fold');
-      d.appendChild(el('summary', '', `本章练习 ×${ch.exercises.length}`));
+      d.appendChild(el('summary', '', `${t_('exercises')} ×${ch.exercises.length}`));
       for (const ex of ch.exercises) {
         const box = el('div', 'ex');
         box.appendChild(el('div', 'ex-t', `<span class="ex-kind">${esc(ex.kind)}</span>${esc(ex.title)}`));
         if (ex.body) box.appendChild(el('div', 'ex-body', esc(ex.body)));
         if (ex.answer) {
           const ans = el('div', 'ans');
-          const b = el('button', '', '看答案');
-          b.onclick = () => { ans.classList.toggle('open'); b.textContent = ans.classList.contains('open') ? '收起' : '看答案'; };
+          const b = el('button', '', t_('showAnswer'));
+          b.onclick = () => { ans.classList.toggle('open'); b.textContent = ans.classList.contains('open') ? t_('hide') : t_('showAnswer'); };
           ans.appendChild(b);
           ans.appendChild(el('div', 'ans-body', esc(ex.answer)));
           box.appendChild(ans);
@@ -412,7 +810,7 @@ function pillFor(id) {
   const n = byId.get(id);
   if (!n) return el('span');
   const isConcept = n.type === 'concept';
-  const p = el('span', 'pill' + (isConcept && cleared(n) ? ' done' : ''));
+  const p = el('span', 'pill');
   if (isConcept) p.appendChild(el('span', 'st'));
   p.appendChild(el('span', '', esc(zh(n))));
   if (!isConcept) p.appendChild(el('span', 'tag', esc(typeZh(n.type))));
@@ -433,9 +831,50 @@ function relRow(tag, parts, note, pid) {
   return row;
 }
 
+function focusEntity(id) {
+  const n = byId.get(id);
+  const box = document.getElementById('focus');
+  box.innerHTML = '';
+  const card = el('div', 'card');
+  card.appendChild(el('div', 'f-where', esc(TYPE_LABEL[LANG][n.type] || n.type)));
+  card.appendChild(el('h2', 'f-title', esc(nameOf(n))));
+  if (subOf(n)) card.appendChild(el('div', 'f-en', esc(subOf(n))));
+  if (n.summary) {
+    const s = el('section', 'f-sec');
+    s.appendChild(el('div', 'mech', md(n.summary)));
+    card.appendChild(s);
+  }
+  // both directions: what this entity does, and what is done to it
+  const out = [], inn = [];
+  for (const e of DATA.edges) {
+    if (!e.relType) continue;
+    if (e.source === id && byId.has(e.target)) out.push(e);
+    else if (e.target === id && byId.has(e.source)) inn.push(e);
+  }
+  if (out.length || inn.length) {
+    const s = el('section', 'f-sec');
+    s.appendChild(el('h4', '', t_('relatedEntities')));
+    const line = (other, verb, note, forward) => {
+      const row = el('div', 'rel-row');
+      const vb = (REL_LABEL[LANG] || {})[verb] || verb;
+      row.appendChild(el('span', 'rel-verb', esc(forward ? vb : '← ' + vb)));
+      const pill = pillFor(other);
+      if (pill) row.appendChild(pill);
+      if (note) row.appendChild(el('div', 'rel-note', esc(note)));
+      return row;
+    };
+    for (const e of out) s.appendChild(line(e.target, e.relType, e.note, true));
+    for (const e of inn) s.appendChild(line(e.source, e.relType, e.note, false));
+    card.appendChild(s);
+  }
+  box.appendChild(card);
+  box.scrollTop = 0;
+}
+
 function focusOn(id, push = true) {
   const n = byId.get(id);
-  if (!n || n.type !== 'concept') return;
+  if (!n) return;
+  if (n.type !== 'concept') { if (push) history.replaceState(null, '', '#' + id); focusEntity(id); return; }
   if (push) history.replaceState(null, '', '#' + id);
   document.querySelectorAll('.quest.active').forEach(q => q.classList.remove('active'));
   const row = document.querySelector(`.quest[data-id="${CSS.escape(id)}"]`);
@@ -445,10 +884,10 @@ function focusOn(id, push = true) {
   box.innerHTML = '';
   const card = el('div', 'card');
   const ch = chapterOf[id];
-  const where = ORDER[id]
-    ? `<span class="cur">第 ${ORDER[id]} 关 / ${TOTAL}</span> · ${esc(ch ? ch.title : '')}` +
-      (cleared(n) ? ' · ✓ 已过' : (id === currentQuestId() ? ' · ▶ 当前' : ''))
-    : `支线 · ${esc(ch ? ch.title : '')}` + (cleared(n) ? ' · ✓' : '');
+  const chTitle = esc(ch ? (LANG === 'en' && ch.titleEn ? ch.titleEn : ch.title) : '');
+  const where = isCore(id)
+    ? `<span class="cur">${t_('corePath')} ${ORDER[id]}/${TOTAL}</span> · ${chTitle}`
+    : `${t_('extended')} · ${chTitle}`;
   card.appendChild(el('div', 'f-where', where));
   card.appendChild(el('h2', 'f-title', esc(zh(n))));
   if (en(n)) card.appendChild(el('div', 'f-en', esc(en(n))));
@@ -459,7 +898,7 @@ function focusOn(id, push = true) {
     if (!txt) return;
     const s = el('div', 'sec');
     s.appendChild(el('h4', '', title));
-    s.appendChild(el('div', 'txt', esc(txt)));
+    s.appendChild(el('div', 'txt', md(txt)));
     card.appendChild(s);
   };
   const bullets = txt => (txt || '').split('\n').map(l => l.replace(/^- /, '').trim()).filter(Boolean);
@@ -497,7 +936,7 @@ function focusOn(id, push = true) {
     }
   } else {
     // side quests fall back to the library page content
-    if (n.definition) card.appendChild(el('div', 'f-def', esc(n.definition)));
+    if (n.definition) card.appendChild(el('div', 'f-def', md(n.definition)));
     addTxt('为什么重要', content.why);
     addTxt('机制怎么运转', content.how);
     addTxt('例子', content.example);
@@ -624,66 +1063,18 @@ function focusOn(id, push = true) {
 }
 
 function renderEmptyFocus() {
-  const cur = currentQuestId();
-  if (cur) { focusOn(cur, false); return; }
-  document.getElementById('focus').innerHTML = '';
+  const box = document.getElementById('focus');
+  box.innerHTML = '';
+  box.appendChild(el('div', 'card', `<div class="f-where">${esc(t_('empty'))}</div>`));
 }
 
-// search — filter quests + instant compressed-card answers
-const scPanel = el('div', '');
-scPanel.id = 'search-cards';
-document.body.appendChild(scPanel);
-function essenceOf(id) {
-  const l = (DATA.lessons || {})[id];
-  if (l && l.card) {
-    const m = l.card.match(/本质[::]\s*(.*)/);
-    if (m) return m[1].split('\n')[0];
-  }
-  const n = byId.get(id);
-  return (n.definition || '').slice(0, 60);
-}
-document.getElementById('search').addEventListener('input', e => {
-  const q = e.target.value.trim().toLowerCase();
-  const hits = [];
-  document.querySelectorAll('.quest').forEach(p => {
-    const n = byId.get(p.dataset.id);
-    const hit = !q || zh(n).toLowerCase().includes(q) || n.title.toLowerCase().includes(q) || n.id.includes(q);
-    p.classList.toggle('dim', !hit);
-    if (q && hit) hits.push(p.dataset.id);
-  });
-  if (q && hits.length) {
-    scPanel.innerHTML = '';
-    for (const id of hits.slice(0, 3)) {
-      const n = byId.get(id);
-      const row = el('div', 'sc');
-      row.innerHTML = `<b>${esc(zh(n))}${ORDER[id] ? ' · 第 ' + ORDER[id] + ' 关' : ' · 支线'}</b><span>${esc(essenceOf(id))}</span>`;
-      row.onclick = () => { scPanel.style.display = 'none'; focusOn(id); };
-      scPanel.appendChild(row);
-    }
-    const r = e.target.getBoundingClientRect();
-    scPanel.style.left = Math.max(8, r.right - 460) + 'px';
-    scPanel.style.top = (r.bottom + 6) + 'px';
-    scPanel.style.display = 'block';
-  } else {
-    scPanel.style.display = 'none';
-  }
-});
-document.addEventListener('click', e => {
-  if (!scPanel.contains(e.target) && e.target.id !== 'search') scPanel.style.display = 'none';
-});
-document.getElementById('search').addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    const first = document.querySelector('.quest:not(.dim)');
-    if (first) focusOn(first.dataset.id);
-  }
-});
-
-renderHeader();
-renderTraining();
-renderNextUp();
+G = buildGraph();
+wireGraph();
 renderPath();
 const initial = location.hash.slice(1);
-if (initial && byId.has(initial)) focusOn(initial, false); else renderEmptyFocus();
+if (initial && byId.has(initial)) { setView('concepts'); focusOn(initial, false); }
+else { renderEmptyFocus(); setView(VIEW); }
+window.addEventListener('resize', () => { if (VIEW === 'graph') drawGraph(); });
 </script>
 </body>
 </html>

@@ -23,7 +23,7 @@ related: []
 
 # iBrain 知识库治理政策
 
-本文件是整个 vault 的**宪法级规则**。所有人 (Irene) 与所有 agent (Claude Code / Codex / 未来 agent) 在写入任何笔记前必须遵守。
+本文件是整个 vault 的**宪法级规则**。所有人与所有 agent 在写入任何笔记前必须遵守。
 
 ## 1. 单点真理与稳定 ID
 
@@ -68,15 +68,15 @@ related: []
 - **搜索结果 snippet 不算来源**。低质 SEO 文章不得用于基础性断言。
 - 没有 source 的页面**不得**标 `status: verified`。
 
-## 5. Irene 原创思考保护
+## 5. 原创思考保护
 
-- Irene 的原话 / 原创想法 / 命题一律进 `09_ORIGINALS/irene/`, **保留原文措辞**。
+- 作者的原话 / 原创想法 / 命题一律进 `09_ORIGINALS/`, **保留原文措辞**。
 - AI 解读必须显式标注为解读 (`> AI interpretation:`), 不得覆盖原文。
 - 校验 hook **不得**自动改写 `09_ORIGINALS/` 下任何文件。
 
 ## 6. 决策 vs 建议边界
 
-- `decision` 页面**只在 Irene 明确做出决定时**创建。
+- `decision` 页面**只在作者明确做出决定时**创建。
 - Assistant 的建议只能以 `hypothesis` / `recommendation` / `analysis` 身份存在。
 - 禁止把战略野心写成当前能力; 禁止把未上线功能描述为 production-live; 禁止把市场规模 / 需求当作已确证。
 

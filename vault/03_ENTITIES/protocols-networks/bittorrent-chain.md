@@ -25,7 +25,16 @@ confidentiality: public-source
 sources:
   - "source:2026-08-26-industry-learning-map-xlsx"
   - "source:2026-08-26-bittorrent-chain-bittorrent-chainwhitepaper-en-pdf"
-related: []
+related:
+  - id: "protocol:tron"
+    rel: integrates-with
+    note: 跨链/执行基础设施, 连接 TRON 与其他生态
+  - id: "protocol:ethereum"
+    rel: integrates-with
+    note: 同上
+  - id: "protocol:bnb-chain"
+    rel: integrates-with
+    note: 同上
 prerequisites: []
 import_origin: xlsx-learning-map
 import_category: TRON生态
@@ -55,7 +64,7 @@ import_category: TRON生态
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, Irene 提供)
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
 - [[src-2026-08-26-bittorrent-chain-bittorrent-chainwhitepaper-en-pdf]] — <https://bt.io/doc/BitTorrent-ChainWhitepaper_EN.pdf>
 
 <!-- timeline -->
@@ -63,3 +72,4 @@ import_category: TRON生态
 ## Timeline
 
 - **2026-08-26** — 从学习地图 workbook 导入 (分类: TRON生态)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 3 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

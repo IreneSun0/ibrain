@@ -21,7 +21,10 @@ epistemic_status: confirmed
 confidentiality: public-source
 sources:
   - "report:2026-08-26-cex-lineage"
-related: []
+related:
+  - id: "venue:htx"
+    rel: founded
+    note: 2013 年创立 Huobi; 2022-10 售出约 60% 控股后退出运营
 ---
 
 # Leon Li | 李林
@@ -43,3 +46,4 @@ Huobi 创始人 (2013, 清华系, ex-Oracle 工程师)。2022-10 把 ~60% 控股
 ## Timeline
 
 - **2026-08-27** — 建页 (web 核验 2026-08-26, 证据见 [[report-2026-08-26-cex-lineage]])。
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

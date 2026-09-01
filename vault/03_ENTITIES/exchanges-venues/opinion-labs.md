@@ -21,7 +21,16 @@ epistemic_status: mixed
 confidentiality: public-source
 sources:
   - "report:2026-08-26-prediction-venues"
-related: []
+related:
+  - id: "protocol:bnb-chain"
+    rel: built-on
+    note: BNB Chain 上的链上 orderbook 预测交易所
+  - id: "mmf:jump-crypto"
+    rel: backed-by
+    note: 2026-02 $20M pre-A 投资方之一
+  - id: "mmf:amber-group"
+    rel: backed-by
+    note: $5M seed 投资方之一
 ---
 
 # Opinion (Opinion Labs / opinion.trade)
@@ -41,3 +50,4 @@ related: []
 ## Timeline
 
 - **2026-08-26** — 建页 (web 核验, 证据见 [[report-2026-08-26-prediction-venues]])。
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 3 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

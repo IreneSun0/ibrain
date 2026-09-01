@@ -22,14 +22,17 @@ epistemic_status: confirmed
 confidentiality: public-source
 sources:
   - "report:2026-08-26-prediction-venues"
-related: []
+related:
+  - id: "regulator:cftc"
+    rel: regulated-by
+    note: DCM 2020-11; 自有清算所 Kalshi Klear = DCO 2024-08
 ---
 
 # Kalshi
 
 ## Executive Summary
 
-美国联邦持牌事件合约交易所 (DCM 2020-11; 自有清算所 Kalshi Klear = DCO 2024-08)。估值 6 个月 $2B→$22B (2026-05 Series F $1B, Coatue 领投), 寻求 $40B。**收入真相: 2025 营收 $263.5M 中 sports 占 89%** — 商业底盘是体育博彩流, 与 BLUEPRINT 第一波判断一致。正与 ≥14 州打「赌博 vs 联邦衍生品」战争, CFTC 亲自下场护盘。
+美国联邦持牌事件合约交易所 (DCM 2020-11; 自有清算所 Kalshi Klear = DCO 2024-08)。估值 6 个月 $2B→$22B (2026-05 Series F $1B, Coatue 领投), 寻求 $40B。**收入真相: 2025 营收 $263.5M 中 sports 占 89%** — 商业底盘是体育博彩流, 与早期判断一致。正与 ≥14 州打「赌博 vs 联邦衍生品」战争, CFTC 亲自下场护盘。
 
 ## Market Model (CONFIRMED)
 
@@ -61,3 +64,4 @@ Co-founder & CEO **Tarek Mansour** ([[tarek-mansour]]); Co-founder & COO **Luana
 ## Timeline
 
 - **2026-08-26** — 建页 (web 核验)。
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

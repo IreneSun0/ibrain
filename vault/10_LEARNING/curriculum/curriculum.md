@@ -28,7 +28,7 @@ related: []
 > **金融市场 → 交易所 → 微观结构 → 衍生品 → 区块链 → Crypto 市场结构 → 预测市场 → 机构风险** (→ 第 9 步: Event Risk Infrastructure 综合)
 >
 > 用法: 每阶段过四关 — ① 读概念页并答对 Active-Recall; ② 把该阶段「学习地图行」的四个问题 (钱在哪/谁担风险/怎么结算/必问问题) 脱稿讲一遍; ③ 做实战应用练习; ④ 完成判据自查通过 → 把该阶段概念页 status 升 reviewed。
-> 每日入口: `make study` 生成 next-session; 队列看 [[study-queue]]。
+> 每日入口: `make study` 生成 next-session; 队列看 study-queue。
 
 ## Stage 1 — Financial Markets 金融市场
 

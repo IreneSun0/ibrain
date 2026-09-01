@@ -23,7 +23,19 @@ confidentiality: public-source
 sources:
   - "report:2026-08-26-prediction-venues"
   - "report:2026-08-27-pm-data-vendors"
-related: []
+related:
+  - id: "protocol:polygon"
+    rel: settles-on
+    note: 链上 USDC 全额抵押结算, ERC-1155 outcome tokens
+  - id: "protocol:chainlink"
+    rel: depends-on
+    note: 价格类市场结算自 2025-09 起改走 Chainlink
+  - id: "org:circle"
+    rel: depends-on
+    note: 抵押品为 USDC — 发行方储备与冻结权成为其风险面
+  - id: "regulator:cftc"
+    rel: regulated-by
+    note: 美国端 QCX = CFTC 持牌 DCM (2025-07 收购 QCEX 取得)
 ---
 
 # Polymarket
@@ -71,3 +83,4 @@ Founder & CEO **Shayne Coplan** ([[shayne-coplan]]); 顾问: J.C. Giancarlo (前
 
 - **2026-08-26** — 建页 (web 核验)。workbook 「零交易费」表述已过时 (2026-01 起收费)。
 - **2026-08-27** — 补: **2026-02-19 收购 Dome** (YC F25, $5.2M, 做跨平台市场匹配与订单路由), 全部 Dome API 2026-04-28 EOL — Polymarket 继 QCEX 后第二笔收购, 是「场馆吞掉聚合层」的样本。 [Source: [[report-2026-08-27-pm-data-vendors]]]
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 4 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

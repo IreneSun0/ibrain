@@ -61,4 +61,4 @@ prerequisites:
 ## Timeline
 
 - **2026-08-26** — 手写创建 (补任务清单缺口; 教科书级概念, 行内一手引用待 researcher 回填)。
-- **2026-08-27** — 语义关联层判断 (Claude seed, 待 Irene 复核): 前置 = margin; typed 关系 3 条。词表见 [[relationship-types|关系类型受控词表]]。
+- **2026-08-27** — 语义关联层判断 (AI seed, 待人工复核): 前置 = margin; typed 关系 3 条。词表见 [[relationship-types|关系类型受控词表]]。

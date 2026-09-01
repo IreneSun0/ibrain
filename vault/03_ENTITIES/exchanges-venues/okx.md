@@ -22,7 +22,10 @@ epistemic_status: confirmed
 confidentiality: public-source
 sources:
   - "report:2026-08-26-cex-lineage"
-related: []
+related:
+  - id: "protocol:x-layer"
+    rel: provides-infrastructure-to
+    note: OKX 体系内的 L2
 ---
 
 # OKX | 欧易
@@ -52,3 +55,4 @@ Founder **Star Xu** ([[star-xu]], 2025-26 报道称 CEO, 单源级); US CEO Rosh
 ## Timeline
 
 - **2026-08-27** — 建页 (web 核验 2026-08-26, 证据见 [[report-2026-08-26-cex-lineage]])。
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

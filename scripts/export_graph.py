@@ -81,6 +81,45 @@ _PRACTICE_FALLBACK = os.environ.get("IBRAIN_PRACTICE_SECTION", "")
 RECALL_RE = re.compile(r"- Q: (.*?)\n\s+A: (.*?)(?=\n- Q:|\n\n|\Z)", re.DOTALL)
 
 
+EN_HEADINGS = {
+    "definition": "Definition",
+    "why": "Why It Matters",
+    "how": "How It Works",
+    "example": "Concrete Example",
+    "misconceptions": "Common Misconceptions",
+    "practice": "In Practice",
+}
+
+
+def english_body(path: Path) -> str:
+    """A concept's English text lives beside it as `<slug>.en.md`, so that reading the
+    vault on GitHub gives you one language at a time rather than interleaved prose."""
+    en = path.parent / (path.stem + ".en.md")
+    return en.read_text(encoding="utf-8") if en.exists() else ""
+
+
+def concept_content_en(body: str) -> dict:
+    if not body:
+        return {}
+    out = {k: _section(body, h, 1600) for k, h in EN_HEADINGS.items()}
+    out["recall"] = [{"q": " ".join(q.split()), "a": " ".join(a.split())}
+                     for q, a in RECALL_RE.findall(_section(body, "Active Recall", 2500))]
+    return out
+
+
+def entity_summary(body: str) -> str:
+    """First substantive paragraph of an entity page, for the graph detail panel."""
+    for head in ("Executive Summary", "Key Facts", "Mandate"):
+        s = _section(body, head, 900)
+        if s:
+            return s
+    for para in body.split("\n\n"):
+        p = para.strip()
+        if p and not p.startswith(("#", ">", "-", "|", "<!--")):
+            return p[:900]
+    return ""
+
+
 def concept_content(body: str) -> dict:
     """Full inline content of a concept page for the human learning view."""
     recall = [{"q": " ".join(q.split()), "a": " ".join(a.split())}
@@ -163,6 +202,9 @@ def build(public_only: bool = False, max_confidentiality: str = "internal") -> d
             nodes[-1]["relations"] = crels
             nodes[-1]["definition"] = definition_excerpt(n.body)
             nodes[-1]["content"] = concept_content(n.body)
+            en = english_body(n.path)
+            nodes[-1]["contentEn"] = concept_content_en(en)
+            nodes[-1]["hasEn"] = bool(en)
             nodes[-1]["resources"] = [
                 {"title": src_index[s]["title"], "url": src_index[s]["url"]}
                 for s in srcs if s in src_index and src_index[s]["url"]]
@@ -177,6 +219,26 @@ def build(public_only: bool = False, max_confidentiality: str = "internal") -> d
                 if key not in seen_edges:
                     seen_edges.add(key)
                     edges.append({"source": n.id, "target": c["target"], "kind": "crel",
+                                  "relType": c["rel"], "note": c["note"]})
+
+        if n.ntype in ENTITY_TYPES:
+            nodes[-1]["summary"] = entity_summary(n.body)
+
+        # entity semantic layer: typed `related` on entity pages. Relationship *notes*
+        # remain the authoritative model for the heavy, evidence-bearing edges; these are
+        # the lighter ones whose evidence is the entity page's own sourced prose.
+        if n.ntype in ENTITY_TYPES:
+            erels = []
+            for item in (fm.get("related") or []):
+                if isinstance(item, dict) and item.get("id") and item.get("rel"):
+                    erels.append({"target": str(item["id"]), "rel": str(item["rel"]),
+                                  "note": str(item.get("note") or "")})
+            nodes[-1]["relations"] = erels
+            for c in erels:
+                key = (n.id, c["target"], "erel:" + c["rel"])
+                if key not in seen_edges:
+                    seen_edges.add(key)
+                    edges.append({"source": n.id, "target": c["target"], "kind": "erel",
                                   "relType": c["rel"], "note": c["note"]})
 
         # typed relationship edges (the authoritative relationship model)
@@ -224,6 +286,7 @@ def build(public_only: bool = False, max_confidentiality: str = "internal") -> d
             "typedEdges": sum(1 for e in edges if e["kind"] == "typed"),
             "prereqEdges": sum(1 for e in edges if e["kind"] == "prereq"),
             "conceptRelEdges": sum(1 for e in edges if e["kind"] == "crel"),
+            "entityRelEdges": sum(1 for e in edges if e["kind"] == "erel"),
             "entities": sum(1 for x in nodes if x["isEntity"]),
             "byType": dict(sorted(by_type.items(), key=lambda kv: -kv[1])),
             "byStatus": dict(sorted(by_status.items(), key=lambda kv: -kv[1])),

@@ -20,7 +20,10 @@ epistemic_status: confirmed
 confidentiality: public-source
 sources:
   - "report:2026-08-26-regulatory-landscape"
-related: []
+related:
+  - id: "regulator:cftc"
+    rel: partners-with
+    note: "2026-03 历史性 MOU: 联合澄清产品定义边界; 事件合约的排他管辖仍在 CFTC"
 ---
 
 # SEC | 美国证券交易委员会
@@ -53,3 +56,4 @@ Chairman **Paul S. Atkins** (第 34 任, 2025-04-21 宣誓)。 (CONFIRMED)
 ## Timeline
 
 - **2026-08-26** — 建页 (web 核验)。
+- **2026-09-01b** — 实体语义关联层 (2026-09-01b): 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

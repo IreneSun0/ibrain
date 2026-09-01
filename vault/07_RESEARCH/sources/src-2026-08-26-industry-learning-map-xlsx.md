@@ -30,7 +30,7 @@ import_origin: xlsx-learning-map
 
 ## What This Source Is | 来源是什么
 
-Irene 提供的 4-sheet Excel workbook (术语总表 134 条 / 学习地图 8 阶段 / 生态游戏版图 13 角色 / 机构对话速查 5 对象)。这是 vault 的**初始 seed 语料**, 属 user-direct 来源 — 代表 Irene 已消化认可的知识框架。
+作者提供的 4-sheet Excel workbook (术语总表 134 条 / 学习地图 8 阶段 / 生态游戏版图 13 角色 / 机构对话速查 5 对象)。这是 vault 的**初始 seed 语料**, 属 user-direct 来源 — 代表 Irene 已消化认可的知识框架。
 
 - SHA-256: `4fd7d2a8f9d475d9e025a10002863b7a4fd51791c9e109c54f5634a1e7391370`
 - 原件: `(local path redacted)` (只读保存)

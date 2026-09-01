@@ -64,7 +64,7 @@ prerequisites: []                      # 概念页: 硬前置概念 id (「不�
 | status | 含义 | 升级条件 |
 |---|---|---|
 | `stub` | 只有骨架, 待填 | — |
-| `seed` | 有实质内容, 未经人工复核 (含 AI seed 与 Excel 导入) | Irene 或 researcher 复核 → draft/reviewed |
+| `seed` | 有实质内容, 未经人工复核 (含 AI seed 与 Excel 导入) | 人工或 researcher 复核 → draft/reviewed |
 | `draft` | 人在主动编写中 | 写完 → reviewed |
 | `reviewed` | 内容经人工复核, 来源可以不全 | 关键断言全部有 source → verified |
 | `verified` | 关键断言应全部有来源; 动态页还需 `last_verified` | 校验器只强制 source id/locator 结构, **不证明引用支持断言**; entailment 仍需人工复核 |

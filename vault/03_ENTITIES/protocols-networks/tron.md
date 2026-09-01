@@ -24,7 +24,10 @@ sources:
   - "report:2026-08-26-infra-mm-stablecoins"
   - "report:2026-08-26-cex-lineage"
   - "source:2026-08-26-industry-learning-map-xlsx"
-related: []
+related:
+  - id: "protocol:chainlink"
+    rel: integrates-with
+    note: 2025-05 官方 oracle 从 WINkLink 切换为 Chainlink
 ---
 
 # TRON | 波场
@@ -46,3 +49,4 @@ Justin Sun 2017 年创立的 DPoS L1, **全球 USDT 的主结算轨**: 承载 48
 ## Timeline
 
 - **2026-08-27** — 建页 (web 核验 2026-08-26)。
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

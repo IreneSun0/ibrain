@@ -150,11 +150,7 @@ def main(argv: list[str] | None = None) -> int:
     if unmapped:
         print(f"WARNING: side quests without domain mapping → last chapter: {unmapped}")
 
-    # ── AI teaching layer: per-quest lessons + per-chapter mechanism diagrams ──
-    lessons = parse_lessons(root / "10_LEARNING" / "course")
-    missing_lessons = [c for c in order if c not in lessons]
-    if missing_lessons:
-        print(f"WARNING: mainline quests without lessons: {missing_lessons}")
+    # ── per-chapter mechanism diagrams ──
     svgs: dict[int, str] = {}
     for ch in chapters:
         p = OPS_ROOT / "scripts" / "assets" / f"chapter-{ch['n']}.svg"
@@ -175,10 +171,10 @@ def main(argv: list[str] | None = None) -> int:
                 continue
             ex_of.setdefault(chn, []).extend(parse_exercises(p))
 
-    # ── training layer (countdowns/scores) ──
+    # ── training layer: personal bootcamp state, absent from any public build ──
     training = None
     sched_path = plan_dir / "schedule.yaml"
-    if sched_path.exists():
+    if False and sched_path.exists():
         sched = compute_score.load_yaml(sched_path)
         score = compute_score.build()
         training = {
@@ -193,23 +189,32 @@ def main(argv: list[str] | None = None) -> int:
                        "chapters": w.get("chapters") or []} for w in (sched.get("weeks") or [])],
         }
 
-    # embed concept nodes + relation targets (entities)
+    # embed concepts, every entity (the landing graph is the ecosystem), and the
+    # relation targets concepts point at
+    ENTITY_TYPES = {"person", "organization", "exchange-venue", "protocol-network",
+                    "market-maker-fund", "regulator", "jurisdiction", "product", "token-asset"}
+    entity_ids = {n["id"] for n in graph["nodes"] if n["type"] in ENTITY_TYPES}
     ref_targets = {r["target"] for n in concepts.values() for r in n.get("relations") or []}
-    keep = set(concepts) | ref_targets
+    keep = set(concepts) | ref_targets | entity_ids
     nodes = [n for n in graph["nodes"] if n["id"] in keep]
-    edges = [e for e in graph["edges"] if e["kind"] in ("prereq", "crel")
-             and e["source"] in keep and e["target"] in keep]
+    edges = [e for e in graph["edges"]
+             if e["kind"] in ("prereq", "crel", "erel", "typed", "link")
+             and e["source"] in keep and e["target"] in keep
+             # keep the ecosystem graph readable: weak wikilink edges only between entities
+             and not (e["kind"] == "link" and not (e["source"] in entity_ids and e["target"] in entity_ids))]
 
     data = {
         "generated": graph["generated"],
         "chapters": [{"n": int(ch["n"]), "title": str(ch["title"]),
+                      "titleEn": str(ch.get("title_en") or ""),
                       "question": str(ch.get("question") or ""),
+                      "questionEn": str(ch.get("question_en") or ""),
                       "concepts": list(ch.get("concepts") or []),
                       "side": side_of.get(int(ch["n"]), []),
                       "exercises": ex_of.get(int(ch["n"]), []),
                       "svg": svgs.get(int(ch["n"]), "")} for ch in chapters],
         "mainOrder": order,
-        "lessons": {k: v for k, v in lessons.items() if k in concepts},
+        "entityTypes": sorted(ENTITY_TYPES),
         "nodes": nodes,
         "edges": edges,
         "training": training,
@@ -222,7 +227,7 @@ def main(argv: list[str] | None = None) -> int:
     kb = round(len(html.encode("utf-8")) / 1024)
     n_ex = sum(len(v) for v in ex_of.values())
     print(f"build_learning_view: mainline {len(order)} quests / {len(chapters)} chapters / "
-          f"side {sum(len(v) for v in side_of.values())} / {len(data['lessons'])} lessons / "
+          f"side {sum(len(v) for v in side_of.values())} / "
           f"{len(svgs)} diagrams / {n_ex} exercises → {out} ({kb} KB)")
     return 0
 

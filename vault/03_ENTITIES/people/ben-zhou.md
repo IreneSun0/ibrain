@@ -21,7 +21,13 @@ epistemic_status: confirmed
 confidentiality: public-source
 sources:
   - "report:2026-08-26-cex-lineage"
-related: []
+related:
+  - id: "venue:bybit"
+    rel: co-founded
+    note: 2018 年创立 Bybit
+  - id: "venue:bybit"
+    rel: executive-of
+    note: 现任 CEO; 2025-02 $1.5B 被盗案的危机应对者
 ---
 
 # Ben Zhou
@@ -46,3 +52,4 @@ XM (外汇经纪) 大中华区经理 (2010-17) → 2018 创 Bybit。
 ## Timeline
 
 - **2026-08-27** — 建页 (web 核验 2026-08-26, 证据见 [[report-2026-08-26-cex-lineage]])。
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 2 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

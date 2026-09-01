@@ -6,7 +6,9 @@
 chapters:
   - n: 0
     title: "序章 · 钱与风险的地图"
+    title_en: "Prologue · A Map of Money and Risk"
     question: "为什么这个市场存在? 谁需要它?"
+    question_en: "Why does this market exist? Who needs it?"
     concepts:
       - concept:financial-markets
       - concept:price-discovery
@@ -17,7 +19,9 @@ chapters:
       - concept:settlement
   - n: 1
     title: "第一章 · 盘口的语言"
+    title_en: "Ch.1 · The Language of the Order Book"
     question: "我能以这个价格成交多少? 大单会把价格推多远?"
+    question_en: "How much can I fill at this price? How far will a large order move it?"
     concepts:
       - concept:order-book
       - concept:bid
@@ -33,7 +37,9 @@ chapters:
       - concept:central-limit-order-book
   - n: 2
     title: "第二章 · 风险的合约形态"
+    title_en: "Ch.2 · The Shapes Risk Takes"
     question: "我真正暴露于哪个 underlying? 最坏要付多少?"
+    question_en: "What am I actually exposed to? What is the worst I can pay?"
     concepts:
       - concept:derivative
       - concept:underlying
@@ -47,7 +53,9 @@ chapters:
       - concept:cross-margin
   - n: 3
     title: "第三章 · 链上最小集"
+    title_en: "Ch.3 · The On-Chain Minimum Set"
     question: "哪些必须上链? 哪些链下更合理? 信任假设是什么?"
+    question_en: "What must go on-chain, what belongs off-chain, and what am I trusting?"
     concepts:
       - concept:ledger
       - concept:consensus
@@ -64,7 +72,9 @@ chapters:
       - concept:automated-market-maker
   - n: 4
     title: "第四章 · 钱的管道"
+    title_en: "Ch.4 · The Plumbing of Money"
     question: "钱在哪个平台? 能否自由转移? 谁能冻结?"
+    question_en: "Where is the money held? Can it move freely? Who can freeze it?"
     concepts:
       - concept:custody
       - concept:custody-segregation
@@ -72,7 +82,9 @@ chapters:
       - concept:stablecoin
   - n: 5
     title: "第五章 · 事件市场本体"
+    title_en: "Ch.5 · Event Markets Themselves"
     question: "这个 contract 到底承诺什么?"
+    question_en: "What is an event contract, and why is its price a probability?"
     concepts:
       - concept:event-risk
       - concept:event-contract
@@ -86,7 +98,9 @@ chapters:
       - concept:market-maker-incentive
   - n: 6
     title: "第六章 · 结算与争议"
+    title_en: "Ch.6 · Settlement and Disputes"
     question: "谁决定事实? 裁错了怎么办?"
+    question_en: "Who decides what happened — and what if they get it wrong?"
     concepts:
       - concept:resolution
       - concept:resolution-source
@@ -100,7 +114,9 @@ chapters:
       - concept:canonical-event-id
   - n: 7
     title: "第七章 · 机构风险语言"
+    title_en: "Ch.7 · The Language Institutions Speak"
     question: "看对方向以后, 还有什么能让我拿不到钱或被迫退出?"
+    question_en: "How do I express this exposure in the vocabulary of a risk desk?"
     concepts:
       - concept:value-at-risk
       - concept:event-var
@@ -115,7 +131,9 @@ chapters:
       - concept:market-integrity
   - n: 8
     title: "终章 · 从知识到系统"
+    title_en: "Ch.8 · From Knowledge to Systems"
     question: "把以上一切说成一个机构愿意付费的故事。"
+    question_en: "What has to be built for any of this to be usable at scale?"
     concepts:
       - concept:data-infrastructure
       - concept:auditability

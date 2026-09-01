@@ -24,7 +24,10 @@ confidentiality: public-source
 sources:
   - "source:2026-08-26-industry-learning-map-xlsx"
   - "source:2026-08-26-winklink-winklink-org"
-related: []
+related:
+  - id: "protocol:tron"
+    rel: provides-infrastructure-to
+    note: 为 TRON 智能合约提供链外数据的去中心化 oracle
 prerequisites: []
 import_origin: xlsx-learning-map
 import_category: TRON生态
@@ -54,7 +57,7 @@ import_category: TRON生态
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, Irene 提供)
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
 - [[src-2026-08-26-winklink-winklink-org]] — <https://winklink.org/>
 
 <!-- timeline -->
@@ -62,3 +65,4 @@ import_category: TRON生态
 ## Timeline
 
 - **2026-08-26** — 从学习地图 workbook 导入 (分类: TRON生态)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

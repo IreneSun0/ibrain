@@ -59,11 +59,11 @@ Ethereum gas；TRON用Bandwidth+Energy。
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, Irene 提供)
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
 
 <!-- timeline -->
 
 ## Timeline
 
 - **2026-08-26** — 从学习地图 workbook 导入 (分类: 区块链)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
-- **2026-08-27** — 语义关联层判断 (Claude seed, 待 Irene 复核): 前置 = transaction; typed 关系 1 条。词表见 [[relationship-types|关系类型受控词表]]。
+- **2026-08-27** — 语义关联层判断 (AI seed, 待人工复核): 前置 = transaction; typed 关系 1 条。词表见 [[relationship-types|关系类型受控词表]]。

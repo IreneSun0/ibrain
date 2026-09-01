@@ -24,6 +24,18 @@ confidentiality: public-source
 sources:
   - "report:2026-08-27-pm-data-vendors"
 related:
+  - id: "venue:kalshi"
+    rel: integrates-with
+    note: canonical 跨场馆 ID + 实盘路由覆盖
+  - id: "venue:polymarket"
+    rel: integrates-with
+    note: 同上
+  - id: "venue:predict-fun"
+    rel: integrates-with
+    note: 同上
+  - id: "venue:hyperliquid-hip4"
+    rel: integrates-with
+    note: Tier B 中少数覆盖 HIP-4 的供应商
 ---
 
 # Kairos (kairos.trade)
@@ -55,3 +67,4 @@ Tier B 里**唯一同时具备 canonical 跨场馆 ID + 实盘路由**的供应�
 ## Timeline
 
 - **2026-08-27** — 建页 (一手 docs 核验, 证据见 [[report-2026-08-27-pm-data-vendors]])。
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 4 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

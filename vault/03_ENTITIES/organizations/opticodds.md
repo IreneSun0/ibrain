@@ -23,11 +23,17 @@ confidentiality: public-source
 sources:
   - "report:2026-08-27-pm-data-vendors"
 related:
+  - id: "venue:kalshi"
+    rel: integrates-with
+    note: 只返回真正跨平台的事件 — 把匹配做成产品约束
+  - id: "venue:polymarket"
+    rel: integrates-with
+    note: 同上
 ---
 
 # OpticOdds
 
-> **首建时完全漏掉的竞品** — 它不在 packet 的 Tier B 清单里, 是本轮核验主动扫出来的。
+> **首建时完全漏掉的竞品** — 它不在早前的 Tier B 清单里, 是本轮核验主动扫出来的。
 
 ## Executive Summary
 
@@ -52,3 +58,4 @@ related:
 ## Timeline
 
 - **2026-08-27** — 建页 (一手 docs 核验, 证据见 [[report-2026-08-27-pm-data-vendors]])。
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 2 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

@@ -20,7 +20,10 @@ epistemic_status: confirmed
 confidentiality: public-source
 sources:
   - "report:2026-08-26-prediction-venues"
-related: []
+related:
+  - id: "regulator:cftc"
+    rel: regulated-by
+    note: 长期以 CFTC no-action 状态运行的学术性市场
 ---
 
 # PredictIt
@@ -37,3 +40,4 @@ related: []
 ## Timeline
 
 - **2026-08-26** — 建页 (web 核验, 证据见 [[report-2026-08-26-prediction-venues]])。
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

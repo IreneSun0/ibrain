@@ -20,7 +20,19 @@ epistemic_status: confirmed
 confidentiality: public-source
 sources:
   - "report:2026-08-26-prediction-venues"
-related: []
+related:
+  - id: "protocol:bnb-chain"
+    rel: built-on
+    note: 2024 首发 Blast L2, 2025-12 重启于 BNB Chain
+  - id: "protocol:uma"
+    rel: depends-on
+    note: 事件类结算走 UMA optimistic oracle
+  - id: "protocol:chainlink"
+    rel: depends-on
+    note: 价格类结算走 Chainlink Data Streams
+  - id: "mmf:susquehanna"
+    rel: backed-by
+    note: 2026-03-31 战略轮投资方之一 (与 YZi Labs)
 ---
 
 # Predict.fun
@@ -40,3 +52,4 @@ related: []
 ## Timeline
 
 - **2026-08-26** — 建页 (web 核验, 证据见 [[report-2026-08-26-prediction-venues]])。
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 4 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

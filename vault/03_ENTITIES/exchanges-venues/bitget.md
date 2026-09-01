@@ -21,7 +21,10 @@ epistemic_status: confirmed
 confidentiality: public-source
 sources:
   - "report:2026-08-26-cex-lineage"
-related: []
+related:
+  - id: "protocol:morph"
+    rel: partners-with
+    note: 2025-09 将全部 440M BGB 移交 Morph Foundation; BGB 成为 Morph 的 gas 与治理代币
 ---
 
 # Bitget
@@ -46,3 +49,4 @@ CEO **Gracy Chen** ([[gracy-chen]]); 2025-03 公开抨击 Hyperliquid「可能�
 ## Timeline
 
 - **2026-08-27** — 建页 (web 核验 2026-08-26, 证据见 [[report-2026-08-26-cex-lineage]])。
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

@@ -25,7 +25,10 @@ confidentiality: public-source
 sources:
   - "source:2026-08-26-industry-learning-map-xlsx"
   - "source:2026-08-26-justlend-dao-justlend-whitepaper-en-pdf"
-related: []
+related:
+  - id: "protocol:tron"
+    rel: built-on
+    note: TRON 上的去中心化 money market, 含 Energy 租赁
 prerequisites: []
 import_origin: xlsx-learning-map
 import_category: TRON生态
@@ -54,7 +57,7 @@ TRON上的去中心化money market，支持存款、借款、抵押、TRX质押�
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, Irene 提供)
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
 - [[src-2026-08-26-justlend-dao-justlend-whitepaper-en-pdf]] — <https://justlend.org/docs/justlend_whitepaper_en.pdf>
 
 <!-- timeline -->
@@ -62,3 +65,4 @@ TRON上的去中心化money market，支持存款、借款、抵押、TRX质押�
 ## Timeline
 
 - **2026-08-26** — 从学习地图 workbook 导入 (分类: TRON生态)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

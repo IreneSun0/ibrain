@@ -1,6 +1,6 @@
 # Query Eval — 存在性检查结果
 
-> 生成: 2026-08-31 · `build_query_eval.py`
+> 生成: 2026-09-01 · `build_query_eval.py`
 **11/13** 问题的 expected-note 文件集合存在。该数字不代表答案正确、完整、最新或有证据。
 
 > 只检查 expected notes 是否存在; 答案质量由人工/agent 评。

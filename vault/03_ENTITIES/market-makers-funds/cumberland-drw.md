@@ -22,7 +22,13 @@ epistemic_status: confirmed
 confidentiality: public-source
 sources:
   - "report:2026-08-26-infra-mm-stablecoins"
-related: []
+related:
+  - id: "venue:polymarket"
+    rel: provides-liquidity-to
+    note: "报道级 (2026-06 CoinDesk): DRW 被点名建 dedicated desk; 具体做市协议 UNKNOWN"
+  - id: "venue:kalshi"
+    rel: provides-liquidity-to
+    note: "报道级 (2026-06 CoinDesk): 同上"
 ---
 
 # Cumberland / DRW
@@ -39,3 +45,4 @@ related: []
 ## Timeline
 
 - **2026-08-26** — 建页 (web 核验, 证据见 [[report-2026-08-26-infra-mm-stablecoins]])。
+- **2026-09-01b** — 实体语义关联层 (2026-09-01b): 依实体页已有 CONFIRMED 事实补 2 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

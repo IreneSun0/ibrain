@@ -22,7 +22,10 @@ confidentiality: public-source
 sources:
   - "report:2026-08-26-prediction-venues"
   - "report:2026-08-26-infra-mm-stablecoins"
-related: []
+related:
+  - id: "venue:okx"
+    rel: invested-in
+    note: 2026-03 以约 $25B 估值投资 (单源, 引用前需再核)
 ---
 
 # Intercontinental Exchange (ICE) | 洲际交易所
@@ -37,3 +40,4 @@ NYSE 母公司。2025-2026 在事件/crypto 基础设施上三线下注: **投 P
 ## Timeline
 
 - **2026-08-27** — 建页 (web 核验 2026-08-26)。
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

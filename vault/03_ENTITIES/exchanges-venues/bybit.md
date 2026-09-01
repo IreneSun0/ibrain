@@ -21,7 +21,10 @@ epistemic_status: confirmed
 confidentiality: public-source
 sources:
   - "report:2026-08-26-cex-lineage"
-related: []
+related:
+  - id: "jurisdiction:european-union"
+    rel: regulated-by
+    note: "2025-05 获奥地利 FMA 的 MiCA CASP (EEA 通行证, EU HQ Vienna)"
 ---
 
 # Bybit
@@ -50,3 +53,4 @@ Co-founder & CEO **Ben Zhou** ([[ben-zhou]], 2026 在任)。
 ## Timeline
 
 - **2026-08-27** — 建页 (web 核验 2026-08-26, 证据见 [[report-2026-08-26-cex-lineage]])。
+- **2026-09-01b** — 实体语义关联层 (2026-09-01b): 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

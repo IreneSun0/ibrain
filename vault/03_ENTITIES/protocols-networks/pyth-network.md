@@ -21,7 +21,10 @@ epistemic_status: confirmed
 confidentiality: public-source
 sources:
   - "report:2026-08-26-infra-mm-stablecoins"
-related: []
+related:
+  - id: "mmf:jump-crypto"
+    rel: backed-by
+    note: "由 Jump 孵化; 核心贡献方 Douro Labs 出自前 Jump 团队"
 ---
 
 # Pyth Network
@@ -39,3 +42,4 @@ related: []
 ## Timeline
 
 - **2026-08-26** — 建页 (web 核验, 证据见 [[report-2026-08-26-infra-mm-stablecoins]])。
+- **2026-09-01b** — 实体语义关联层 (2026-09-01b): 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

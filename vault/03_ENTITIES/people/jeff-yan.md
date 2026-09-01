@@ -21,7 +21,10 @@ epistemic_status: confirmed
 confidentiality: public-source
 sources:
   - "report:2026-08-26-prediction-venues"
-related: []
+related:
+  - id: "venue:hyperliquid-hip4"
+    rel: co-founded
+    note: Hyperliquid 联合创始人; HIP-4 是其结果市场扩展
 ---
 
 # Jeff Yan
@@ -50,3 +53,4 @@ Palo Alto High → 物理奥赛 2012 银/2013 金 → Harvard 数学+CS (2013-17
 ## Timeline
 
 - **2026-08-26** — 建页 (web 核验, 证据见 [[report-2026-08-26-prediction-venues]])。
+- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

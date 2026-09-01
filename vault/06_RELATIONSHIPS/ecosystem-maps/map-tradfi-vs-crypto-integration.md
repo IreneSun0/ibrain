@@ -33,4 +33,4 @@ related: []
 | 数据/指数 | Bloomberg/S&P (独立) | venue 自报 (利益冲突) | **空位** |
 | 风控 | 独立 (Barra/RiskMetrics) | venue margin engine | **空位** |
 
-**结构论点** (inference): TradFi 的分离是监管强制的信任分工; crypto 正被拉向同一形态 (清算/托管/稳定币逐件被拆出去持牌)。**数据与风控的独立化是下一件** — 这就是 BLUEPRINT 的彭博/晨星位。反向融合同样在发生: ICE/Cantor/Morgan Stanley 系资本进 venue 层。
+**结构论点** (inference): TradFi 的分离是监管强制的信任分工; crypto 正被拉向同一形态 (清算/托管/稳定币逐件被拆出去持牌)。**数据与风控的独立化是下一件** —— 也就是事件市场里尚空缺的彭博/晨星位。反向融合同样在发生: ICE/Cantor/Morgan Stanley 系资本进 venue 层。
