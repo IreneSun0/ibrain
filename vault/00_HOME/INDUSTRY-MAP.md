@@ -48,7 +48,7 @@ related: []
 - [[resolution-insurance|Resolution Insurance]] · 结果判定保险 ⭐ `reviewed`
 - [[resolution-risk|Resolution Risk]] · 结果判定风险 ⭐ `reviewed`
 - [[resolution-source|Resolution Source]] · 指定结果来源 ⭐ `reviewed`
-- [[combinatorial-market|Combinatorial Market]] · 组合市场 `seed`
+- [[combinatorial-market|Combinatorial Market]] · 组合市场 `reviewed`
 - [[market-maker-incentive|Market Maker Incentive]] · 做市激励计划 `reviewed`
 - [[multi-outcome-market|Multi-Outcome Market]] · 多结果市场 `reviewed`
 - [[scalar-market|Scalar Market]] · 标量市场 `reviewed`

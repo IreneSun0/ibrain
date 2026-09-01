@@ -4,7 +4,7 @@
 
 更新: 2026-09-01 · 共 297 条结构化笔记
 
-## reviewed (114)
+## reviewed (130)
 
 - [[260813-first-principle-information-position|First Principle: Information Position (Irene, 2026-08-13)]] · 第一性原理 · 信息位置与规则制定层
 - [[INDUSTRY-MAP|Industry Map]] · 行业地图
@@ -21,12 +21,14 @@
 - [[blockchain|Blockchain]] · 区块链
 - [[book-options-futures-hull|Options, Futures, and Other Derivatives (John Hull)]] · 《期权、期货及其他衍生品》
 - [[book-trading-and-exchanges|Trading and Exchanges (Larry Harris)]] · 《交易与交易所》
+- [[call-option|Call Option]] · 看涨期权
 - [[canonical-event-id|Canonical Event ID]] · 统一事件标识
 - [[central-limit-order-book|CLOB]] · 中央限价订单簿
 - [[chinese-exchange-lineage|Chinese Exchange Talent Lineage]] · 华人交易所人脉谱系
 - [[clearing|Clearing]] · 清算
 - [[clearinghouse|Clearinghouse]] · 清算所/中央对手方
 - [[collateral|Collateral]] · 抵押品/担保资产
+- [[combinatorial-market|Combinatorial Market]] · 组合市场
 - [[concentration-risk|Concentration Risk]] · 集中度风险
 - [[consensus|Consensus]] · 共识机制
 - [[contract-equivalence|Contract Equivalence]] · 合约等价性
@@ -49,20 +51,28 @@
 - [[event-risk|Event Risk]] · 事件风险
 - [[event-var|Event VaR]] · 事件风险价值
 - [[exchange|Exchange]] · 交易所/交易场所
+- [[execution-risk|Execution Risk]] · 执行风险
+- [[expected-shortfall|Expected Shortfall]] · 预期损失/尾部期望损失
 - [[financial-markets|Financial Markets]] · 金融市场
+- [[forward-contract|Forward]] · 远期合约
 - [[frontmatter-schema|Frontmatter Schema]] · Frontmatter 字段规范
 - [[fully-collateralized-market|Fully Collateralized]] · 全额抵押
+- [[funding-rate|Funding Rate]] · 资金费率
+- [[futures-contract|Futures]] · 期货
 - [[hedging|Hedging]] · 对冲
 - [[hybrid-exchange-architecture|Hybrid Exchange]] · 混合式交易架构
 - [[implied-probability|Implied Probability]] · 隐含概率
+- [[initial-margin|Initial Margin]] · 初始保证金
 - [[inside-information|Inside Information]] · 内幕/重大非公开信息
 - [[inventory-risk|Inventory Risk]] · 库存风险
 - [[jurisdiction|Jurisdiction]] · 司法辖区/适用法域
 - [[knowledge-policies|iBrain Knowledge Policies]] · 知识库治理政策
 - [[ledger|Ledger]] · 账本
 - [[leverage|Leverage]] · 杠杆
+- [[liquidation|Liquidation]] · 强制平仓
 - [[liquidity|Liquidity]] · 流动性
 - [[liquidity-risk|Liquidity Risk]] · 流动性风险
+- [[maintenance-margin|Maintenance Margin]] · 维持保证金
 - [[maker|Maker]] · 挂单方/提供流动性者
 - [[map-crypto-capital-flow|Crypto Capital Flow]] · 加密资本流 (stablecoin→chain→exchange→MM→OTC)
 - [[map-event-risk-cross-asset|Event Risk → Cross-Asset Portfolio Map]] · 事件风险跨资产传导图
@@ -76,9 +86,12 @@
 - [[market-integrity|Market Integrity]] · 市场完整性/公平有序交易
 - [[market-maker|Market Maker]] · 做市商
 - [[market-maker-incentive|Market Maker Incentive]] · 做市激励计划
+- [[market-risk|Market Risk]] · 市场风险
+- [[model-risk|Model Risk]] · 模型风险
 - [[multi-outcome-market|Multi-Outcome Market]] · 多结果市场
 - [[off-chain|Off-chain]] · 链下
 - [[on-chain|On-chain]] · 链上
+- [[operational-risk|Operational Risk]] · 运营/系统风险
 - [[option|Option]] · 期权
 - [[oracle|Oracle]] · 预言机/外部事实输入层
 - [[oracle-risk|Oracle Risk]] · 预言机风险
@@ -86,10 +99,12 @@
 - [[order-flow|Order Flow]] · 订单流
 - [[outcome-market|Outcome Market]] · 结果市场/结果型合约市场
 - [[outcome-token|Outcome Token]] · 结果代币
+- [[perpetual-futures|Perpetual Futures / Perp]] · 永续合约
 - [[policy-engine|Policy Engine]] · 策略/政策控制引擎
 - [[prediction-market|Prediction Market]] · 预测市场
 - [[price-discovery|Price Discovery]] · 价格发现
 - [[price-impact|Price Impact]] · 价格冲击
+- [[put-option|Put Option]] · 看跌期权
 - [[regulatory-access|Regulatory Access]] · 监管准入
 - [[regulatory-risk|Regulatory Risk]] · 监管风险
 - [[relationship-types|Relationship Type Vocabulary]] · 关系类型受控词表
@@ -119,16 +134,16 @@
 - [[token|Token]] · 代币/链上资产单位
 - [[underlying|Underlying]] · 标的/底层变量
 - [[value-at-risk|VaR]] · 风险价值
+- [[variation-margin|Variation Margin]] · 变动保证金
 - [[win-safe-truth-triangle|win · safe · truth Triangle (Irene, 2026-08-13)]] · win·safe·truth 三角
 
-## seed (95)
+## seed (79)
 
 - [[anti-money-laundering|AML]] · 反洗钱
 - [[bittorrent-chain|BTTC]] · BitTorrent Chain
 - [[block|Block]] · 区块
 - [[bridge|Bridge]] · 跨链桥
 - [[broker|Broker]] · 经纪商
-- [[call-option|Call Option]] · 看涨期权
 - [[capital-requirements|Capital Requirements]] · 资本充足/最低资本要求
 - [[centralized-exchange|CEX]] · 中心化加密交易所
 - [[chapter-0-lessons|Course Ch.0 Money and Risk]] · 课程 · 序章 钱与风险的地图
@@ -140,7 +155,6 @@
 - [[chapter-6-lessons|Course Ch.6 Resolution and Disputes]] · 课程 · 第六章 结算与争议
 - [[chapter-7-lessons|Course Ch.7 Institutional Risk Language]] · 课程 · 第七章 机构风险语言
 - [[chapter-8-lessons|Course Ch.8 Three Infrastructure Theses]] · 课程 · 终章 三条基础设施命题
-- [[combinatorial-market|Combinatorial Market]] · 组合市场
 - [[credit-risk|Credit Risk]] · 信用风险
 - [[curriculum-source-map|Curriculum Source Map (workbook)]] · 学习地图 · workbook 原文
 - [[dealer|Dealer]] · 交易商/自营商
@@ -153,37 +167,24 @@
 - [[equity|Equity]] · 股权/股票
 - [[ethereum-virtual-machine|EVM]] · 以太坊虚拟机
 - [[exchange-vertical-integration|Exchange Vertical Integration]] · 交易所纵向一体化
-- [[execution-risk|Execution Risk]] · 执行风险
-- [[expected-shortfall|Expected Shortfall]] · 预期损失/尾部期望损失
 - [[flowdesk|Flowdesk]]
-- [[forward-contract|Forward]] · 远期合约
-- [[funding-rate|Funding Rate]] · 资金费率
-- [[futures-contract|Futures]] · 期货
 - [[gas|Gas]] · 链上计算/资源费
-- [[initial-margin|Initial Margin]] · 初始保证金
 - [[institutional-conversation-cheatsheet|Institutional Conversation Cheatsheet (workbook)]] · 机构对话速查 · workbook 原文
 - [[justlend|JUST / JustLend DAO]] · TRON借贷与DeFi体系
 - [[know-your-customer|KYC]] · 了解你的客户/身份验证
 - [[know-your-transaction|KYT]] · 了解交易/链上交易监控
 - [[layer-1|L1]] · 第一层/基础公链
 - [[layer-2|L2]] · 第二层扩容网络
-- [[liquidation|Liquidation]] · 强制平仓
 - [[liquidity-provider|Liquidity Provider]] · 流动性提供者
-- [[maintenance-margin|Maintenance Margin]] · 维持保证金
-- [[market-risk|Market Risk]] · 市场风险
-- [[model-risk|Model Risk]] · 模型风险
-- [[operational-risk|Operational Risk]] · 运营/系统风险
 - [[opinion-labs|Opinion (Opinion Labs)]] · Opinion (opinion.trade)
 - [[order-flow-network-effect|Order Flow Network Effect]] · 订单流网络效应
 - [[over-the-counter|OTC]] · 场外交易
-- [[perpetual-futures|Perpetual Futures / Perp]] · 永续合约
 - [[portfolio-margin|Portfolio Margin]] · 组合保证金
 - [[prime-brokerage|Prime Brokerage]] · 主经纪/机构交易综合服务
 - [[private-key|Private Key]] · 私钥
 - [[proof-of-stake|PoS]] · 权益证明
 - [[proof-of-work|PoW]] · 工作量证明
 - [[public-key|Public Key]] · 公钥
-- [[put-option|Put Option]] · 看跌期权
 - [[smart-order-routing|Smart Order Routing]] · 智能订单路由
 - [[solidity|Solidity]] · Solidity智能合约语言
 - [[src-2026-08-26-bittorrent-chain-bittorrent-chainwhitepaper-en-pdf|BitTorrent Chain: BitTorrent-ChainWhitepaper_EN.pdf]]
@@ -214,7 +215,6 @@
 - [[tron-energy|Energy (TRON)]] · TRON能量/计算资源
 - [[tron-energy-delegation|Energy Delegation]] · Energy委托
 - [[tron-power|TRON Power]] · TRON投票权资源
-- [[variation-margin|Variation Margin]] · 变动保证金
 - [[venue|Venue]] · 交易场所
 - [[wallet|Wallet]] · 钱包
 - [[winklink|WINkLink]] · TRON预言机网络
