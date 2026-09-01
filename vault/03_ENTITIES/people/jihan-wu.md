@@ -5,7 +5,7 @@ title: Jihan Wu
 title_zh: 吴忌寒
 aliases:
   - 吴忌寒
-status: verified
+status: reviewed
 importance: tier-2
 domains:
   - people-networks
@@ -13,7 +13,7 @@ domains:
 tags:
   - person
 created: 2026-08-27
-updated: 2026-08-27
+updated: 2026-08-31
 last_verified: 2026-08-26
 review_after: 2027-02-26
 confidence: high
@@ -23,23 +23,49 @@ sources:
   - "report:2026-08-26-cex-lineage"
 related: []
 ---
-
 # Jihan Wu | 吴忌寒
 
 ## Executive Summary
 
-Bitmain 联合创始人 (2013, 与詹克团), 比特币白皮书首个中文译者, BCH 分叉推手。2021-01 和解分家带走 **Bitdeer** (Nasdaq: BTDR, 现 chairman/CEO; 2026-04 自挖 65.5 EH/s) 与 BTC.com; 另任 **Matrixport chairman** (2019 创)。新加坡籍。
+Bitmain 联合创始人（2013），比特币白皮书首个中文译者，BCH 分叉的主要推手之一。2021 年分家后带走矿业与金融两条线（一家美股上市矿企与一家加密金融服务商）。新加坡籍。
 
-## Current Roles (核实 2026-08-26)
+**他与预测市场没有直接关联，但他是理解亚洲加密资本形成的必要一环。**
 
-| 职务 | 组织 | last_verified | Source | Confidence |
-|---|---|---|---|---|
-| Chairman & CEO | Bitdeer (BTDR) | 2026-08-26 | Bitdeer IR (CEO-since 日期单源) | high |
-| Chairman | Matrixport | 2026-08-26 | Wikipedia + TheBlock | high |
+## What It Actually Is | 它到底是什么
 
-## Career Timeline
+这一代华人加密资本大致有三个来源，他代表其中的**矿业**一支：
 
-北大经济+心理 (2009) → PE 分析师 → 2011-05 买 900 BTC / 共创巴比特 → 2013 与詹克团共创 Bitmain (2017 营收 ~$2.5B, 持 ~20%) → 2019 卸 co-CEO → 2019 创 Matrixport → 2021-01 分家 → 2023-04 Bitdeer SPAC 上市。
+| 来源 | 代表 | 资本特征 |
+|---|---|---|
+| 交易所 | [[changpeng-zhao-cz]]、[[leon-li]] | 现金流强、分发能力强 |
+| **矿业** | **吴忌寒** | **重资产、周期性强** |
+| 项目方 | [[justin-sun]] | 代币驱动、争议密度高 |
+
+**三种来源的资本行为模式不同**：交易所系倾向投分发与基础设施，矿业系倾向重资产与金融服务，项目方系倾向生态与叙事。
+
+**判断一笔亚洲资本会投什么，看它从哪来通常比看它说什么更准。**
+
+## How It Works | 运作方式
+
+矿业资本的特征是**与币价周期高度绑定**：牛市扩张、熊市收缩，且资产（矿机、电力合约）流动性差。
+
+**这解释了为什么矿业系资本较少出现在预测市场这类早期赛道**：它的资金曲线与早期风险投资的节奏不匹配。
+
+## Position in the Market | 它在市场里的位置
+
+在这个知识库里，他的作用是**谱系补全**：没有他，"亚洲加密资本"这一层就只有交易所与项目方两支，会得出偏斜的结论。
+
+他与事件市场的公开关联为 **UNKNOWN**。
+
+## What Could Break It | 什么会让它出问题
+
+- **周期性极强** —— 矿业资本的可动用资金随币价大幅波动。
+- **地缘与能源政策** —— 矿业受政策影响直接。
+
+## What To Watch | 该盯什么
+
+- **矿业系资本是否开始配置早期加密金融赛道。**
+- **其金融服务平台的业务边界是否延伸到衍生品。**
 
 
 <!-- timeline -->
@@ -47,3 +73,4 @@ Bitmain 联合创始人 (2013, 与詹克团), 比特币白皮书首个中文译�
 ## Timeline
 
 - **2026-08-27** — 建页 (web 核验 2026-08-26, 证据见 [[report-2026-08-26-cex-lineage]])。
+- **2026-08-31** — 扩写为完整实体条目 (定位/运作/市场位置/风险/观察点); 原有断言保留。

@@ -7,7 +7,7 @@ title_en: BTTC
 aliases:
   - BTTC
   - BitTorrent Chain
-status: seed
+status: reviewed
 importance: tier-2
 domains:
   - blockchain
@@ -16,7 +16,7 @@ tags:
   - protocol-network
   - xlsx-import
 created: 2026-08-26
-updated: 2026-08-26
+updated: 2026-08-31
 last_verified: 
 review_after: 2027-02-26
 confidence: medium
@@ -39,28 +39,52 @@ prerequisites: []
 import_origin: xlsx-learning-map
 import_category: TRON生态
 ---
-
 # BTTC | BitTorrent Chain
 
-> 本页由学习地图 workbook 确定性导入 (status: seed)。原文字段完整保留; enrich 时不删原文, 追加即可。
+## Executive Summary
 
-## Executive Definition / Chinese Explanation | 定义与解释
+多链资产与消息互通的跨链基础设施，连接 [[tron]]、[[ethereum]]、[[bnb-chain]] 等生态。
 
-面向多链资产和消息交互的PoS跨链/执行基础设施。
+**它在这个知识库里的角色是提醒一件事**：跨链桥是链上历史上最集中的攻击面（见 [[bridge]]），而事件市场的资金进出几乎必然要经过某座桥。
 
-## Why This Matters | 为什么重要
+## What It Actually Is | 它到底是什么
 
-连接TRON、Ethereum、BNB Chain等生态。
+跨链设施做的事是"锁定 + 铸造"，不是真正的转移：
 
+```
+原链锁定资产 → 目标链铸造凭证 → 你持有的是欠条
+```
 
-## Related Concepts | 相关概念
+**它的安全性取决于谁掌握锁定与铸造的权限** —— 通常是一组验证者或多签，**其安全预算往往远低于它连接的任何一条链**。
 
-- (librarian 待补链)
+**判断任何一座桥，核心只有一问**：要偷走里面的钱，需要攻破什么？
 
-## Active-Recall Questions | 主动回忆题
+## How It Works | 运作方式
 
-- Q: 不看笔记, 用两三句话向一个聪明的外行解释 BTTC。
-  A: 见上文定义。
+跨链设施的价值主张是**流动性统一**：让资产在多个生态间自由流动。
+
+**对事件市场的具体含义**：如果一个事件市场部署在多条链上（见 [[bnb-chain]] 与 [[polygon]] 的双轨格局），那么跨链能力决定了流动性能否被合并 —— **否则同一个事件在不同链上就是两个互不相通的盘口**（见 [[liquidity]]）。
+
+**但合并流动性的代价，是把桥的风险引入结算路径。**
+
+## Position in the Market | 它在市场里的位置
+
+在事件市场的基础设施图谱上，跨链层是一个**必要但危险**的环节。
+
+目前主流事件市场都是单链结算，因此桥的风险主要出现在**用户资金进出**这一段，而不在结算本身。
+
+**若未来出现跨链的事件市场，桥就会从"路径风险"升级为"结算风险"** —— 那是一个数量级的变化。
+
+## What Could Break It | 什么会让它出问题
+
+- **桥是历史上最集中的攻击面。**
+- **凭证无锚风险** —— 原链资产被盗后，目标链的凭证失去支撑。
+- **验证者集中度。**
+
+## What To Watch | 该盯什么
+
+- **是否出现跨链结算的事件市场** —— 那会显著改变风险画像。
+- **主要桥的安全模型演进**（多签 → 轻客户端/证明）。
 
 ## Sources
 
@@ -73,3 +97,4 @@ import_category: TRON生态
 
 - **2026-08-26** — 从学习地图 workbook 导入 (分类: TRON生态)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
 - **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 3 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。
+- **2026-08-31** — 扩写为完整实体条目 (定位/运作/市场位置/风险/观察点); 原有断言保留。

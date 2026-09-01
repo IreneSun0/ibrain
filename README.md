@@ -39,7 +39,7 @@ risk taxonomy, the venues, and the people who run them.
 | typed relationships | 11 |
 | source notes | 21 |
 | prerequisite + semantic edges | 285 |
-| **total notes / links** | **308 / 2,603** |
+| **total notes / links** | **308 / 2,848** |
 
 **All 143 concepts are written to full depth** — a precise definition, why it
 matters, the mechanism, a worked numeric example, the common misconceptions, an
