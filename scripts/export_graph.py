@@ -83,7 +83,8 @@ RECALL_RE = re.compile(r"- Q: (.*?)\n\s+A: (.*?)(?=\n- Q:|\n\n|\Z)", re.DOTALL)
 
 def entity_summary(body: str) -> str:
     """First substantive paragraph of an entity page, for the graph detail panel."""
-    for head in ("Executive Summary", "Key Facts", "Mandate"):
+    for head in ("Executive Summary", "Key Facts", "Mandate",
+                 "The Question This Case Answers"):
         s = _section(body, head, 900)
         if s:
             return s
@@ -192,7 +193,8 @@ def build(public_only: bool = False, max_confidentiality: str = "internal") -> d
                     edges.append({"source": n.id, "target": c["target"], "kind": "crel",
                                   "relType": c["rel"], "note": c["note"]})
 
-        if n.ntype in ENTITY_TYPES:
+        # cases sit on the map beside entities, so they need a summary too
+        if n.ntype in ENTITY_TYPES or n.ntype == "case-study":
             nodes[-1]["summary"] = entity_summary(n.body)
 
         # entity semantic layer: typed `related` on entity pages. Relationship *notes*
