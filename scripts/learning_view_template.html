@@ -59,18 +59,27 @@
     padding:8px 16px;cursor:pointer;font-weight:600}
   .nextup .hint{color:var(--muted);font-size:12px}
 
-  /* Two different jobs, so two different surfaces: the left rail is navigation
-     (dense, quiet, no boxes), the right is the reading surface (one continuous
-     page). Making both card columns of equal weight was the mistake. */
-  .layout{display:flex;height:calc(100vh - 54px);overflow:hidden}
-  .path{flex:0 0 330px;overflow-y:auto;padding:16px 10px 60px;
-    border-right:1px solid var(--line);background:var(--bg)}
-  .focus{flex:1;overflow-y:auto;background:var(--panel)}
-  @media (max-width: 900px){
-    .layout{flex-direction:column;height:auto;overflow:visible}
-    .path{flex:none;width:auto;border-right:0;border-bottom:1px solid var(--line);max-height:46vh}
-    .focus{min-height:60vh}
-  }
+  /* The graph is the page. Detail and browsing slide over it, so exploring never
+     throws you onto a different screen. */
+  .ghost{background:none;border:1px solid var(--line);color:var(--muted);font:inherit;
+    font-size:12px;padding:5px 12px;border-radius:8px;cursor:pointer}
+  .ghost:hover{color:var(--ink);border-color:var(--muted)}
+
+  .drawer{position:fixed;top:54px;bottom:0;z-index:30;background:var(--panel);
+    display:flex;flex-direction:column;transition:transform .22s ease;box-shadow:var(--shadow)}
+  .drawer.left{left:0;width:320px;border-right:1px solid var(--line);transform:translateX(-101%)}
+  .drawer.right{right:0;width:min(560px,52vw);border-left:1px solid var(--line);transform:translateX(101%)}
+  .drawer.open{transform:none}
+  @media (max-width:760px){ .drawer.right{width:100%} .drawer.left{width:86%} }
+  .drawer-head{display:flex;align-items:center;gap:8px;padding:12px 14px;
+    border-bottom:1px solid var(--line);font-size:12.5px;font-weight:700}
+  .drawer-head .x{margin-left:auto}
+  .x{background:none;border:0;color:var(--muted);font-size:15px;cursor:pointer;
+    width:28px;height:28px;border-radius:8px;line-height:1}
+  .x:hover{background:var(--pill-hover);color:var(--ink)}
+  .x.float{position:absolute;top:10px;right:12px;z-index:6}
+  .path{flex:1;overflow-y:auto;padding:10px 8px 50px}
+  .focus{flex:1;overflow-y:auto}
 
   .chapter{margin:0 0 6px}
   .ch-head{display:flex;align-items:baseline;gap:8px;padding:8px 10px 4px}
@@ -90,7 +99,8 @@
   .quest.active::before{content:'';position:absolute;left:0;width:3px;height:18px;
     border-radius:2px;background:var(--accent)}
   .quest{position:relative}
-  .quest .en{color:var(--muted);font-size:11px;margin-left:4px}
+  .quest .en{color:var(--muted);font-size:10.5px;margin-left:5px;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:0 1 auto}
   .quest.dim{opacity:.22}
 
   details.fold{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
@@ -113,17 +123,16 @@
     padding:6px 10px;margin-top:6px;white-space:pre-wrap;background:var(--def-bg);border-radius:0 8px 8px 0}
   .ex .ans.open .ans-body{display:block}
 
-  .card{max-width:730px;margin:0 auto;padding:26px 34px 90px}
+  .card{padding:4px 26px 80px}
   .f-head{position:sticky;top:0;z-index:5;background:var(--panel);
-    padding:18px 34px 12px;border-bottom:1px solid var(--line);margin:0 -34px 20px}
-  .f-head .inner{max-width:730px;margin:0 auto}
-  .f-empty{max-width:730px;margin:0 auto;padding:80px 34px;color:var(--muted);font-size:13.5px}
+    padding:16px 46px 12px 26px;border-bottom:1px solid var(--line);margin-bottom:18px}
+  .f-empty{padding:70px 26px;color:var(--muted);font-size:13.5px}
   .empty{color:var(--muted);font-size:13px}
   .empty h3{color:var(--ink)}
   .f-where{font-size:11.5px;color:var(--muted);display:flex;align-items:center;gap:7px}
   .f-where .cur{color:var(--accent);font-weight:600}
   .f-where .sep{opacity:.4}
-  .f-title{font-size:26px;font-weight:800;margin:6px 0 0;letter-spacing:-.2px;line-height:1.25}
+  .f-title{font-size:23px;font-weight:800;margin:6px 0 0;letter-spacing:-.2px;line-height:1.25}
   .f-en{color:var(--muted);font-size:13px;margin:3px 0 0}
   .f-def p{margin:5px 0}
   .f-def p:first-child{margin-top:0}
@@ -171,7 +180,7 @@
   .ch-svg svg{max-width:100%;height:auto}
 
   /* ── ecosystem graph ── */
-  #graph-stage{position:relative;height:calc(100vh - 54px);background:var(--bg)}
+  #graph-stage{position:relative;height:calc(100vh - 54px);background:var(--bg);overflow:hidden}
   #graph{display:block;width:100%;height:100%;cursor:grab}
   #graph.dragging{cursor:grabbing}
   #graph-legend{position:absolute;left:14px;bottom:14px;background:color-mix(in srgb,var(--panel) 88%,transparent);
@@ -216,6 +225,10 @@
   .more.open .chev{transform:rotate(180deg)}
   .ext-list{margin-top:2px}
   .f-def{font-size:15px;line-height:1.8;margin:4px 0 0}
+
+  .ch-svg.top{margin:0 0 18px;padding:12px;background:var(--bg);border:1px solid var(--line);
+    border-radius:10px;overflow-x:auto}
+  .ch-svg.top svg{max-width:100%;height:auto;display:block}
 </style>
 </head>
 <body>
@@ -224,7 +237,8 @@
     <h1>iBrain</h1>
     <span class="tagline" id="tagline"></span>
   </div>
-  <div class="seg" id="view"></div>
+  <button class="ghost" id="browse-btn">按章节阅读</button>
+  <div class="seg" id="layers"></div>
 </header>
 
 <section id="graph-stage">
@@ -232,10 +246,15 @@
   <div id="graph-legend"></div>
 </section>
 
-<div class="layout" id="layout">
-  <main class="path" id="path"></main>
-  <aside class="focus" id="focus"></aside>
-</div>
+<aside class="drawer left" id="nav-drawer">
+  <div class="drawer-head"><span>按章节阅读</span><button class="x" data-close="nav">✕</button></div>
+  <div class="path" id="path"></div>
+</aside>
+
+<aside class="drawer right" id="detail-drawer">
+  <button class="x float" data-close="detail">✕</button>
+  <div class="focus" id="focus"></div>
+</aside>
 
 <script>
 const DATA = /*__DATA__*/{};
@@ -403,22 +422,48 @@ const GROUPS = [
   ['t:protocol-network',             '协议与链',     '#A08CE8'],
   ['t:regulator',                    '监管机构',     '#E07070'],
   ['t:jurisdiction',                 '法域',         '#9AA5B1'],
-  ['r:research',                     '研究与来源',   '#79899B'],
-  ['r:structure',                    '课程与结构',   '#5E6A78'],
+  ['x:case',                         '真实案例',     '#D8CE6A'],
 ];
 const GROUP_LABEL = Object.fromEntries(GROUPS.map(g => [g[0], g[1]]));
 const GROUP_COLOR = Object.fromEntries(GROUPS.map(g => [g[0], g[2]]));
 
-const RESEARCH_TYPES = new Set(['source', 'research-report', 'case-study', 'report', 'book-course']);
+// Apparatus — source notes, indexes, MOCs, course files, flashcards, dashboards,
+// the policy and taxonomy — is *about* the knowledge, not the knowledge. It has no
+// place on a map of the subject.
+const APPARATUS = new Set(['source', 'research-report', 'report', 'book-course', 'moc',
+  'dashboard', 'lesson', 'flashcard-deck', 'curriculum', 'policy', 'taxonomy',
+  'relationship', 'original']);
+
+// Layers, coarse to fine. Entities are the world, tier-1 concepts are the spine,
+// tier-2 concepts are detail you opt into — not every concept needs to be a pin.
+const LAYERS = [
+  ['world',  '生态'],
+  ['spine',  '生态 + 核心概念'],
+  ['all',    '全部'],
+];
+let LAYER = store.get('ibrain.layer', 'spine');
+
+function layerOf(n) {
+  if (APPARATUS.has(n.type)) return null;
+  if (n.type === 'concept') return n.importance === 'tier-1' ? 'spine' : 'all';
+  return 'world';                                   // entities and cases
+}
+function inLayer(n) {
+  const l = layerOf(n);
+  if (!l) return false;
+  if (LAYER === 'world') return l === 'world';
+  if (LAYER === 'spine') return l === 'world' || l === 'spine';
+  return true;
+}
 
 function groupOf(n) {
   if (n.type === 'concept') {
     const d = (n.domains || [])[0];
     return GROUP_COLOR['d:' + d] ? 'd:' + d : 'd:industry-strategy';
   }
+  if (n.type === 'case-study') return 'x:case';
   if (ENTITY_TYPES.has(n.type)) return GROUP_COLOR['t:' + n.type] ? 't:' + n.type : 't:organization';
-  if (RESEARCH_TYPES.has(n.type)) return 'r:research';
-  return 'r:structure';
+  return 't:organization';
 }
 
 const REL_LABEL = {
@@ -438,7 +483,7 @@ let G = null;
 let hiddenGroups = new Set();
 
 function buildGraph() {
-  const ns = DATA.nodes;
+  const ns = DATA.nodes.filter(n => layerOf(n) !== null);
   const idx = new Map(ns.map((n, i) => [n.id, i]));
   const links = [];
   const seen = new Set();
@@ -469,9 +514,8 @@ function buildGraph() {
     const an = anchors[g] || {x: 0, y: 0};
     const j = (seenInGroup[g] = (seenInGroup[g] || 0) + 1);
     const a = j * 2.399963, R = 13 * Math.sqrt(j);
-    const structural = g === 'r:structure';
-    const rad = structural ? 2.2 + Math.pow(deg[i], 0.34) * 1.1
-                           : 2.6 + Math.pow(deg[i], 0.58) * 2.0;
+    const isConcept = n.type === 'concept';
+    const rad = (isConcept ? 2.2 : 3.4) + Math.pow(deg[i], isConcept ? 0.48 : 0.62) * (isConcept ? 1.5 : 2.3);
     return {id: n.id, type: n.type, node: n, deg: deg[i], g,
             x: an.x + Math.cos(a) * R, y: an.y + Math.sin(a) * R,
             vx: 0, vy: 0, r: Math.min(rad, 16), fixed: false};
@@ -479,7 +523,7 @@ function buildGraph() {
   return {nodes, links, anchors, alpha: 1};
 }
 
-const visible = n => !hiddenGroups.has(n.g);
+const visible = n => !hiddenGroups.has(n.g) && inLayer(n.node);
 
 function tick() {
   const {nodes, links, anchors} = G;
@@ -708,7 +752,8 @@ function wireGraph() {
   });
   cv.onclick = ev => {
     const p = pick(toWorld(ev));
-    if (p) { setView('concepts'); focusOn(p.id); }
+    if (p) { pinnedId = p.id; focusOn(p.id); openDrawer('detail'); }
+    else closeDrawer('detail');
   };
   cv.onwheel = ev => {
     ev.preventDefault();
@@ -736,16 +781,35 @@ function renderLegend() {
 }
 
 // ── top bar ──────────────────────────────────────────────────────────────────
-let VIEW = store.get('ibrain.view', 'graph');   // graph | concepts
-
-function setView(v) {
-  VIEW = v; store.set('ibrain.view', v);
-  const g = document.getElementById('graph-stage'), l = document.getElementById('layout');
-  g.style.display = v === 'graph' ? '' : 'none';
-  l.style.display = v === 'graph' ? 'none' : 'flex';
-  renderTopBar();
-  if (v === 'graph') { G.alpha = Math.max(G.alpha, 0.5); settleTicks = 0; renderLegend(); requestAnimationFrame(graphLoop); }
+// ── drawers ──────────────────────────────────────────────────────────────────
+// Clicking a node used to throw you onto a different screen. Now the map stays
+// put and detail slides in beside it, so one click never loses your place.
+function openDrawer(which) {
+  document.getElementById(which === 'nav' ? 'nav-drawer' : 'detail-drawer').classList.add('open');
 }
+function closeDrawer(which) {
+  document.getElementById(which === 'nav' ? 'nav-drawer' : 'detail-drawer').classList.remove('open');
+  if (which === 'detail') { pinnedId = null; }
+}
+document.querySelectorAll('[data-close]').forEach(b => {
+  b.onclick = () => closeDrawer(b.dataset.close);
+});
+document.getElementById('browse-btn').onclick = () => {
+  const nav = document.getElementById('nav-drawer');
+  if (nav.classList.contains('open')) { closeDrawer('nav'); return; }
+  openDrawer('nav');
+  // a browser that opens on nothing is a dead end: land on the first entry
+  if (!pinnedId) {
+    const first = (DATA.chapters[0] || {}).concepts || [];
+    if (first.length) { pinnedId = first[0]; focusOn(first[0]); }
+  }
+  openDrawer('detail');
+};
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeDrawer('detail'); closeDrawer('nav'); }
+});
+
+let pinnedId = null;
 
 function segButton(container, key, label, active, onPick) {
   const b = el('button', active ? 'on' : '', label);
@@ -755,10 +819,14 @@ function segButton(container, key, label, active, onPick) {
 
 function renderTopBar() {
   document.getElementById('tagline').textContent = t_('tagline');
-  const vsel = document.getElementById('view');
-  vsel.innerHTML = '';
-  for (const [k, lbl] of [['graph', t_('graph')], ['concepts', t_('concepts')]])
-    segButton(vsel, k, lbl, VIEW === k, setView);
+  const sel = document.getElementById('layers');
+  sel.innerHTML = '';
+  for (const [k, lbl] of LAYERS)
+    segButton(sel, k, lbl, LAYER === k, k => {
+      LAYER = k; store.set('ibrain.layer', k);
+      G.alpha = 0.85; settleTicks = 0;
+      renderTopBar(); renderLegend();
+    });
 }
 
 // ── chapters ─────────────────────────────────────────────────────────────────
@@ -795,7 +863,8 @@ function renderPath() {
       q.dataset.id = cid;
       q.appendChild(el('span', 'num', String(CH_INDEX[cid])));
       q.appendChild(el('span', 'name', esc(nameOf(n))));
-      q.onclick = () => focusOn(cid);
+      if (subOf(n)) q.appendChild(el('span', 'en', esc(subOf(n))));
+      q.onclick = () => { pinnedId = cid; focusOn(cid); openDrawer('detail'); };
       return q;
     };
     for (const cid of ch.concepts) { const r = row(cid); if (r) list.appendChild(r); }
@@ -821,16 +890,15 @@ function renderPath() {
 
 // Chapter-level material (mechanism diagram, exercises) belongs in the reading
 // pane with the concept, not stacked into the navigation rail.
+function chapterDiagram(ch) {
+  if (!ch || !ch.svg) return null;
+  const box = el('div', 'ch-svg top');
+  box.innerHTML = ch.svg;   // build-time trusted asset
+  return box;
+}
+
 function chapterExtras(ch) {
   const frag = document.createDocumentFragment();
-  if (ch.svg) {
-    const d = el('details', 'fold');
-    d.appendChild(el('summary', '', t_('diagram')));
-    const box = el('div', 'ch-svg');
-    box.innerHTML = ch.svg;  // build-time trusted asset
-    d.appendChild(box);
-    frag.appendChild(d);
-  }
   if (ch.exercises && ch.exercises.length) {
     const d = el('details', 'fold');
     d.appendChild(el('summary', '', `${t_('exercises')} ×${ch.exercises.length}`));
@@ -948,6 +1016,9 @@ function focusOn(id, push = true) {
   head.appendChild(inner);
   box.appendChild(head);
 
+  const diagram = chapterDiagram(ch);
+  if (diagram) card.appendChild(diagram);
+
   const content = n.content || {};
   const addTxt = (title, txt) => {
     if (!txt) return;
@@ -1058,11 +1129,14 @@ function renderEmptyFocus() {
 
 G = buildGraph();
 wireGraph();
+renderTopBar();
+renderLegend();
 renderPath();
+requestAnimationFrame(graphLoop);
+
 const initial = location.hash.slice(1);
-if (initial && byId.has(initial)) { setView('concepts'); focusOn(initial, false); }
-else { renderEmptyFocus(); setView(VIEW); }
-window.addEventListener('resize', () => { if (VIEW === 'graph') drawGraph(); });
+if (initial && byId.has(initial)) { pinnedId = initial; focusOn(initial, false); openDrawer('detail'); }
+window.addEventListener('resize', drawGraph);
 </script>
 </body>
 </html>
