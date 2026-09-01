@@ -605,6 +605,38 @@ function groupCentroids() {
   return acc;
 }
 
+const _grad = new Map();
+function haloGradient(ctx, x, y, r, col) {
+  const key = 'h' + col + '|' + Math.round(r);
+  let stops = _grad.get(key);
+  if (!stops) {
+    stops = [[0, hexA(col, 0.55)], [0.28, hexA(col, 0.22)],
+             [0.62, hexA(col, 0.06)], [1, hexA(col, 0)]];
+    _grad.set(key, stops);
+  }
+  const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+  for (const [o, c] of stops) g.addColorStop(o, c);
+  return g;
+}
+function coreGradient(ctx, x, y, r, col) {
+  const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+  g.addColorStop(0, mix(col, '#ffffff', 0.55));
+  g.addColorStop(0.55, col);
+  g.addColorStop(1, mix(col, '#000000', 0.30));
+  return g;
+}
+function hexA(hex, a) {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+}
+function mix(h1, h2, k) {
+  const a = parseInt(h1.slice(1), 16), b = parseInt(h2.slice(1), 16);
+  const r = Math.round(((a >> 16 & 255) * (1 - k) + (b >> 16 & 255) * k));
+  const g = Math.round(((a >> 8 & 255) * (1 - k) + (b >> 8 & 255) * k));
+  const bl = Math.round(((a & 255) * (1 - k) + (b & 255) * k));
+  return `rgb(${r},${g},${bl})`;
+}
+
 function drawGraph() {
   const cv = document.getElementById('graph');
   const ctx = cv.getContext('2d');
@@ -613,6 +645,13 @@ function drawGraph() {
   if (cv.width !== w * dpr || cv.height !== h * dpr) { cv.width = w * dpr; cv.height = h * dpr; }
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, w, h);
+  const vig = ctx.createRadialGradient(w / 2, h / 2, Math.min(w, h) * 0.18,
+                                       w / 2, h / 2, Math.max(w, h) * 0.78);
+  vig.addColorStop(0, 'rgba(255,255,255,0.028)');
+  vig.addColorStop(0.55, 'rgba(255,255,255,0.008)');
+  vig.addColorStop(1, 'rgba(0,0,0,0.30)');
+  ctx.fillStyle = vig;
+  ctx.fillRect(0, 0, w, h);
   ctx.save();
   ctx.translate(w / 2 + view.x, h / 2 + view.y);
   ctx.scale(view.k, view.k);
@@ -662,8 +701,9 @@ function drawGraph() {
       const u = nodes[l.s], v = nodes[l.t];
       if (!visible(u) || !visible(v)) continue;
       const lit = hoverNode && (u === hoverNode || v === hoverNode);
-      ctx.strokeStyle = lit ? GROUP_COLOR[hoverNode.g] : TONE[spec.tone];
-      ctx.globalAlpha = lit ? 0.9 : (hoverNode ? 0.02 : spec.a);
+      ctx.strokeStyle = lit ? GROUP_COLOR[hoverNode.g]
+                            : (spec.tone === 'weak' ? TONE.weak : GROUP_COLOR[u.g]);
+      ctx.globalAlpha = lit ? 0.9 : (hoverNode ? 0.02 : spec.a * 0.85);
       ctx.lineWidth = (lit ? Math.max(1.6, spec.w) : spec.w) / view.k;
       const dx = v.x - u.x, dy = v.y - u.y;
       const mx = (u.x + v.x) / 2, my = (u.y + v.y) / 2;
@@ -676,37 +716,29 @@ function drawGraph() {
   }
   ctx.globalCompositeOperation = 'source-over';
 
-  // Nodes glow: a soft additive halo plus a bright core. On a dark ground this is
-  // what separates a living map from a scatter of flat dots.
+  // Real glow needs a falloff. A flat disc at uniform alpha has a hard edge — it
+  // reads as a ring drawn around a ball, not as light. So: a cached radial gradient
+  // from a lightened core out to fully transparent, and no fake specular highlight.
   for (const p of nodes) {
     if (!visible(p)) continue;
     const dimmed = hoverNode && !near.has(p);
-    const col = GROUP_COLOR[p.g] || '#888';
-    const alpha = dimmed ? 0.09 : (p.rank === 3 ? 0.62 : 1);
+    const col = GROUP_COLOR[p.g] || '#8894a4';
+    const base = dimmed ? 0.07 : (p.rank === 3 ? 0.60 : 1);
+    // each node breathes on its own phase, so brightness is never uniform
+    const pulse = 0.86 + 0.14 * Math.sin(TICKS * p.f1 * 0.55 + p.ph);
+    const alpha = base * pulse;
 
-    if (!dimmed && p.r > 3.2) {
-      ctx.globalCompositeOperation = 'lighter';
-      ctx.globalAlpha = alpha * (p.rank === 1 ? 0.32 : 0.17);
-      ctx.fillStyle = col;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 2.7, 0, 6.2832); ctx.fill();
-      ctx.globalCompositeOperation = 'source-over';
-    }
+    ctx.globalCompositeOperation = 'lighter';
+    ctx.globalAlpha = alpha * (p === hoverNode ? 1 : (p.rank === 1 ? 0.85 : 0.6));
+    const zoomDamp = Math.min(1, 1.15 / Math.max(0.7, view.k));
+    const R = p.r * ((p === hoverNode ? 2.9 : 2.1) + (p === hoverNode ? 2.2 : 1.7) * zoomDamp);
+    ctx.fillStyle = haloGradient(ctx, p.x, p.y, R, col);
+    ctx.beginPath(); ctx.arc(p.x, p.y, R, 0, 6.2832); ctx.fill();
+    ctx.globalCompositeOperation = 'source-over';
 
-    ctx.globalAlpha = alpha;
-    ctx.fillStyle = col;
+    ctx.globalAlpha = Math.min(1, alpha * 1.05);
+    ctx.fillStyle = coreGradient(ctx, p.x, p.y, p.r, col);
     ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832); ctx.fill();
-
-    if (!dimmed && p.r > 4.2) {
-      ctx.globalAlpha = alpha * 0.5;
-      ctx.fillStyle = '#ffffff';
-      ctx.beginPath();
-      ctx.arc(p.x - p.r * 0.24, p.y - p.r * 0.24, p.r * 0.40, 0, 6.2832); ctx.fill();
-    }
-    if (p === hoverNode) {
-      ctx.strokeStyle = col; ctx.globalAlpha = 0.8;
-      ctx.lineWidth = 2 / view.k;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.r + 5 / view.k, 0, 6.2832); ctx.stroke();
-    }
   }
   ctx.globalAlpha = 1;
 
