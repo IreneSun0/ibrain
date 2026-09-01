@@ -51,7 +51,7 @@ related: []
 - [[combinatorial-market|Combinatorial Market]] · 组合市场 `seed`
 - [[market-maker-incentive|Market Maker Incentive]] · 做市激励计划 `reviewed`
 - [[multi-outcome-market|Multi-Outcome Market]] · 多结果市场 `reviewed`
-- [[scalar-market|Scalar Market]] · 标量市场 `seed`
+- [[scalar-market|Scalar Market]] · 标量市场 `reviewed`
 - [[settlement-methodology|Settlement Methodology]] · 结算方法论 `reviewed`
 
 <!-- /moc:auto -->

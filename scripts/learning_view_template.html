@@ -191,6 +191,9 @@
   .txt code,.mech code{background:var(--pill);border-radius:4px;padding:1px 4px;font-size:.92em}
   .txt pre,.mech pre{background:var(--pill);border-radius:8px;padding:9px 11px;overflow-x:auto;font-size:11.5px;line-height:1.55}
   .txt blockquote,.mech blockquote{margin:6px 0;padding-left:10px;border-left:3px solid var(--line);color:var(--muted)}
+
+  .f-fallback{margin:6px 0 2px;font-size:11.5px;color:var(--muted);
+    border-left:3px solid var(--line);padding-left:9px}
 </style>
 </head>
 <body>
@@ -892,7 +895,10 @@ function focusOn(id, push = true) {
   card.appendChild(el('h2', 'f-title', esc(zh(n))));
   if (en(n)) card.appendChild(el('div', 'f-en', esc(en(n))));
 
-  const content = n.content || {};
+  const zhContent = n.content || {}, enContent = n.contentEn || {};
+  const useEn = LANG === 'en' && n.hasEn;
+  const content = useEn ? enContent : zhContent;
+  if (LANG === 'en' && !n.hasEn) card.appendChild(el('div', 'f-fallback', esc(t_('noEn'))));
   const lesson = (DATA.lessons || {})[id];
   const addTxt = (title, txt) => {
     if (!txt) return;
@@ -936,7 +942,8 @@ function focusOn(id, push = true) {
     }
   } else {
     // side quests fall back to the library page content
-    if (n.definition) card.appendChild(el('div', 'f-def', md(n.definition)));
+    const def = useEn ? (enContent.definition || '') : n.definition;
+    if (def) card.appendChild(el('div', 'f-def', md(def)));
     addTxt('为什么重要', content.why);
     addTxt('机制怎么运转', content.how);
     addTxt('例子', content.example);

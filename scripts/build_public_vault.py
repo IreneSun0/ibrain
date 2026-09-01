@@ -289,6 +289,14 @@ def main() -> int:
             dst.parent.mkdir(parents=True, exist_ok=True)
             dst.write_text(new, encoding="utf-8")
             written += 1
+            # the translation sibling travels with its canonical note, through the
+            # same rewrites — it is not a note of its own, so iter_notes skips it
+            en_src = note.path.parent / (note.path.stem + ".en.md")
+            if en_src.exists():
+                en_text = apply_rewrites(strip_sections(en_src.read_text(encoding="utf-8")))
+                dst_en = dst.parent / (dst.stem + ".en.md")
+                dst_en.write_text(en_text, encoding="utf-8")
+                written += 1
 
     # non-markdown assets inside published trees (schema json, curriculum yaml…)
     assets = 0

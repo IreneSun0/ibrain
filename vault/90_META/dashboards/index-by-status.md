@@ -4,7 +4,7 @@
 
 更新: 2026-09-01 · 共 297 条结构化笔记
 
-## reviewed (110)
+## reviewed (114)
 
 - [[260813-first-principle-information-position|First Principle: Information Position (Irene, 2026-08-13)]] · 第一性原理 · 信息位置与规则制定层
 - [[INDUSTRY-MAP|Industry Map]] · 行业地图
@@ -83,11 +83,13 @@
 - [[oracle|Oracle]] · 预言机/外部事实输入层
 - [[oracle-risk|Oracle Risk]] · 预言机风险
 - [[order-book|Order Book]] · 订单簿/盘口
+- [[order-flow|Order Flow]] · 订单流
 - [[outcome-market|Outcome Market]] · 结果市场/结果型合约市场
 - [[outcome-token|Outcome Token]] · 结果代币
 - [[policy-engine|Policy Engine]] · 策略/政策控制引擎
 - [[prediction-market|Prediction Market]] · 预测市场
 - [[price-discovery|Price Discovery]] · 价格发现
+- [[price-impact|Price Impact]] · 价格冲击
 - [[regulatory-access|Regulatory Access]] · 监管准入
 - [[regulatory-risk|Regulatory Risk]] · 监管风险
 - [[relationship-types|Relationship Type Vocabulary]] · 关系类型受控词表
@@ -97,11 +99,13 @@
 - [[report-2026-08-26-regulatory-landscape|Regulatory Landscape for Prediction Markets & Crypto (2026-08)]] · 监管全景 · 预测市场与 crypto (2026-08 核验)
 - [[report-2026-08-27-kb-tooling-landscape|Knowledge-Base Visualization Tooling Landscape (2026-08)]] · 知识库可视化工具版图 (2026-08 核验)
 - [[report-2026-08-27-pm-data-vendors|Prediction-Market Data & API Vendor Landscape (2026-08)]] · 预测市场数据/API 供应商全景 (2026-08 核验)
+- [[request-for-quote|RFQ]] · 询价交易
 - [[resolution|Resolution]] · 结果判定/裁决
 - [[resolution-insurance|Resolution Insurance]] · 结果判定保险
 - [[resolution-risk|Resolution Risk]] · 结果判定风险
 - [[resolution-source|Resolution Source]] · 指定结果来源
 - [[risk-engine|Risk Engine]] · 风险引擎
+- [[scalar-market|Scalar Market]] · 标量市场
 - [[settlement|Settlement]] · 结算/交割
 - [[settlement-methodology|Settlement Methodology]] · 结算方法论
 - [[settlement-rail|Settlement Rail]] · 结算轨道/资金铁路
@@ -117,7 +121,7 @@
 - [[value-at-risk|VaR]] · 风险价值
 - [[win-safe-truth-triangle|win · safe · truth Triangle (Irene, 2026-08-13)]] · win·safe·truth 三角
 
-## seed (99)
+## seed (95)
 
 - [[anti-money-laundering|AML]] · 反洗钱
 - [[bittorrent-chain|BTTC]] · BitTorrent Chain
@@ -170,20 +174,16 @@
 - [[model-risk|Model Risk]] · 模型风险
 - [[operational-risk|Operational Risk]] · 运营/系统风险
 - [[opinion-labs|Opinion (Opinion Labs)]] · Opinion (opinion.trade)
-- [[order-flow|Order Flow]] · 订单流
 - [[order-flow-network-effect|Order Flow Network Effect]] · 订单流网络效应
 - [[over-the-counter|OTC]] · 场外交易
 - [[perpetual-futures|Perpetual Futures / Perp]] · 永续合约
 - [[portfolio-margin|Portfolio Margin]] · 组合保证金
-- [[price-impact|Price Impact]] · 价格冲击
 - [[prime-brokerage|Prime Brokerage]] · 主经纪/机构交易综合服务
 - [[private-key|Private Key]] · 私钥
 - [[proof-of-stake|PoS]] · 权益证明
 - [[proof-of-work|PoW]] · 工作量证明
 - [[public-key|Public Key]] · 公钥
 - [[put-option|Put Option]] · 看跌期权
-- [[request-for-quote|RFQ]] · 询价交易
-- [[scalar-market|Scalar Market]] · 标量市场
 - [[smart-order-routing|Smart Order Routing]] · 智能订单路由
 - [[solidity|Solidity]] · Solidity智能合约语言
 - [[src-2026-08-26-bittorrent-chain-bittorrent-chainwhitepaper-en-pdf|BitTorrent Chain: BitTorrent-ChainWhitepaper_EN.pdf]]
