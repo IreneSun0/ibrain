@@ -60,7 +60,8 @@ def test_view_builds_with_full_coverage(tmp_path):
     concept_ids = {n["id"] for n in data["nodes"] if n["type"] == "concept"}
     assert main_ids | side_ids == concept_ids, "every concept is mainline or side"
     assert not (main_ids & side_ids)
-    assert sum(len(ch["exercises"]) for ch in data["chapters"]) >= 30
+    # pitch-rehearsal questions are stripped at publish; the practice problems stay
+    assert sum(len(ch["exercises"]) for ch in data["chapters"]) >= 24
     # inline content present on mainline quests
     node = next(n for n in data["nodes"] if n["id"] == "concept:contract-equivalence")
     assert node["definition"] and node["content"]["why"]

@@ -45,7 +45,7 @@ related: []
 > **参考**: slippage = 你的成交均价与预期价 (通常 best/mid) 之差 — 你的执行成本; price impact = 你的交易把市场价格推离原位的幅度 — 你留下的痕迹 (别人看得见, 也可能被反向利用)。大单两者都大, 但含义不同。
 > **给分点**: 区分 0.6; 「成本 vs 痕迹」视角 0.4。(frontmatter contrasts-with 边的直接考察)
 
-## Q5 [忆] spread 为什么存在 (curriculum 完成判据)
+## Q5 [忆] spread 为什么存在
 用 maker / taker / 逆向选择三个词, 把「spread 为什么存在」讲给外行。
 > **参考骨架**: maker 挂单为市场提供「随时可成交」的服务, taker 为即时性付费; maker 的报价会被更懂的人挑着打 (逆向选择), 所以它必须把这份信息风险的补偿收进价差里。spread = 即时性的价格 + 信息风险的保险费。
 > **给分点**: 三词都用对 0.6; 外行能听懂 (无术语堆砌) 0.4。
@@ -64,18 +64,3 @@ related: []
 机构大单为什么常不走公开盘口? RFQ 和 OTC 各解决什么?
 > **参考**: 公开盘口暴露意图 → price impact + 被抢跑。RFQ: 定向询价, 让多家 MM 竞价而不惊动全场; OTC: 双边协商, 大额/定制/信用型交易, 完全避开盘口 (代价: 对手方风险回到双边)。
 > **给分点**: 「意图暴露」动机 0.4; 两机制各 0.3。
-
-## Q9 [英] Liquidity-adjusted price, 90 秒
-用英语解释: 为什么专业报价用「liquidity-adjusted price」而不是 mid (curriculum 实战应用题英文版)。用 Q2 的数字举例。
-> **参考骨架**: "The mid says this contract is worth 51 cents. But if you actually need to buy ten thousand dollars of it, you'll pay an average of 53.35 — eating through three levels of the book. For a risk system, the honest price is the price *your size* can actually get. That's why we quote liquidity-adjusted prices: mark-to-market for institutions is mark-to-liquidity."
-> **给分点**: 概念 0.4; 用上具体数字 0.3; "mark-to-liquidity" 级别的收尾表达 0.3。
-
-## Q10 [英] 口径卡产出
-写 adverse selection 与 depth 各两版英文一句话 (外行/机构), 记入口径卡。
-> **参考**: adverse selection 机构版示例: "Adverse selection is the tax informed traders levy on market makers — in event markets it's amplified, because someone always knows the answer earlier."
-> **给分点**: 四句各 0.25。
-
-## Q11 [话] MM 对话预演
-Wintermute 风格的做市负责人问: "So what exactly do you give me that my own quoting engine doesn't already know?" 中英各答一遍 (中文 3 句内, 英文 3 句内)。
-> **参考骨架**: 你的引擎知道你自己的盘口和流; 它不知道**同一事件在别的 venue 的等价合约、语义差异和 resolution 风险状态** (contract equivalence + dispute 状态)。中立数据层给的是跨 venue 的事件级风险面: 哪里同题不同义、哪个市场的 resolution 正在被挑战、你的合并敞口是多少 — 这是盘口之外的信息, 恰好是你在事件市场亏钱的主要方式。
-> **给分点**: 击中「跨 venue + 语义/resolution」差异化 0.6; 英文版流畅 0.4。

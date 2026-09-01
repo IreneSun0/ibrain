@@ -2,7 +2,7 @@
 
 > 生成文件 · `generate_indexes.py` · 手改会被覆盖。
 
-更新: 2026-09-01 · 共 297 条结构化笔记
+更新: 2026-09-01 · 共 288 条结构化笔记
 
 ## book-course (2)
 
@@ -200,18 +200,6 @@
 - [[indonesia|Indonesia]] · 印度尼西亚
 - [[singapore|Singapore]] · 新加坡
 - [[united-states|United States]] · 美国
-
-## lesson (9)
-
-- [[chapter-0-lessons|Course Ch.0 Money and Risk]] · 课程 · 序章 钱与风险的地图
-- [[chapter-1-lessons|Course Ch.1 The Order Book Language]] · 课程 · 第一章 盘口的语言
-- [[chapter-2-lessons|Course Ch.2 Contracts That Shape Risk]] · 课程 · 第二章 风险的合约形态
-- [[chapter-3-lessons|Course Ch.3 Minimal On-chain Kit]] · 课程 · 第三章 链上最小集
-- [[chapter-4-lessons|Course Ch.4 The Money Pipes]] · 课程 · 第四章 钱的管道
-- [[chapter-5-lessons|Course Ch.5 Event Markets Proper]] · 课程 · 第五章 事件市场本体
-- [[chapter-6-lessons|Course Ch.6 Resolution and Disputes]] · 课程 · 第六章 结算与争议
-- [[chapter-7-lessons|Course Ch.7 Institutional Risk Language]] · 课程 · 第七章 机构风险语言
-- [[chapter-8-lessons|Course Ch.8 Three Infrastructure Theses]] · 课程 · 终章 三条基础设施命题
 
 ## market-maker-fund (10)
 

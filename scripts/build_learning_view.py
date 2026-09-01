@@ -29,34 +29,6 @@ QUEST_RE = re.compile(r"^## quest: (concept:[a-z0-9._-]+)\s*$")
 SUB_RE = re.compile(r"^### (hook|card|mechanism|traps|ammo|drill)\s*$")
 
 
-def parse_lessons(course_dir: Path) -> dict[str, dict]:
-    """Parse course chapter files: `## quest: <id>` blocks with fixed subsections."""
-    lessons: dict[str, dict] = {}
-    for path in sorted(course_dir.glob("chapter-*-lessons.md")):
-        cur_id = None
-        cur_sub = None
-        for line in path.read_text(encoding="utf-8").split("\n"):
-            qm = QUEST_RE.match(line)
-            if qm:
-                cur_id = qm.group(1)
-                lessons[cur_id] = {}
-                cur_sub = None
-                continue
-            sm = SUB_RE.match(line)
-            if sm and cur_id:
-                cur_sub = sm.group(1)
-                lessons[cur_id][cur_sub] = []
-                continue
-            if line.startswith("## ") or line.startswith("# "):
-                cur_sub = None
-                continue
-            if cur_id and cur_sub is not None:
-                lessons[cur_id][cur_sub].append(line.rstrip())
-    for lid, subs in lessons.items():
-        for k, v in subs.items():
-            subs[k] = "\n".join(v).strip()
-    return lessons
-
 
 def parse_exercises(path: Path) -> list[dict]:
     """Parse a deck file's `## Qn [type] title` blocks; quoted lines = answer."""

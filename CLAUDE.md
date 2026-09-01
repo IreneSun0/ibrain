@@ -1,4 +1,4 @@
-# CLAUDE.md — working on iBrain with Claude Code
+# CLAUDE.md — working on CryptoAtlas with Claude Code
 
 You are maintaining a knowledge base whose value is its **discipline**, not its volume.
 Everything below is enforced by scripts; if you disagree with a rule, change the script

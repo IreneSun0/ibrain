@@ -32,9 +32,9 @@ related: []
 > **给分点**: 说出「配置资本」+「转移风险」两个功能各 0.5; 只说「买卖东西的地方」= 0。
 
 ## Q2 [忆] 链条默画
-脱稿画出「资本 → 中介 → venue → 清算 → 结算」链, 并在每一环标出: 钱在哪、谁承担什么风险。
+不看笔记画出「资本 → 中介 → venue → 清算 → 结算」链, 并在每一环标出: 钱在哪、谁承担什么风险。
 > **参考**: 投资者资金 → broker (代理, 操作风险)/dealer (自有资产负债表, 价格风险) → exchange/venue (订单撮合, 平台/技术风险) → clearing (义务确认+净额+保证金, 对手方风险集中到 CCP) → settlement (钱与资产最终易手, 结算风险)。
-> **给分点**: 五环齐 0.4; 每环风险标对各 0.12。这是 Stage 1 完成判据, 必须满分才算过。
+> **给分点**: 五环齐 0.4; 每环风险标对各 0.12。
 
 ## Q3 [忆] broker vs dealer
 一句话说清 broker 和 dealer 的本质区别, 并回答: 为什么这个区别对客户重要?
@@ -71,17 +71,7 @@ A 欠 B $8M, B 欠 C $6M, C 欠 A $5M。双边逐笔结算要动多少钱? 经 C
 > **参考骨架**: "Price discovery is how a market compresses scattered information into one number. Every trader acts on what they know, and the price is the running vote. That's exactly why prediction market prices carry information — a price of 0.62 on an event is the market's live estimate that it happens. Not because anyone is smart alone, but because the price aggregates everyone's stakes."
 > **给分点**: 概念对 0.4; 落到 PM 0.3; 流畅度/不卡壳 0.3。
 
-## Q10 [英] 口径卡产出
-写出 market maker 的两版英文一句话: ① 讲给外行; ② 讲给机构 CRO。(写下来, 明天复述)
-> **参考**: ① "A market maker is a firm that always quotes both a buy and a sell price, so you can trade instantly — they earn the spread for taking that risk." ② "Market makers are the liquidity backbone — they warehouse inventory risk and adverse selection, and their quoting behavior is what turns a listed contract into a tradable one."
-> **给分点**: 两版语域区分明显 0.5; 各自准确 0.5。
-
 ## Q11 [话] 机构挑战
 一位传统基金合伙人说: "事件合约? 那不就是体育博彩换了个说法吗。" 用一段话回应 (中文), 要求用到「风险转移」「价格发现」「清算」三个概念。
 > **参考骨架**: 博彩是庄家定赔率、玩家对庄家、输赢即结束; 事件市场是参与者互为对手方、价格由交易连续发现、头寸可随时进出对冲真实业务风险 (航司对冲天气、基金对冲政策), 且在受监管清算框架内结算。判断标准不是「标的是不是事件」, 而是「有没有风险转移功能 + 价格发现机制 + 中立清算」。CFTC 把它按衍生品监管, 正是这个逻辑。
 > **给分点**: 三概念各 0.25 且用得对; 整体说服力 0.25。
-
-## Q12 [话] 实战应用 (curriculum 原题)
-用一段话向机构解释:「事件风险为什么属于金融市场而不是博彩」— 但这次从**机构自身资产负债表**出发讲。
-> **参考骨架**: 机构的组合里本来就躺着事件敞口 (选举→政策→利率; 判决→个股; 地缘→供应链), 只是没有被单独计量。事件合约只是把这层一直存在的风险显性化、可交易化。问题不是「要不要碰事件风险」— 你已经在承担它 — 而是「要不要给它一个可对冲的市场和一个计量框架 (event-var)」。
-> **给分点**: 「敞口本已存在」视角 0.5; 自然带出计量/对冲需求 0.5。
