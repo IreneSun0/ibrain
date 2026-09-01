@@ -189,19 +189,12 @@ def main(argv: list[str] | None = None) -> int:
                        "chapters": w.get("chapters") or []} for w in (sched.get("weeks") or [])],
         }
 
-    # embed concepts, every entity (the landing graph is the ecosystem), and the
-    # relation targets concepts point at
+    # The landing graph is the whole knowledge base, not a slice of it: every note
+    # and every edge, so the picture actually shows what the vault contains.
     ENTITY_TYPES = {"person", "organization", "exchange-venue", "protocol-network",
                     "market-maker-fund", "regulator", "jurisdiction", "product", "token-asset"}
-    entity_ids = {n["id"] for n in graph["nodes"] if n["type"] in ENTITY_TYPES}
-    ref_targets = {r["target"] for n in concepts.values() for r in n.get("relations") or []}
-    keep = set(concepts) | ref_targets | entity_ids
-    nodes = [n for n in graph["nodes"] if n["id"] in keep]
-    edges = [e for e in graph["edges"]
-             if e["kind"] in ("prereq", "crel", "erel", "typed", "link")
-             and e["source"] in keep and e["target"] in keep
-             # keep the ecosystem graph readable: weak wikilink edges only between entities
-             and not (e["kind"] == "link" and not (e["source"] in entity_ids and e["target"] in entity_ids))]
+    nodes = graph["nodes"]
+    edges = graph["edges"]
 
     data = {
         "generated": graph["generated"],

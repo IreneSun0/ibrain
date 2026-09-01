@@ -59,22 +59,24 @@
     padding:8px 16px;cursor:pointer;font-weight:600}
   .nextup .hint{color:var(--muted);font-size:12px}
 
-  .layout{display:flex;gap:18px;padding:14px 20px 40px;align-items:flex-start}
-  .path{flex:1.15;min-width:0}
-  .focus{flex:1;min-width:340px;position:sticky;top:64px;max-height:calc(100vh - 80px);overflow:auto}
-  @media (max-width: 980px){
-    .layout{flex-direction:column}
-    .focus{position:static;max-height:none;width:100%}
+  /* Two different jobs, so two different surfaces: the left rail is navigation
+     (dense, quiet, no boxes), the right is the reading surface (one continuous
+     page). Making both card columns of equal weight was the mistake. */
+  .layout{display:flex;height:calc(100vh - 54px);overflow:hidden}
+  .path{flex:0 0 330px;overflow-y:auto;padding:16px 10px 60px;
+    border-right:1px solid var(--line);background:var(--bg)}
+  .focus{flex:1;overflow-y:auto;background:var(--panel)}
+  @media (max-width: 900px){
+    .layout{flex-direction:column;height:auto;overflow:visible}
+    .path{flex:none;width:auto;border-right:0;border-bottom:1px solid var(--line);max-height:46vh}
+    .focus{min-height:60vh}
   }
 
-  .chapter{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:14px;
-    padding:14px 16px;box-shadow:var(--shadow)}
-  .ch-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-  .ch-title{font-size:15px;font-weight:700}
-  .ch-prog{font-size:11px;color:var(--muted);margin-left:auto;white-space:nowrap}
-  .ch-q{color:var(--muted);font-size:12px;margin:2px 0 8px}
-  .ch-q::before{content:"❝ ";color:var(--accent)}
-  .this-week{font-size:11px;color:#fff;background:var(--done);border-radius:6px;padding:1px 8px}
+  .chapter{margin:0 0 6px}
+  .ch-head{display:flex;align-items:baseline;gap:8px;padding:8px 10px 4px}
+  .ch-title{font-size:12.5px;font-weight:700;letter-spacing:.2px}
+  .ch-count{font-size:11px;color:var(--muted);margin-left:auto;white-space:nowrap}
+  .ch-q{color:var(--muted);font-size:11.5px;margin:0 10px 8px;line-height:1.55}
 
   .quests{display:flex;flex-direction:column;gap:2px}
   .quest{display:flex;align-items:center;gap:10px;padding:5px 8px;border-radius:9px;cursor:pointer;font-size:13.5px}
@@ -111,21 +113,27 @@
     padding:6px 10px;margin-top:6px;white-space:pre-wrap;background:var(--def-bg);border-radius:0 8px 8px 0}
   .ex .ans.open .ans-body{display:block}
 
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+  .card{max-width:730px;margin:0 auto;padding:26px 34px 90px}
+  .f-head{position:sticky;top:0;z-index:5;background:var(--panel);
+    padding:18px 34px 12px;border-bottom:1px solid var(--line);margin:0 -34px 20px}
+  .f-head .inner{max-width:730px;margin:0 auto}
+  .f-empty{max-width:730px;margin:0 auto;padding:80px 34px;color:var(--muted);font-size:13.5px}
   .empty{color:var(--muted);font-size:13px}
   .empty h3{color:var(--ink)}
-  .f-where{font-size:12px;color:var(--muted)}
-  .f-where .cur{color:var(--accent);font-weight:700}
-  .f-title{font-size:21px;font-weight:800;margin:2px 0 0}
-  .f-en{color:var(--muted);font-size:13px;margin:1px 0 8px}
+  .f-where{font-size:11.5px;color:var(--muted);display:flex;align-items:center;gap:7px}
+  .f-where .cur{color:var(--accent);font-weight:600}
+  .f-where .sep{opacity:.4}
+  .f-title{font-size:26px;font-weight:800;margin:6px 0 0;letter-spacing:-.2px;line-height:1.25}
+  .f-en{color:var(--muted);font-size:13px;margin:3px 0 0}
   .f-def p{margin:5px 0}
   .f-def p:first-child{margin-top:0}
   .f-def p:last-child{margin-bottom:0}
   .f-def{background:var(--def-bg);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
     padding:8px 12px;font-size:13.5px;margin:10px 0}
-  .sec{margin-top:14px}
-  .sec>h4{font-size:12px;letter-spacing:.4px;color:var(--muted);margin:0 0 6px}
-  .sec .txt{font-size:13.5px;white-space:pre-wrap}
+  .sec{margin-top:26px}
+  .sec>h4{font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:var(--muted);
+    margin:0 0 9px;font-weight:700}
+  .sec .txt{font-size:14.5px;line-height:1.78}
   .pills{display:flex;flex-wrap:wrap;gap:6px}
   .pill{border:1px solid var(--line);background:var(--pill);border-radius:14px;padding:3px 10px;
     font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;line-height:1.5}
@@ -166,15 +174,15 @@
   #graph-stage{position:relative;height:calc(100vh - 54px);background:var(--bg)}
   #graph{display:block;width:100%;height:100%;cursor:grab}
   #graph.dragging{cursor:grabbing}
-  #graph-legend{position:absolute;left:16px;bottom:16px;background:var(--panel);
-    border:1px solid var(--line);border-radius:10px;padding:10px 12px;box-shadow:var(--shadow);
-    font-size:11.5px;line-height:1.9;max-width:210px}
-  #graph-legend .lg{display:flex;align-items:center;gap:7px;cursor:pointer;user-select:none}
+  #graph-legend{position:absolute;left:14px;bottom:14px;background:color-mix(in srgb,var(--panel) 88%,transparent);
+    border:1px solid var(--line);border-radius:10px;padding:8px 10px;
+    display:grid;grid-template-columns:1fr 1fr;gap:1px 14px;font-size:10.5px;line-height:1.7;
+    max-width:330px;backdrop-filter:blur(6px)}
+  #graph-legend .lg{display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   #graph-legend .lg.off{opacity:.35}
-  #graph-legend .sw{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
-  #graph-legend .cap{font-size:10.5px;color:var(--muted);margin-top:6px;line-height:1.5}
-  #graph-hint{position:absolute;right:16px;bottom:16px;font-size:11.5px;color:var(--muted);
-    background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+  #graph-legend .sw{width:7px;height:7px;border-radius:50%;flex:0 0 auto}
+  @media (max-width:760px){ #graph-legend{grid-template-columns:1fr 1fr 1fr;max-width:none;left:8px;right:8px;bottom:8px} }
 
   .rel-row{padding:5px 0;border-bottom:1px dashed var(--line);font-size:12.5px}
   .rel-row:last-child{border-bottom:0}
@@ -194,6 +202,20 @@
 
   .f-fallback{margin:6px 0 2px;font-size:11.5px;color:var(--muted);
     border-left:3px solid var(--line);padding-left:9px}
+
+  /* nav rail rows: one number, one meaning — position within the chapter */
+  .quest .num{width:22px;text-align:right;color:var(--muted);font-size:11px;
+    font-variant-numeric:tabular-nums;flex:0 0 auto}
+  .quest.ext .num{opacity:.55}
+  .quest .name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .more{display:flex;align-items:center;gap:6px;margin:4px 0 2px 10px;padding:4px 8px;
+    background:none;border:0;color:var(--muted);font:inherit;font-size:11.5px;
+    cursor:pointer;border-radius:7px}
+  .more:hover{background:var(--pill-hover);color:var(--ink)}
+  .more .chev{display:inline-block;transition:transform .15s;font-size:10px}
+  .more.open .chev{transform:rotate(180deg)}
+  .ext-list{margin-top:2px}
+  .f-def{font-size:15px;line-height:1.8;margin:4px 0 0}
 </style>
 </head>
 <body>
@@ -203,14 +225,11 @@
     <span class="tagline" id="tagline"></span>
   </div>
   <div class="seg" id="view"></div>
-  <div class="seg" id="scope"></div>
-  <div class="seg lang" id="lang"></div>
 </header>
 
 <section id="graph-stage">
   <canvas id="graph"></canvas>
   <div id="graph-legend"></div>
-  <div id="graph-hint"></div>
 </section>
 
 <div class="layout" id="layout">
@@ -228,52 +247,28 @@ const TOTAL = Object.keys(ORDER).length;
 // This is a public reference, not a personal course tracker: nothing here records
 // "how far you got". Scope is a filter over the same material, and language swaps
 // the whole page rather than printing a second language beside the first.
-const LANG_KEY = 'ibrain.lang', SCOPE_KEY = 'ibrain.scope';
 const store = {
   get(k, d) { try { return localStorage.getItem(k) || d; } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
 };
-let LANG = store.get(LANG_KEY, (navigator.language || '').toLowerCase().startsWith('zh') ? 'zh' : 'en');
-let SCOPE = store.get(SCOPE_KEY, 'all');   // all | core | extended
 
 const T = {
-  zh: {tagline: '预测市场知识库',
-       all: '全部', core: '核心路径', extended: '延伸',
-       definition: '定义', why: '为什么重要', how: '怎么运作', example: '例子',
-       misconceptions: '常见误解', practice: '实战里怎么用',
-       prereq: '先读这些', unlocks: '读懂它之后', relations: '关联', world: '真实世界',
-       recall: '自测', showAnswer: '看答案', hide: '收起',
-       exercises: '本章练习', diagram: '机制图', extendedIn: '延伸概念',
-       corePath: '核心路径', noEn: '这一条目的英文版尚未撰写，先显示中文。',
-       empty: '从左侧选一个概念开始。', results: '个结果',
-       graph: '生态图谱', concepts: '概念',
-       legendCap: '点图例可显示/隐藏一类；点节点看详情。',
-       graphHint: '滚轮缩放 · 拖背景平移 · 拖节点固定',
-       relatedEntities: '关系'},
-  en: {tagline: 'A prediction-market knowledge base',
-       all: 'All', core: 'Core path', extended: 'Extended',
-       definition: 'Definition', why: 'Why it matters', how: 'How it works', example: 'Example',
-       misconceptions: 'Common misconceptions', practice: 'In practice',
-       prereq: 'Read first', unlocks: 'Unlocks', relations: 'Related', world: 'In the wild',
-       recall: 'Check yourself', showAnswer: 'Show answer', hide: 'Hide',
-       exercises: 'Chapter exercises', diagram: 'Mechanism', extendedIn: 'Extended concepts',
-       corePath: 'Core path', noEn: 'No English text for this entry yet — showing Chinese.',
-       empty: 'Pick a concept on the left to begin.', results: ' results',
-       graph: 'Ecosystem', concepts: 'Concepts',
-       legendCap: 'Click a colour to show/hide it. Click a node for detail.',
-       graphHint: 'Scroll to zoom · drag background to pan · drag a node to pin it',
-       relatedEntities: 'Relationships'},
+  tagline: '预测市场知识库',
+  definition: '定义', why: '为什么重要', how: '怎么运作', example: '例子',
+  misconceptions: '常见误解', practice: '实战里怎么用',
+  prereq: '先读这些', unlocks: '读懂它之后', relations: '关联', world: '真实世界',
+  recall: '自测', showAnswer: '看答案', hide: '收起',
+  exercises: '本章练习', diagram: '机制图', relatedEntities: '关系',
+  graph: '知识图谱', concepts: '概念',
+  empty: '从左侧选一个概念，或在图谱里点一个节点。',
+  more: '展开延伸概念', less: '收起延伸概念',
 };
-const t_ = k => T[LANG][k];
+const t_ = k => T[k];
 const isCore = id => ORDER[id] !== undefined;
+const nameOf = n => !n ? '' : (n.titleZh || n.title);
+const subOf = n => { if (!n) return ''; const o = n.title; return o && o !== nameOf(n) ? o : ''; };
+const zh = nameOf, en = subOf;
 
-const nameOf = n => !n ? '' : (LANG === 'en' ? (n.title || n.titleZh) : (n.titleZh || n.title));
-const subOf = n => {
-  if (!n) return '';
-  const other = LANG === 'en' ? n.titleZh : n.title;
-  return other && other !== nameOf(n) ? other : '';
-};
-const zh = nameOf, en = subOf;   // legacy call sites
 const chapterOf = {};
 DATA.chapters.forEach(ch => {
   ch.concepts.forEach(c => chapterOf[c] = ch);
@@ -317,8 +312,6 @@ const el = (tag, cls, html) => {
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const typeZh = t => ({'exchange-venue':'venue','market-maker-fund':'做市/基金','organization':'公司',
   'protocol-network':'协议/链','regulator':'监管','jurisdiction':'法域','person':'人物'})[t] || '';
-
-
 
 // ── minimal markdown → html ──────────────────────────────────────────────────
 // The notes are written in markdown; rendering them as plain text turns emphasis
@@ -385,94 +378,111 @@ function md(src) {
   return out.join('');
 }
 
-// ── ecosystem graph ──────────────────────────────────────────────────────────
-// A force-directed map of who founded, funded, settles on, regulates and provides
-// liquidity to whom. Entities only by default: concepts have their own view, and
-// mixing 143 of them in drowns the ecosystem this is meant to show.
+// ── knowledge graph ──────────────────────────────────────────────────────────
+// The whole vault, not a slice of it: every note and every edge. Concepts are
+// grouped by domain, entities by kind, and each group's name is drawn over its
+// own region so the shape of the library is readable at a glance.
 const ENTITY_TYPES = new Set(DATA.entityTypes || []);
-const TYPE_COLOR = {
-  'person':            '#e0679a',
-  'exchange-venue':    '#4c8fd6',
-  'organization':      '#d98a3c',
-  'market-maker-fund': '#3faa8e',
-  'protocol-network':  '#8a7ad0',
-  'regulator':         '#c9564f',
-  'jurisdiction':      '#8b95a5',
-};
-const TYPE_LABEL = {
-  zh: {'person':'人物','exchange-venue':'交易场馆','organization':'公司/机构',
-       'market-maker-fund':'做市商/基金','protocol-network':'协议/链','regulator':'监管',
-       'jurisdiction':'法域'},
-  en: {'person':'People','exchange-venue':'Venues','organization':'Companies',
-       'market-maker-fund':'Market makers & funds','protocol-network':'Protocols & chains',
-       'regulator':'Regulators','jurisdiction':'Jurisdictions'},
-};
+
+const GROUPS = [
+  ['d:market-microstructure',        '市场微观结构', '#4FA3E3'],
+  ['d:financial-markets',            '金融市场',     '#54C7C0'],
+  ['d:derivatives',                  '衍生品',       '#E0894A'],
+  ['d:institutional-risk',           '机构风险',     '#E05C63'],
+  ['d:prediction-outcome-markets',   '事件与结果市场', '#DE6BAA'],
+  ['d:crypto-market-structure',      '加密市场结构', '#8C7AE0'],
+  ['d:blockchain',                   '区块链',       '#6FBF73'],
+  ['d:industry-strategy',            '行业结构',     '#C9A227'],
+  ['d:exchanges',                    '交易场所',     '#3FA890'],
+  ['d:stablecoins-wallets-payments', '稳定币与支付', '#8FBF5E'],
+  ['d:regulation-compliance',        '监管合规',     '#C4626E'],
+  ['t:person',                       '人物',         '#F2A0C0'],
+  ['t:exchange-venue',               '交易场馆',     '#6EA8DC'],
+  ['t:organization',                 '公司与机构',   '#E8A55C'],
+  ['t:market-maker-fund',            '做市商与基金', '#5FBFA0'],
+  ['t:protocol-network',             '协议与链',     '#A08CE8'],
+  ['t:regulator',                    '监管机构',     '#E07070'],
+  ['t:jurisdiction',                 '法域',         '#9AA5B1'],
+  ['r:research',                     '研究与来源',   '#79899B'],
+  ['r:structure',                    '课程与结构',   '#5E6A78'],
+];
+const GROUP_LABEL = Object.fromEntries(GROUPS.map(g => [g[0], g[1]]));
+const GROUP_COLOR = Object.fromEntries(GROUPS.map(g => [g[0], g[2]]));
+
+const RESEARCH_TYPES = new Set(['source', 'research-report', 'case-study', 'report', 'book-course']);
+
+function groupOf(n) {
+  if (n.type === 'concept') {
+    const d = (n.domains || [])[0];
+    return GROUP_COLOR['d:' + d] ? 'd:' + d : 'd:industry-strategy';
+  }
+  if (ENTITY_TYPES.has(n.type)) return GROUP_COLOR['t:' + n.type] ? 't:' + n.type : 't:organization';
+  if (RESEARCH_TYPES.has(n.type)) return 'r:research';
+  return 'r:structure';
+}
+
 const REL_LABEL = {
-  zh: {'founded':'创立','co-founded':'共同创立','executive-of':'现任高管',
-       'former-executive-of':'前高管','advises':'顾问','alumnus-of':'共同履历',
-       'invested-in':'投资','backed-by':'获投','acquired':'收购','partners-with':'合作',
-       'integrates-with':'集成','competes-with':'竞争','provides-liquidity-to':'做市',
-       'provides-infrastructure-to':'基础设施','built-on':'构建于','settles-on':'结算于',
-       'regulated-by':'受监管','distributes':'分发','depends-on':'依赖','spun-out-of':'分拆自'},
-  en: {'founded':'founded','co-founded':'co-founded','executive-of':'executive of',
-       'former-executive-of':'former executive of','advises':'advises','alumnus-of':'alumnus of',
-       'invested-in':'invested in','backed-by':'backed by','acquired':'acquired',
-       'partners-with':'partners with','integrates-with':'integrates with',
-       'competes-with':'competes with','provides-liquidity-to':'makes markets for',
-       'provides-infrastructure-to':'provides infrastructure to','built-on':'built on',
-       'settles-on':'settles on','regulated-by':'regulated by','distributes':'distributes',
-       'depends-on':'depends on','spun-out-of':'spun out of'},
+  'founded':'创立','co-founded':'共同创立','executive-of':'现任高管',
+  'former-executive-of':'前高管','advises':'顾问','alumnus-of':'共同履历',
+  'invested-in':'投资','backed-by':'获投','acquired':'收购','partners-with':'合作',
+  'integrates-with':'集成','competes-with':'竞争','provides-liquidity-to':'做市',
+  'provides-infrastructure-to':'基础设施','built-on':'构建于','settles-on':'结算于',
+  'regulated-by':'受监管','distributes':'分发','depends-on':'依赖','spun-out-of':'分拆自',
+  'special-case-of':'特例','component-of':'组成','mechanism-of':'机制','risk-of':'风险面',
+  'mitigated-by':'缓解','measured-by':'度量','contrasts-with':'对照','instantiated-by':'实例',
+  'see-also':'另见',
 };
+const KIND_LABEL = {prereq: '前置', crel: '', erel: '', typed: '', link: '提及'};
 
-const TYPE_ORDER = ['person', 'exchange-venue', 'organization', 'market-maker-fund',
-                    'protocol-network', 'regulator', 'jurisdiction'];
-const ANCHOR = {};
-TYPE_ORDER.forEach((ty, i) => {
-  const a = (i / TYPE_ORDER.length) * Math.PI * 2 - Math.PI / 2;
-  ANCHOR[ty] = {x: Math.cos(a) * 300, y: Math.sin(a) * 230};
-});
-
-let G = null;                      // {nodes, links, sim state}
-let hiddenTypes = new Set();
+let G = null;
+let hiddenGroups = new Set();
 
 function buildGraph() {
-  const ns = DATA.nodes.filter(n => ENTITY_TYPES.has(n.type));
+  const ns = DATA.nodes;
   const idx = new Map(ns.map((n, i) => [n.id, i]));
   const links = [];
-  const typedPairs = new Set();
+  const seen = new Set();
   for (const e of DATA.edges) {
-    if (e.kind === 'erel' || e.kind === 'typed')
-      typedPairs.add([e.source, e.target].sort().join('|'));
-  }
-  const seenLink = new Set();
-  for (const e of DATA.edges) {
-    if (!idx.has(e.source) || !idx.has(e.target)) continue;
-    if (e.kind === 'prereq' || e.kind === 'crel') continue;
-    const pair = [e.source, e.target].sort().join('|');
-    // a bare wikilink between two entities that already have a typed edge says nothing new
-    if (e.kind === 'link' && typedPairs.has(pair)) continue;
-    const key = pair + '|' + (e.relType || e.kind);
-    if (seenLink.has(key)) continue;
-    seenLink.add(key);
+    if (!idx.has(e.source) || !idx.has(e.target) || e.source === e.target) continue;
+    const key = [e.source, e.target].sort().join('|') + '|' + (e.relType || e.kind);
+    if (seen.has(key)) continue;
+    seen.add(key);
     links.push({s: idx.get(e.source), t: idx.get(e.target), kind: e.kind,
                 rel: e.relType || '', note: e.note || ''});
   }
   const deg = new Array(ns.length).fill(0);
   for (const l of links) { deg[l.s]++; deg[l.t]++; }
-  const nodes = ns.map((n, i) => {
-    const a = i * 2.399963;                             // golden-angle spiral
-    const R = 26 * Math.sqrt(i + 1);
-    return {id: n.id, type: n.type, node: n, deg: deg[i],
-            x: Math.cos(a) * R, y: Math.sin(a) * R,
-            vx: 0, vy: 0, r: 3.6 + Math.pow(deg[i], 0.62) * 2.9, fixed: false};
+
+  // Seed each node inside its own group's region. Starting from a global spiral
+  // meant the groups began interleaved and the simulation cooled before they
+  // could ever separate.
+  const groupOfNode = ns.map(groupOf);
+  const present = GROUPS.map(g => g[0]).filter(k => groupOfNode.includes(k));
+  const anchors = {};
+  present.forEach((k, i) => {
+    const a = (i / present.length) * Math.PI * 2 - Math.PI / 2;
+    anchors[k] = {x: Math.cos(a) * 760, y: Math.sin(a) * 520};
   });
-  return {nodes, links, alpha: 1};
+  const seenInGroup = {};
+  const nodes = ns.map((n, i) => {
+    const g = groupOfNode[i];
+    const an = anchors[g] || {x: 0, y: 0};
+    const j = (seenInGroup[g] = (seenInGroup[g] || 0) + 1);
+    const a = j * 2.399963, R = 13 * Math.sqrt(j);
+    const structural = g === 'r:structure';
+    const rad = structural ? 2.2 + Math.pow(deg[i], 0.34) * 1.1
+                           : 2.6 + Math.pow(deg[i], 0.58) * 2.0;
+    return {id: n.id, type: n.type, node: n, deg: deg[i], g,
+            x: an.x + Math.cos(a) * R, y: an.y + Math.sin(a) * R,
+            vx: 0, vy: 0, r: Math.min(rad, 16), fixed: false};
+  });
+  return {nodes, links, anchors, alpha: 1};
 }
 
-function visible(n) { return !hiddenTypes.has(n.type); }
+const visible = n => !hiddenGroups.has(n.g);
 
 function tick() {
-  const {nodes, links} = G;
+  const {nodes, links, anchors} = G;
   const a = G.alpha;
   for (let i = 0; i < nodes.length; i++) {
     const p = nodes[i];
@@ -482,10 +492,10 @@ function tick() {
       if (!visible(q)) continue;
       let dx = q.x - p.x, dy = q.y - p.y;
       let d2 = dx * dx + dy * dy;
-      if (d2 < 1) { d2 = 1; dx = (Math.random() - 0.5); dy = (Math.random() - 0.5); }
-      if (d2 > 250000) continue;                       // ignore far pairs
-      const f = 5200 / d2;
-      const d = Math.sqrt(d2), fx = dx / d * f, fy = dy / d * f;
+      if (d2 > 90000) continue;
+      if (d2 < 1) { d2 = 1; dx = (i % 3) - 1; dy = (j % 3) - 1; }
+      const f = 900 / d2, d = Math.sqrt(d2);
+      const fx = dx / d * f, fy = dy / d * f;
       p.vx -= fx; p.vy -= fy; q.vx += fx; q.vy += fy;
     }
   }
@@ -494,28 +504,39 @@ function tick() {
     if (!visible(p) || !visible(q)) continue;
     const dx = q.x - p.x, dy = q.y - p.y;
     const d = Math.max(1, Math.hypot(dx, dy));
-    const f = (d - 110) * 0.020;
+    // same group pulls tight, across groups only tethers — this is what turns a
+    // hairball into readable regions joined by visible bridges
+    const same = p.g === q.g;
+    const f = (d - (same ? 34 : 150)) * (same ? 0.030 : 0.0035);
     const fx = dx / d * f, fy = dy / d * f;
     p.vx += fx; p.vy += fy; q.vx -= fx; q.vy -= fy;
   }
   for (const p of nodes) {
     if (!visible(p)) continue;
-    // a very weak type nudge only breaks symmetry; the visible clusters come from the
-    // link structure itself, which is what the picture is supposed to show
-    const an = ANCHOR[p.type];
-    if (an) { p.vx += (an.x - p.x) * 0.0012; p.vy += (an.y - p.y) * 0.0012; }
-    p.vx -= p.x * 0.0022; p.vy -= p.y * 0.0022;        // mild gravity to centre
+    const an = anchors[p.g];
+    if (an) { p.vx += (an.x - p.x) * 0.020; p.vy += (an.y - p.y) * 0.020; }
+    p.vx -= p.x * 0.0016; p.vy -= p.y * 0.0016;
     if (p.fixed) { p.vx = p.vy = 0; continue; }
-    const sp = Math.hypot(p.vx, p.vy), CAP = 18;        // no node slingshots off-screen
+    const sp = Math.hypot(p.vx, p.vy), CAP = 16;
     if (sp > CAP) { p.vx = p.vx / sp * CAP; p.vy = p.vy / sp * CAP; }
     p.x += p.vx * a; p.y += p.vy * a;
-    p.vx *= 0.82; p.vy *= 0.82;
+    p.vx *= 0.80; p.vy *= 0.80;
   }
-  G.alpha = Math.max(0.06, G.alpha * 0.994);
+  G.alpha = Math.max(0.10, G.alpha * 0.997);
 }
 
 const view = {k: 1, x: 0, y: 0};
 let hoverNode = null, dragNode = null, panning = false, last = null;
+
+function groupCentroids() {
+  const acc = {};
+  for (const p of G.nodes) {
+    if (!visible(p)) continue;
+    (acc[p.g] = acc[p.g] || {x: 0, y: 0, n: 0});
+    acc[p.g].x += p.x; acc[p.g].y += p.y; acc[p.g].n++;
+  }
+  return acc;
+}
 
 function drawGraph() {
   const cv = document.getElementById('graph');
@@ -538,66 +559,87 @@ function drawGraph() {
       if (nodes[l.t] === hoverNode) near.add(nodes[l.s]);
     }
   }
-  const ink = getComputedStyle(document.body).getPropertyValue('--ink').trim() || '#222';
+
+  // group names sit behind everything, like map labels over a region
+  if (!hoverNode) {
+    const cen = groupCentroids();
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    const boxes = [];
+    for (const [g, c] of Object.entries(cen).sort((a, b) => b[1].n - a[1].n)) {
+      if (c.n < 3) continue;
+      const size = Math.min(40, 16 + c.n * 0.55) / view.k;
+      ctx.font = `700 ${size}px -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif`;
+      const label = GROUP_LABEL[g];
+      const x = c.x / c.n, y = c.y / c.n;
+      const w = ctx.measureText(label).width, hh = size;
+      const b = {x0: x - w / 2, x1: x + w / 2, y0: y - hh / 2, y1: y + hh / 2};
+      // a region name that lands on another one names neither region
+      if (boxes.some(o => b.x0 < o.x1 && b.x1 > o.x0 && b.y0 < o.y1 && b.y1 > o.y0)) continue;
+      boxes.push(b);
+      ctx.globalAlpha = 0.30;
+      ctx.fillStyle = GROUP_COLOR[g];
+      ctx.fillText(label, x, y);
+    }
+  }
 
   for (const l of links) {
     const p = nodes[l.s], q = nodes[l.t];
     if (!visible(p) || !visible(q)) continue;
     const lit = hoverNode && (p === hoverNode || q === hoverNode);
-    ctx.strokeStyle = lit ? TYPE_COLOR[hoverNode.type] : ink;
-    ctx.globalAlpha = lit ? 0.75 : (hoverNode ? 0.05 : (l.kind === 'link' ? 0.10 : 0.20));
-    ctx.lineWidth = lit ? 1.6 / view.k : (l.kind === 'link' ? 0.5 : 0.9) / view.k;
+    ctx.strokeStyle = lit ? GROUP_COLOR[hoverNode.g] : '#8a97a8';
+    ctx.globalAlpha = lit ? 0.8 : (hoverNode ? 0.03 : 0.11);
+    ctx.lineWidth = (lit ? 1.4 : 0.55) / view.k;
     ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
   }
 
-  if (hoverNode) {
-    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.font = `${10 / view.k}px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`;
-    for (const l of links) {
-      const p = nodes[l.s], q = nodes[l.t];
-      if ((p !== hoverNode && q !== hoverNode) || !visible(p) || !visible(q)) continue;
-      const verb = (REL_LABEL[LANG] || {})[l.rel];
-      if (!verb) continue;
-      const mx = (p.x + q.x) / 2, my = (p.y + q.y) / 2;
-      const w = ctx.measureText(verb).width + 8 / view.k;
-      ctx.globalAlpha = 0.92;
-      ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--panel').trim() || '#fff';
-      ctx.fillRect(mx - w / 2, my - 7 / view.k, w, 14 / view.k);
-      ctx.fillStyle = TYPE_COLOR[hoverNode.type];
-      ctx.fillText(verb, mx, my);
-    }
-  }
-
-  ctx.globalAlpha = 1;
   for (const p of nodes) {
     if (!visible(p)) continue;
-    const dim = hoverNode && !near.has(p);
-    ctx.globalAlpha = dim ? 0.13 : 1;
-    ctx.fillStyle = TYPE_COLOR[p.type] || '#888';
+    ctx.globalAlpha = hoverNode && !near.has(p) ? 0.10 : 1;
+    ctx.fillStyle = GROUP_COLOR[p.g] || '#888';
     ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832); ctx.fill();
     if (p === hoverNode) {
-      ctx.strokeStyle = TYPE_COLOR[p.type]; ctx.globalAlpha = 0.35;
-      ctx.lineWidth = 3 / view.k;
+      ctx.strokeStyle = GROUP_COLOR[p.g]; ctx.globalAlpha = 0.4;
+      ctx.lineWidth = 2.5 / view.k;
       ctx.beginPath(); ctx.arc(p.x, p.y, p.r + 4 / view.k, 0, 6.2832); ctx.stroke();
     }
   }
 
-  const showAll = view.k > 1.6;
-  const fs = 11 / view.k;
-  ctx.font = `${fs}px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`;
+  // edge verbs on the hovered node's own links
+  if (hoverNode) {
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = `${10 / view.k}px -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif`;
+    for (const l of links) {
+      const p = nodes[l.s], q = nodes[l.t];
+      if ((p !== hoverNode && q !== hoverNode) || !visible(p) || !visible(q)) continue;
+      const verb = REL_LABEL[l.rel] || KIND_LABEL[l.kind] || '';
+      if (!verb) continue;
+      const mx = (p.x + q.x) / 2, my = (p.y + q.y) / 2;
+      const bw = ctx.measureText(verb).width + 8 / view.k;
+      ctx.globalAlpha = 0.95;
+      ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--panel').trim() || '#fff';
+      ctx.fillRect(mx - bw / 2, my - 7 / view.k, bw, 14 / view.k);
+      ctx.fillStyle = GROUP_COLOR[hoverNode.g];
+      ctx.fillText(verb, mx, my);
+    }
+  }
+
+  // node names: hubs always, neighbours on hover, everything when zoomed in
+  const ink = getComputedStyle(document.body).getPropertyValue('--ink').trim() || '#222';
+  const fs = 10.5 / view.k;
+  ctx.font = `${fs}px -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif`;
   ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  const showAll = view.k > 1.9;
   const placed = [];
   const wants = nodes.filter(p => visible(p) &&
-      ((hoverNode && near.has(p)) || showAll || p.deg >= 4))
-    .sort((a, b) => (near.has(b) - near.has(a)) || (b.deg - a.deg));
+      ((hoverNode && near.has(p)) || showAll || p.deg >= 16))
+    .sort((x, y) => (near.has(y) - near.has(x)) || (y.deg - x.deg));
   for (const p of wants) {
     const txt = nameOf(p.node);
-    const w = ctx.measureText(txt).width, x = p.x, y = p.y + p.r + 3 / view.k;
-    const box = {x0: x - w / 2, x1: x + w / 2, y0: y, y1: y + fs};
-    // skip a label that would sit on top of one already drawn
+    const tw = ctx.measureText(txt).width, x = p.x, y = p.y + p.r + 2.5 / view.k;
+    const box = {x0: x - tw / 2, x1: x + tw / 2, y0: y, y1: y + fs};
     if (placed.some(q => box.x0 < q.x1 && box.x1 > q.x0 && box.y0 < q.y1 && box.y1 > q.y0)) continue;
     placed.push(box);
-    ctx.globalAlpha = hoverNode && !near.has(p) ? 0.18 : 0.92;
+    ctx.globalAlpha = hoverNode && !near.has(p) ? 0.14 : 0.9;
     ctx.fillStyle = ink;
     ctx.fillText(txt, x, y);
   }
@@ -611,11 +653,11 @@ function fitGraph() {
   if (!vis.length || !w) return;
   let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
   for (const p of vis) {
-    x0 = Math.min(x0, p.x - p.r); x1 = Math.max(x1, p.x + p.r);
-    y0 = Math.min(y0, p.y - p.r); y1 = Math.max(y1, p.y + p.r);
+    x0 = Math.min(x0, p.x); x1 = Math.max(x1, p.x);
+    y0 = Math.min(y0, p.y); y1 = Math.max(y1, p.y);
   }
-  const pad = 48;
-  view.k = Math.min(1.9, Math.max(0.3,
+  const pad = 56;
+  view.k = Math.min(1.6, Math.max(0.22,
     Math.min((w - pad * 2) / Math.max(1, x1 - x0), (h - pad * 2) / Math.max(1, y1 - y0))));
   view.x = -((x0 + x1) / 2) * view.k;
   view.y = -((y0 + y1) / 2) * view.k;
@@ -624,9 +666,8 @@ function fitGraph() {
 let settleTicks = 0;
 function graphLoop() {
   if (document.getElementById('graph-stage').style.display === 'none') return;
-  tick(); 
-  // fit once the layout has taken shape, and keep it framed while it is still moving
-  if (++settleTicks < 220 && settleTicks % 12 === 0 && !dragNode && !panning) fitGraph();
+  tick();
+  if (++settleTicks < 300 && settleTicks % 15 === 0 && !dragNode && !panning) fitGraph();
   drawGraph();
   requestAnimationFrame(graphLoop);
 }
@@ -637,7 +678,7 @@ function toWorld(ev) {
           y: (ev.clientY - b.top - b.height / 2 - view.y) / view.k};
 }
 function pick(pt) {
-  let best = null, bd = 18 / view.k;
+  let best = null, bd = 14 / view.k;
   for (const p of G.nodes) {
     if (!visible(p)) continue;
     const d = Math.hypot(p.x - pt.x, p.y - pt.y);
@@ -650,7 +691,7 @@ function wireGraph() {
   const cv = document.getElementById('graph');
   cv.onmousemove = ev => {
     const pt = toWorld(ev);
-    if (dragNode) { dragNode.x = pt.x; dragNode.y = pt.y; G.alpha = Math.max(G.alpha, 0.35); return; }
+    if (dragNode) { dragNode.x = pt.x; dragNode.y = pt.y; G.alpha = Math.max(G.alpha, 0.3); return; }
     if (panning && last) { view.x += ev.clientX - last.x; view.y += ev.clientY - last.y; last = {x: ev.clientX, y: ev.clientY}; return; }
     hoverNode = pick(pt);
     cv.style.cursor = hoverNode ? 'pointer' : 'grab';
@@ -671,8 +712,7 @@ function wireGraph() {
   };
   cv.onwheel = ev => {
     ev.preventDefault();
-    const k = Math.min(4, Math.max(0.35, view.k * (ev.deltaY < 0 ? 1.12 : 0.89)));
-    view.k = k;
+    view.k = Math.min(5, Math.max(0.18, view.k * (ev.deltaY < 0 ? 1.12 : 0.89)));
   };
 }
 
@@ -680,36 +720,33 @@ function renderLegend() {
   const box = document.getElementById('graph-legend');
   box.innerHTML = '';
   const counts = {};
-  for (const p of G.nodes) counts[p.type] = (counts[p.type] || 0) + 1;
-  for (const ty of Object.keys(TYPE_COLOR)) {
-    if (!counts[ty]) continue;
-    const row = el('div', 'lg' + (hiddenTypes.has(ty) ? ' off' : ''));
-    const sw = el('span', 'sw'); sw.style.background = TYPE_COLOR[ty];
+  for (const p of G.nodes) counts[p.g] = (counts[p.g] || 0) + 1;
+  for (const [key, label, color] of GROUPS) {
+    if (!counts[key]) continue;
+    const row = el('div', 'lg' + (hiddenGroups.has(key) ? ' off' : ''));
+    const sw = el('span', 'sw'); sw.style.background = color;
     row.appendChild(sw);
-    row.appendChild(el('span', '', `${TYPE_LABEL[LANG][ty]} · ${counts[ty]}`));
+    row.appendChild(el('span', '', `${label} · ${counts[key]}`));
     row.onclick = () => {
-      hiddenTypes.has(ty) ? hiddenTypes.delete(ty) : hiddenTypes.add(ty);
-      G.alpha = 0.7; renderLegend();
+      hiddenGroups.has(key) ? hiddenGroups.delete(key) : hiddenGroups.add(key);
+      G.alpha = 0.6; settleTicks = 0; renderLegend();
     };
     box.appendChild(row);
   }
-  box.appendChild(el('div', 'cap', t_('legendCap')));
-  document.getElementById('graph-hint').textContent = t_('graphHint');
 }
 
+// ── top bar ──────────────────────────────────────────────────────────────────
 let VIEW = store.get('ibrain.view', 'graph');   // graph | concepts
 
 function setView(v) {
   VIEW = v; store.set('ibrain.view', v);
   const g = document.getElementById('graph-stage'), l = document.getElementById('layout');
   g.style.display = v === 'graph' ? '' : 'none';
-  l.style.display = v === 'graph' ? 'none' : '';
-  document.getElementById('scope').style.display = v === 'graph' ? 'none' : '';
+  l.style.display = v === 'graph' ? 'none' : 'flex';
   renderTopBar();
   if (v === 'graph') { G.alpha = Math.max(G.alpha, 0.5); settleTicks = 0; renderLegend(); requestAnimationFrame(graphLoop); }
 }
 
-// ── top bar ──────────────────────────────────────────────────────────────────
 function segButton(container, key, label, active, onPick) {
   const b = el('button', active ? 'on' : '', label);
   b.onclick = () => onPick(key);
@@ -717,95 +754,103 @@ function segButton(container, key, label, active, onPick) {
 }
 
 function renderTopBar() {
-  document.documentElement.lang = LANG === 'en' ? 'en' : 'zh-Hans';
   document.getElementById('tagline').textContent = t_('tagline');
-
   const vsel = document.getElementById('view');
   vsel.innerHTML = '';
   for (const [k, lbl] of [['graph', t_('graph')], ['concepts', t_('concepts')]])
     segButton(vsel, k, lbl, VIEW === k, setView);
-
-  const scope = document.getElementById('scope');
-  scope.innerHTML = '';
-  for (const [k, lbl] of [['all', t_('all')], ['core', t_('core')], ['extended', t_('extended')]])
-    segButton(scope, k, lbl, SCOPE === k, k => { SCOPE = k; store.set(SCOPE_KEY, k); renderTopBar(); renderPath(); });
-
-  const lang = document.getElementById('lang');
-  lang.innerHTML = '';
-  for (const [k, lbl] of [['en', 'EN'], ['zh', '中文']])
-    segButton(lang, k, lbl, LANG === k, k => {
-      LANG = k; store.set(LANG_KEY, k);
-      renderTopBar(); renderPath(); renderLegend();
-      const open = document.querySelector('.quest.active');
-      open ? focusOn(open.dataset.id, false) : renderEmptyFocus();
-    });
 }
 
-// ── chapters ──
+// ── chapters ─────────────────────────────────────────────────────────────────
+// One numbering scheme, one meaning: position within the chapter. Extended
+// concepts continue the same count rather than sitting numberless beside it.
+// Chapter diagrams and exercises live in the reading pane, not the nav rail.
+const CH_POS = {};                     // concept id → "chapter.index"
+const CH_INDEX = {};                   // concept id → index within its chapter
+DATA.chapters.forEach(ch => {
+  [...ch.concepts, ...ch.side].forEach((cid, i) => {
+    CH_INDEX[cid] = i + 1;
+    CH_POS[cid] = `${ch.n}.${i + 1}`;
+  });
+});
+const expanded = new Set();
+
 function renderPath() {
   const main = document.getElementById('path');
   main.innerHTML = '';
   for (const ch of DATA.chapters) {
-    const card = el('section', 'chapter');
-    card.dataset.ch = ch.n;
+    const sec = el('section', 'chapter');
+    sec.dataset.ch = ch.n;
     const head = el('div', 'ch-head');
-    head.appendChild(el('span', 'ch-title', esc(LANG === 'en' && ch.titleEn ? ch.titleEn : ch.title)));
-    const shown = (SCOPE === 'extended' ? 0 : ch.concepts.length) + (SCOPE === 'core' ? 0 : ch.side.length);
-    head.appendChild(el('span', 'ch-prog', String(shown)));
-    card.appendChild(head);
-    if (ch.question) card.appendChild(el('div', 'ch-q', esc(ch.question)));
-    if (ch.svg) {
-      const d = el('details', 'fold');
-      d.open = true;
-      d.appendChild(el('summary', '', '🗺 机制图'));
-      const box = el('div', 'ch-svg');
-      box.innerHTML = ch.svg;  // build-time trusted asset
-      d.appendChild(box);
-      card.appendChild(d);
-    }
+    head.appendChild(el('span', 'ch-title', esc(ch.title)));
+    head.appendChild(el('span', 'ch-count', `${ch.concepts.length + ch.side.length} 个概念`));
+    sec.appendChild(head);
+    if (ch.question) sec.appendChild(el('div', 'ch-q', esc(ch.question)));
 
-    // One list, filtered by scope. Core-path entries keep their reading-order number;
-    // extended entries are the same kind of thing without one — not a lower tier.
-    const ids = [];
-    if (SCOPE !== 'extended') ids.push(...ch.concepts);
-    if (SCOPE !== 'core') ids.push(...ch.side);
-    if (ids.length) {
-      const list = el('div', 'quests');
-      for (const cid of ids) {
-        const n = byId.get(cid);
-        if (!n) continue;
-        const q = el('div', 'quest' + (isCore(cid) ? '' : ' ext'));
-        q.dataset.id = cid;
-        q.appendChild(el('span', 'num', isCore(cid) ? ORDER[cid] : ''));
-        q.appendChild(el('span', 'name', esc(nameOf(n))));
-        if (subOf(n)) q.appendChild(el('span', 'en', esc(subOf(n))));
-        q.onclick = () => focusOn(cid);
-        list.appendChild(q);
-      }
-      card.appendChild(list);
-    }
+    const list = el('div', 'quests');
+    const row = cid => {
+      const n = byId.get(cid);
+      if (!n) return null;
+      const q = el('div', 'quest' + (isCore(cid) ? '' : ' ext'));
+      q.dataset.id = cid;
+      q.appendChild(el('span', 'num', String(CH_INDEX[cid])));
+      q.appendChild(el('span', 'name', esc(nameOf(n))));
+      q.onclick = () => focusOn(cid);
+      return q;
+    };
+    for (const cid of ch.concepts) { const r = row(cid); if (r) list.appendChild(r); }
+    sec.appendChild(list);
 
-    if (ch.exercises.length) {
-      const d = el('details', 'fold');
-      d.appendChild(el('summary', '', `${t_('exercises')} ×${ch.exercises.length}`));
-      for (const ex of ch.exercises) {
-        const box = el('div', 'ex');
-        box.appendChild(el('div', 'ex-t', `<span class="ex-kind">${esc(ex.kind)}</span>${esc(ex.title)}`));
-        if (ex.body) box.appendChild(el('div', 'ex-body', esc(ex.body)));
-        if (ex.answer) {
-          const ans = el('div', 'ans');
-          const b = el('button', '', t_('showAnswer'));
-          b.onclick = () => { ans.classList.toggle('open'); b.textContent = ans.classList.contains('open') ? t_('hide') : t_('showAnswer'); };
-          ans.appendChild(b);
-          ans.appendChild(el('div', 'ans-body', esc(ex.answer)));
-          box.appendChild(ans);
-        }
-        d.appendChild(box);
-      }
-      card.appendChild(d);
+    if (ch.side.length) {
+      const extra = el('div', 'quests ext-list');
+      for (const cid of ch.side) { const r = row(cid); if (r) extra.appendChild(r); }
+      const open = expanded.has(ch.n);
+      extra.style.display = open ? '' : 'none';
+      const btn = el('button', 'more' + (open ? ' open' : ''),
+        `<span class="chev">▾</span>${open ? t_('less') : t_('more')} (${ch.side.length})`);
+      btn.onclick = () => {
+        expanded.has(ch.n) ? expanded.delete(ch.n) : expanded.add(ch.n);
+        renderPath();
+      };
+      sec.appendChild(btn);
+      sec.appendChild(extra);
     }
-    main.appendChild(card);
+    main.appendChild(sec);
   }
+}
+
+// Chapter-level material (mechanism diagram, exercises) belongs in the reading
+// pane with the concept, not stacked into the navigation rail.
+function chapterExtras(ch) {
+  const frag = document.createDocumentFragment();
+  if (ch.svg) {
+    const d = el('details', 'fold');
+    d.appendChild(el('summary', '', t_('diagram')));
+    const box = el('div', 'ch-svg');
+    box.innerHTML = ch.svg;  // build-time trusted asset
+    d.appendChild(box);
+    frag.appendChild(d);
+  }
+  if (ch.exercises && ch.exercises.length) {
+    const d = el('details', 'fold');
+    d.appendChild(el('summary', '', `${t_('exercises')} ×${ch.exercises.length}`));
+    for (const ex of ch.exercises) {
+      const box = el('div', 'ex');
+      box.appendChild(el('div', 'ex-t', `<span class="ex-kind">${esc(ex.kind)}</span>${esc(ex.title)}`));
+      if (ex.body) box.appendChild(el('div', 'ex-body', esc(ex.body)));
+      if (ex.answer) {
+        const ans = el('div', 'ans');
+        const b = el('button', '', t_('showAnswer'));
+        b.onclick = () => { ans.classList.toggle('open'); b.textContent = ans.classList.contains('open') ? t_('hide') : t_('showAnswer'); };
+        ans.appendChild(b);
+        ans.appendChild(el('div', 'ans-body', esc(ex.answer)));
+        box.appendChild(ans);
+      }
+      d.appendChild(box);
+    }
+    frag.appendChild(d);
+  }
+  return frag;
 }
 
 // ── focus detail (everything inline) ──
@@ -838,10 +883,14 @@ function focusEntity(id) {
   const n = byId.get(id);
   const box = document.getElementById('focus');
   box.innerHTML = '';
+  const head = el('div', 'f-head');
+  const inner = el('div', 'inner');
+  inner.appendChild(el('div', 'f-where', `<span class="cur">${esc(GROUP_LABEL[groupOf(n)] || n.type)}</span>`));
+  inner.appendChild(el('h1', 'f-title', esc(nameOf(n))));
+  if (subOf(n)) inner.appendChild(el('div', 'f-en', esc(subOf(n))));
+  head.appendChild(inner);
+  box.appendChild(head);
   const card = el('div', 'card');
-  card.appendChild(el('div', 'f-where', esc(TYPE_LABEL[LANG][n.type] || n.type)));
-  card.appendChild(el('h2', 'f-title', esc(nameOf(n))));
-  if (subOf(n)) card.appendChild(el('div', 'f-en', esc(subOf(n))));
   if (n.summary) {
     const s = el('section', 'f-sec');
     s.appendChild(el('div', 'mech', md(n.summary)));
@@ -859,7 +908,7 @@ function focusEntity(id) {
     s.appendChild(el('h4', '', t_('relatedEntities')));
     const line = (other, verb, note, forward) => {
       const row = el('div', 'rel-row');
-      const vb = (REL_LABEL[LANG] || {})[verb] || verb;
+      const vb = REL_LABEL[verb] || verb;
       row.appendChild(el('span', 'rel-verb', esc(forward ? vb : '← ' + vb)));
       const pill = pillFor(other);
       if (pill) row.appendChild(pill);
@@ -887,19 +936,19 @@ function focusOn(id, push = true) {
   box.innerHTML = '';
   const card = el('div', 'card');
   const ch = chapterOf[id];
-  const chTitle = esc(ch ? (LANG === 'en' && ch.titleEn ? ch.titleEn : ch.title) : '');
-  const where = isCore(id)
-    ? `<span class="cur">${t_('corePath')} ${ORDER[id]}/${TOTAL}</span> · ${chTitle}`
-    : `${t_('extended')} · ${chTitle}`;
-  card.appendChild(el('div', 'f-where', where));
-  card.appendChild(el('h2', 'f-title', esc(zh(n))));
-  if (en(n)) card.appendChild(el('div', 'f-en', esc(en(n))));
 
-  const zhContent = n.content || {}, enContent = n.contentEn || {};
-  const useEn = LANG === 'en' && n.hasEn;
-  const content = useEn ? enContent : zhContent;
-  if (LANG === 'en' && !n.hasEn) card.appendChild(el('div', 'f-fallback', esc(t_('noEn'))));
-  const lesson = (DATA.lessons || {})[id];
+  // One position label, one meaning: which chapter, and which entry within it.
+  const head = el('div', 'f-head');
+  const inner = el('div', 'inner');
+  inner.appendChild(el('div', 'f-where',
+    `<span class="cur">${esc(ch ? ch.title : '')}</span>` +
+    `<span class="sep">·</span><span>第 ${CH_INDEX[id]} 条 / 共 ${ch ? ch.concepts.length + ch.side.length : '?'} 条</span>`));
+  inner.appendChild(el('h1', 'f-title', esc(nameOf(n))));
+  if (subOf(n)) inner.appendChild(el('div', 'f-en', esc(subOf(n))));
+  head.appendChild(inner);
+  box.appendChild(head);
+
+  const content = n.content || {};
   const addTxt = (title, txt) => {
     if (!txt) return;
     const s = el('div', 'sec');
@@ -909,47 +958,12 @@ function focusOn(id, push = true) {
   };
   const bullets = txt => (txt || '').split('\n').map(l => l.replace(/^- /, '').trim()).filter(Boolean);
 
-  if (lesson) {
-    // teaching order: hook → compressed card → mechanism → traps
-    if (lesson.hook) card.appendChild(el('div', 'hook', esc(lesson.hook)));
-    if (lesson.card) {
-      const zc = el('div', 'zcard');
-      for (const line of bullets(lesson.card)) {
-        const m = line.match(/^(本质|数字|实例)[::]\s*(.*)$/s);
-        const row = el('div', 'zrow');
-        row.appendChild(el('span', 'zk', m ? esc(m[1]) : '·'));
-        row.appendChild(el('span', '', esc(m ? m[2] : line)));
-        zc.appendChild(row);
-      }
-      card.appendChild(zc);
-    }
-    if (lesson.mechanism) {
-      const s = el('div', 'sec');
-      s.appendChild(el('h4', '', '⚙ 怎么运作'));
-      s.appendChild(el('div', 'mech', esc(lesson.mechanism)));
-      card.appendChild(s);
-    }
-    if (lesson.traps) {
-      const s = el('div', 'sec');
-      s.appendChild(el('h4', '', '⚠ 你会在哪里错'));
-      for (const t of bullets(lesson.traps)) {
-        const row = el('div', 'trap');
-        row.appendChild(el('span', 'tx', '✗'));
-        row.appendChild(el('span', '', esc(t.replace(/^✗\s*/, ''))));
-        s.appendChild(row);
-      }
-      card.appendChild(s);
-    }
-  } else {
-    // side quests fall back to the library page content
-    const def = useEn ? (enContent.definition || '') : n.definition;
-    if (def) card.appendChild(el('div', 'f-def', md(def)));
-    addTxt('为什么重要', content.why);
-    addTxt('机制怎么运转', content.how);
-    addTxt('例子', content.example);
-    addTxt('常见误解', content.misconceptions);
-    addTxt('实战里怎么用', content.practice);
-  }
+  if (n.definition) card.appendChild(el('div', 'f-def', md(n.definition)));
+  addTxt(t_('why'), content.why);
+  addTxt(t_('how'), content.how);
+  addTxt(t_('example'), content.example);
+  addTxt(t_('misconceptions'), content.misconceptions);
+  addTxt(t_('practice'), content.practice);
 
   const pres = preOf.get(id) || [];
   if (pres.length) {
@@ -1004,41 +1018,6 @@ function focusOn(id, push = true) {
     card.appendChild(s);
   }
 
-  if (lesson && lesson.ammo) {
-    const s = el('div', 'sec');
-    s.appendChild(el('h4', '', '🎤 对话弹药'));
-    let box = null;
-    for (const line of bullets(lesson.ammo)) {
-      const m = line.match(/^EN[::]\s*(.*)$/s);
-      if (m) {
-        box = el('div', 'ammo-box');
-        box.appendChild(el('div', 'en', esc(m[1])));
-        s.appendChild(box);
-      } else {
-        const use = line.replace(/^用法[::]\s*/, '');
-        (box || s).appendChild(el('div', 'use', '· ' + esc(use)));
-      }
-    }
-    card.appendChild(s);
-  }
-  if (lesson && lesson.drill) {
-    const s = el('div', 'sec');
-    s.appendChild(el('h4', '', '✏ 演算'));
-    const qm = lesson.drill.match(/Q[::]\s*([\s\S]*?)\nA[::]\s*([\s\S]*)/);
-    if (qm) {
-      const q = el('div', 'qa');
-      q.appendChild(el('div', 'q', esc(qm[1].trim())));
-      const b = el('button', '', '看答案');
-      const a = el('div', 'a', esc(qm[2].trim()));
-      b.onclick = () => { q.classList.toggle('open'); b.textContent = q.classList.contains('open') ? '收起' : '看答案'; };
-      q.appendChild(b); q.appendChild(a);
-      s.appendChild(q);
-    } else {
-      s.appendChild(el('div', 'mech', esc(lesson.drill)));
-    }
-    card.appendChild(s);
-  }
-
   if ((content.recall || []).length) {
     const s = el('div', 'sec');
     s.appendChild(el('h4', '', '🗣 盲答'));
@@ -1065,6 +1044,8 @@ function focusOn(id, push = true) {
     card.appendChild(s);
   }
 
+  if (ch) card.appendChild(chapterExtras(ch));
+
   box.appendChild(card);
   box.scrollTop = 0;
 }
@@ -1072,7 +1053,7 @@ function focusOn(id, push = true) {
 function renderEmptyFocus() {
   const box = document.getElementById('focus');
   box.innerHTML = '';
-  box.appendChild(el('div', 'card', `<div class="f-where">${esc(t_('empty'))}</div>`));
+  box.appendChild(el('div', 'f-empty', esc(t_('empty'))));
 }
 
 G = buildGraph();

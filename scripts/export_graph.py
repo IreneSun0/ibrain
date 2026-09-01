@@ -81,32 +81,6 @@ _PRACTICE_FALLBACK = os.environ.get("IBRAIN_PRACTICE_SECTION", "")
 RECALL_RE = re.compile(r"- Q: (.*?)\n\s+A: (.*?)(?=\n- Q:|\n\n|\Z)", re.DOTALL)
 
 
-EN_HEADINGS = {
-    "definition": "Definition",
-    "why": "Why It Matters",
-    "how": "How It Works",
-    "example": "Concrete Example",
-    "misconceptions": "Common Misconceptions",
-    "practice": "In Practice",
-}
-
-
-def english_body(path: Path) -> str:
-    """A concept's English text lives beside it as `<slug>.en.md`, so that reading the
-    vault on GitHub gives you one language at a time rather than interleaved prose."""
-    en = path.parent / (path.stem + ".en.md")
-    return en.read_text(encoding="utf-8") if en.exists() else ""
-
-
-def concept_content_en(body: str) -> dict:
-    if not body:
-        return {}
-    out = {k: _section(body, h, 1600) for k, h in EN_HEADINGS.items()}
-    out["recall"] = [{"q": " ".join(q.split()), "a": " ".join(a.split())}
-                     for q, a in RECALL_RE.findall(_section(body, "Active Recall", 2500))]
-    return out
-
-
 def entity_summary(body: str) -> str:
     """First substantive paragraph of an entity page, for the graph detail panel."""
     for head in ("Executive Summary", "Key Facts", "Mandate"):
@@ -202,9 +176,6 @@ def build(public_only: bool = False, max_confidentiality: str = "internal") -> d
             nodes[-1]["relations"] = crels
             nodes[-1]["definition"] = definition_excerpt(n.body)
             nodes[-1]["content"] = concept_content(n.body)
-            en = english_body(n.path)
-            nodes[-1]["contentEn"] = concept_content_en(en)
-            nodes[-1]["hasEn"] = bool(en)
             nodes[-1]["resources"] = [
                 {"title": src_index[s]["title"], "url": src_index[s]["url"]}
                 for s in srcs if s in src_index and src_index[s]["url"]]
