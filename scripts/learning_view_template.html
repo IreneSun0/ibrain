@@ -645,13 +645,6 @@ function drawGraph() {
   if (cv.width !== w * dpr || cv.height !== h * dpr) { cv.width = w * dpr; cv.height = h * dpr; }
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, w, h);
-  const vig = ctx.createRadialGradient(w / 2, h / 2, Math.min(w, h) * 0.18,
-                                       w / 2, h / 2, Math.max(w, h) * 0.78);
-  vig.addColorStop(0, 'rgba(255,255,255,0.028)');
-  vig.addColorStop(0.55, 'rgba(255,255,255,0.008)');
-  vig.addColorStop(1, 'rgba(0,0,0,0.30)');
-  ctx.fillStyle = vig;
-  ctx.fillRect(0, 0, w, h);
   ctx.save();
   ctx.translate(w / 2 + view.x, h / 2 + view.y);
   ctx.scale(view.k, view.k);
