@@ -12,7 +12,7 @@
 | `make refresh` | weekly bundle: indexes + study + freshness + orphans + duplicate entities |
 | `make ingest` | run the importers (idempotent) |
 | `make secretscan` | scan for credential-shaped content |
-| `make console` / `make learning-view` | rebuild the graph console / the course view |
+| `make learning-view` | rebuild the site into `dist/` (see `make site` for `docs/`) |
 | `make publish SOURCE=...` | rebuild `vault/` from a private source vault |
 | `make site` | build `docs/` for GitHub Pages |
 | `make test` | run the pytest suite |

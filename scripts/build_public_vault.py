@@ -301,7 +301,7 @@ def main() -> int:
     # non-markdown assets inside published trees (schema json, curriculum yaml…)
     assets = 0
     for p in sorted(root.rglob("*")):
-        if p.is_dir() or p.suffix == ".md":
+        if p.is_dir() or p.suffix in (".md", ".base", ".canvas"):
             continue
         rel = p.relative_to(root)
         if rel.parts[0].startswith(".") or rel.parts[0] in EXCLUDE_DIRS:

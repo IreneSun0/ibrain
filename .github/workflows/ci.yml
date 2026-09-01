@@ -41,4 +41,3 @@ jobs:
       - name: Site builds
         run: |
           python scripts/build_learning_view.py --out /tmp/index.html
-          python scripts/build_console.py --public-only --max-confidentiality public-source

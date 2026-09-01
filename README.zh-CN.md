@@ -1,12 +1,11 @@
 <h1 align="center">iBrain</h1>
 
 <p align="center">
-  <b>一个每条断言都带着证据等级的预测市场知识库 ——<br>以及那套不允许它含糊过去的引擎。</b>
+  <b>一个每条断言都带着证据等级的加密市场结构知识库 ——<br>以及那套不允许它含糊过去的引擎。</b>
 </p>
 
 <p align="center">
   <a href="https://irenesun0.github.io/ibrain"><b>📖 阅读知识库</b></a> ·
-  <a href="https://irenesun0.github.io/ibrain/graph.html">🕸 探索关系图</a> ·
   <a href="README.md">🇬🇧 English</a>
 </p>
 
@@ -18,7 +17,9 @@
 
 ## 一、知识库 — 308 篇预测市场基础设施笔记
 
-覆盖事件市场真正怎么运转：订单簿、做市、清算与结算、预言机与裁决、风险分类、场所、以及运营它们的人。
+覆盖加密市场究竟是怎么搭起来的：订单簿与做市、清算与结算、链层、衍生品与保证金、托管与稳定币、机构风险词汇、按辖区看的监管 —— 以及支撑这一切运转的场馆、基金、协议和人。
+
+事件与预测市场是其中挖得最深的一条线（24 个概念 + 3 个裁决/预言机/争议的实证案例），因为结算问题在那里最难 —— 但它是这张更大的地图里的一个纵向，不是全部。
 
 |  | 数量 |
 |---|---:|
@@ -35,7 +36,7 @@
 
 ## 二、引擎 — 你可以直接拿走复用的部分
 
-24 个 Python 脚本、57 个测试、一个写入时校验 hook、6 个 Claude Code subagent 和 11 个 skill。指向你自己的 vault，同一套纪律就作用在你的领域上。
+22 个 Python 脚本、57 个测试、一个写入时校验 hook、6 个 Claude Code subagent 和 11 个 skill。指向你自己的 vault，同一套纪律就作用在你的领域上。
 
 ```bash
 git clone https://github.com/IreneSun0/ibrain && cd ibrain
@@ -89,7 +90,7 @@ docs/             构建出的站点（GitHub Pages）
 | `check_evidence_coverage` · `check_source_freshness` · `find_orphan_notes` · `detect_duplicate_entities` | 软审计 —— `make health` |
 | `ingest_xlsx` · `ingest_chat_export` · `normalize_wikilinks` | 幂等导入器 |
 | `generate_indexes` · `generate_mocs` · `generate_study_queue` | 派生页面 |
-| `export_graph` · `build_console` · `build_learning_view` | 图谱与站点 |
+| `export_graph` · `build_learning_view` | 图谱与站点 |
 | `build_public_vault` · `secret_scan` | 发布闸门 |
 
 ## 拿去做你自己领域的知识库

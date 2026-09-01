@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>iBrain — a prediction-market knowledge base</title>
+<title>iBrain — 加密市场结构知识库</title>
 <style>
   :root{
     --bg:#f6f7f9; --panel:#ffffff; --ink:#1c2330; --muted:#68738a; --line:#e3e7ee;
@@ -38,28 +38,8 @@
     padding:4px 11px;border-radius:6px;cursor:pointer;white-space:nowrap}
   .seg button:hover{color:var(--ink)}
   .seg button.on{background:var(--panel);color:var(--ink);box-shadow:var(--shadow)}
-  .seg.lang button{font-size:11.5px;padding:4px 9px}
-
-  .training{margin:14px 20px 0;padding:12px 16px;background:var(--panel);border:1px solid var(--line);
-    border-radius:12px;box-shadow:var(--shadow);display:flex;gap:22px;align-items:center;flex-wrap:wrap}
-  .training .count{font-size:13px;line-height:1.6}
-  .training .count b{font-size:17px}
-  .training .bars{flex:1;min-width:240px;display:flex;flex-direction:column;gap:6px}
-  .sbar{display:flex;align-items:center;gap:8px;font-size:12px}
-  .sbar .lbl{width:70px;color:var(--muted);white-space:nowrap}
-  .sbar .track{flex:1;height:9px;background:var(--pill);border-radius:5px;position:relative;overflow:hidden}
-  .sbar .fill{height:100%;border-radius:5px;background:var(--accent)}
-  .sbar .goal{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--warn)}
-  .sbar .val{width:64px;text-align:right;font-variant-numeric:tabular-nums}
-  .training .now{font-size:12px;color:var(--muted)}
-  .training .now b{color:var(--ink)}
-
-  .nextup{margin:14px 20px 0;padding:12px 16px;background:var(--panel);border:1px solid var(--line);
-    border-radius:12px;box-shadow:var(--shadow);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-  .nextup .big{font-size:14px;background:var(--accent);color:#fff;border:none;border-radius:10px;
+  .seg.lang button{font-size:11.5px;padding:4px 9px}  .training .count{font-size:13px;line-height:1.6}  .training .bars{flex:1;min-width:240px;display:flex;flex-direction:column;gap:6px}  .sbar .lbl{width:70px;color:var(--muted);white-space:nowrap}  .sbar .fill{height:100%;border-radius:5px;background:var(--accent)}  .sbar .val{width:64px;text-align:right;font-variant-numeric:tabular-nums}  .training .now b{color:var(--ink)}  .nextup .big{font-size:14px;background:var(--accent);color:#fff;border:none;border-radius:10px;
     padding:8px 16px;cursor:pointer;font-weight:600}
-  .nextup .hint{color:var(--muted);font-size:12px}
-
   /* Two jobs, two surfaces: a quiet navigation rail, and one continuous reading
      page. Neither is a card competing with the other. */
   .layout{display:flex;height:calc(100vh - 54px);overflow:hidden}
@@ -96,12 +76,8 @@
 
   details.fold{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
   details.fold summary{cursor:pointer;color:var(--muted);font-size:12.5px;user-select:none}
-  details.fold summary:hover{color:var(--ink)}
-  .side-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-  .spill{border:1px dashed var(--line);background:transparent;border-radius:14px;padding:3px 10px;
-    font-size:12px;color:var(--muted);cursor:pointer}
-  .spill:hover{background:var(--pill)}
-  .spill.done{border-style:solid;color:var(--done)}
+  details.fold summary:hover{color:var(--ink)}  .spill{border:1px dashed var(--line);background:transparent;border-radius:14px;padding:3px 10px;
+    font-size:12px;color:var(--muted);cursor:pointer}  .spill.done{border-style:solid;color:var(--done)}
 
   .ex{margin-top:8px;border:1px solid var(--line);border-radius:9px;padding:8px 12px}
   .ex .ex-t{font-size:13px;font-weight:600}
@@ -115,8 +91,7 @@
   .ex .ans.open .ans-body{display:block}
 
   .card{max-width:730px;margin:0 auto;padding:26px 34px 90px}
-  .f-head{position:sticky;top:0;z-index:5;background:var(--panel);
-    padding:18px 34px 12px;border-bottom:1px solid var(--line);margin:0 -34px 20px}
+  .f-head{padding:0 0 14px;border-bottom:1px solid var(--line);margin:0 0 22px}
   .f-head .inner{max-width:730px;margin:0 auto}
   .f-empty{max-width:730px;margin:0 auto;padding:80px 34px;color:var(--muted);font-size:13.5px}
   .empty{color:var(--muted);font-size:13px}
@@ -151,24 +126,9 @@
   .qa .q{font-size:13px;font-weight:600}
   .qa .a{display:none;margin-top:6px;font-size:13px;color:var(--muted)}
   .qa.open .a{display:block}
-  .res a{display:block;font-size:13px;margin:2px 0}
-  .foot{margin-top:14px;border-top:1px dashed var(--line);padding-top:8px;font-size:12px;color:var(--muted)}
-  mark{background:transparent;color:var(--accent);font-weight:700}
-
-  /* ── teaching layer ── */
-  .hook{font-size:14px;margin:10px 0;padding:10px 14px;background:var(--def-bg);border-radius:10px;
-    border-left:3px solid var(--warn);line-height:1.75}
-  .zcard{margin:12px 0;padding:12px 14px;border:1.5px solid var(--accent);border-radius:12px;background:var(--accent-soft)}
-  .zcard .zrow{display:flex;gap:8px;font-size:13.5px;padding:3px 0;align-items:flex-start}
-  .zcard .zk{flex:0 0 auto;font-size:11px;color:var(--accent);font-weight:700;border:1px solid var(--accent);
+  .res a{display:block;font-size:13px;margin:2px 0}  mark{background:transparent;color:var(--accent);font-weight:700}  .zcard{margin:12px 0;padding:12px 14px;border:1.5px solid var(--accent);border-radius:12px;background:var(--accent-soft)}  .zcard .zk{flex:0 0 auto;font-size:11px;color:var(--accent);font-weight:700;border:1px solid var(--accent);
     border-radius:5px;padding:0 6px;line-height:1.8;margin-top:1px}
-  .mech{font-size:13.5px;white-space:pre-wrap;line-height:1.8}
-  .trap{display:flex;gap:8px;font-size:13px;padding:5px 0;align-items:flex-start}
-  .trap .tx{flex:0 0 auto;margin-top:1px}
-  .ammo-box{margin:6px 0;padding:10px 12px;border-radius:10px;background:var(--def-bg);border-left:3px solid var(--done)}
-  .ammo-box .en{font-size:13.5px;font-style:italic;line-height:1.7}
-  .ammo-box .use{font-size:12px;color:var(--muted);margin-top:4px}
-  .ch-svg{margin:10px 0 4px}
+  .mech{font-size:13.5px;white-space:pre-wrap;line-height:1.8}  .trap .tx{flex:0 0 auto;margin-top:1px}  .ammo-box .en{font-size:13.5px;font-style:italic;line-height:1.7}  .ch-svg{margin:10px 0 4px}
   .ch-svg svg{max-width:100%;height:auto}
 
   /* ── ecosystem graph ── */
@@ -200,10 +160,6 @@
   .txt code,.mech code{background:var(--pill);border-radius:4px;padding:1px 4px;font-size:.92em}
   .txt pre,.mech pre{background:var(--pill);border-radius:8px;padding:9px 11px;overflow-x:auto;font-size:11.5px;line-height:1.55}
   .txt blockquote,.mech blockquote{margin:6px 0;padding-left:10px;border-left:3px solid var(--line);color:var(--muted)}
-
-  .f-fallback{margin:6px 0 2px;font-size:11.5px;color:var(--muted);
-    border-left:3px solid var(--line);padding-left:9px}
-
   /* nav rail rows: one number, one meaning — position within the chapter */
   .quest .num{width:22px;text-align:right;color:var(--muted);font-size:11px;
     font-variant-numeric:tabular-nums;flex:0 0 auto}
@@ -280,7 +236,7 @@ const store = {
 };
 
 const T = {
-  tagline: '预测市场知识库',
+  tagline: '加密市场结构知识库',
   definition: '定义', why: '为什么重要', how: '怎么运作', example: '例子',
   misconceptions: '常见误解', practice: '实战里怎么用',
   prereq: '先读这些', unlocks: '读懂它之后', relations: '关联', world: '真实世界',

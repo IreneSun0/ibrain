@@ -1,12 +1,11 @@
 <h1 align="center">iBrain</h1>
 
 <p align="center">
-  <b>A prediction-market knowledge base where every claim carries its evidence tier —<br>and the engine that refuses to let that slip.</b>
+  <b>A crypto market-structure knowledge base where every claim carries its<br>evidence tier — and the engine that refuses to let that slip.</b>
 </p>
 
 <p align="center">
   <a href="https://irenesun0.github.io/ibrain"><b>📖 Read the knowledge base</b></a> ·
-  <a href="https://irenesun0.github.io/ibrain/graph.html">🕸 Explore the graph</a> ·
   <a href="README.zh-CN.md">🇨🇳 中文</a>
 </p>
 
@@ -28,9 +27,16 @@ It ships as two things in one repo.
 
 ## 1. The vault — 308 notes on prediction market infrastructure
 
-An interlinked, sourced knowledge base covering how event markets actually work:
-order books, market making, clearing and settlement, oracles and resolution, the
-risk taxonomy, the venues, and the people who run them.
+An interlinked, sourced knowledge base covering how crypto markets are actually
+built: order books and market making, clearing and settlement, the chain layer,
+derivatives and margin, custody and stablecoins, the institutional risk vocabulary,
+regulation by jurisdiction — and the venues, funds, protocols and people that make
+it run.
+
+Event and prediction markets are its deepest thread (24 concepts and three worked
+case studies on resolution, oracles and disputes), because that is where the
+settlement questions get hardest — but they are one vertical inside a wider map,
+not the whole of it.
 
 |  | count |
 |---|---:|
@@ -53,7 +59,7 @@ concepts as a filter rather than a ranking.
 
 ## 2. The engine — the part you can reuse
 
-24 Python scripts, 57 tests, a write-time validation hook, 6 Claude Code
+22 Python scripts, 57 tests, a write-time validation hook, 6 Claude Code
 subagents and 11 skills. Point it at your own vault and it enforces the same
 discipline on your domain.
 
@@ -115,7 +121,7 @@ docs/             the built site (GitHub Pages)
 | `check_evidence_coverage` · `check_source_freshness` · `find_orphan_notes` · `detect_duplicate_entities` | the soft audits — `make health` |
 | `ingest_xlsx` · `ingest_chat_export` · `normalize_wikilinks` | idempotent importers |
 | `generate_indexes` · `generate_mocs` · `generate_study_queue` | derived pages |
-| `export_graph` · `build_console` · `build_learning_view` | the graph and the site |
+| `export_graph` · `build_learning_view` | the graph and the site |
 | `build_public_vault` · `secret_scan` | the publication gate |
 
 ## Fork it for your own domain

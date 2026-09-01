@@ -6,7 +6,7 @@ SOURCE ?=
 PY := .venv/bin/python
 PIP := .venv/bin/pip
 
-.PHONY: bootstrap ingest validate normalize-links health study indexes refresh test secretscan console learning-view score publish site help
+.PHONY: bootstrap ingest validate normalize-links health study indexes refresh test secretscan learning-view score publish site help
 
 help:
 	@echo "make bootstrap   — create venv + install deps"
@@ -18,7 +18,6 @@ help:
 	@echo "make indexes     — regenerate plain-md indexes + MOC auto-blocks + query eval"
 	@echo "make refresh     — indexes + study + freshness (weekly maintenance bundle)"
 	@echo "make secretscan  — scan both repos for credential-shaped content"
-	@echo "make console     — rebuild the visual knowledge console (audit/agent view)"
 	@echo "make learning-view — rebuild Irene 的学习地图 (human view, dist/ibrain-learning.html)"
 	@echo "make test        — run pytest suite"
 	@echo "make publish     — rebuild ./vault from a private vault (SOURCE=...)"
@@ -61,9 +60,6 @@ refresh: indexes study
 secretscan:
 	$(PY) scripts/secret_scan.py
 
-console:
-	$(PY) scripts/build_console.py
-
 learning-view:
 	$(PY) scripts/build_learning_view.py
 
@@ -79,9 +75,7 @@ publish:
 
 site:
 	$(PY) scripts/build_learning_view.py --out docs/index.html
-	$(PY) scripts/build_console.py --public-only --max-confidentiality public-source
-	cp dist/ibrain-console-public.html docs/graph.html
-	@echo "site → docs/index.html + docs/graph.html"
+	@echo "site → docs/index.html"
 
 test:
 	$(PY) -m pytest tests/ -q
