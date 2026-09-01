@@ -238,6 +238,10 @@
     cursor:pointer;font-size:12px;font-weight:600}
   #node-card .nc-x{position:absolute;top:7px;right:9px;background:none;border:0;
     color:var(--muted);cursor:pointer;font-size:14px}
+
+  .ch-svg.top{margin:0 0 20px;padding:12px;background:var(--bg);
+    border:1px solid var(--line);border-radius:10px;overflow-x:auto}
+  .ch-svg.top svg{max-width:100%;height:auto;display:block}
 </style>
 </head>
 <body>
@@ -526,7 +530,11 @@ function buildGraph() {
     const rad = base + Math.pow(deg[i], rk === 1 ? 0.62 : 0.48) * grow;
     return {id: n.id, type: n.type, node: n, deg: deg[i], g, rank: rk,
             x: an.x + Math.cos(a) * R, y: an.y + Math.sin(a) * R,
-            vx: 0, vy: 0, r: Math.min(rad, 17), fixed: false};
+            vx: 0, vy: 0, r: Math.min(rad, 17), fixed: false,
+            ph: (i * 2.399963) % 6.2832,        // own phase
+            f1: 0.7 + (i % 7) * 0.09,           // own frequency
+            f2: 0.6 + (i % 5) * 0.11,
+            amp: 0.30 + (i % 4) * 0.06};
   });
   return {nodes, links, anchors, alpha: 1};
 }
@@ -563,20 +571,27 @@ function tick() {
     const fx = dx / d * f, fy = dy / d * f;
     p.vx += fx; p.vy += fy; q.vx -= fx; q.vy -= fy;
   }
+  TICKS += 0.0055;
   for (const p of nodes) {
     if (!visible(p)) continue;
     const an = anchors[p.g];
     if (an) { p.vx += (an.x - p.x) * 0.020; p.vy += (an.y - p.y) * 0.020; }
     p.vx -= p.x * 0.0016; p.vy -= p.y * 0.0016;
+    // Slow per-node drift, each with its own phase and frequency, so the map keeps
+    // breathing instead of cooling into a still image — and breathes unevenly,
+    // which is what makes it read as alive rather than as an animation loop.
+    p.vx += Math.sin(TICKS * p.f1 + p.ph) * p.amp;
+    p.vy += Math.cos(TICKS * p.f2 + p.ph * 1.7) * p.amp;
     if (p.fixed) { p.vx = p.vy = 0; continue; }
     const sp = Math.hypot(p.vx, p.vy), CAP = 16;
     if (sp > CAP) { p.vx = p.vx / sp * CAP; p.vy = p.vy / sp * CAP; }
     p.x += p.vx * a; p.y += p.vy * a;
     p.vx *= 0.80; p.vy *= 0.80;
   }
-  G.alpha = Math.max(0.10, G.alpha * 0.997);
+  G.alpha = Math.max(0.40, G.alpha * 0.997);     // floor keeps the drift visible
 }
 
+let TICKS = 0;
 const view = {k: 1, x: 0, y: 0};
 let hoverNode = null, dragNode = null, panning = false, last = null;
 
@@ -634,38 +649,66 @@ function drawGraph() {
     }
   }
 
-  const TONE = {rel: '#c8d2df', pre: '#7fa8d8', sem: '#9aa7b6', weak: '#6d7784'};
+  // Edges are gentle arcs drawn with additive blending: where many run together they
+  // brighten into visible corridors, so a dense graph reads as structure. Uniform
+  // straight lines at one alpha read as noise, which is what this was before.
+  const TONE = {rel: '#d6e2f2', pre: '#7fb6ee', sem: '#93a6bd', weak: '#5f6b79'};
+  ctx.lineCap = 'round';
+  ctx.globalCompositeOperation = 'lighter';
   for (const kind of EDGE_ORDER) {
     const spec = EDGE_RANK[kind] || EDGE_RANK.link;
     for (const l of links) {
       if (l.kind !== kind) continue;
-      const p = nodes[l.s], q = nodes[l.t];
-      if (!visible(p) || !visible(q)) continue;
-      const lit = hoverNode && (p === hoverNode || q === hoverNode);
+      const u = nodes[l.s], v = nodes[l.t];
+      if (!visible(u) || !visible(v)) continue;
+      const lit = hoverNode && (u === hoverNode || v === hoverNode);
       ctx.strokeStyle = lit ? GROUP_COLOR[hoverNode.g] : TONE[spec.tone];
-      ctx.globalAlpha = lit ? 0.85 : (hoverNode ? 0.025 : spec.a);
-      ctx.lineWidth = (lit ? Math.max(1.5, spec.w) : spec.w) / view.k;
-      ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+      ctx.globalAlpha = lit ? 0.9 : (hoverNode ? 0.02 : spec.a);
+      ctx.lineWidth = (lit ? Math.max(1.6, spec.w) : spec.w) / view.k;
+      const dx = v.x - u.x, dy = v.y - u.y;
+      const mx = (u.x + v.x) / 2, my = (u.y + v.y) / 2;
+      const bow = 0.13 * (l.s % 2 ? 1 : -1);        // stable per-edge curvature
+      ctx.beginPath();
+      ctx.moveTo(u.x, u.y);
+      ctx.quadraticCurveTo(mx - dy * bow, my + dx * bow, v.x, v.y);
+      ctx.stroke();
     }
   }
+  ctx.globalCompositeOperation = 'source-over';
 
+  // Nodes glow: a soft additive halo plus a bright core. On a dark ground this is
+  // what separates a living map from a scatter of flat dots.
   for (const p of nodes) {
     if (!visible(p)) continue;
-    ctx.globalAlpha = hoverNode && !near.has(p) ? 0.10 : 1;
-    ctx.fillStyle = GROUP_COLOR[p.g] || '#888';
-    ctx.globalAlpha *= p.rank === 3 ? 0.55 : 1;      // detail layer recedes
+    const dimmed = hoverNode && !near.has(p);
+    const col = GROUP_COLOR[p.g] || '#888';
+    const alpha = dimmed ? 0.09 : (p.rank === 3 ? 0.62 : 1);
+
+    if (!dimmed && p.r > 3.2) {
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.globalAlpha = alpha * (p.rank === 1 ? 0.32 : 0.17);
+      ctx.fillStyle = col;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 2.7, 0, 6.2832); ctx.fill();
+      ctx.globalCompositeOperation = 'source-over';
+    }
+
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = col;
     ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832); ctx.fill();
-    if (p.rank === 1 && p.deg >= 6) {                 // the world's hubs get a ring
-      ctx.strokeStyle = GROUP_COLOR[p.g]; ctx.globalAlpha *= 0.45;
-      ctx.lineWidth = 1.1 / view.k;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.r + 3 / view.k, 0, 6.2832); ctx.stroke();
+
+    if (!dimmed && p.r > 4.2) {
+      ctx.globalAlpha = alpha * 0.5;
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(p.x - p.r * 0.24, p.y - p.r * 0.24, p.r * 0.40, 0, 6.2832); ctx.fill();
     }
     if (p === hoverNode) {
-      ctx.strokeStyle = GROUP_COLOR[p.g]; ctx.globalAlpha = 0.4;
-      ctx.lineWidth = 2.5 / view.k;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.r + 4 / view.k, 0, 6.2832); ctx.stroke();
+      ctx.strokeStyle = col; ctx.globalAlpha = 0.8;
+      ctx.lineWidth = 2 / view.k;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r + 5 / view.k, 0, 6.2832); ctx.stroke();
     }
   }
+  ctx.globalAlpha = 1;
 
   // edge verbs on the hovered node's own links
   if (hoverNode) {
@@ -932,6 +975,13 @@ function renderPath() {
 
 // Chapter-level material (mechanism diagram, exercises) belongs in the reading
 // pane with the concept, not stacked into the navigation rail.
+function chapterDiagram(ch) {
+  if (!ch || !ch.svg) return null;
+  const box = el('div', 'ch-svg top');
+  box.innerHTML = ch.svg;   // build-time trusted asset
+  return box;
+}
+
 function chapterExtras(ch) {
   const frag = document.createDocumentFragment();
   if (ch.exercises && ch.exercises.length) {
@@ -1051,6 +1101,9 @@ function focusOn(id, push = true) {
   head.appendChild(inner);
   box.appendChild(head);
 
+  const diagram = chapterDiagram(ch);
+  if (diagram) card.appendChild(diagram);
+
   const content = n.content || {};
   const addTxt = (title, txt) => {
     if (!txt) return;
@@ -1164,7 +1217,12 @@ wireGraph();
 renderPath();
 const initial = location.hash.slice(1);
 if (initial && byId.has(initial)) { setView('concepts'); focusOn(initial, false); }
-else { renderEmptyFocus(); setView(VIEW); }
+else {
+  // an empty reading pane is a dead end; open on the first entry
+  const first = ((DATA.chapters[0] || {}).concepts || [])[0];
+  first ? focusOn(first, false) : renderEmptyFocus();
+  setView(VIEW);
+}
 window.addEventListener('resize', () => { if (VIEW === 'graph') drawGraph(); });
 </script>
 </body>

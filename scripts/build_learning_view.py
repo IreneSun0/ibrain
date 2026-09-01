@@ -217,6 +217,26 @@ def main(argv: list[str] | None = None) -> int:
     out = Path(args.out) if args.out else OPS_ROOT / "dist" / "ibrain-learning.html"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html, encoding="utf-8")
+
+    # A syntax error in the template silently ships a blank page, so fail the build
+    # instead. Skipped (with a warning) where node is unavailable.
+    import shutil, subprocess, tempfile
+    node = shutil.which("node")
+    if node:
+        m = re.search(r"<script>\n(.*)\n</script>", html, re.S)
+        if m:
+            with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False,
+                                             encoding="utf-8") as fh:
+                fh.write(m.group(1))
+                probe = fh.name
+            r = subprocess.run([node, "--check", probe], capture_output=True, text=True)
+            Path(probe).unlink(missing_ok=True)
+            if r.returncode != 0:
+                print("build_learning_view: template JS does not parse\n" + r.stderr,
+                      file=sys.stderr)
+                return 1
+    else:
+        print("build_learning_view: node not found — skipping JS syntax check")
     kb = round(len(html.encode("utf-8")) / 1024)
     n_ex = sum(len(v) for v in ex_of.values())
     print(f"build_learning_view: mainline {len(order)} quests / {len(chapters)} chapters / "
