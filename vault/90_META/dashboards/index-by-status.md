@@ -4,7 +4,7 @@
 
 更新: 2026-09-01 · 共 297 条结构化笔记
 
-## reviewed (176)
+## reviewed (191)
 
 - [[260813-first-principle-information-position|First Principle: Information Position (Irene, 2026-08-13)]] · 第一性原理 · 信息位置与规则制定层
 - [[INDUSTRY-MAP|Industry Map]] · 行业地图
@@ -12,15 +12,18 @@
 - [[README-flashcards|Flashcards — Rules & Index]] · 闪卡 · 规则与索引
 - [[RESEARCH-BACKLOG|Research Backlog]] · 研究积压清单
 - [[adverse-selection|Adverse Selection]] · 逆向选择/被更懂的人交易
+- [[amber-group|Amber Group / Amber International]] · Amber (AMBR)
 - [[anti-money-laundering|AML]] · 反洗钱
 - [[ask|Ask]] · 卖一/卖价
 - [[auditability|Auditability]] · 可审计性
 - [[automated-market-maker|AMM]] · 自动做市商
+- [[b2c2|B2C2]]
 - [[basis-risk|Basis Risk]] · 基差风险/不完美对冲风险
 - [[bid|Bid]] · 买一/买价
 - [[binary-option|Binary/Digital Option]] · 二元/数字期权
 - [[block|Block]] · 区块
 - [[blockchain|Blockchain]] · 区块链
+- [[bnb-chain|BNB Chain]] · 币安链
 - [[book-options-futures-hull|Options, Futures, and Other Derivatives (John Hull)]] · 《期权、期货及其他衍生品》
 - [[book-trading-and-exchanges|Trading and Exchanges (Larry Harris)]] · 《交易与交易所》
 - [[bridge|Bridge]] · 跨链桥
@@ -30,6 +33,7 @@
 - [[capital-requirements|Capital Requirements]] · 资本充足/最低资本要求
 - [[central-limit-order-book|CLOB]] · 中央限价订单簿
 - [[centralized-exchange|CEX]] · 中心化加密交易所
+- [[chainalysis|Chainalysis]]
 - [[chinese-exchange-lineage|Chinese Exchange Talent Lineage]] · 华人交易所人脉谱系
 - [[clearing|Clearing]] · 清算
 - [[clearinghouse|Clearinghouse]] · 清算所/中央对手方
@@ -42,6 +46,7 @@
 - [[counterparty-risk|Counterparty Risk]] · 交易对手风险
 - [[credit-risk|Credit Risk]] · 信用风险
 - [[cross-margin|Cross Margin]] · 跨品种/跨头寸保证金
+- [[cumberland-drw|Cumberland / DRW]] · Cumberland (DRW)
 - [[curriculum|Prediction Market Industry Curriculum]] · 行业主课程 · 8 阶段
 - [[custody|Custody]] · 托管
 - [[custody-segregation|Custody Segregation]] · 客户资产隔离托管
@@ -70,18 +75,24 @@
 - [[exchange-vertical-integration|Exchange Vertical Integration]] · 交易所纵向一体化
 - [[execution-risk|Execution Risk]] · 执行风险
 - [[expected-shortfall|Expected Shortfall]] · 预期损失/尾部期望损失
+- [[falconx|FalconX]]
 - [[financial-markets|Financial Markets]] · 金融市场
+- [[fireblocks|Fireblocks]]
+- [[flowdesk|Flowdesk]]
 - [[forward-contract|Forward]] · 远期合约
 - [[frontmatter-schema|Frontmatter Schema]] · Frontmatter 字段规范
 - [[fully-collateralized-market|Fully Collateralized]] · 全额抵押
 - [[funding-rate|Funding Rate]] · 资金费率
 - [[futures-contract|Futures]] · 期货
 - [[gas|Gas]] · 链上计算/资源费
+- [[gsr|GSR]] · GSR Markets
 - [[hedging|Hedging]] · 对冲
+- [[hong-kong|Hong Kong]] · 香港
 - [[hybrid-exchange-architecture|Hybrid Exchange]] · 混合式交易架构
 - [[implied-probability|Implied Probability]] · 隐含概率
 - [[initial-margin|Initial Margin]] · 初始保证金
 - [[inside-information|Inside Information]] · 内幕/重大非公开信息
+- [[intercontinental-exchange|Intercontinental Exchange (ICE)]] · 洲际交易所
 - [[inventory-risk|Inventory Risk]] · 库存风险
 - [[jane-street|Jane Street]]
 - [[jump-crypto|Jump Crypto]]
@@ -99,6 +110,7 @@
 - [[liquidity-risk|Liquidity Risk]] · 流动性风险
 - [[maintenance-margin|Maintenance Margin]] · 维持保证金
 - [[maker|Maker]] · 挂单方/提供流动性者
+- [[manifold-markets|Manifold Markets]] · Manifold (玩钱市场)
 - [[map-crypto-capital-flow|Crypto Capital Flow]] · 加密资本流 (stablecoin→chain→exchange→MM→OTC)
 - [[map-event-risk-cross-asset|Event Risk → Cross-Asset Portfolio Map]] · 事件风险跨资产传导图
 - [[map-exchange-power|Exchange Ecosystem Power Map]] · 交易所生态权力图
@@ -112,6 +124,7 @@
 - [[market-maker|Market Maker]] · 做市商
 - [[market-maker-incentive|Market Maker Incentive]] · 做市激励计划
 - [[market-risk|Market Risk]] · 市场风险
+- [[metaculus|Metaculus]] · Metaculus (预测聚合平台)
 - [[model-risk|Model Risk]] · 模型风险
 - [[multi-outcome-market|Multi-Outcome Market]] · 多结果市场
 - [[off-chain|Off-chain]] · 链下
@@ -131,6 +144,7 @@
 - [[polygon|Polygon]]
 - [[portfolio-margin|Portfolio Margin]] · 组合保证金
 - [[prediction-market|Prediction Market]] · 预测市场
+- [[predictit|PredictIt]]
 - [[price-discovery|Price Discovery]] · 价格发现
 - [[price-impact|Price Impact]] · 价格冲击
 - [[prime-brokerage|Prime Brokerage]] · 主经纪/机构交易综合服务
@@ -159,6 +173,7 @@
 - [[settlement-methodology|Settlement Methodology]] · 结算方法论
 - [[settlement-rail|Settlement Rail]] · 结算轨道/资金铁路
 - [[settlement-risk|Settlement Risk]] · 结算风险
+- [[singapore|Singapore]] · 新加坡
 - [[slippage|Slippage]] · 滑点
 - [[smart-contract|Smart Contract]] · 智能合约
 - [[smart-order-routing|Smart Order Routing]] · 智能订单路由
@@ -183,7 +198,7 @@
 - [[wallet|Wallet]] · 钱包
 - [[win-safe-truth-triangle|win · safe · truth Triangle (Irene, 2026-08-13)]] · win·safe·truth 三角
 
-## seed (37)
+## seed (36)
 
 - [[bittorrent-chain|BTTC]] · BitTorrent Chain
 - [[chapter-0-lessons|Course Ch.0 Money and Risk]] · 课程 · 序章 钱与风险的地图
@@ -197,7 +212,6 @@
 - [[chapter-8-lessons|Course Ch.8 Three Infrastructure Theses]] · 课程 · 终章 三条基础设施命题
 - [[curriculum-source-map|Curriculum Source Map (workbook)]] · 学习地图 · workbook 原文
 - [[ecosystem-roles-map|Ecosystem Roles Map (workbook)]] · 生态游戏版图 · workbook 原文
-- [[flowdesk|Flowdesk]]
 - [[institutional-conversation-cheatsheet|Institutional Conversation Cheatsheet (workbook)]] · 机构对话速查 · workbook 原文
 - [[justlend|JUST / JustLend DAO]] · TRON借贷与DeFi体系
 - [[opinion-labs|Opinion (Opinion Labs)]] · Opinion (opinion.trade)
@@ -229,41 +243,31 @@
 - [[src-2026-08-26-cftc-understand-contract-markets-html|CFTC: understand_contract_markets.html]]
 - [[src-2026-08-26-polymarket-overview|Polymarket: overview]]
 
-## verified (81)
+## verified (67)
 
 - [[adjacent-markets|Adjacent (adjacent.markets)]] · Adjacent 指数
-- [[amber-group|Amber Group / Amber International]] · Amber (AMBR)
-- [[b2c2|B2C2]]
 - [[ben-zhou|Ben Zhou]] · 周本
 - [[binance|Binance]] · 币安
 - [[bitget|Bitget]]
-- [[bnb-chain|BNB Chain]] · 币安链
 - [[bobby-lee|Bobby Lee]] · 李启元
 - [[bybit|Bybit]]
 - [[case-dome-acquisition|Polymarket Acquires Dome - The Venue Absorbed the Aggregator]] · Polymarket 收购 Dome · 场馆吞掉聚合层
 - [[case-kalshi-khamenei-settlement|Kalshi Khamenei Market Settlement (2026-03)]] · Kalshi Khamenei 市场结算案
 - [[case-uma-dispute-trilogy|UMA Dispute Trilogy 2025-2026]] · UMA 裁决争议三连案
 - [[cftc|CFTC]] · 美国商品期货交易委员会
-- [[chainalysis|Chainalysis]]
 - [[chainlink|Chainlink]] · Chainlink (预言机)
 - [[chainup|ChainUp]] · ChainUp (链上科技)
 - [[changpeng-zhao-cz|Changpeng Zhao (CZ)]] · 赵长鹏
 - [[circle|Circle]] · Circle (USDC 发行方)
-- [[cumberland-drw|Cumberland / DRW]] · Cumberland (DRW)
 - [[dome|Dome (domeapi.io)]] · Dome (已被收购关停)
 - [[du-jun|Du Jun]] · 杜均
 - [[european-union|European Union]] · 欧盟
-- [[falconx|FalconX]]
 - [[finfeedapi|FinFeedAPI (API Bricks)]] · FinFeedAPI
-- [[fireblocks|Fireblocks]]
 - [[gracy-chen|Gracy Chen]] · 陈瑞
-- [[gsr|GSR]] · GSR Markets
 - [[hk-sfc|Hong Kong SFC]] · 香港证监会
-- [[hong-kong|Hong Kong]] · 香港
 - [[htx|HTX]] · 火币 HTX
 - [[hyperliquid-hip4|Hyperliquid HIP-4]] · Hyperliquid 结果市场
 - [[indonesia|Indonesia]] · 印度尼西亚
-- [[intercontinental-exchange|Intercontinental Exchange (ICE)]] · 洲际交易所
 - [[jeff-yan|Jeff Yan]] · 徐冲 (Jeff Yan)
 - [[jihan-wu|Jihan Wu]] · 吴忌寒
 - [[justin-sun|Justin Sun]] · 孙宇晨
@@ -271,10 +275,8 @@
 - [[kalshi|Kalshi]]
 - [[leon-li|Leon Li (Li Lin)]] · 李林
 - [[luana-lopes-lara|Luana Lopes Lara]] · 卢阿娜·洛佩斯·拉拉
-- [[manifold-markets|Manifold Markets]] · Manifold (玩钱市场)
 - [[mantle|Mantle]]
 - [[mas|MAS]] · 新加坡金融管理局
-- [[metaculus|Metaculus]] · Metaculus (预测聚合平台)
 - [[michael-izhaky|Michael Izhaky]]
 - [[morph|Morph]]
 - [[ojk-indonesia|OJK (Indonesia)]] · 印尼金融服务管理局
@@ -283,7 +285,6 @@
 - [[polymarket|Polymarket]]
 - [[predexon|Predexon]]
 - [[predict-fun|Predict.fun]]
-- [[predictit|PredictIt]]
 - [[pyth-network|Pyth Network]] · Pyth (预言机)
 - [[rel-binance--distributes--predict-fun|Binance (Wallet) → distributes → Predict.fun]]
 - [[rel-changpeng-zhao-cz--co-founded--binance|CZ → co-founded → Binance]]
@@ -299,7 +300,6 @@
 - [[richard-teng|Richard Teng]]
 - [[sec|SEC]] · 美国证券交易委员会
 - [[shayne-coplan|Shayne Coplan]] · 谢恩·科普兰
-- [[singapore|Singapore]] · 新加坡
 - [[src-2026-08-27-ec-mica-targeted-consultation|Targeted consultation on the review of the MiCA Regulation (EC DG FISMA)]]
 - [[star-xu|Star Xu (Xu Mingxing)]] · 徐明星
 - [[susquehanna|Susquehanna (SIG)]] · 海纳国际集团
