@@ -4,7 +4,7 @@
 
 更新: 2026-09-01 · 共 297 条结构化笔记
 
-## reviewed (158)
+## reviewed (172)
 
 - [[260813-first-principle-information-position|First Principle: Information Position (Irene, 2026-08-13)]] · 第一性原理 · 信息位置与规则制定层
 - [[INDUSTRY-MAP|Industry Map]] · 行业地图
@@ -47,21 +47,26 @@
 - [[custody-segregation|Custody Segregation]] · 客户资产隔离托管
 - [[data-infrastructure|Data Infrastructure]] · 数据基础设施
 - [[dealer|Dealer]] · 交易商/自营商
+- [[debt|Debt]] · 债权/债务工具
 - [[decentralized-exchange|DEX]] · 去中心化交易所
 - [[deck-institutional-questions|Deck — Institutional Questions]] · 闪卡 · 机构对话八问
+- [[delegated-proof-of-stake|DPoS]] · 委托权益证明
 - [[depth|Depth]] · 盘口深度
 - [[derivative|Derivative]] · 衍生品
 - [[dispute-mechanism|Dispute Mechanism]] · 争议机制
 - [[distribution|Distribution]] · 用户分发/入口
 - [[double-spending|Double Spending]] · 双重支付
+- [[equity|Equity]] · 股权/股票
 - [[erc-1155|ERC-1155]] · 多代币标准
 - [[erc-20|ERC-20]] · 同质化代币标准
 - [[erc-721|ERC-721]] · NFT非同质化代币标准
 - [[erc-standards|ERC Standard]] · 以太坊代币/接口标准
+- [[ethereum-virtual-machine|EVM]] · 以太坊虚拟机
 - [[event-contract|Event Contract]] · 事件合约
 - [[event-risk|Event Risk]] · 事件风险
 - [[event-var|Event VaR]] · 事件风险价值
 - [[exchange|Exchange]] · 交易所/交易场所
+- [[exchange-vertical-integration|Exchange Vertical Integration]] · 交易所纵向一体化
 - [[execution-risk|Execution Risk]] · 执行风险
 - [[expected-shortfall|Expected Shortfall]] · 预期损失/尾部期望损失
 - [[financial-markets|Financial Markets]] · 金融市场
@@ -79,6 +84,7 @@
 - [[inventory-risk|Inventory Risk]] · 库存风险
 - [[jurisdiction|Jurisdiction]] · 司法辖区/适用法域
 - [[know-your-customer|KYC]] · 了解你的客户/身份验证
+- [[know-your-transaction|KYT]] · 了解交易/链上交易监控
 - [[knowledge-policies|iBrain Knowledge Policies]] · 知识库治理政策
 - [[layer-1|L1]] · 第一层/基础公链
 - [[layer-2|L2]] · 第二层扩容网络
@@ -119,6 +125,7 @@
 - [[over-the-counter|OTC]] · 场外交易
 - [[perpetual-futures|Perpetual Futures / Perp]] · 永续合约
 - [[policy-engine|Policy Engine]] · 策略/政策控制引擎
+- [[portfolio-margin|Portfolio Margin]] · 组合保证金
 - [[prediction-market|Prediction Market]] · 预测市场
 - [[price-discovery|Price Discovery]] · 价格发现
 - [[price-impact|Price Impact]] · 价格冲击
@@ -151,13 +158,20 @@
 - [[slippage|Slippage]] · 滑点
 - [[smart-contract|Smart Contract]] · 智能合约
 - [[smart-order-routing|Smart Order Routing]] · 智能订单路由
+- [[solidity|Solidity]] · Solidity智能合约语言
 - [[spread|Spread]] · 买卖价差
 - [[src-2026-08-26-industry-learning-map-xlsx|行业术语与市场结构学习地图 (Excel workbook)]]
 - [[stablecoin|Stablecoin]] · 稳定币
+- [[swap|Swap]] · 互换
 - [[taker|Taker]] · 吃单方/消耗流动性者
 - [[token|Token]] · 代币/链上资产单位
 - [[token-economy|Token Economy]] · 代币经济
 - [[transaction|Transaction]] · 交易/状态更新指令
+- [[trc-20|TRC-20]] · TRON同质化代币标准
+- [[tron-bandwidth|Bandwidth (TRON)]] · TRON带宽资源
+- [[tron-energy|Energy (TRON)]] · TRON能量/计算资源
+- [[tron-energy-delegation|Energy Delegation]] · Energy委托
+- [[tron-power|TRON Power]] · TRON投票权资源
 - [[underlying|Underlying]] · 标的/底层变量
 - [[value-at-risk|VaR]] · 风险价值
 - [[variation-margin|Variation Margin]] · 变动保证金
@@ -165,7 +179,7 @@
 - [[wallet|Wallet]] · 钱包
 - [[win-safe-truth-triangle|win · safe · truth Triangle (Irene, 2026-08-13)]] · win·safe·truth 三角
 
-## seed (51)
+## seed (37)
 
 - [[bittorrent-chain|BTTC]] · BitTorrent Chain
 - [[chapter-0-lessons|Course Ch.0 Money and Risk]] · 课程 · 序章 钱与风险的地图
@@ -178,19 +192,11 @@
 - [[chapter-7-lessons|Course Ch.7 Institutional Risk Language]] · 课程 · 第七章 机构风险语言
 - [[chapter-8-lessons|Course Ch.8 Three Infrastructure Theses]] · 课程 · 终章 三条基础设施命题
 - [[curriculum-source-map|Curriculum Source Map (workbook)]] · 学习地图 · workbook 原文
-- [[debt|Debt]] · 债权/债务工具
-- [[delegated-proof-of-stake|DPoS]] · 委托权益证明
 - [[ecosystem-roles-map|Ecosystem Roles Map (workbook)]] · 生态游戏版图 · workbook 原文
-- [[equity|Equity]] · 股权/股票
-- [[ethereum-virtual-machine|EVM]] · 以太坊虚拟机
-- [[exchange-vertical-integration|Exchange Vertical Integration]] · 交易所纵向一体化
 - [[flowdesk|Flowdesk]]
 - [[institutional-conversation-cheatsheet|Institutional Conversation Cheatsheet (workbook)]] · 机构对话速查 · workbook 原文
 - [[justlend|JUST / JustLend DAO]] · TRON借贷与DeFi体系
-- [[know-your-transaction|KYT]] · 了解交易/链上交易监控
 - [[opinion-labs|Opinion (Opinion Labs)]] · Opinion (opinion.trade)
-- [[portfolio-margin|Portfolio Margin]] · 组合保证金
-- [[solidity|Solidity]] · Solidity智能合约语言
 - [[src-2026-08-26-bittorrent-chain-bittorrent-chainwhitepaper-en-pdf|BitTorrent Chain: BitTorrent-ChainWhitepaper_EN.pdf]]
 - [[src-2026-08-26-cftc-2026-05105-html|CFTC: 2026-05105.html]]
 - [[src-2026-08-26-cftc-9237-26|CFTC: 9237-26]]
@@ -211,12 +217,6 @@
 - [[stage-2-exchanges|Exercises Stage 2 Exchanges]] · 练习题 · Stage 2 交易所
 - [[stage-3-microstructure|Exercises Stage 3 Microstructure]] · 练习题 · Stage 3 微观结构
 - [[sunpump|SunPump]] · TRON meme公平发行平台
-- [[swap|Swap]] · 互换
-- [[trc-20|TRC-20]] · TRON同质化代币标准
-- [[tron-bandwidth|Bandwidth (TRON)]] · TRON带宽资源
-- [[tron-energy|Energy (TRON)]] · TRON能量/计算资源
-- [[tron-energy-delegation|Energy Delegation]] · Energy委托
-- [[tron-power|TRON Power]] · TRON投票权资源
 - [[winklink|WINkLink]] · TRON预言机网络
 
 ## stale (3)
