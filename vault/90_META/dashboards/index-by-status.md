@@ -4,7 +4,7 @@
 
 更新: 2026-09-01 · 共 297 条结构化笔记
 
-## reviewed (172)
+## reviewed (176)
 
 - [[260813-first-principle-information-position|First Principle: Information Position (Irene, 2026-08-13)]] · 第一性原理 · 信息位置与规则制定层
 - [[INDUSTRY-MAP|Industry Map]] · 行业地图
@@ -61,6 +61,7 @@
 - [[erc-20|ERC-20]] · 同质化代币标准
 - [[erc-721|ERC-721]] · NFT非同质化代币标准
 - [[erc-standards|ERC Standard]] · 以太坊代币/接口标准
+- [[ethereum|Ethereum]] · 以太坊
 - [[ethereum-virtual-machine|EVM]] · 以太坊虚拟机
 - [[event-contract|Event Contract]] · 事件合约
 - [[event-risk|Event Risk]] · 事件风险
@@ -82,6 +83,8 @@
 - [[initial-margin|Initial Margin]] · 初始保证金
 - [[inside-information|Inside Information]] · 内幕/重大非公开信息
 - [[inventory-risk|Inventory Risk]] · 库存风险
+- [[jane-street|Jane Street]]
+- [[jump-crypto|Jump Crypto]]
 - [[jurisdiction|Jurisdiction]] · 司法辖区/适用法域
 - [[know-your-customer|KYC]] · 了解你的客户/身份验证
 - [[know-your-transaction|KYT]] · 了解交易/链上交易监控
@@ -125,6 +128,7 @@
 - [[over-the-counter|OTC]] · 场外交易
 - [[perpetual-futures|Perpetual Futures / Perp]] · 永续合约
 - [[policy-engine|Policy Engine]] · 策略/政策控制引擎
+- [[polygon|Polygon]]
 - [[portfolio-margin|Portfolio Margin]] · 组合保证金
 - [[prediction-market|Prediction Market]] · 预测市场
 - [[price-discovery|Price Discovery]] · 价格发现
@@ -225,7 +229,7 @@
 - [[src-2026-08-26-cftc-understand-contract-markets-html|CFTC: understand_contract_markets.html]]
 - [[src-2026-08-26-polymarket-overview|Polymarket: overview]]
 
-## verified (85)
+## verified (81)
 
 - [[adjacent-markets|Adjacent (adjacent.markets)]] · Adjacent 指数
 - [[amber-group|Amber Group / Amber International]] · Amber (AMBR)
@@ -248,7 +252,6 @@
 - [[cumberland-drw|Cumberland / DRW]] · Cumberland (DRW)
 - [[dome|Dome (domeapi.io)]] · Dome (已被收购关停)
 - [[du-jun|Du Jun]] · 杜均
-- [[ethereum|Ethereum]] · 以太坊
 - [[european-union|European Union]] · 欧盟
 - [[falconx|FalconX]]
 - [[finfeedapi|FinFeedAPI (API Bricks)]] · FinFeedAPI
@@ -261,10 +264,8 @@
 - [[hyperliquid-hip4|Hyperliquid HIP-4]] · Hyperliquid 结果市场
 - [[indonesia|Indonesia]] · 印度尼西亚
 - [[intercontinental-exchange|Intercontinental Exchange (ICE)]] · 洲际交易所
-- [[jane-street|Jane Street]]
 - [[jeff-yan|Jeff Yan]] · 徐冲 (Jeff Yan)
 - [[jihan-wu|Jihan Wu]] · 吴忌寒
-- [[jump-crypto|Jump Crypto]]
 - [[justin-sun|Justin Sun]] · 孙宇晨
 - [[kairos|Kairos (kairos.trade)]] · Kairos 预测市场终端
 - [[kalshi|Kalshi]]
@@ -279,7 +280,6 @@
 - [[ojk-indonesia|OJK (Indonesia)]] · 印尼金融服务管理局
 - [[okx|OKX]] · 欧易
 - [[opticodds|OpticOdds]]
-- [[polygon|Polygon]]
 - [[polymarket|Polymarket]]
 - [[predexon|Predexon]]
 - [[predict-fun|Predict.fun]]
