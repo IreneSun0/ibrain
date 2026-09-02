@@ -106,6 +106,33 @@ def build(max_confidentiality: str | None = None) -> dict:
         for key in (n.path.stem, rel_no_ext, *(str(a) for a in (n.frontmatter.get("aliases") or []) if a)):
             target.setdefault(key.strip().lower(), n.id)
 
+    # Wikilinks are Obsidian syntax; a browser shows them as literal brackets. Resolve
+    # them here, where the target index already exists: to `[[<id>|label]]` when the
+    # target is a published note, and to the label alone when it is not.
+    WIKI_RE = re.compile(r"\[\[([^\]|#]+)(#[^\]|]*)?(?:\|([^\]]*))?\]\]")
+
+    display = {n.id: str(n.frontmatter.get("title_zh") or n.frontmatter.get("title")
+                         or n.path.stem) for n in notes}
+
+    def resolve_wikilinks(text: str) -> str:
+        def sub(m):
+            raw, label = m.group(1).strip(), (m.group(3) or "").strip()
+            tid = target.get(raw.lower()) or target.get(raw.split("/")[-1].lower())
+            # a bare [[slug]] shows the target's own name, not its filename
+            shown = label or (display.get(tid) if tid else None) or raw.split("/")[-1]
+            # U+001F, not `|`: a pipe inside a table cell would split the row
+            return f"[[{tid}\u001f{shown}]]" if tid else shown
+        return WIKI_RE.sub(sub, text)
+
+    def resolve_deep(v):
+        if isinstance(v, str):
+            return resolve_wikilinks(v)
+        if isinstance(v, list):
+            return [resolve_deep(x) for x in v]
+        if isinstance(v, dict):
+            return {k: resolve_deep(x) for k, x in v.items()}
+        return v
+
     nodes = []
     edges: list[dict] = []
     seen_edges: set[tuple] = set()
@@ -151,8 +178,8 @@ def build(max_confidentiality: str | None = None) -> dict:
                     crels.append({"target": str(item), "rel": "", "note": ""})
             nodes[-1]["prerequisites"] = prereqs
             nodes[-1]["relations"] = crels
-            nodes[-1]["definition"] = definition_excerpt(n.body)
-            nodes[-1]["content"] = concept_content(n.body)
+            nodes[-1]["definition"] = resolve_wikilinks(definition_excerpt(n.body))
+            nodes[-1]["content"] = resolve_deep(concept_content(n.body))
             nodes[-1]["resources"] = [
                 {"title": src_index[s]["title"], "url": src_index[s]["url"]}
                 for s in srcs if s in src_index and src_index[s]["url"]]
@@ -171,7 +198,7 @@ def build(max_confidentiality: str | None = None) -> dict:
 
         # cases sit on the map beside entities, so they need a summary too
         if n.ntype in ENTITY_TYPES or n.ntype == "case-study":
-            nodes[-1]["summary"] = entity_summary(n.body)
+            nodes[-1]["summary"] = resolve_wikilinks(entity_summary(n.body))
 
         # entity semantic layer: typed `related` on entity pages — lighter than a
         # relationship note, evidenced by the entity page's own sourced prose

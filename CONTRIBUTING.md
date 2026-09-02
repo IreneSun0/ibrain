@@ -37,9 +37,11 @@ The build rejects:
 1. [Open a correction issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md) — say which note, what's wrong, and what it should be.
 2. Name the source. If there is none, mark the claim unverified.
 
-Or fix it directly: edit the note, **append** a dated line to its `## Timeline` section
-explaining the correction, and open a PR. A correction supersedes the old timeline entry;
-it does not replace it.
+Or fix it directly: edit the note, then add a dated line under a `## Timeline` heading at
+the end of it — create the heading if the note has none — and open a PR. Never edit or
+delete an existing entry; a correction is a new line that supersedes the old one, and both
+stay visible. Published notes carry no build history, so a timeline you find there is a
+record of substantive change.
 
 ---
 

@@ -3,8 +3,6 @@ id: "source:2026-08-26-industry-learning-map-xlsx"
 type: source
 source_type: user-direct
 title: 行业术语与市场结构学习地图 (Excel workbook)
-publisher: Irene Sun (with ChatGPT assistance)
-author: Irene Sun
 published_at: 
 accessed_at: 2026-08-26
 url: ""
@@ -30,7 +28,7 @@ import_origin: xlsx-learning-map
 
 ## What This Source Is | 来源是什么
 
-作者提供的 4-sheet Excel workbook (术语总表 134 条 / 学习地图 8 阶段 / 生态游戏版图 13 角色 / 机构对话速查 5 对象)。这是 vault 的**初始 seed 语料**, 属 user-direct 来源 — 代表 已消化认可的知识框架。
+贡献者提供的 4-sheet Excel workbook (术语总表 134 条 / 学习地图 8 阶段 / 生态游戏版图 13 角色 / 机构对话速查 5 对象)。这是 vault 的**初始 seed 语料**, 属 user-direct 来源 — 代表 已消化认可的知识框架。
 
 - SHA-256: `4fd7d2a8f9d475d9e025a10002863b7a4fd51791c9e109c54f5634a1e7391370`
 - 原件: `(local path redacted)` (只读保存)

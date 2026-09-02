@@ -152,6 +152,8 @@
   .txt li,.mech li{margin:3px 0}
   .txt p,.mech p{margin:6px 0}
   .txt p:first-child,.mech p:first-child{margin-top:0}
+  .xlink{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)}
+  .xlink:hover{border-bottom-color:var(--accent)}
   .txt code,.mech code{background:var(--pill);border-radius:4px;padding:1px 4px;font-size:.92em}
   .txt pre,.mech pre{background:var(--pill);border-radius:8px;padding:9px 11px;overflow-x:auto;font-size:11.5px;line-height:1.55}
   .txt blockquote,.mech blockquote{margin:6px 0;padding-left:10px;border-left:3px solid var(--line);color:var(--muted)}
@@ -276,8 +278,21 @@ function mdInline(s) {
   return esc(s)
     .replace(/`([^`]+)`/g, '<code>$1</code>')
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-    .replace(/(?<!\w)_([^_]+)_(?!\w)/g, '<em>$1</em>');
+    .replace(/(?<!\w)_([^_]+)_(?!\w)/g, '<em>$1</em>')
+    // the exporter resolves wikilinks to [[<id>\u001f<label>]]; a pipe would split a table cell
+    .replace(/\[\[([^\]\u001f]+)\u001f([^\]]*)\]\]/g, (m, id, label) =>
+      `<a class="xlink" href="#${id}" data-id="${id}">${label}</a>`);
 }
+document.addEventListener('click', ev => {
+  const a = ev.target.closest('a.xlink');
+  if (!a) return;
+  ev.preventDefault();
+  const id = a.dataset.id;
+  if (!byId.has(id)) return;
+  setView('concepts');
+  focusOn(id);
+});
+
 function md(src) {
   const lines = String(src || '').split('\n');
   const out = [];

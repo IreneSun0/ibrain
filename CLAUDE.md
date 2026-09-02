@@ -21,7 +21,9 @@
   a fact as `未披露` only when the nondisclosure is relevant; otherwise use a dated,
   scoped negative finding or omit the line. Never use a placeholder or guess.
 - **The timeline below `<!-- timeline -->` is append-only.** Corrections are new
-  entries. Existing entries are never silently edited.
+  entries. Existing entries are never silently edited. Build history (imported,
+  expanded, seeded) does not publish — `drop_revision_timeline` strips it — so keep
+  timelines for substantive change, not for recording that you touched the file.
 - **Secrets never enter the repo** (`make secretscan`).
 
 ## The vault is derived, not authored here

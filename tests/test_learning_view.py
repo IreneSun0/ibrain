@@ -92,3 +92,18 @@ def test_link_preview_metadata_ships_with_the_page(tmp_path):
     assert card.startswith("https://"), "og:image must be absolute"
     assert (out.parent / card.rsplit("/", 1)[-1]).exists(), \
         "og:image is not emitted beside the page it points from"
+
+
+def test_wikilinks_are_resolved_not_shown_raw(tmp_path):
+    """`[[target]]` is Obsidian syntax; a browser renders it as literal brackets. The
+    exporter resolves it against the note index, so nothing reaches the page unresolved.
+    The separator is U+001F rather than `|`, which would split a markdown table cell."""
+    out = tmp_path / "index.html"
+    assert lv.main(["--out", str(out)]) == 0
+    data = json.loads(re.search(r"const DATA = (\{.*?\});\n",
+                                out.read_text(encoding="utf-8"), re.S).group(1))
+    blob = json.dumps(data["nodes"], ensure_ascii=False)
+    unresolved = re.findall(r"\[\[(?![a-z-]+:)[^\]]{0,60}\]\]", blob)
+    assert not unresolved, f"wikilinks left raw in the page: {unresolved[:5]}"
+    resolved = re.findall(r"\[\[[a-z-]+:[^\]\\]+\\u001f", blob)
+    assert len(resolved) > 100, f"expected the exporter to resolve links, got {len(resolved)}"

@@ -69,9 +69,6 @@ prerequisites: []
   A:
 
 ## Sources
-
-<!-- timeline -->
-
 ## Timeline / Revision History
 
 - **{{date}}** — 创建。
