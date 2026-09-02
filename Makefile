@@ -6,16 +6,15 @@ SOURCE ?=
 PY := .venv/bin/python
 PIP := .venv/bin/pip
 
-.PHONY: bootstrap validate normalize-links health indexes refresh test secretscan publish site help
+.PHONY: bootstrap validate health indexes refresh test secretscan publish site help
 
 help:
 	@echo "make bootstrap   — create venv + install deps"
 	@echo "make validate    — frontmatter + duplicate ids + wikilinks (hard checks)"
-	@echo "make normalize-links — rewrite id-only body links to native Obsidian targets"
-	@echo "make health      — full vault health report (writes VAULT-HEALTH-REPORT.md)"
+	@echo "make health      — soft audits: evidence, freshness, orphans, duplicates"
 	@echo "make indexes     — regenerate plain-md indexes + MOC auto-blocks"
-	@echo "make refresh     — indexes + freshness + orphans (weekly maintenance bundle)"
-	@echo "make secretscan  — scan both repos for credential-shaped content"
+	@echo "make refresh     — indexes + health (weekly maintenance bundle)"
+	@echo "make secretscan  — scan the tree for credential-shaped content"
 	@echo "make test        — run pytest suite"
 	@echo "make publish     — rebuild ./vault from a private vault (SOURCE=...)"
 	@echo "make site        — build the public site into docs/ (GitHub Pages)"
@@ -31,20 +30,17 @@ validate:
 	$(PY) scripts/check_wikilinks.py
 	$(PY) scripts/check_confidentiality.py
 
-normalize-links:
-	$(PY) scripts/normalize_wikilinks.py --write
-
 health:
-	$(PY) scripts/vault_health.py
+	$(PY) scripts/check_evidence_coverage.py
+	$(PY) scripts/check_source_freshness.py
+	$(PY) scripts/find_orphan_notes.py
+	$(PY) scripts/detect_duplicate_entities.py --report
 
 indexes:
 	$(PY) scripts/generate_indexes.py
 	$(PY) scripts/generate_mocs.py
 
-refresh: indexes
-	$(PY) scripts/check_source_freshness.py
-	$(PY) scripts/find_orphan_notes.py
-	$(PY) scripts/detect_duplicate_entities.py --report
+refresh: indexes health
 
 secretscan:
 	$(PY) scripts/secret_scan.py

@@ -1,12 +1,7 @@
 #!/usr/bin/env python3
-"""secret_scan.py — block credentials from entering either repo.
-
-Scans working tree of BOTH repos (vault + ops) for secret-shaped content.
-Run manually or from the pre-commit instructions in OPERATIONS.md. Exit 1 on hit.
-"""
+"""secret_scan.py — block credentials from entering the repo. Exit 1 on a hit."""
 from __future__ import annotations
 
-import os
 import re
 import sys
 import zipfile
@@ -74,12 +69,9 @@ def scan_file(p: Path) -> list[str]:
 
 
 def main() -> int:
-    seed_root = Path(os.environ.get("IBRAIN_SEED_PATH", str(OPS_ROOT.parent / "_seed")))
-    roots = [vault_root(), OPS_ROOT]
-    if seed_root.exists():
-        roots.append(seed_root)
+    roots = {OPS_ROOT, vault_root()}
     bad = []
-    for root in roots:
+    for root in sorted(roots):
         for p in sorted(root.rglob("*")):
             if not p.is_file() or p.suffix in SKIP_SUFFIX:
                 continue

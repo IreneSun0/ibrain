@@ -23,8 +23,6 @@ from brainlib import OPS_ROOT, vault_root
 
 PLACEHOLDER = "/*__DATA__*/{}"
 EX_Q_RE = re.compile(r"^## (Q\d+) \[(.+?)\] (.*)$")
-QUEST_RE = re.compile(r"^## quest: (concept:[a-z0-9._-]+)\s*$")
-SUB_RE = re.compile(r"^### (hook|card|mechanism|traps|ammo|drill)\s*$")
 
 
 
@@ -148,15 +146,14 @@ def main(argv: list[str] | None = None) -> int:
                     {"q": "\n".join(x for x in (ex["title"], ex["body"]) if x),
                      "a": ex["answer"], "kind": ex["kind"]})
 
-    # The landing graph is the whole knowledge base, not a slice of it: every note
-    # and every edge, so the picture actually shows what the vault contains.
+    # the landing graph is every note and every edge, not a slice
     ENTITY_TYPES = {"person", "organization", "exchange-venue", "protocol-network",
                     "market-maker-fund", "regulator", "jurisdiction", "product", "token-asset"}
     nodes = graph["nodes"]
     edges = graph["edges"]
 
-    # One self-test list per concept: its own recall prompts, then the exercises
-    # written against it. Same object, so they are not shown as two sections.
+    # one self-test list per concept: its own recall prompts, then the exercises
+    # written against it — same object, so never two sections
     unattached = set(ex_of)
     for n in nodes:
         extra = ex_of.get(n["id"])
@@ -184,7 +181,7 @@ def main(argv: list[str] | None = None) -> int:
     }
 
     html = tpl.replace(PLACEHOLDER, json.dumps(data, ensure_ascii=False, separators=(",", ":")))
-    out = Path(args.out) if args.out else OPS_ROOT / "dist" / "ibrain-learning.html"
+    out = Path(args.out) if args.out else OPS_ROOT / "dist" / "cryptoatlas.html"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html, encoding="utf-8")
 

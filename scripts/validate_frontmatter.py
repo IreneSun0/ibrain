@@ -30,9 +30,10 @@ def check_note(n: Note, sch: dict, known_ids: set[str] | None = None,
         allowed_plain = ("90_META/import-reports", "90_META/health-reports", "90_META/dashboards",
                          "90_META/coverage", "01_INBOX", "11_OUTPUTS", "10_LEARNING/study-sessions")
         rp = str(n.path)
-        root_docs = ("IMPORT_REQUIRED.md", "UNRESOLVED-QUESTIONS.md", "GBRAIN-INTEGRATION.md",
-                     "OBSIDIAN-SETUP.md", "VAULT-HEALTH-REPORT.md", "BUILD-REPORT.md", "IMPORT-REPORT.md",
-                     "CODEX-AUDIT-REPORT.md", "CODEX-HARDENING-REPORT.md")
+        # the private vault's own build/audit artifacts; never published, never schema'd
+        root_docs = ("BUILD-REPORT.md", "IMPORT-REPORT.md", "IMPORT_REQUIRED.md",
+                     "VAULT-HEALTH-REPORT.md", "UNRESOLVED-QUESTIONS.md", "OBSIDIAN-SETUP.md",
+                     "GBRAIN-INTEGRATION.md", "CODEX-AUDIT-REPORT.md", "CODEX-HARDENING-REPORT.md")
         if any(a in rp for a in allowed_plain) or n.path.name in root_docs:
             return []
         return [f"{rel}: missing frontmatter"]
@@ -73,11 +74,10 @@ def check_note(n: Note, sch: dict, known_ids: set[str] | None = None,
                         errs.append(f"{rel}: {field} references unknown id `{ref}`")
 
     # concept-level typed relations in `related` + prerequisite ids
-    # (vocabulary: allowed_concept_relation_types; human doc: 90_META/taxonomy/relationship-types.md)
     ENTITY_TYPES = {"person", "organization", "exchange-venue", "protocol-network",
                     "market-maker-fund", "regulator", "jurisdiction", "product", "token-asset"}
-    # Entity pages carry entity-level relations; concept pages carry concept-level ones.
-    # Checking every `related` against the concept vocabulary rejected valid entity edges.
+    # entity pages carry entity-level relations, concept pages concept-level ones;
+    # one shared vocabulary would reject valid entity edges
     is_entity = str(fm.get("type") or "") in ENTITY_TYPES
     crt = set(sch.get("allowed_relationship_types" if is_entity
                       else "allowed_concept_relation_types") or [])
@@ -191,7 +191,7 @@ def main(argv: list[str]) -> int:
                 try:
                     p.resolve().relative_to(vault_root())
                 except ValueError:
-                    continue  # not a vault file — hook may fire on ops repo docs
+                    continue  # the write-time hook also fires outside the vault
                 if "templates" in p.parts or "99_ARCHIVE" in p.parts:
                     continue
                 notes.append(load_note(p))

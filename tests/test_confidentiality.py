@@ -21,3 +21,18 @@ def test_confidentiality_downgrade_is_rejected(tmp_path):
                             capture_output=True, text=True, env=env)
     assert result.returncode == 1
     assert "lower than source" in result.stdout
+
+
+def test_private_root_docs_never_reach_the_published_vault():
+    """The private vault carries build/audit artifacts at its root that describe the
+    vault's own construction. They are not subject matter and must never publish —
+    they have no frontmatter, so no schema check would catch one that slipped."""
+    sys.path.insert(0, str(OPS / "scripts"))
+    import build_public_vault as bpv
+
+    published = OPS / "vault"
+    stray = [p.name for p in published.glob("*.md")]
+    assert not stray, f"private root docs in the published vault: {stray}"
+    for name in ("BUILD-REPORT.md", "IMPORT-REPORT.md", "VAULT-HEALTH-REPORT.md",
+                 "GBRAIN-INTEGRATION.md", "CODEX-AUDIT-REPORT.md"):
+        assert name in bpv.EXCLUDE_FILES, f"{name} dropped out of the exclusion list"

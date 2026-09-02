@@ -76,7 +76,7 @@ Pointing out that an entry is wrong is worth as much as adding one.
 
 ## The engine
 
-17 Python scripts · 42 tests · a write-time validation hook · 6 subagents · 7 skills.
+15 Python scripts · 42 tests · a write-time validation hook · 6 subagents · 7 skills.
 Point it at your own vault (`VAULT_PATH=/path/to/vault`) and the same discipline
 applies to your domain.
 
@@ -96,7 +96,7 @@ published graph stays closed under its own references.
 
 ```
 vault/       the knowledge base — 292 notes (generated from a private source vault)
-scripts/     17 deterministic tools: validators, generators, exporters
+scripts/     15 deterministic tools: validators, generators, exporters
 tests/       42 tests, including a regression guard on the confidentiality ceiling
 .claude/     6 subagents + 7 skills + the write-time validation hook
 ```

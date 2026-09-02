@@ -8,7 +8,7 @@
   :root{
     --bg:#f6f7f9; --panel:#ffffff; --ink:#1c2330; --muted:#68738a; --line:#e3e7ee;
     --accent:#2f6fed; --accent-soft:#e8f0ff;
-    --done:#2e9e6b; --done-soft:#e6f5ee;
+    --done:#2e9e6b;
     --pill:#eef1f6; --pill-hover:#e2e8f2; --focus-ring:#2f6fed;
     --def-bg:#f2f5fa; --note:#8a93a8; --warn:#d98324; --shadow:0 1px 3px rgba(20,30,60,.08);
   }
@@ -16,7 +16,7 @@
     :root{
       --bg:#12151c; --panel:#1a1f2a; --ink:#e7ebf4; --muted:#98a2b8; --line:#2a3140;
       --accent:#6f9bff; --accent-soft:#233150;
-      --done:#3db584; --done-soft:#173327;
+      --done:#3db584;
       --pill:#232937; --pill-hover:#2c3446; --def-bg:#202633; --note:#7f8aa3;
       --shadow:0 1px 3px rgba(0,0,0,.4);
     }
@@ -30,7 +30,6 @@
   .top{position:sticky;top:0;z-index:9;background:var(--panel);border-bottom:1px solid var(--line);
     padding:10px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:var(--shadow)}
   .top h1{font-size:16px;margin:0;white-space:nowrap}
-  .top .sub{color:var(--muted);font-size:12px;font-weight:400}
   .brand{display:flex;align-items:baseline;gap:10px;min-width:0}
   .tagline{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .seg{display:flex;gap:2px;background:var(--pill);border-radius:8px;padding:2px;flex:0 0 auto}
@@ -38,8 +37,6 @@
     padding:4px 11px;border-radius:6px;cursor:pointer;white-space:nowrap}
   .seg button:hover{color:var(--ink)}
   .seg button.on{background:var(--panel);color:var(--ink);box-shadow:var(--shadow)}
-  .seg.lang button{font-size:11.5px;padding:4px 9px}  .training .count{font-size:13px;line-height:1.6}  .training .bars{flex:1;min-width:240px;display:flex;flex-direction:column;gap:6px}  .sbar .lbl{width:70px;color:var(--muted);white-space:nowrap}  .sbar .fill{height:100%;border-radius:5px;background:var(--accent)}  .sbar .val{width:64px;text-align:right;font-variant-numeric:tabular-nums}  .training .now b{color:var(--ink)}  .nextup .big{font-size:14px;background:var(--accent);color:#fff;border:none;border-radius:10px;
-    padding:8px 16px;cursor:pointer;font-weight:600}
   /* Two jobs, two surfaces: a quiet navigation rail, and one continuous reading
      page. Neither is a card competing with the other. */
   .layout{display:flex;height:calc(100vh - 54px);overflow:hidden}
@@ -72,10 +69,6 @@
   .quest{position:relative}
   .quest .en{color:var(--muted);font-size:10.5px;margin-left:5px;
     overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:0 1 auto}
-  .quest.dim{opacity:.22}
-
-  .spill{border:1px dashed var(--line);background:transparent;border-radius:14px;padding:3px 10px;
-    font-size:12px;color:var(--muted);cursor:pointer}  .spill.done{border-style:solid;color:var(--done)}
 
   .qa button{font-size:12px;border:1px solid var(--line);background:var(--pill);color:var(--ink);
     border-radius:7px;padding:2px 10px;cursor:pointer}
@@ -105,7 +98,6 @@
     font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;line-height:1.5}
   .pill:hover{background:var(--pill-hover)}
   .pill .st{width:8px;height:8px;border-radius:50%;flex:0 0 auto;border:1.5px solid var(--muted)}
-  .pill.done .st{background:var(--done);border-color:var(--done)}
   .pill .tag{font-size:10px;color:var(--muted)}
   .rel-row{display:flex;align-items:flex-start;gap:8px;padding:4px 0;font-size:13px;flex-wrap:wrap}
   .rel-tag{flex:0 0 auto;font-size:11px;border-radius:5px;padding:0 6px;line-height:1.7;margin-top:1px;
@@ -121,10 +113,8 @@
     border-left:3px solid var(--done);padding-left:10px}
   .qa .a p{margin:0 0 6px}  .qa .a p:last-child{margin:0}
   .qa.open .a{display:block}
-  .res a{display:block;font-size:13px;margin:2px 0}  mark{background:transparent;color:var(--accent);font-weight:700}  .zcard{margin:12px 0;padding:12px 14px;border:1.5px solid var(--accent);border-radius:12px;background:var(--accent-soft)}  .zcard .zk{flex:0 0 auto;font-size:11px;color:var(--accent);font-weight:700;border:1px solid var(--accent);
-    border-radius:5px;padding:0 6px;line-height:1.8;margin-top:1px}
-  .mech{font-size:13.5px;white-space:pre-wrap;line-height:1.8}  .trap .tx{flex:0 0 auto;margin-top:1px}  .ammo-box .en{font-size:13.5px;font-style:italic;line-height:1.7}  .ch-svg{margin:10px 0 4px}
-  .ch-svg svg{max-width:100%;height:auto}
+  .res a{display:block;font-size:13px;margin:2px 0}  mark{background:transparent;color:var(--accent);font-weight:700}
+  .mech{font-size:13.5px;white-space:pre-wrap;line-height:1.8}
 
   /* ── ecosystem graph ── */
   #graph-stage{position:relative;height:calc(100vh - 54px);background:var(--bg);overflow:hidden}
@@ -169,7 +159,6 @@
   .ext-list{margin-top:2px}
   .f-def{font-size:15px;line-height:1.8;margin:4px 0 0}
 
-
   /* Clicking a node should tell you about it, not throw you onto another screen. */
   #node-card{position:absolute;z-index:25;width:290px;max-height:60vh;overflow:auto;
     background:var(--panel);border:1px solid var(--line);border-radius:12px;
@@ -186,7 +175,6 @@
     cursor:pointer;font-size:12px;font-weight:600}
   #node-card .nc-x{position:absolute;top:7px;right:9px;background:none;border:0;
     color:var(--muted);cursor:pointer;font-size:14px}
-
 
   /* Scrolls with the article. Deliberately not sticky, and deliberately not named
      `.top` — that is the page header's class, and it was pinning this. */
@@ -220,28 +208,14 @@ const DATA = /*__DATA__*/{};
 
 const byId = new Map(DATA.nodes.map(n => [n.id, n]));
 const ORDER = DATA.mainOrder;              // id → 1..81
-const TOTAL = Object.keys(ORDER).length;
-// ── language & scope ─────────────────────────────────────────────────────────
-// This is a public reference, not a personal course tracker: nothing here records
-// "how far you got". Scope is a filter over the same material, and language swaps
-// the whole page rather than printing a second language beside the first.
+// ── scope ────────────────────────────────────────────────────────────────────
+// A public reference, not a progress tracker: scope filters the same material,
+// it never records how far a reader got.
 const store = {
   get(k, d) { try { return localStorage.getItem(k) || d; } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
 };
 
-const T = {
-  tagline: '加密市场结构知识库',
-  definition: '定义', why: '为什么重要', how: '怎么运作', example: '例子',
-  misconceptions: '常见误解', practice: '实战里怎么用',
-  prereq: '先读这些', unlocks: '读懂它之后', relations: '关联', world: '真实世界',
-  recall: '自测', showAnswer: '看答案', hide: '收起',
-  diagram: '机制图', relatedEntities: '关系',
-  graph: '知识图谱', concepts: '概念',
-  empty: '从左侧选一个概念，或在图谱里点一个节点。',
-  more: '展开延伸概念', less: '收起延伸概念',
-};
-const t_ = k => T[k];
 const isCore = id => ORDER[id] !== undefined;
 const nameOf = n => !n ? '' : (n.titleZh || n.title);
 const subOf = n => { if (!n) return ''; const o = n.title; return o && o !== nameOf(n) ? o : ''; };
@@ -292,9 +266,7 @@ const typeZh = t => ({'exchange-venue':'venue','market-maker-fund':'做市/基�
   'protocol-network':'协议/链','regulator':'监管','jurisdiction':'法域','person':'人物'})[t] || '';
 
 // ── minimal markdown → html ──────────────────────────────────────────────────
-// The notes are written in markdown; rendering them as plain text turns emphasis
-// into literal asterisks and tables into pipe soup. Escape first, then re-introduce
-// only the handful of constructs the notes actually use.
+// Escape first, then re-introduce only the constructs the notes actually use.
 function mdInline(s) {
   return esc(s)
     .replace(/`([^`]+)`/g, '<code>$1</code>')
@@ -357,9 +329,7 @@ function md(src) {
 }
 
 // ── knowledge graph ──────────────────────────────────────────────────────────
-// The whole vault, not a slice of it: every note and every edge. Concepts are
-// grouped by domain, entities by kind, and each group's name is drawn over its
-// own region so the shape of the library is readable at a glance.
+// Every note and every edge. Concepts group by domain, entities by kind.
 const ENTITY_TYPES = new Set(DATA.entityTypes || []);
 
 const GROUPS = [
@@ -386,16 +356,12 @@ const GROUPS = [
 const GROUP_LABEL = Object.fromEntries(GROUPS.map(g => [g[0], g[1]]));
 const GROUP_COLOR = Object.fromEntries(GROUPS.map(g => [g[0], g[2]]));
 
-// Apparatus — source notes, indexes, MOCs, course files, flashcards, dashboards,
-// the policy and taxonomy — is *about* the knowledge, not the knowledge. It has no
-// place on a map of the subject.
+// Apparatus is *about* the knowledge, not the knowledge: off the map.
 const APPARATUS = new Set(['source', 'research-report', 'report', 'book-course', 'moc',
   'dashboard', 'lesson', 'flashcard-deck', 'curriculum', 'policy', 'taxonomy',
   'relationship', 'original']);
 
-// Rank, not a filter. Everything in the subject matter is on the map; the
-// hierarchy is carried by how things are drawn, so the important reads first
-// instead of being hidden behind a control.
+// Rank drives size and brightness, never visibility — everything stays on the map.
 //   1 = the world (entities, cases)      — largest, brightest, always labelled
 //   2 = the spine (tier-1 concepts)      — medium
 //   3 = detail   (tier-2 concepts)       — small, dim, labelled only on demand
@@ -405,9 +371,8 @@ function rankOf(n) {
   return n.importance === 'tier-1' ? 2 : 3;
 }
 
-// Edges are not all the same claim. A relationship note carries its own evidence;
-// a bare wikilink is only "these two pages mention each other". Drawing them
-// identically was what made the picture read as an undifferentiated web.
+// Edges are not all the same claim: a relationship note carries its own evidence,
+// a bare wikilink only means two pages mention each other.
 const EDGE_RANK = {
   typed:  {w: 2.0, a: 0.62, tone: 'rel'},   // evidence-bearing relationship note
   erel:   {w: 1.3, a: 0.42, tone: 'rel'},   // typed relation on an entity page
@@ -459,9 +424,8 @@ function buildGraph() {
   const deg = new Array(ns.length).fill(0);
   for (const l of links) { deg[l.s]++; deg[l.t]++; }
 
-  // Seed each node inside its own group's region. Starting from a global spiral
-  // meant the groups began interleaved and the simulation cooled before they
-  // could ever separate.
+  // Seed each node inside its own group's region: a global spiral interleaves the
+  // groups, and the simulation cools before they can separate.
   const groupOfNode = ns.map(groupOf);
   const present = GROUPS.map(g => g[0]).filter(k => groupOfNode.includes(k));
   const anchors = {};
@@ -515,8 +479,7 @@ function tick() {
     if (!visible(p) || !visible(q)) continue;
     const dx = q.x - p.x, dy = q.y - p.y;
     const d = Math.max(1, Math.hypot(dx, dy));
-    // same group pulls tight, across groups only tethers — this is what turns a
-    // hairball into readable regions joined by visible bridges
+    // same group pulls tight, across groups only tethers
     const same = p.g === q.g;
     const f = (d - (same ? 34 : 150)) * (same ? 0.030 : 0.0035);
     const fx = dx / d * f, fy = dy / d * f;
@@ -528,9 +491,8 @@ function tick() {
     const an = anchors[p.g];
     if (an) { p.vx += (an.x - p.x) * 0.020; p.vy += (an.y - p.y) * 0.020; }
     p.vx -= p.x * 0.0016; p.vy -= p.y * 0.0016;
-    // Slow per-node drift, each with its own phase and frequency, so the map keeps
-    // breathing instead of cooling into a still image — and breathes unevenly,
-    // which is what makes it read as alive rather than as an animation loop.
+    // Slow per-node drift on its own phase and frequency, so the motion never
+    // settles into a visible loop.
     p.vx += Math.sin(TICKS * p.f1 + p.ph) * p.amp;
     p.vy += Math.cos(TICKS * p.f2 + p.ph * 1.7) * p.amp;
     if (p.fixed) { p.vx = p.vy = 0; continue; }
@@ -632,9 +594,8 @@ function drawGraph() {
     }
   }
 
-  // Edges are gentle arcs drawn with additive blending: where many run together they
-  // brighten into visible corridors, so a dense graph reads as structure. Uniform
-  // straight lines at one alpha read as noise, which is what this was before.
+  // Gentle arcs with additive blending: where many run together they brighten into
+  // corridors, so density reads as structure rather than noise.
   const TONE = {rel: '#d6e2f2', pre: '#7fb6ee', sem: '#93a6bd', weak: '#5f6b79'};
   ctx.lineCap = 'round';
   ctx.globalCompositeOperation = 'lighter';
@@ -660,9 +621,8 @@ function drawGraph() {
   }
   ctx.globalCompositeOperation = 'source-over';
 
-  // Real glow needs a falloff. A flat disc at uniform alpha has a hard edge — it
-  // reads as a ring drawn around a ball, not as light. So: a cached radial gradient
-  // from a lightened core out to fully transparent, and no fake specular highlight.
+  // Glow needs falloff: a cached radial gradient from a lightened core out to fully
+  // transparent. A flat disc at uniform alpha reads as a ring, not as light.
   for (const p of nodes) {
     if (!visible(p)) continue;
     const dimmed = hoverNode && !near.has(p);
@@ -866,10 +826,10 @@ function renderLegend() {
 }
 
 // ── top bar ──────────────────────────────────────────────────────────────────
-let VIEW = store.get('ibrain.view', 'graph');   // graph | concepts
+let VIEW = store.get('view', 'graph');   // graph | concepts
 
 function setView(v) {
-  VIEW = v; store.set('ibrain.view', v);
+  VIEW = v; store.set('view', v);
   document.getElementById('graph-stage').style.display = v === 'graph' ? '' : 'none';
   document.getElementById('layout').style.display = v === 'graph' ? 'none' : 'flex';
   renderTopBar();
@@ -883,17 +843,16 @@ function segButton(container, key, label, active, onPick) {
 }
 
 function renderTopBar() {
-  document.getElementById('tagline').textContent = t_('tagline');
+  document.getElementById('tagline').textContent = '加密市场结构知识库';
   const sel = document.getElementById('view');
   sel.innerHTML = '';
-  for (const [k, lbl] of [['graph', t_('graph')], ['concepts', t_('concepts')]])
+  for (const [k, lbl] of [['graph', '知识图谱'], ['concepts', '概念']])
     segButton(sel, k, lbl, VIEW === k, setView);
 }
 
 // ── chapters ─────────────────────────────────────────────────────────────────
-// One numbering scheme, one meaning: position within the chapter. Extended
-// concepts continue the same count rather than sitting numberless beside it.
-// Chapter diagrams live in the reading pane, not the nav rail.
+// One numbering scheme: position within the chapter. Extended concepts continue
+// the same count rather than sitting numberless beside it.
 const CH_POS = {};                     // concept id → "chapter.index"
 const CH_INDEX = {};                   // concept id → index within its chapter
 DATA.chapters.forEach(ch => {
@@ -937,7 +896,7 @@ function renderPath() {
       const open = expanded.has(ch.n);
       extra.style.display = open ? '' : 'none';
       const btn = el('button', 'more' + (open ? ' open' : ''),
-        `<span class="chev">▾</span>${open ? t_('less') : t_('more')} (${ch.side.length})`);
+        `<span class="chev">▾</span>${open ? '收起延伸概念' : '展开延伸概念'} (${ch.side.length})`);
       btn.onclick = () => {
         expanded.has(ch.n) ? expanded.delete(ch.n) : expanded.add(ch.n);
         renderPath();
@@ -949,8 +908,6 @@ function renderPath() {
   }
 }
 
-// The chapter mechanism diagram belongs in the reading pane with the concept,
-// not stacked into the navigation rail.
 function chapterDiagram(ch) {
   if (!ch || !ch.svg) return null;
   const box = el('div', 'ch-diagram');
@@ -1010,7 +967,7 @@ function focusEntity(id) {
   }
   if (out.length || inn.length) {
     const s = el('section', 'f-sec');
-    s.appendChild(el('h4', '', t_('relatedEntities')));
+    s.appendChild(el('h4', '', '关系'));
     const line = (other, verb, note, forward) => {
       const row = el('div', 'rel-row');
       const vb = REL_LABEL[verb] || verb;
@@ -1042,7 +999,6 @@ function focusOn(id, push = true) {
   const card = el('div', 'card');
   const ch = chapterOf[id];
 
-  // One position label, one meaning: which chapter, and which entry within it.
   const head = el('div', 'f-head');
   const inner = el('div', 'inner');
   inner.appendChild(el('div', 'f-where',
@@ -1067,11 +1023,11 @@ function focusOn(id, push = true) {
   const bullets = txt => (txt || '').split('\n').map(l => l.replace(/^- /, '').trim()).filter(Boolean);
 
   if (n.definition) card.appendChild(el('div', 'f-def', md(n.definition)));
-  addTxt(t_('why'), content.why);
-  addTxt(t_('how'), content.how);
-  addTxt(t_('example'), content.example);
-  addTxt(t_('misconceptions'), content.misconceptions);
-  addTxt(t_('practice'), content.practice);
+  addTxt('为什么重要', content.why);
+  addTxt('怎么运作', content.how);
+  addTxt('例子', content.example);
+  addTxt('常见误解', content.misconceptions);
+  addTxt('实战里怎么用', content.practice);
 
   const pres = preOf.get(id) || [];
   if (pres.length) {
@@ -1164,7 +1120,7 @@ function focusOn(id, push = true) {
 function renderEmptyFocus() {
   const box = document.getElementById('focus');
   box.innerHTML = '';
-  box.appendChild(el('div', 'f-empty', esc(t_('empty'))));
+  box.appendChild(el('div', 'f-empty', esc('从左侧选一个概念，或在图谱里点一个节点。')));
 }
 
 G = buildGraph();

@@ -66,7 +66,7 @@ make validate      # 精确告诉你这条断言还缺什么
 
 ## 引擎
 
-17 个 Python 脚本 · 42 个测试 · 一个写入时校验 hook · 6 个 subagent · 7 个 skill。指向你自己的 vault（`VAULT_PATH=/path/to/vault`），同一套纪律就作用在你的领域上。
+15 个 Python 脚本 · 42 个测试 · 一个写入时校验 hook · 6 个 subagent · 7 个 skill。指向你自己的 vault（`VAULT_PATH=/path/to/vault`），同一套纪律就作用在你的领域上。
 
 | 规矩 | 由谁强制 |
 |---|---|
@@ -81,7 +81,7 @@ make validate      # 精确告诉你这条断言还缺什么
 
 ```
 vault/       知识库 —— 292 篇笔记（由私有源库派生生成）
-scripts/     17 个确定性工具：校验器、生成器、导出器
+scripts/     15 个确定性工具：校验器、生成器、导出器
 tests/       42 个测试，含保密天花板的回归防线
 .claude/     6 个 subagent + 7 个 skill + 写入时校验 hook
 ```

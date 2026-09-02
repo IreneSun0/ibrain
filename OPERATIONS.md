@@ -6,9 +6,9 @@
 |---|---|
 | `make bootstrap` | create the venv and install dependencies |
 | `make validate` | the hard gates: frontmatter · duplicate ids · broken links · confidentiality |
-| `make health` | full audit, writes `VAULT-HEALTH-REPORT.md` |
+| `make health` | soft audits: evidence coverage, stale sources, orphans, duplicate entities |
 | `make indexes` | regenerate indexes and MOC auto-blocks |
-| `make refresh` | weekly bundle: indexes + freshness + orphans + duplicate entities |
+| `make refresh` | weekly bundle: indexes + health |
 | `make secretscan` | scan for credential-shaped content |
 | `make publish SOURCE=...` | rebuild `vault/` from a private source vault |
 | `make site` | build `docs/` for GitHub Pages |

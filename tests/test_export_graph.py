@@ -29,7 +29,7 @@ def test_confidentiality_ceiling_is_enforced_at_every_tier():
         ("internal", {"public-source", "internal"}),
         ("confidential", {"public-source", "internal", "confidential"}),
     ):
-        pub = eg.build(public_only=True, max_confidentiality=ceiling)
+        pub = eg.build(ceiling)
         levels = {n["confidentiality"] for n in pub["nodes"]}
         assert levels <= allowed, f"ceiling {ceiling} leaked: {levels - allowed}"
         assert pub["counts"]["notes"] <= full["counts"]["notes"]
@@ -39,13 +39,12 @@ def test_confidentiality_ceiling_is_enforced_at_every_tier():
                 "dangling edge into a dropped node"
 
 
-def test_default_ceiling_is_not_publishable():
-    """Regression guard: `--public-only` alone means `internal`, which is NOT safe
-    to publish. Anything leaving the machine must pass `public-source` explicitly."""
+def test_internal_is_not_publishable():
+    """Regression guard: `internal` outranks `public-source`, so a ceiling of
+    `internal` is not safe to publish. Anything leaving the machine names
+    `public-source` explicitly."""
     assert eg.CONFIDENTIALITY_RANK["internal"] > eg.CONFIDENTIALITY_RANK["public-source"]
-    strict = eg.build(public_only=True, max_confidentiality="public-source")
-    loose = eg.build(public_only=True)
-    assert strict["counts"]["notes"] <= loose["counts"]["notes"]
+    assert eg.build("public-source")["counts"]["notes"] <= eg.build("internal")["counts"]["notes"]
 
 
 def test_typed_edges_carry_relationship_type():

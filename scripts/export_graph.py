@@ -1,25 +1,16 @@
 #!/usr/bin/env python3
-"""export_graph.py — deterministic vault → JSON graph export.
+"""export_graph.py — vault → JSON graph, deterministically ordered.
 
-Produces a single JSON document describing every structured note, its quality
-metadata, its resolved outgoing links, and every typed relationship edge.
+Every structured note with its quality metadata, its resolved outgoing links and
+every typed relationship edge.
 
-Two consumers:
-  1. the visual dashboard artifact (human overview)
-  2. a future GBrain/PGLite indexer (see GBRAIN-INTEGRATION.md)
-
-Confidentiality: the export carries each note's `confidentiality` value so a
-downstream consumer can filter. `--max-confidentiality LEVEL` drops anything
-ranked above LEVEL. Note that `internal` is NOT publishable — for anything that
-leaves the machine, use `--max-confidentiality public-source`.
-
-No LLM. No network. Deterministic ordering throughout.
+`--max-confidentiality LEVEL` drops notes ranked above LEVEL. `internal` is NOT
+publishable: anything that leaves this machine needs `public-source`.
 """
 from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
 import sys
 from collections import Counter
@@ -46,13 +37,6 @@ ENTITY_TYPES = {
 }
 
 
-def first_heading(body: str) -> str:
-    for line in body.split("\n"):
-        if line.startswith("# "):
-            return line[2:].strip()
-    return ""
-
-
 DEF_RE = re.compile(r"## Executive Definition[^\n]*\n+(.*?)(?:\n\n#|\n#|\Z)", re.DOTALL)
 
 
@@ -73,10 +57,6 @@ def _section(body: str, head_prefix: str, limit: int = 700) -> str:
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text[:limit]
 
-
-# A private vault may carry the applied section under a different heading; name it
-# with $IBRAIN_PRACTICE_SECTION so the public tooling stays domain-agnostic.
-_PRACTICE_FALLBACK = os.environ.get("IBRAIN_PRACTICE_SECTION", "")
 
 RECALL_RE = re.compile(r"- Q: (.*?)\n\s+A: (.*?)(?=\n- Q:|\n\n|\Z)", re.DOTALL)
 
@@ -104,15 +84,13 @@ def concept_content(body: str) -> dict:
         "how": _section(body, "How It Works", 1400),
         "example": _section(body, "Concrete Example", 1200),
         "misconceptions": _section(body, "Common Misconceptions", 1200),
-        "practice": _section(body, "In Practice") or (
-            _section(body, _PRACTICE_FALLBACK) if _PRACTICE_FALLBACK else ""),
+        "practice": _section(body, "In Practice"),
         "recall": recall,
     }
 
 
-def build(public_only: bool = False, max_confidentiality: str = "internal") -> dict:
-    """`public_only` is a deprecated alias for max_confidentiality="internal"."""
-    max_rank = CONFIDENTIALITY_RANK.get(max_confidentiality, 1)
+def build(max_confidentiality: str | None = None) -> dict:
+    max_rank = CONFIDENTIALITY_RANK.get(max_confidentiality) if max_confidentiality else None
     root = vault_root()
     notes = [n for n in iter_notes() if n.id]
 
@@ -135,7 +113,7 @@ def build(public_only: bool = False, max_confidentiality: str = "internal") -> d
     for n in notes:
         fm = n.frontmatter
         conf_level = str(fm.get("confidentiality") or "internal")
-        if public_only and CONFIDENTIALITY_RANK.get(conf_level, 3) > max_rank:
+        if max_rank is not None and CONFIDENTIALITY_RANK.get(conf_level, 3) > max_rank:
             continue
 
         srcs = [str(s) for s in (fm.get("sources") or []) if s]
@@ -197,9 +175,8 @@ def build(public_only: bool = False, max_confidentiality: str = "internal") -> d
         if n.ntype in ENTITY_TYPES or n.ntype == "case-study":
             nodes[-1]["summary"] = entity_summary(n.body)
 
-        # entity semantic layer: typed `related` on entity pages. Relationship *notes*
-        # remain the authoritative model for the heavy, evidence-bearing edges; these are
-        # the lighter ones whose evidence is the entity page's own sourced prose.
+        # entity semantic layer: typed `related` on entity pages — lighter than a
+        # relationship note, evidenced by the entity page's own sourced prose
         if n.ntype in ENTITY_TYPES:
             erels = []
             for item in (fm.get("related") or []):
@@ -252,7 +229,7 @@ def build(public_only: bool = False, max_confidentiality: str = "internal") -> d
     return {
         "generated": date.today().isoformat(),
         "vault": str(root),
-        "publicOnly": public_only,
+        "maxConfidentiality": max_confidentiality,
         "counts": {
             "notes": len(nodes),
             "edges": len(edges),
@@ -276,22 +253,20 @@ def build(public_only: bool = False, max_confidentiality: str = "internal") -> d
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=None, help="output path (default: stdout)")
-    ap.add_argument("--public-only", action="store_true",
-                    help="apply the confidentiality ceiling set by --max-confidentiality")
-    ap.add_argument("--max-confidentiality", default="internal",
+    ap.add_argument("--max-confidentiality", default=None,
                     choices=list(CONFIDENTIALITY_RANK),
-                    help="highest tier to include when --public-only is set "
-                         "(use `public-source` for anything that leaves this machine)")
+                    help="highest tier to include (use `public-source` for anything "
+                         "that leaves this machine); omit to export every note")
     args = ap.parse_args()
 
-    data = build(public_only=args.public_only, max_confidentiality=args.max_confidentiality)
+    data = build(args.max_confidentiality)
     text = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
     if args.out:
         Path(args.out).write_text(text, encoding="utf-8")
         c = data["counts"]
         print(f"export_graph: {c['notes']} nodes / {c['edges']} edges "
               f"({c['typedEdges']} typed) → {args.out}"
-              + (f" [≤{args.max_confidentiality}]" if args.public_only else ""))
+              + (f" [≤{args.max_confidentiality}]" if args.max_confidentiality else ""))
     else:
         print(text)
     return 0

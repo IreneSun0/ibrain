@@ -1,8 +1,7 @@
-"""brainlib — shared deterministic helpers for all iBrain ops scripts.
+"""brainlib — deterministic helpers shared by every script here.
 
-Design rules (see 90_META/policies/knowledge-policies.md §10):
-- IDs, hashes, filenames, dates, sorting, link parsing are DETERMINISTIC code, never LLM.
-- No network access in this module. No paid APIs anywhere in ops scripts.
+No network access, and nothing in this module may depend on a model: ids, hashes,
+filenames, dates, sorting and link parsing must be reproducible from the vault alone.
 """
 from __future__ import annotations
 
@@ -12,6 +11,8 @@ import os
 import re
 import sys
 import unicodedata
+
+import yaml
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -20,20 +21,10 @@ OPS_ROOT = Path(__file__).resolve().parent.parent
 
 
 def vault_root() -> Path:
-    """Vault path: $VAULT_PATH override, else the vault bundled with this repo,
-    else a private sibling checkout. A fresh clone resolves to `./vault` and every
-    `make` target works with no configuration."""
+    """$VAULT_PATH, else the vault bundled with this repo — so a fresh clone needs
+    no configuration."""
     env = os.environ.get("VAULT_PATH")
-    if env:
-        return Path(env).expanduser().resolve()
-    bundled = OPS_ROOT / "vault"
-    if (bundled / "90_META").exists():
-        return bundled
-    for sibling in ("private-vault", "ibrain-vault"):
-        candidate = (OPS_ROOT.parent / sibling).resolve()
-        if candidate.exists() and candidate != OPS_ROOT:
-            return candidate
-    return bundled
+    return Path(env).expanduser().resolve() if env else OPS_ROOT / "vault"
 
 
 def schema() -> dict:
@@ -44,9 +35,6 @@ def schema() -> dict:
 # ── markdown / frontmatter ────────────────────────────────────────────────────
 FM_BOUNDARY = re.compile(r"^---\s*$")
 WIKILINK_RE = re.compile(r"\[\[([^\]\|#]+)(?:#[^\]\|]*)?(?:\|[^\]]*)?\]\]")
-TIMELINE_MARK = "<!-- timeline -->"
-
-
 @dataclass
 class Note:
     path: Path
@@ -66,37 +54,8 @@ class Note:
         return str(v) if v is not None else None
 
 
-def _parse_scalar(v: str):
-    v = v.strip()
-    if v in ("", "~", "null"):
-        return None
-    if (v.startswith('"') and v.endswith('"')) or (v.startswith("'") and v.endswith("'")):
-        return v[1:-1]
-    if v == "true":
-        return True
-    if v == "false":
-        return False
-    if v == "[]":
-        return []
-    if v == "{}":
-        return {}
-    if v.startswith("[") and v.endswith("]"):
-        inner = v[1:-1].strip()
-        if not inner:
-            return []
-        return [_parse_scalar(x) for x in inner.split(",")]
-    return v
-
-
 def parse_frontmatter(text: str):
-    """Minimal deterministic YAML-subset parser for our schema.
-
-    Supports: `key: scalar`, `key:` + `  - item` lists, inline lists, quoted
-    strings, comments after values are NOT stripped (we don't write them).
-    Falls back to PyYAML when available for robustness; the subset parser keeps
-    the toolchain dependency-light and behaviour identical across machines.
-    Returns (frontmatter_dict, body, fm_raw, error).
-    """
+    """Returns (frontmatter_dict, body, fm_raw, error)."""
     lines = text.split("\n")
     if not lines or not FM_BOUNDARY.match(lines[0]):
         return {}, text, "", "no-frontmatter"
@@ -112,38 +71,11 @@ def parse_frontmatter(text: str):
     fm_raw = "\n".join(fm_lines)
 
     try:
-        import yaml  # type: ignore
         data = yaml.safe_load(fm_raw) or {}
-        if not isinstance(data, dict):
-            return {}, body, fm_raw, "frontmatter-not-a-mapping"
-        return data, body, fm_raw, None
-    except ModuleNotFoundError:
-        pass
-    except Exception as e:  # yaml parse error
+    except Exception as e:
         return {}, body, fm_raw, f"yaml-error: {e}"
-
-    data: dict = {}
-    current_key = None
-    for raw in fm_lines:
-        if not raw.strip() or raw.strip().startswith("#"):
-            continue
-        if raw.startswith("  - ") and current_key is not None:
-            data.setdefault(current_key, [])
-            if isinstance(data[current_key], list):
-                data[current_key].append(_parse_scalar(raw[4:]))
-            continue
-        if raw.startswith("  ") and ":" in raw and current_key is not None:
-            # nested mapping (metadata:) — keep as flat dict under key
-            k, _, v = raw.strip().partition(":")
-            if not isinstance(data.get(current_key), dict):
-                data[current_key] = {}
-            data[current_key][k.strip()] = _parse_scalar(v)
-            continue
-        if ":" in raw and not raw.startswith(" "):
-            k, _, v = raw.partition(":")
-            current_key = k.strip()
-            data[current_key] = _parse_scalar(v)
-            continue
+    if not isinstance(data, dict):
+        return {}, body, fm_raw, "frontmatter-not-a-mapping"
     return data, body, fm_raw, None
 
 
@@ -157,8 +89,6 @@ def iter_notes(root: Path | None = None, include_templates: bool = False):
     root = root or vault_root()
     skip_dirs = {".git", ".obsidian", ".trash", "99_ARCHIVE"}
     for p in sorted(root.rglob("*.md")):
-        if p.name.endswith(".en.md"):
-            continue  # translation sibling — merged into its canonical note by the exporter
         rel_parts = p.relative_to(root).parts
         if any(part in skip_dirs for part in rel_parts):
             continue
@@ -179,14 +109,6 @@ def slugify(text: str) -> str:
         return ascii_part
     h = hashlib.sha256(text.encode("utf-8")).hexdigest()[:8]
     return f"cjk-{h}"
-
-
-def sha256_file(path: Path) -> str:
-    h = hashlib.sha256()
-    with open(path, "rb") as f:
-        for chunk in iter(lambda: f.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
 
 
 def wikilinks(body: str) -> list[str]:
