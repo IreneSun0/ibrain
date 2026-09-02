@@ -3,8 +3,7 @@ id: "org:tatum"
 type: organization
 title: Tatum
 title_zh: Tatum
-aliases:
-  []
+aliases: []
 status: verified
 importance: tier-2
 domains:
@@ -32,7 +31,7 @@ related:
 ## Key Facts (CONFIRMED)
 
 - Web3 API/RPC 开发平台 (一套 API 跨多链), 2018 年 Jiri Kobelka 创立, HQ Miami; 总融资 ~$42.5M (2022 $41.5M, Circle 参投)。
-- 2025-26 无新融资/大事记录; 规模未披露。
+- 2025-26 无新融资或大事记录。
 
 ## 预测市场 API (2026-08-27 核验 — 首建时未确认, 现已证实)
 
@@ -52,5 +51,5 @@ related:
 ## Timeline
 
 - **2026-08-26** — 建页 (web 核验, 证据见 [[report-2026-08-26-infra-mm-stablecoins]]); 当时预测市场关联未确认。
-- **2026-08-27** — **已查实**: 预测市场 API 确实存在 (`/v4/data/prediction`, 18 端点, Polymarket+Kalshi 只读)。实体重新归类为 Tier B 竞品。 [Source: [[report-2026-08-27-pm-data-vendors]]]
+- **2026-08-27** — **已查实**: 预测市场 API 确实存在 (`/v4/data/prediction`, 18 端点, Polymarket+Kalshi 只读)。实体重新归类为 Tier B 竞品。[Source: [[report-2026-08-27-pm-data-vendors]]]
 - **2026-09-01b** — 实体语义关联层 (2026-09-01b): 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

@@ -3,8 +3,7 @@ id: "org:predexon"
 type: organization
 title: Predexon
 title_zh: Predexon
-aliases:
-  []
+aliases: []
 status: verified
 importance: tier-2
 domains:
@@ -52,7 +51,7 @@ related:
 
 ⚠ **营销与规格冲突**: 其定价页**仍在售卖已下线的 Trading API**, Free 档说明也还提匹配端点。**以 OpenAPI spec 为准**; 第三方目录 (polymart/launchpoly) 仍复述旧卖点, 不可引用。
 
-**团队/融资**: 「Backed by Alliance」(alliance.xyz), 据报 ALL16 批次 2026-03 毕业; 创始人据报 Larry Pang 与 Jason Lee (UC Berkeley, ex-Amazon/AWS) — **第三方单源, 暂按 provisional**。融资金额未披露。「100+ 客户」仅见第三方目录, **不可依赖**。
+**团队/融资**: 「Backed by Alliance」(alliance.xyz), 据报 ALL16 批次 2026-03 毕业; 创始人据报 Larry Pang 与 Jason Lee (UC Berkeley, ex-Amazon/AWS) — **第三方单源, 暂按 provisional**。「100+ 客户」仅见第三方目录, **不可依赖**。
 
 
 ## Open Questions

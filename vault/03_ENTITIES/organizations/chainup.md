@@ -36,11 +36,11 @@ Singapore 的 B2B crypto 基础设施商 (white-label 交易所/钱包/KYT), 联
 - 2017 创立, HQ Singapore (2019 起); Founder & CEO **Sailor Zhong 钟庚发** (前 Baidu SNS 技术总监; 2025-10 PR 在任)。COO Chung Ho。
 - **Huobi 纽带**: 联创含 **杜均 Du Jun** (Huobi 联合创始人/前 CMO, Node Capital 创始合伙人) 与 Hu Donghai。
 - 业务: white-label 交易所系统 / 流动性技术 / MPC 钱包 / KYT 合规 (Trustformer) / 资产代币化 / 资管 (Continuum Alpha, 持 Singapore CMS 牌照 CMS101142); SOC 2 + ISO 27001/17/18。
-- 规模 (口径并存, 均单源): 旧口径 300+ 交易所客户/50M 用户; 新口径 1,000+ 客户/30 国/60M+ 终端用户。融资额未披露 (公开数据互相矛盾)。
+- 规模 (口径并存, 均单源): 旧口径 300+ 交易所客户/50M 用户; 新口径 1,000+ 客户/30 国/60M+ 终端用户。
 
 ## Hermes — white-label 预测市场 (CONFIRMED 存在; 细节自官网)
 
-30 天上线 / CLOB 亚毫秒撮合 / 内置流动性框架 / 事件结束秒付结算 (对比行业 1-6 小时) / gasless / 后台管控; 品类: 选举/体育/大宗/地缘/AI 里程碑/IPO/天气。目标客户 = 交易平台、Web3 SuperApp、fintech/券商。定价、客户名单、发布日均未公布。(注意: Pyth 也有同名 Hermes 价格服务, 无关。)
+30 天上线 / CLOB 亚毫秒撮合 / 内置流动性框架 / 事件结束秒付结算 (对比行业 1-6 小时) / gasless / 后台管控; 品类: 选举/体育/大宗/地缘/AI 里程碑/IPO/天气。目标客户 = 交易平台、Web3 SuperApp、fintech/券商。(注意: Pyth 也有同名 Hermes 价格服务, 无关。)
 
 
 ## Open Questions
@@ -55,5 +55,5 @@ Hermes 已签客户? 定价? 其白标 venue 用什么 resolution 机制 (自裁
 
 ## Timeline
 
-- **2026-08-26** — 建页 (web 核验)。Tan Bin Ru 已非 ChainUp Deputy CEO (LinkedIn 现职 ST Engineering President Enterprise Digital; 离开日期未公布, Crunchbase 条目滞留)。
-- **2026-08-27** — **修正** (R2 谱系核验): Sailor Zhong 本人背景 = Baidu SNS 技术总监 / START CTO / 中国移动, **非 ex-Huobi**; 「ChainUp 创始人是 Huobi 系」的说法不成立。Huobi 真实纽带 = [[du-jun]] 是联创/非执行董事 + 其 On Chain 载体与新火科技的股权认购。 [Source: [[report-2026-08-26-cex-lineage]]]
+- **2026-08-26** — 建页 (web 核验)。Tan Bin Ru 已非 ChainUp Deputy CEO (LinkedIn 现职 ST Engineering President Enterprise Digital; Crunchbase 条目滞留)。
+- **2026-08-27** — **修正** (R2 谱系核验): Sailor Zhong 本人背景 = Baidu SNS 技术总监 / START CTO / 中国移动, **非 ex-Huobi**; 「ChainUp 创始人是 Huobi 系」的说法不成立。Huobi 真实纽带 = [[du-jun]] 是联创/非执行董事 + 其 On Chain 载体与新火科技的股权认购。[Source: [[report-2026-08-26-cex-lineage]]]

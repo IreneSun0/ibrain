@@ -43,8 +43,8 @@ related:
 ## Key Facts (CONFIRMED)
 
 - **转型**: 原做 40,000+ 市场跨 Kalshi/Polymarket/Manifold/Metaculus 的归一化 API (Markets/Search/News/Trade 端点 + CSV/TSV 导出) → 现自述为「an indexing and benchmarking company for prediction markets and event contracts」。
-- **现有资产**: 22 个指数; 公开 API `api.adjacent.markets/api/v1/public` (**无鉴权, CORS 开放, 延迟 15 分钟**); MCP server (`mcp.adjacent.markets/mcp`)。
-- **创始人**: Lucas Kohorst; pre-seed 融资 (金额未披露)。定价与团队规模均未公布。
+- **现有资产**: 22 个指数 (政治期货指数、各类选举指数、预测市场衍生参考利率); 公开 API `api.adjacent.markets/api/v1/public` (**无鉴权, CORS 开放, 延迟 15 分钟**); MCP server (`mcp.adjacent.markets/mcp`)。
+- **创始人**: Lucas Kohorst; pre-seed 融资 (金额未披露)。
 
 
 ## Open Questions
