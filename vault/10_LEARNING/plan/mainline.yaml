@@ -132,7 +132,7 @@ chapters:
   - n: 8
     title: "终章 · 从知识到系统"
     title_en: "Ch.8 · From Knowledge to Systems"
-    question: "把以上一切说成一个机构愿意付费的故事。"
+    question: "要让前面这些判断真正可用，必须先造出什么？"
     question_en: "What has to be built for any of this to be usable at scale?"
     concepts:
       - concept:data-infrastructure

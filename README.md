@@ -6,14 +6,8 @@
 
 <p align="center">
   <a href="https://ailinsun.github.io/cryptoatlas"><b>🗺 打开图谱</b></a> ·
-  <a href="CONTRIBUTING.md">➕ 补充或纠错</a>
-</p>
-
-<p align="center">
-  <img alt="CI" src="https://github.com/ailinsun/cryptoatlas/actions/workflows/ci.yml/badge.svg">
-  <img alt="notes" src="https://img.shields.io/badge/notes-292-4c8fd6">
-  <img alt="code" src="https://img.shields.io/badge/code-Apache--2.0-3faa8e">
-  <img alt="content" src="https://img.shields.io/badge/content-CC%20BY%204.0-3faa8e">
+  <a href="CONTRIBUTING.md">➕ 补充或纠错</a> ·
+  <a href="#english">English</a>
 </p>
 
 <p align="center">
@@ -22,81 +16,126 @@
   </a>
 </p>
 
----
+加密这行的资料有两种：交易所的营销稿，和只有圈内人看得懂的黑话。中间那层——**这套东西到底怎么运转的**——很少有人写清楚。
 
-每条断言都标着自己的证据等级。标了 `verified` 却没有来源笔记，build 不过；断言一条关系却拿不出证据，build 不过。纠错是往时间线里追加一条，不是把旧的改掉。
+这里是 143 个概念、76 个机构和人、75 条有出处的关系，按九个问题串起来。每条断言都写明了它的把握程度，说不准的地方直接写 `UNKNOWN`。
 
-|  | 数量 |
-|---|---:|
-| 概念 —— 订单簿、清算、衍生品、托管、预言机、裁决、机构风险 | **143** |
-| 实体 —— 场馆、做市商、基金、协议、监管、法域、人物 | **76** |
-| 它们之间的 typed 关系 | **75** |
-| 实证案例（真实争议，带金额与结局） | 3 |
-| 来源笔记 | 21 |
-| 总笔记 / 总链接 | 292 / 2,813 |
+## 从哪读
 
-每个概念都写到完整深度：定义、机制、带数字的例子、常见误解、自测题。成熟度公开可见 —— 216 reviewed · 46 verified · 23 seed · 3 stale。
+九章按一条线走下来，每章回答一个问题：
 
-事件与预测市场挖得最深，因为结算问题在那里最难。但它是这张地图里的一条纵向，不是全部。
+| 章节 | 回答什么 | 会读到 |
+|---|---|---|
+| **序章 · 钱与风险的地图** | 为什么这个市场存在？谁需要它？ | 价格发现 · 做市商 · 清算所/中央对手方 · 结算 |
+| **一 · 盘口的语言** | 我能以这个价格成交多少？大单会把价格推多远？ | 买卖价差 · 盘口深度 · 滑点 · 逆向选择 · 库存风险 |
+| **二 · 风险的合约形态** | 我真正暴露于哪个 underlying？最坏要付多少？ | 二元/数字期权 · 基差风险 · 保证金 · 跨品种/跨头寸保证金 |
+| **三 · 链上最小集** | 哪些必须上链？哪些链下更合理？信任假设是什么？ | 预言机 · 智能合约 · ERC-1155 · 自动做市商 |
+| **四 · 钱的管道** | 钱在哪个平台？能否自由转移？谁能冻结？ | 托管 · 客户资产隔离 · 结算轨道 · 稳定币 |
+| **五 · 事件市场本体** | 这个 contract 到底承诺什么？ | 事件合约 · 隐含概率 · 全额抵押 · 做市激励 |
+| **六 · 结算与争议** | 谁决定事实？裁错了怎么办？ | 合约语义 · 指定结果来源 · 争议机制 · 结果判定风险 |
+| **七 · 机构风险语言** | 看对方向以后，还有什么能让我拿不到钱或被迫退出？ | 事件风险价值 · 交易对手风险 · 集中度风险 · 监管准入 |
+| **终章 · 从知识到系统** | 要让前面这些判断真正可用，必须先造出什么？ | 数据基础设施 · 可审计性 · 风险引擎 |
 
-## 纠错
+不想按顺序也行——图谱上点任何一个节点，Kalshi、Polymarket、Jane Street、CFTC、赵长鹏、USDT，都能从那里开始走。
 
-一家场馆改了费率、一个监管改了口径，笔记就过时了。[提一个纠错 issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md)，或者直接改 —— `make validate` 会指出这条断言还缺什么。写法见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+## 一条词条长什么样
 
-## 引擎
+每个概念都有定义、机制、**带数字的例子**、常见误解、自测题。比如「滑点」那条里的算题：
 
-15 个脚本、42 个测试，把规矩变成 build 的一部分：五档证据分级、`verified` 必须有带 hash 的来源、保密等级不得低于自己的来源、公开树由私库经可审计的脚本派生。
+> 某 YES 合约卖侧盘口：0.52 × 5,000 份 · 0.53 × 8,000 份 · 0.55 × 20,000 份。
+> 你市价买入 $10,000。吃几档、成交均价、相对 best ask 的滑点是多少？
+>
+> 前两档吃掉 $6,840，剩 $3,160 进第三档买 5,745 份。共 18,745 份，均价 **0.5335**，
+> 滑点 **2.6%**。在事件市场里这尤其致命：合约价格本身在 0–1 之间，1 分钱的滑点在
+> 0.63 的合约上就是 1.6%，胜率 55% 的策略扣掉往返滑点可能直接变负。
 
-把 `VAULT_PATH` 指向你自己的 vault，同一套纪律就作用在你的领域。
+机构和人的词条同理——不写「X 是一家大型做市商」，而是写它在这张图上的位置、谁跟它有关系、什么会让它退出。
 
-## 许可
+## 为什么可以信
 
-代码 [Apache-2.0](LICENSE)，内容 [CC BY 4.0](LICENSE-CONTENT)。
+- **每条断言标着自己的证据等级**：confirmed / inference / hypothesis / unverified / unknown，直接写在页面上
+- **`verified` 必须有来源笔记**，带内容哈希和访问日期；没有就进不了库
+- **纠错是往时间线里追加一条**，不覆盖旧的——你能看到一个判断是怎么变的
+- **说不准就写 `UNKNOWN`**，不猜
+
+## 一起写
+
+一家场馆改了费率、一个监管改了口径，笔记就过时了。你要是在这行，你一定知道一些这张图还不知道的事。
+
+[提一个纠错 issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md)，或者直接改——`make validate` 会告诉你这条断言还缺什么。写法见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+内容 [CC BY 4.0](LICENSE-CONTENT)，工具 [Apache-2.0](LICENSE)。把 `VAULT_PATH` 指向你自己的库，同一套校验就作用在你的领域。
 
 <br>
 
 ---
+
+<a name="english"></a>
 
 ## English
 
 **A knowledge graph of crypto market structure.**
 [Open the atlas](https://ailinsun.github.io/cryptoatlas) · [Add or correct an entry](CONTRIBUTING.md)
 
-Every claim carries its own evidence tier. Marked `verified` with no source note behind
-it, the build fails. A relationship asserted without evidence, the build fails. A
-correction appends to the timeline; it never rewrites what was there.
+Writing about crypto comes in two flavours: exchange marketing, and jargon only insiders
+parse. The layer in between — **how this machinery actually works** — rarely gets written
+down.
 
-|  | count |
-|---|---:|
-| concepts — order books, clearing, derivatives, custody, oracles, resolution, institutional risk | **143** |
-| entities — venues, market makers, funds, protocols, regulators, jurisdictions, people | **76** |
-| typed relationships between them | **75** |
-| worked case studies (real disputes, with the money and the outcome) | 3 |
-| source notes | 21 |
-| total notes / links | 292 / 2,813 |
+This is 143 concepts, 76 organisations and people, and 75 sourced relationships, strung
+along nine questions. Every claim states how sure it is, and where nobody knows, it says
+`UNKNOWN`.
 
-Each concept is written out in full: definition, mechanism, a worked numeric example,
-the common misconceptions, self-test questions. Maturity is visible — 216 reviewed ·
-46 verified · 23 seed · 3 stale.
+### Where to start
 
-Event and prediction markets go deepest, because settlement is hardest there. They are
-one thread through the map, not the whole of it.
+| chapter | answers | you'll meet |
+|---|---|---|
+| **Prologue · A Map of Money and Risk** | Why does this market exist? Who needs it? | Price Discovery · Market Maker · Clearinghouse · Settlement |
+| **1 · The Language of the Order Book** | How much can I fill at this price? How far will a large order move it? | Spread · Depth · Slippage · Adverse Selection · Inventory Risk |
+| **2 · The Shapes Risk Takes** | What am I actually exposed to? What is the worst I can pay? | Binary/Digital Option · Basis Risk · Margin · Portfolio Margin |
+| **3 · The On-Chain Minimum Set** | What must go on-chain, what belongs off-chain, and what am I trusting? | Oracle · Smart Contract · ERC-1155 · AMM |
+| **4 · The Plumbing of Money** | Where is the money held? Can it move freely? Who can freeze it? | Custody · Custody Segregation · Settlement Rail · Stablecoin |
+| **5 · Event Markets Themselves** | What is an event contract, and why is its price a probability? | Event Contract · Implied Probability · Fully Collateralized |
+| **6 · Settlement and Disputes** | Who decides what happened — and what if they get it wrong? | Contract Semantics · Resolution Source · Dispute Mechanism |
+| **7 · The Language Institutions Speak** | How do I express this exposure in the vocabulary of a risk desk? | Event VaR · Counterparty Risk · Concentration Risk · Regulatory Access |
+| **8 · From Knowledge to Systems** | What has to be built for any of this to be usable at scale? | Data Infrastructure · Auditability · Risk Engine |
 
-### Corrections
+Or ignore the order — click any node on the graph. Kalshi, Polymarket, Jane Street, the
+CFTC, CZ and USDT are all valid places to start.
 
-A venue changes its fees, a regulator shifts position, and a note goes stale.
+### What an entry looks like
+
+Every concept carries a definition, the mechanism, **a worked numeric example**, the
+common misconceptions, and self-test questions. From the one on slippage:
+
+> The ask side of a YES contract: 0.52 × 5,000 · 0.53 × 8,000 · 0.55 × 20,000.
+> You market-buy $10,000. How many levels do you clear, at what average, and what is the
+> slippage against best ask?
+>
+> The first two levels take $6,840; the remaining $3,160 buys 5,745 at the third.
+> 18,745 contracts at an average of **0.5335** — **2.6%** slippage. This bites harder in
+> event markets, where the contract itself trades between 0 and 1: a cent of slippage on
+> a 0.63 contract is 1.6%, and a 55%-edge strategy can go negative on the round trip.
+
+Entries on firms and people work the same way. Not "X is a large market maker", but where
+it sits on this map, who it is connected to, and what would make it leave.
+
+### Why you can trust it
+
+- **Every claim carries its evidence tier** — confirmed / inference / hypothesis /
+  unverified / unknown — visibly, on the page
+- **`verified` requires a source note** with a content hash and an access date
+- **Corrections append to a timeline** rather than overwriting it, so you can see how a
+  judgement changed
+- **Where nobody knows, it says `UNKNOWN`** instead of guessing
+
+### Contributing
+
+A venue changes its fees, a regulator shifts position, and a note goes stale. If you work
+in this market, you know something this map doesn't.
+
 [Open a correction issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md),
-or fix it yourself — `make validate` names what a claim is still missing. Writing
-conventions are in [CONTRIBUTING.md](CONTRIBUTING.md).
+or fix it yourself — `make validate` names what a claim is still missing. Conventions are
+in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-### The engine
-
-15 scripts and 42 tests make the rules part of the build: five evidence tiers,
-`verified` requires a hashed source, confidentiality is a ceiling a note can never sit
-below, and the public tree is derived from a private one by a reviewable script.
-
-Point `VAULT_PATH` at your own vault and the same discipline applies to your domain.
-
-### License
-
-Code [Apache-2.0](LICENSE), content [CC BY 4.0](LICENSE-CONTENT).
+Content [CC BY 4.0](LICENSE-CONTENT), tooling [Apache-2.0](LICENSE). Point `VAULT_PATH` at
+your own vault and the same checks apply to your domain.

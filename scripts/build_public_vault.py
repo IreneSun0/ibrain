@@ -219,11 +219,11 @@ def verify_output(out: Path) -> int:
             n = len(re.findall(re.escape(term), text, re.I))
             if n:
                 bad_terms.append((rel, term, n))
+        for pat in AUTHOR_VOICE:
+            m2 = re.search(pat, text)
+            if m2:
+                bad_voice.append((rel, m2.group(0)))
         if p.suffix == ".md":
-            for pat in AUTHOR_VOICE:
-                m2 = re.search(pat, text)
-                if m2:
-                    bad_voice.append((rel, m2.group(0)))
             m = re.search(r"(?m)^confidentiality: (\S+)", text)
             if m and m.group(1) not in ("public-source",):
                 bad_tier.append(f"{rel}: {m.group(1)}")
