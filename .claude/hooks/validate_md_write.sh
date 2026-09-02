@@ -1,7 +1,5 @@
 #!/bin/bash
-# PostToolUse hook: validate vault .md writes (report-only, never rewrites).
-# Reads hook JSON from stdin; extracts file_path; runs validators scoped to the file
-# plus fast global checks. Exit 2 = feed problems back to Claude (blocking feedback).
+# Report-only PostToolUse hook. Exit 2 returns validation failures to Claude.
 set -u
 OPS_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 PY="$OPS_DIR/.venv/bin/python"
@@ -13,7 +11,6 @@ try:
     d=json.load(sys.stdin); print(d.get('tool_input',{}).get('file_path',''))
 except Exception: print('')" 2>/dev/null)
 
-# Only act on markdown inside the resolved vault (honours $VAULT_PATH).
 case "$FILE" in
   *.md) ;;
   *) exit 0 ;;
@@ -21,7 +18,7 @@ esac
 VAULT=$("$PY" -c "import sys;sys.path.insert(0,'$OPS_DIR/scripts');import brainlib;print(brainlib.vault_root())" 2>/dev/null)
 case "$FILE" in
   "$VAULT"/*) ;;
-  *) exit 0 ;;  # not a vault markdown write — nothing to do
+  *) exit 0 ;;
 esac
 case "$FILE" in
   */templates/*|*/99_ARCHIVE/*) exit 0 ;;

@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
-"""detect_duplicate_entities.py — find PROBABLE duplicate entities before they fork.
+"""Report distinct ids that share a normalized title or alias.
 
-Two notes are suspicious when they share a normalized title/alias but have
-different ids. Reports only — entity resolution is a judgment call (librarian),
-so this never edits files. Exit 1 if suspects found (report mode: exit 0 with --report).
+Never edits files. Exits 1 on matches, or 0 in --report mode.
 """
 from __future__ import annotations
 
@@ -26,7 +24,7 @@ def norm(s: str) -> str:
 
 def main(argv: list[str]) -> int:
     report_mode = "--report" in argv
-    claims: dict[str, set[str]] = defaultdict(set)  # norm-name -> set of ids
+    claims: dict[str, set[str]] = defaultdict(set)
     root = vault_root()
     for n in iter_notes():
         if n.ntype not in ENTITY_TYPES or not n.id:

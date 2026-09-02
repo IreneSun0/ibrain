@@ -62,9 +62,7 @@ def test_view_builds_with_full_coverage(tmp_path):
     concept_ids = {n["id"] for n in data["nodes"] if n["type"] == "concept"}
     assert main_ids | side_ids == concept_ids, "every concept is mainline or side"
     assert not (main_ids & side_ids)
-    # Exercises and a concept's own recall prompts are one list, attached to the
-    # concept — not a chapter appendix. Pitch rehearsals are stripped at publish;
-    # the practice problems stay, and every one lands on a concept that exists.
+    # Exercises and recall prompts share a per-concept list, not a chapter appendix.
     assert not any("exercises" in ch for ch in data["chapters"])
     graded = [q for n in data["nodes"] for q in (n.get("content") or {}).get("recall") or []
               if q.get("kind") and q["kind"] != "\u5fc6"]
@@ -72,12 +70,9 @@ def test_view_builds_with_full_coverage(tmp_path):
     assert all(q.get("kind") for n in data["nodes"]
                for q in (n.get("content") or {}).get("recall") or []
                if n["id"] in {"concept:slippage", "concept:venue"})
-    # inline content present on mainline quests
     node = next(n for n in data["nodes"] if n["id"] == "concept:contract-equivalence")
     assert node["definition"] and node["content"]["why"]
 
-    # Coverage ratchet: every mainline quest should eventually carry a practical
-    # application section. Raise MIN_PRACTICE as notes are written; never lower it.
     MIN_PRACTICE = 0
     concepts = [n for n in data["nodes"] if n["type"] == "concept"]
     with_practice = sum(1 for n in concepts if (n.get("content") or {}).get("practice"))
@@ -86,8 +81,7 @@ def test_view_builds_with_full_coverage(tmp_path):
 
 
 def test_link_preview_metadata_ships_with_the_page(tmp_path):
-    """Sharing either URL must show the graph. The card is an absolute URL on this
-    site's own origin, so the image has to be emitted next to index.html."""
+    """Emit the absolute link-preview image beside index.html."""
     out = tmp_path / "index.html"
     assert lv.main(["--out", str(out)]) == 0
     html = out.read_text(encoding="utf-8")

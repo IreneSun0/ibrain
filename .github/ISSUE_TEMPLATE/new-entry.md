@@ -12,6 +12,6 @@ labels: new-entry
 <!-- What would a reader get wrong without it? -->
 
 **What do you already know about it?**
-<!-- Rough notes are fine — this doesn't have to be a finished entry -->
+<!-- Include known facts and uncertainties. -->
 
 **Sources you'd point to**

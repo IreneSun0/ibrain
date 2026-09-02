@@ -13,8 +13,7 @@ labels: correction
 **What should it say?**
 
 **Source**
-<!-- A URL, filing, or document. If you have none, say so — a flagged uncertainty
-     is still worth having. -->
+<!-- A URL, filing, or document. If none is available, mark the claim unverified. -->
 
 **How confident are you?**
 - [ ] Confirmed — I have a reliable source

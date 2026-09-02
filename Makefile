@@ -1,6 +1,5 @@
 # `make publish SOURCE=/path/to/private-vault` (or set VAULT_PATH)
 SOURCE ?=
-# CryptoAtlas — command interface
 # The vault resolves to ./vault (bundled) unless VAULT_PATH is set.
 
 PY := .venv/bin/python
@@ -10,7 +9,7 @@ PIP := .venv/bin/pip
 
 help:
 	@echo "make bootstrap   — create venv + install deps"
-	@echo "make validate    — frontmatter + duplicate ids + wikilinks (hard checks)"
+	@echo "make validate    — frontmatter + ids + wikilinks + confidentiality"
 	@echo "make health      — soft audits: evidence, freshness, orphans, duplicates"
 	@echo "make indexes     — regenerate plain-md indexes + MOC auto-blocks"
 	@echo "make refresh     — indexes + health (weekly maintenance bundle)"
@@ -22,7 +21,7 @@ help:
 bootstrap:
 	python3 -m venv .venv
 	$(PIP) install -q -r requirements.txt
-	@echo "bootstrap done — try: make validate"
+	@echo "bootstrap done — run: make validate"
 
 validate:
 	$(PY) scripts/validate_frontmatter.py

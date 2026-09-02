@@ -1,6 +1,5 @@
 <svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,sans-serif" font-size="12">
   <text x="10" y="18" fill="var(--muted)" font-size="11">左: 事件合约的支付形状 (= binary option) · 右: 两种安全哲学</text>
-  <!-- payoff diagram -->
   <g>
     <line x1="50" y1="170" x2="320" y2="170" stroke="var(--muted)"/>
     <line x1="50" y1="170" x2="50" y2="50" stroke="var(--muted)"/>
@@ -15,7 +14,6 @@
     <text x="120" y="196" fill="var(--ink)" font-size="11">没有中间态 — 台阶函数</text>
     <text x="50" y="216" fill="var(--muted)" font-size="10.5">0.30 买入: 赢 +0.70 / 输 −0.30, 开仓即知最坏</text>
   </g>
-  <!-- collateral philosophies -->
   <g>
     <rect x="400" y="45" width="140" height="120" rx="10" fill="var(--done-soft)" stroke="var(--done)"/>
     <text x="415" y="66" fill="var(--ink)" font-weight="700">全额抵押</text>

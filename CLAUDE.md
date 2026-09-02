@@ -1,30 +1,25 @@
-# CLAUDE.md — working on CryptoAtlas with Claude Code
-
-Every rule below is enforced by a script. If you disagree with one, change the script and
-the policy note — do not work around it.
+# CLAUDE.md — repository rules
 
 **Read before writing anything** (in order):
 
-1. `vault/90_META/policies/knowledge-policies.md` — ten rules. The load-bearing ones:
-   five evidence tiers · compiled truth + append-only timeline · a suggestion is not a
-   decision · `verified` requires a source.
+1. `vault/90_META/policies/knowledge-policies.md` — evidence tiers, append-only
+   timelines, suggestion handling, and source requirements for `verified` notes.
 2. `vault/90_META/schemas/frontmatter-schema.md` — field spec (machine-readable JSON alongside).
 3. `make help` — the command surface.
 
 ## Hard rules
 
-- **Deterministic work goes to scripts, never to you.** IDs, slugs, hashes, indexes,
-  queues, link resolution → `scripts/`. You do explanation, synthesis, relationship
-  interpretation, importance grading, and strategic inference. Nothing else.
-- **Run `make validate` after every write**; fix what goes red on the spot. The
-  PostToolUse hook catches most violations, but it reports — it never rewrites.
+- **Use scripts for deterministic transformations.** IDs, slugs, hashes, indexes,
+  queues, and link resolution belong in `scripts/`.
+- **Run `make validate` after every write** and fix failures before continuing. The
+  PostToolUse hook reports violations but does not rewrite files.
 - **Never rewrite anyone's original wording** under `09_ORIGINALS/`. You may append
   frontmatter, links, and a clearly marked `> AI interpretation:` block. Nothing else.
 - **Suggestions land as `hypothesis`**, never as a decision page. Decision pages are
   created only when a human has actually decided.
-- **Dynamic facts** (roles, current status) require `last_verified` plus a source. Where
-  something is not public, write the fact — "未披露", or a dated negative finding a reader
-  could disprove. Never a placeholder standing in for the answer, and never a guess.
+- **Dynamic facts** (roles, current status) require `last_verified` plus a source. Qualify
+  a fact as `未披露` only when the nondisclosure is relevant; otherwise use a dated,
+  scoped negative finding or omit the line. Never use a placeholder or guess.
 - **The timeline below `<!-- timeline -->` is append-only.** Corrections are new
   entries. Existing entries are never silently edited.
 - **Secrets never enter the repo** (`make secretscan`).
@@ -35,16 +30,16 @@ the policy note — do not work around it.
 Editing `vault/` directly means your change is erased on the next publish. To change
 content, edit the source vault (`VAULT_PATH=...`) and re-run `make publish`.
 
-The *mechanism* is `build_public_vault.py`; the site-specific values (which trees are
-private, which sections to strip, which terms must never survive) live in the untracked
-`scripts/publish_rewrites.yaml` — see `publish_rewrites.example.yaml`. It stays untracked because a
-committed list of redacted terms reconstructs what it redacted. New exclusions go there.
+The *mechanism* is `build_public_vault.py`; site-specific exclusions and rewrites live
+in the untracked `scripts/publish_rewrites.yaml` — see
+`publish_rewrites.example.yaml`. A committed redaction list would reveal the terms it
+removes. Add new exclusions to the untracked file.
 
 ## Where things are
 
 - Indexes: `vault/90_META/dashboards/index-*.md` (regenerate with `make indexes`)
 - Open gaps: `vault/07_RESEARCH/RESEARCH-BACKLOG.md`
-- The reading path: `vault/10_LEARNING/plan/mainline.yaml` (81 steps, 9 chapters)
+- The reading path: `vault/10_LEARNING/plan/mainline.yaml`
 
 ## The write-time hook
 
@@ -56,13 +51,13 @@ duplicate-id and broken-link check. It reports, never rewrites, and never touche
 
 ## Weekly maintenance
 
-`make refresh` does the mechanical half. The judgement half:
+Run `make refresh`, then:
 
 1. Resolve the name collisions `detect_duplicate_entities.py` reports.
 2. Fold new evidence into the compiled section of each affected page.
 3. Append to timelines; never edit an existing entry.
-4. `fact-checker` audits claims carrying no source; `relationship-mapper` fills weak
-   relationships; `check_source_freshness.py` findings go into the queue by priority.
+4. Audit claims with no source, strengthen weak relationships, and triage
+   `check_source_freshness.py` findings by priority.
 
 ## Publishing
 
@@ -73,13 +68,3 @@ make site                                    # rebuild docs/
 
 `make validate && make secretscan && make test` must be green first. The script refuses
 to write onto its own source.
-
-## Subagents
-
-`librarian` (filing, entity disambiguation, schema) · `researcher` (primary-source
-verification, gap filling) · `fact-checker` (claim audit) · `relationship-mapper`
-(typed relationships, graphs) · `learning-designer` (reading path, exercises)
-· `vault-auditor` (health audit).
-
-A researcher does not grade importance; a learning designer does not verify facts.
-Separating them is what stops one confident pass from contaminating the whole vault.

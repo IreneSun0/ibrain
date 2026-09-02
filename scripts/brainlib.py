@@ -1,8 +1,4 @@
-"""brainlib — deterministic helpers shared by every script here.
-
-No network access, and nothing in this module may depend on a model: ids, hashes,
-filenames, dates, sorting and link parsing must be reproducible from the vault alone.
-"""
+"""Deterministic vault helpers with no network or model dependencies."""
 from __future__ import annotations
 
 import hashlib
@@ -16,13 +12,11 @@ import yaml
 from dataclasses import dataclass, field
 from pathlib import Path
 
-# ── vault location ────────────────────────────────────────────────────────────
 OPS_ROOT = Path(__file__).resolve().parent.parent
 
 
 def vault_root() -> Path:
-    """$VAULT_PATH, else the vault bundled with this repo — so a fresh clone needs
-    no configuration."""
+    """Return $VAULT_PATH when set; otherwise return the bundled vault."""
     env = os.environ.get("VAULT_PATH")
     return Path(env).expanduser().resolve() if env else OPS_ROOT / "vault"
 
@@ -32,7 +26,6 @@ def schema() -> dict:
     return json.loads(p.read_text(encoding="utf-8"))
 
 
-# ── markdown / frontmatter ────────────────────────────────────────────────────
 FM_BOUNDARY = re.compile(r"^---\s*$")
 WIKILINK_RE = re.compile(r"\[\[([^\]\|#]+)(?:#[^\]\|]*)?(?:\|[^\]]*)?\]\]")
 @dataclass
@@ -97,7 +90,6 @@ def iter_notes(root: Path | None = None, include_templates: bool = False):
         yield load_note(p)
 
 
-# ── slugs / ids ───────────────────────────────────────────────────────────────
 def slugify(text: str) -> str:
     """Deterministic ASCII slug. CJK-only strings fall back to a stable hash tag."""
     norm = unicodedata.normalize("NFKD", text)
@@ -138,7 +130,6 @@ def build_frontmatter(fields: dict) -> str:
                 out.append(f"{k}:")
                 for item in v:
                     if isinstance(item, dict):
-                        # block-style mapping item (e.g. typed `related` entries)
                         first = True
                         for k2, v2 in item.items():
                             prefix = "  - " if first else "    "

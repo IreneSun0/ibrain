@@ -134,14 +134,12 @@ def build(max_confidentiality: str | None = None) -> dict:
             "sourceCount": len(srcs),
             "lastVerified": str(fm.get("last_verified") or ""),
             "reviewAfter": str(fm.get("review_after") or ""),
-            # source-note specific: does the evidence actually exist locally?
             "hasHash": bool(fm.get("content_hash")) if n.ntype == "source" else None,
             "url": str(fm.get("url") or "") if n.ntype == "source" else "",
             "approval": str(fm.get("approval_status") or ""),
             "deadline": str(fm.get("deadline") or ""),
         })
 
-        # concept semantic layer: hard prerequisites + typed relations (frontmatter)
         if n.ntype == "concept":
             prereqs = [str(p) for p in (fm.get("prerequisites") or []) if p]
             crels = []

@@ -13,7 +13,6 @@
     <rect x="60" y="36" width="300" height="34" rx="8" fill="var(--accent-soft)" stroke="var(--accent)"/>
     <text x="210" y="58" fill="var(--ink)" font-weight="700">token <tspan fill="var(--muted)" font-weight="400">可编程的权利 (ERC-20/721/1155)</tspan></text>
   </g>
-  <!-- oracle bridge -->
   <g>
     <rect x="470" y="76" width="120" height="60" rx="10" fill="var(--def-bg)" stroke="var(--warn)" stroke-width="1.5"/>
     <text x="530" y="100" fill="var(--ink)" font-weight="700" text-anchor="middle">oracle</text>

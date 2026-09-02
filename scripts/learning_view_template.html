@@ -52,8 +52,6 @@
     padding:4px 11px;border-radius:6px;cursor:pointer;white-space:nowrap}
   .seg button:hover{color:var(--ink)}
   .seg button.on{background:var(--panel);color:var(--ink);box-shadow:var(--shadow)}
-  /* Two jobs, two surfaces: a quiet navigation rail, and one continuous reading
-     page. Neither is a card competing with the other. */
   .layout{display:flex;height:calc(100vh - 54px);overflow:hidden}
   .path{flex:0 0 330px;overflow-y:auto;padding:16px 10px 60px;
     border-right:1px solid var(--line);background:var(--bg)}
@@ -74,8 +72,6 @@
   .quest{display:flex;align-items:center;gap:10px;padding:5px 8px;border-radius:9px;cursor:pointer;font-size:13.5px}
   .quest:hover{background:var(--pill-hover)}
   .quest .num{width:26px;text-align:right;color:var(--muted);font-size:11px;font-variant-numeric:tabular-nums;flex:0 0 auto}
-  /* No checkbox: a reference list is not a questionnaire. Selection is shown by
-     highlighting the row itself. */
   .quest.ext .num::before{content:'·';color:var(--line)}
   .quest.active{background:var(--accent-soft)}
   .quest.active .name{font-weight:700}
@@ -131,7 +127,6 @@
   .res a{display:block;font-size:13px;margin:2px 0}  mark{background:transparent;color:var(--accent);font-weight:700}
   .mech{font-size:13.5px;white-space:pre-wrap;line-height:1.8}
 
-  /* ── ecosystem graph ── */
   #graph-stage{position:relative;height:calc(100vh - 54px);background:var(--bg);overflow:hidden}
   #graph{display:block;width:100%;height:100%;cursor:grab}
   #graph.dragging{cursor:grabbing}
@@ -160,7 +155,7 @@
   .txt code,.mech code{background:var(--pill);border-radius:4px;padding:1px 4px;font-size:.92em}
   .txt pre,.mech pre{background:var(--pill);border-radius:8px;padding:9px 11px;overflow-x:auto;font-size:11.5px;line-height:1.55}
   .txt blockquote,.mech blockquote{margin:6px 0;padding-left:10px;border-left:3px solid var(--line);color:var(--muted)}
-  /* nav rail rows: one number, one meaning — position within the chapter */
+  /* Numbers are positions within each chapter. */
   .quest .num{width:22px;text-align:right;color:var(--muted);font-size:11px;
     font-variant-numeric:tabular-nums;flex:0 0 auto}
   .quest.ext .num{opacity:.55}
@@ -174,7 +169,6 @@
   .ext-list{margin-top:2px}
   .f-def{font-size:15px;line-height:1.8;margin:4px 0 0}
 
-  /* Clicking a node should tell you about it, not throw you onto another screen. */
   #node-card{position:absolute;z-index:25;width:290px;max-height:60vh;overflow:auto;
     background:var(--panel);border:1px solid var(--line);border-radius:12px;
     box-shadow:var(--shadow);padding:13px 15px;font-size:12.5px;line-height:1.65}
@@ -191,8 +185,7 @@
   #node-card .nc-x{position:absolute;top:7px;right:9px;background:none;border:0;
     color:var(--muted);cursor:pointer;font-size:14px}
 
-  /* Scrolls with the article. Deliberately not sticky, and deliberately not named
-     `.top` — that is the page header's class, and it was pinning this. */
+  /* Keep static and avoid `.top`, which is the sticky page-header class. */
   .ch-diagram{position:static;margin:0 0 22px;padding:12px;background:var(--bg);
     border:1px solid var(--line);border-radius:10px;overflow-x:auto}
   .ch-diagram svg{max-width:100%;height:auto;display:block}
@@ -222,10 +215,8 @@
 const DATA = /*__DATA__*/{};
 
 const byId = new Map(DATA.nodes.map(n => [n.id, n]));
-const ORDER = DATA.mainOrder;              // id → 1..81
-// ── scope ────────────────────────────────────────────────────────────────────
-// A public reference, not a progress tracker: scope filters the same material,
-// it never records how far a reader got.
+const ORDER = DATA.mainOrder;              // concept id → mainline position
+// Store view state only; reading progress is not tracked.
 const store = {
   get(k, d) { try { return localStorage.getItem(k) || d; } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
@@ -242,7 +233,7 @@ DATA.chapters.forEach(ch => {
   ch.side.forEach(c => chapterOf[c] = ch);
 });
 
-// relations index (single-side storage → both directions)
+// Index single-sided relations in both directions.
 const relFwd = new Map(), relRev = new Map();
 const preOf = new Map(), unlockOf = new Map();
 for (const n of DATA.nodes) {
@@ -280,7 +271,6 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':
 const typeZh = t => ({'exchange-venue':'venue','market-maker-fund':'做市/基金','organization':'公司',
   'protocol-network':'协议/链','regulator':'监管','jurisdiction':'法域','person':'人物'})[t] || '';
 
-// ── minimal markdown → html ──────────────────────────────────────────────────
 // Escape first, then re-introduce only the constructs the notes actually use.
 function mdInline(s) {
   return esc(s)
@@ -295,7 +285,6 @@ function md(src) {
   while (i < lines.length) {
     const line = lines[i];
     if (!line.trim()) { i++; continue; }
-    // table
     if (/^\s*\|/.test(line) && i + 1 < lines.length && /^\s*\|[\s:|-]+\|\s*$/.test(lines[i + 1])) {
       const cells = l => l.trim().replace(/^\||\|$/g, '').split('|').map(c => c.trim());
       const head = cells(line);
@@ -308,7 +297,6 @@ function md(src) {
                '</tbody></table>');
       continue;
     }
-    // fenced block
     if (/^```/.test(line)) {
       i++; const buf = [];
       while (i < lines.length && !/^```/.test(lines[i])) buf.push(lines[i++]);
@@ -316,7 +304,6 @@ function md(src) {
       out.push(`<pre>${esc(buf.join('\n'))}</pre>`);
       continue;
     }
-    // list
     if (/^\s*(?:[-*]|\d+\.)\s+/.test(line)) {
       const ordered = /^\s*\d+\./.test(line);
       const items = [];
@@ -326,15 +313,13 @@ function md(src) {
                `</${ordered ? 'ol' : 'ul'}>`);
       continue;
     }
-    // blockquote
     if (/^\s*>/.test(line)) {
       const buf = [];
       while (i < lines.length && /^\s*>/.test(lines[i])) buf.push(lines[i++].replace(/^\s*>\s?/, ''));
       out.push(`<blockquote>${mdInline(buf.join(' '))}</blockquote>`);
       continue;
     }
-    // always consume at least one line: a '|' line that is not a real table would
-    // otherwise match none of the branches above and spin here forever
+    // Consume at least one line; a non-table `|` line would otherwise loop forever.
     const buf = [lines[i++]];
     while (i < lines.length && lines[i].trim() && !/^\s*(?:[-*]|\d+\.|\||>|```)/.test(lines[i]))
       buf.push(lines[i++]);
@@ -343,8 +328,7 @@ function md(src) {
   return out.join('');
 }
 
-// ── knowledge graph ──────────────────────────────────────────────────────────
-// Every note and every edge. Concepts group by domain, entities by kind.
+// Include every note and edge; group concepts by domain and entities by kind.
 const ENTITY_TYPES = new Set(DATA.entityTypes || []);
 
 const GROUPS = [
@@ -371,17 +355,15 @@ const GROUPS = [
 const GROUP_LABEL = Object.fromEntries(GROUPS.map(g => [g[0], g[1]]));
 const GROUP_COLOR = Object.fromEntries(GROUPS.map(g => [g[0], g[2]]));
 
-// Apparatus is *about* the knowledge, not the knowledge: off the map.
+// These note types describe the vault rather than its subject and stay off the map.
 const APPARATUS = new Set(['source', 'research-report', 'report', 'book-course', 'moc',
   'dashboard', 'lesson', 'flashcard-deck', 'curriculum', 'policy', 'taxonomy',
   'relationship', 'original']);
 
-// Rank drives size and brightness, never visibility — everything stays on the map.
-//   1 = the world (entities, cases)      — largest, brightest, always labelled
-//   2 = the spine (tier-1 concepts)      — medium
-//   3 = detail   (tier-2 concepts)       — small, dim, labelled only on demand
+// Rank affects size and brightness, not visibility: 1 = entities/cases,
+// 2 = tier-1 concepts, 3 = tier-2 concepts.
 function rankOf(n) {
-  if (APPARATUS.has(n.type)) return 0;              // not subject matter at all
+  if (APPARATUS.has(n.type)) return 0;
   if (n.type !== 'concept') return 1;
   return n.importance === 'tier-1' ? 2 : 3;
 }
@@ -391,7 +373,7 @@ function rankOf(n) {
 const EDGE_RANK = {
   typed:  {w: 2.0, a: 0.62, tone: 'rel'},   // evidence-bearing relationship note
   erel:   {w: 1.3, a: 0.42, tone: 'rel'},   // typed relation on an entity page
-  prereq: {w: 1.1, a: 0.34, tone: 'pre'},   // you must understand A before B
+  prereq: {w: 1.1, a: 0.34, tone: 'pre'},   // hard prerequisite
   crel:   {w: 0.8, a: 0.24, tone: 'sem'},   // typed concept relation
   link:   {w: 0.4, a: 0.07, tone: 'weak'},  // bare mention
 };
@@ -506,8 +488,7 @@ function tick() {
     const an = anchors[p.g];
     if (an) { p.vx += (an.x - p.x) * 0.020; p.vy += (an.y - p.y) * 0.020; }
     p.vx -= p.x * 0.0016; p.vy -= p.y * 0.0016;
-    // Slow per-node drift on its own phase and frequency, so the motion never
-    // settles into a visible loop.
+    // Independent phase and frequency prevent synchronized drift.
     p.vx += Math.sin(TICKS * p.f1 + p.ph) * p.amp;
     p.vy += Math.cos(TICKS * p.f2 + p.ph * 1.7) * p.amp;
     if (p.fixed) { p.vx = p.vy = 0; continue; }
@@ -587,7 +568,6 @@ function drawGraph() {
     }
   }
 
-  // group names sit behind everything, like map labels over a region
   if (!hoverNode) {
     const cen = groupCentroids();
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
@@ -609,8 +589,7 @@ function drawGraph() {
     }
   }
 
-  // Gentle arcs with additive blending: where many run together they brighten into
-  // corridors, so density reads as structure rather than noise.
+  // Additive blending turns overlapping edges into a density signal.
   const TONE = {rel: '#d6e2f2', pre: '#7fb6ee', sem: '#93a6bd', weak: '#5f6b79'};
   ctx.lineCap = 'round';
   ctx.globalCompositeOperation = 'lighter';
@@ -636,14 +615,12 @@ function drawGraph() {
   }
   ctx.globalCompositeOperation = 'source-over';
 
-  // Glow needs falloff: a cached radial gradient from a lightened core out to fully
-  // transparent. A flat disc at uniform alpha reads as a ring, not as light.
+  // Radial falloff prevents a hard-edged halo.
   for (const p of nodes) {
     if (!visible(p)) continue;
     const dimmed = hoverNode && !near.has(p);
     const col = GROUP_COLOR[p.g] || '#8894a4';
     const base = dimmed ? 0.07 : (p.rank === 3 ? 0.60 : 1);
-    // each node breathes on its own phase, so brightness is never uniform
     const pulse = 0.86 + 0.14 * Math.sin(TICKS * p.f1 * 0.55 + p.ph);
     const alpha = base * pulse;
 
@@ -661,7 +638,6 @@ function drawGraph() {
   }
   ctx.globalAlpha = 1;
 
-  // edge verbs on the hovered node's own links
   if (hoverNode) {
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.font = `${10 / view.k}px -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif`;
@@ -680,7 +656,6 @@ function drawGraph() {
     }
   }
 
-  // node names: hubs always, neighbours on hover, everything when zoomed in
   const ink = getComputedStyle(document.body).getPropertyValue('--ink').trim() || '#222';
   const fs = 10.5 / view.k;
   ctx.font = `${fs}px -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif`;
@@ -774,7 +749,6 @@ function wireGraph() {
   };
 }
 
-// ── node card ───────────────────────────────────────────────────────────────
 let cardNode = null;
 
 function hideNodeCard() { cardNode = null; document.getElementById('node-card').hidden = true; }
@@ -840,7 +814,6 @@ function renderLegend() {
   }
 }
 
-// ── top bar ──────────────────────────────────────────────────────────────────
 let VIEW = store.get('view', 'graph');   // graph | concepts
 
 function setView(v) {
@@ -865,9 +838,7 @@ function renderTopBar() {
     segButton(sel, k, lbl, VIEW === k, setView);
 }
 
-// ── chapters ─────────────────────────────────────────────────────────────────
-// One numbering scheme: position within the chapter. Extended concepts continue
-// the same count rather than sitting numberless beside it.
+// Mainline and extended concepts share chapter-local numbering.
 const CH_POS = {};                     // concept id → "chapter.index"
 const CH_INDEX = {};                   // concept id → index within its chapter
 DATA.chapters.forEach(ch => {
@@ -930,7 +901,6 @@ function chapterDiagram(ch) {
   return box;
 }
 
-// ── focus detail (everything inline) ──
 function pillFor(id) {
   const n = byId.get(id);
   if (!n) return el('span');
@@ -1144,7 +1114,6 @@ renderPath();
 const initial = location.hash.slice(1);
 if (initial && byId.has(initial)) { setView('concepts'); focusOn(initial, false); }
 else {
-  // an empty reading pane is a dead end; open on the first entry
   const first = ((DATA.chapters[0] || {}).concepts || [])[0];
   first ? focusOn(first, false) : renderEmptyFocus();
   setView(VIEW);

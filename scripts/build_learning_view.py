@@ -1,12 +1,8 @@
 #!/usr/bin/env python3
-"""build_learning_view.py — the whole vault as one self-contained HTML page.
+"""Build the vault as a self-contained HTML graph and reading view.
 
-The landing view is the graph of every note. The reading view walks a 81-step
-reading path from 10_LEARNING/plan/mainline.yaml (the prerequisite closure of the
-core concepts), with the other 62 concepts kept alongside it as side entries. All
-concept content is inlined, so the page needs neither Obsidian nor a server.
-
-Pipeline: export_graph.build() + mainline.yaml → learning_view_template.html → docs/index.html.
+The reading order comes from 10_LEARNING/plan/mainline.yaml, and concept content
+is inlined. Pipeline: graph + reading order + HTML template → output page.
 """
 from __future__ import annotations
 
@@ -30,12 +26,7 @@ EX_Q_RE = re.compile(r"^## (Q\d+) \[(.+?)\] (.*)$")
 
 
 def parse_exercises(path: Path) -> list[dict]:
-    """Parse a deck file's `## Qn [type] title` blocks; quoted lines = answer.
-
-    A `concept: concept:<slug>` line directly under the heading attaches the
-    question to that concept. Exercises and a concept's own recall questions are
-    the same object — a prompt with a hidden answer — so they end up in one list.
-    """
+    """Parse exercise headings, quoted answers, and optional concept bindings."""
     items: list[dict] = []
     cur: dict | None = None
     body_lines: list[str] = []
@@ -90,7 +81,6 @@ def main(argv: list[str] | None = None) -> int:
     graph = export_graph.build()
     concepts = {n["id"]: n for n in graph["nodes"] if n["type"] == "concept"}
 
-    # ── mainline integrity: every quest exists, prerequisites appear earlier ──
     order: dict[str, int] = {}
     errors = []
     for ch in chapters:
@@ -105,7 +95,7 @@ def main(argv: list[str] | None = None) -> int:
         for p in concepts[cid].get("prerequisites") or []:
             if p in order and order[p] >= idx:
                 errors.append(f"topology: `{p}` must come before `{cid}`")
-            # prerequisites outside the mainline would break the closure promise
+            # Mainline closure requires every prerequisite to appear in the order.
             if p not in order:
                 errors.append(f"closure: `{cid}` needs `{p}` which is not on the mainline")
     if errors:
@@ -113,7 +103,6 @@ def main(argv: list[str] | None = None) -> int:
             print("ERROR:", e, file=sys.stderr)
         return 1
 
-    # ── side quests fold into chapters by domain ──
     side_of: dict[int, list[str]] = {int(ch["n"]): [] for ch in chapters}
     unmapped = []
     for cid, node in sorted(concepts.items()):
@@ -128,14 +117,12 @@ def main(argv: list[str] | None = None) -> int:
     if unmapped:
         print(f"WARNING: side quests without domain mapping → last chapter: {unmapped}")
 
-    # ── per-chapter mechanism diagrams ──
     svgs: dict[int, str] = {}
     for ch in chapters:
         p = OPS_ROOT / "scripts" / "assets" / f"chapter-{ch['n']}.svg"
         if p.exists():
             svgs[int(ch["n"])] = p.read_text(encoding="utf-8")
 
-    # ── exercises: same shape as recall, so they merge into the same list ──
     ex_of: dict[str, list[dict]] = {}
     ex_dir = root / "10_LEARNING" / "exercises"
     if ex_dir.exists():
@@ -149,14 +136,12 @@ def main(argv: list[str] | None = None) -> int:
                     {"q": "\n".join(x for x in (ex["title"], ex["body"]) if x),
                      "a": ex["answer"], "kind": ex["kind"]})
 
-    # the landing graph is every note and every edge, not a slice
     ENTITY_TYPES = {"person", "organization", "exchange-venue", "protocol-network",
                     "market-maker-fund", "regulator", "jurisdiction", "product", "token-asset"}
     nodes = graph["nodes"]
     edges = graph["edges"]
 
-    # one self-test list per concept: its own recall prompts, then the exercises
-    # written against it — same object, so never two sections
+    # Recall prompts and exercises share one per-concept list.
     unattached = set(ex_of)
     for n in nodes:
         extra = ex_of.get(n["id"])
@@ -188,16 +173,14 @@ def main(argv: list[str] | None = None) -> int:
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html, encoding="utf-8")
 
-    # the link-preview image every social platform fetches; it must sit beside the
-    # page, because og:image is an absolute URL on this site's own origin
+    # og:image is absolute but must resolve to the card copied beside the page.
     card = OPS_ROOT / ".github" / "assets" / "social-card.png"
     if card.exists():
         shutil.copyfile(card, out.parent / "social-card.png")
     else:
         print("WARNING: .github/assets/social-card.png missing — link previews will be blank")
 
-    # A syntax error in the template silently ships a blank page, so fail the build
-    # instead. Skipped (with a warning) where node is unavailable.
+    # Fail on template syntax errors; without Node, emit a warning and skip the check.
     node = shutil.which("node")
     if node:
         m = re.search(r"<script>\n(.*)\n</script>", html, re.S)

@@ -24,9 +24,7 @@ def test_confidentiality_downgrade_is_rejected(tmp_path):
 
 
 def test_private_root_docs_never_reach_the_published_vault():
-    """The private vault carries build/audit artifacts at its root that describe the
-    vault's own construction. They are not subject matter and must never publish —
-    they have no frontmatter, so no schema check would catch one that slipped."""
+    """Block root build/audit files explicitly because they have no frontmatter."""
     sys.path.insert(0, str(OPS / "scripts"))
     import build_public_vault as bpv
 

@@ -48,7 +48,7 @@ def test_build_frontmatter_deterministic():
     out1 = bl.build_frontmatter(f)
     out2 = bl.build_frontmatter(dict(f))
     assert out1 == out2
-    assert '"X: Y"' in out1  # colon quoted
+    assert '"X: Y"' in out1
     fm, _, _, err = bl.parse_frontmatter(out1 + "\nbody")
     assert err is None and fm["id"] == "concept:x" and fm["aliases"] == ["a", "b"]
 

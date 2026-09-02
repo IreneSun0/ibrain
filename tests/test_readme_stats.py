@@ -1,6 +1,4 @@
-"""The README states counts and quotes the atlas. A knowledge base whose pitch is
-that CI enforces its discipline cannot advertise figures or content that drift, so
-both are asserted here."""
+"""Keep README counts and chapter copy aligned with the published vault."""
 import json
 import re
 import subprocess
@@ -28,9 +26,7 @@ def test_readme_counts_match_the_vault():
 
 
 def test_readme_quotes_the_chapters_verbatim(tmp_path):
-    """The reading path is the README's main content. If a chapter is renamed or
-    rewritten, the README must be rewritten with it — not left describing a version
-    of the atlas that no longer ships."""
+    """Keep README chapter names and questions aligned with the reading path."""
     out = subprocess.run([sys.executable, str(ROOT / "scripts" / "build_learning_view.py"),
                           "--out", str(tmp_path / "index.html")], capture_output=True, text=True)
     assert out.returncode == 0, out.stderr
@@ -61,8 +57,7 @@ def test_readme_named_concepts_exist():
                       README.read_text("utf-8"), re.M)
     promised = [t.strip() for row in rows for t in row.split("·")]
     assert len(promised) >= 60, f"the reading-path tables name too few concepts: {promised}"
-    # a README may shorten a note's name, but only by truncating it — never by
-    # inventing a name the reader will not find on the site
+    # README labels may truncate note names but cannot introduce new names.
     missing = [t for t in promised
                if not any(n.lower().startswith(t.lower().rstrip("s")) for n in names)]
     assert not missing, f"README names concepts the vault does not have: {missing}"

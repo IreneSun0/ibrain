@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-"""build_public_vault.py — private vault → publishable vault.
+"""Build a publishable vault from a private source vault.
 
-A note publishes only if it survives every filter below. The rules are declared
-here rather than applied by hand, so redaction is reviewable and repeatable.
+A note publishes only if it survives every filter below.
 
   build_public_vault.py            # build ./vault from $VAULT_PATH
   build_public_vault.py --check    # report only, write nothing
@@ -19,10 +18,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from brainlib import OPS_ROOT, iter_notes
 
-# ── exclusion policy ─────────────────────────────────────────────────────────
-# Generic defaults; site-specific values come from the untracked
-# publish_rewrites.yaml, because naming your private trees in a public repo says
-# exactly what you are hiding.
+# Site-specific values stay in untracked publish_rewrites.yaml because their names
+# can reveal private content.
 
 DEFAULT_EXCLUDE_DIRS = ("01_INBOX", "99_ARCHIVE")
 DEFAULT_EXCLUDE_SUBPATHS = (
@@ -41,7 +38,6 @@ DEFAULT_EXCLUDE_FILES = (
     "CODEX-AUDIT-REPORT.md", "CODEX-HARDENING-REPORT.md",
 )
 
-# Confidentiality tiers that never publish.
 BLOCK_CONFIDENTIALITY = {"confidential", "strictly-private"}
 
 SECTION_END = r"(?=\n## |\n<!-- timeline -->|\Z)"
@@ -81,9 +77,7 @@ def drop_pitch_questions(body: str) -> str:
             out.append(line)
     return "\n".join(out)
 
-# ── deterministic rewrites ────────────────────────────────────────────────────
-# Applied in order to every published note. Untracked: publish_rewrites.example.yaml
-# has the format.
+# Rewrites run in order; publish_rewrites.example.yaml defines the config format.
 REWRITES_FILE = Path(__file__).resolve().parent / "publish_rewrites.yaml"
 
 
@@ -191,12 +185,8 @@ def unlink_dead_wikilinks(body: str, dead_targets: set[str]) -> str:
     return re.sub(r"\[\[([^\]]+)\]\]", repl, body)
 
 
-# A name filter catches a codename but not a sentence written to coach one reader
-# through a pitch, so that gets its own gate: copy addressed to the author, framing
-# the work as their opportunity, or an operating rule naming a person as approver.
-# "UNKNOWN" reads as a shrug where a sentence belongs. Anything genuinely not public
-# is written as a fact about the world — "未披露", or a dated negative finding that
-# can be proved wrong — never as a placeholder standing in for the answer.
+# Private-term matching cannot detect author-directed copy, so these patterns are
+# checked separately. Placeholder answers have a separate gate.
 PLACEHOLDER_ANSWERS = (r"\bUNKNOWN\b",)
 
 AUTHOR_VOICE = (
@@ -210,8 +200,7 @@ AUTHOR_VOICE = (
 
 
 def verify_output(out: Path) -> int:
-    """Final gate: no private term, no copy written for the author, nothing above
-    the public tier. Must run after `make indexes` rebuilds the dashboards."""
+    """Audit the built tree after `make indexes` regenerates dashboards."""
     bad_terms: list[tuple[str, str, int]] = []
     bad_voice: list[tuple[str, str]] = []
     bad_tier: list[str] = []
@@ -349,7 +338,6 @@ def main() -> int:
             dst.write_text(new, encoding="utf-8")
             written += 1
 
-    # non-markdown assets inside published trees (schema json, curriculum yaml…)
     assets = 0
     for p in sorted(root.rglob("*")):
         if p.is_dir() or p.suffix in (".md", ".base", ".canvas"):

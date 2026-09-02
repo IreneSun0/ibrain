@@ -26,11 +26,11 @@ def check_note(n: Note, sch: dict, known_ids: set[str] | None = None,
     errs: list[str] = []
     rel = n.path
     if n.fm_error == "no-frontmatter":
-        # Plain generated indexes / reports may be schema-free only in allowed dirs
+        # Only these generated/report directories may contain schema-free Markdown.
         allowed_plain = ("90_META/import-reports", "90_META/health-reports", "90_META/dashboards",
                          "90_META/coverage", "01_INBOX", "11_OUTPUTS", "10_LEARNING/study-sessions")
         rp = str(n.path)
-        # the private vault's own build/audit artifacts; never published, never schema'd
+        # Root build/audit artifacts are excluded from publication and schema checks.
         root_docs = ("BUILD-REPORT.md", "IMPORT-REPORT.md", "IMPORT_REQUIRED.md",
                      "VAULT-HEALTH-REPORT.md", "UNRESOLVED-QUESTIONS.md", "OBSIDIAN-SETUP.md",
                      "GBRAIN-INTEGRATION.md", "CODEX-AUDIT-REPORT.md", "CODEX-HARDENING-REPORT.md")
@@ -73,11 +73,9 @@ def check_note(n: Note, sch: dict, known_ids: set[str] | None = None,
                     if str(ref) not in known_ids:
                         errs.append(f"{rel}: {field} references unknown id `{ref}`")
 
-    # concept-level typed relations in `related` + prerequisite ids
     ENTITY_TYPES = {"person", "organization", "exchange-venue", "protocol-network",
                     "market-maker-fund", "regulator", "jurisdiction", "product", "token-asset"}
-    # entity pages carry entity-level relations, concept pages concept-level ones;
-    # one shared vocabulary would reject valid entity edges
+    # Entity and concept relations use separate controlled vocabularies.
     is_entity = str(fm.get("type") or "") in ENTITY_TYPES
     crt = set(sch.get("allowed_relationship_types" if is_entity
                       else "allowed_concept_relation_types") or [])
@@ -167,7 +165,6 @@ def check_note(n: Note, sch: dict, known_ids: set[str] | None = None,
                 if ref and str(ref) not in known_ids:
                     errs.append(f"{rel}: {field} references unknown id `{ref}`")
 
-    # verified discipline
     if fm.get("status") == "verified":
         exempt = sch.get("verified_sources_exempt_types", [])
         if sch["verified_requires_sources"] and ntype not in exempt and not (fm.get("sources") or []):

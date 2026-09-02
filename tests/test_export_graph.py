@@ -20,9 +20,7 @@ def test_export_is_deterministic():
 
 
 def test_confidentiality_ceiling_is_enforced_at_every_tier():
-    """The ceiling must hold whatever the vault happens to contain. The bundled
-    public vault has nothing above `public-source` — that is the point — so this
-    asserts the mechanism, not the corpus."""
+    """Assert the ceiling mechanism independently of the bundled corpus."""
     full = eg.build()
     for ceiling, allowed in (
         ("public-source", {"public-source"}),
@@ -40,9 +38,7 @@ def test_confidentiality_ceiling_is_enforced_at_every_tier():
 
 
 def test_internal_is_not_publishable():
-    """Regression guard: `internal` outranks `public-source`, so a ceiling of
-    `internal` is not safe to publish. Anything leaving the machine names
-    `public-source` explicitly."""
+    """Require public exports to name the `public-source` ceiling explicitly."""
     assert eg.CONFIDENTIALITY_RANK["internal"] > eg.CONFIDENTIALITY_RANK["public-source"]
     assert eg.build("public-source")["counts"]["notes"] <= eg.build("internal")["counts"]["notes"]
 
@@ -58,7 +54,6 @@ def test_concept_semantic_layer_exported():
     d = eg.build()
     concepts = [n for n in d["nodes"] if n["type"] == "concept"]
     assert concepts, "vault has concept pages"
-    # every concept carries the judged fields (may be empty lists, never missing)
     for n in concepts:
         assert "prerequisites" in n and "relations" in n and "definition" in n
     assert d["counts"]["prereqEdges"] > 0

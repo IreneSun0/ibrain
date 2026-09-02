@@ -32,11 +32,11 @@
 | **七 · 机构风险语言** | 看对方向以后，还有什么能让我拿不到钱或被迫退出？ | 事件风险价值 · 交易对手风险 · 集中度风险 · 监管准入 |
 | **终章 · 从知识到系统** | 要让前面这些判断真正可用，必须先造出什么？ | 数据基础设施 · 可审计性 · 风险引擎 |
 
-## 一起写
+## 纠错与补充
 
-[提一个纠错 issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md)，或者直接改 —— `make validate` 会指出这条断言还缺什么。写法见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+[提一个纠错 issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md)，或按 [CONTRIBUTING.md](CONTRIBUTING.md) 提交修改。提交前运行 `make validate`。
 
-内容 [CC BY 4.0](LICENSE-CONTENT)，工具 [Apache-2.0](LICENSE)。
+内容 [CC BY 4.0](LICENSE-CONTENT)，代码 [Apache-2.0](LICENSE)。
 
 <br>
 
@@ -68,7 +68,7 @@
 ### Contributing
 
 [Open a correction issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md),
-or fix it yourself — `make validate` names what a claim is still missing. Conventions are
-in [CONTRIBUTING.md](CONTRIBUTING.md).
+or submit a change following [CONTRIBUTING.md](CONTRIBUTING.md). Run `make validate`
+before submitting.
 
-Content [CC BY 4.0](LICENSE-CONTENT), tooling [Apache-2.0](LICENSE).
+Content [CC BY 4.0](LICENSE-CONTENT), code [Apache-2.0](LICENSE).

@@ -1,10 +1,6 @@
-# Local redaction config for scripts/build_public_vault.py — COPY, DO NOT COMMIT.
-#
+# Local redaction config for scripts/build_public_vault.py.
 #   cp scripts/publish_rewrites.example.yaml scripts/publish_rewrites.yaml
-#
-# `publish_rewrites.yaml` is git-ignored on purpose: a committed list of redacted
-# terms, together with the before/after text, reconstructs exactly what was removed.
-# Keep it local; it is site-specific configuration, not part of the tool.
+# Keep the copy untracked: its terms and before/after text reveal redacted content.
 
 # Terms that must never survive into the published tree. build_public_vault.py counts
 # occurrences after all rewrites and reports any note that still contains one.

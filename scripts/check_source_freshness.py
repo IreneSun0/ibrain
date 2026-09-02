@@ -60,7 +60,7 @@ def main() -> int:
         f"## 已登记未抓取的 URL source (content_hash 为空) — {len(unfetched)}",
         *(f"- `{p}`" for p in unfetched),
         "",
-        "> 处理方式: researcher 核实后回填 `last_verified` / `content_hash`; 已失效的改 status: stale。`last_verified` 只表示检查日期, 不证明 current-role 仍正确。",
+        "> 处理方式: 核实后回填 `last_verified` / `content_hash`; 已失效的改 status: stale。`last_verified` 只表示检查日期, 不证明 current-role 仍正确。",
     ]
     out = root / "90_META" / "dashboards" / "source-freshness.md"
     out.parent.mkdir(parents=True, exist_ok=True)

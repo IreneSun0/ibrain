@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
-"""Report whether verified notes reach any preserved evidence artifact.
+"""Report which verified notes reach preserved evidence.
 
-This is deliberately conservative and report-only. A preserved path does not
-prove that every claim is supported or that a citation entails a sentence; it
-only proves that at least one transitive source terminates in hashed content.
+A preserved path shows that hashed content exists, not that it supports every claim.
 """
 from __future__ import annotations
 
