@@ -24,7 +24,7 @@ related: []
 
 # 知识库可视化工具版图 · 2026-08-27 核验
 
-> 触发: Irene「去看一下有哪些顶尖开发者用的工具」。方法: GitHub REST API / npm / PyPI / VS Code Marketplace / Obsidian 官方 registry (6,989 插件) **实时拉取**版本号与最后提交日; 12 个月无 commit 判死。
+> 触发: 「去看一下有哪些顶尖开发者用的工具」。方法: GitHub REST API / npm / PyPI / VS Code Marketplace / Obsidian 官方 registry (6,989 插件) **实时拉取**版本号与最后提交日; 12 个月无 commit 判死。
 
 ## 结论: 我们不需要图数据库
 
@@ -118,4 +118,4 @@ cosmos.gl 对 320 节点是杀鸡用牛刀。d3-force 停在 2021 **不是死亡
 
 ## Timeline
 
-- **2026-08-27** — 建页。触发自 Irene 的工具调研要求; 结论已落地为 4 个 Bases 视图 + `scripts/query.sql`。
+- **2026-08-27** — 建页。触发自一次工具调研。

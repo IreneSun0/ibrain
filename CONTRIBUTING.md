@@ -121,7 +121,7 @@ definition, not an explanation.
 
 ```bash
 make validate    # hard gates: frontmatter, duplicate ids, links, confidentiality
-make test        # 57 tests
+make test        # 42 tests
 make health      # soft audits: evidence coverage, stale sources, orphans
 make site        # rebuild docs/
 ```

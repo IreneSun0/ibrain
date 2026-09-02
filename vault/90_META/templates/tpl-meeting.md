@@ -26,7 +26,7 @@ related: []
 ## Purpose
 ## Prep | 会前准备 (链接 meeting-prep 简报)
 ## What They Said | 对方说了什么 (原话尽量保留, 标 user-direct source)
-## What Irene Said / Committed
+## What the Maintainer Said / Committed
 ## New Facts Learned | 新事实 (逐条, 带 confidence)
 ## New Hypotheses Triggered
 ## Follow-ups

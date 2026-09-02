@@ -103,7 +103,7 @@ related:
 2. 对称关系 (`contrasts-with`) 存在**用对照来解释自己的一侧** (定义里引用对方的页面); 双方都不引用时, 存 id 字典序较小的一页。
 3. **宁缺勿滥**: `prerequisites` 只填直接硬前置 (1–4 个), 不填传递闭包 (A→B→C 时 C 只填 B); `related` 每页 0–4 条为常态; `see-also` 每页 ≤2 条且必须带 note。
 4. `instantiated-by` 的目标必须是库内实体页, 且 note / 实体页内容能支撑这个实例判断; 禁止凭生态联想挂实例。
-5. AI 补的概念关系视为 seed 判断: 所在页面保持 `status: seed` 或如实降档, 并在页面 timeline 追加一条记录; Irene 复核后随页面一起升 `reviewed`。
+5. AI 补的概念关系视为 seed 判断: 所在页面保持 `status: seed` 或如实降档, 并在页面 timeline 追加一条记录; 维护者复核后随页面一起升 `reviewed`。
 6. `related` 目标 id 与 `rel` 值由校验器强制 (id 必须存在, rel 必须在本词表)。
 
 ## 使用规则 (实体级)

@@ -40,12 +40,10 @@ related: []
 10. EigenLayer restaking oracle 方案追踪。
 11. 美国事件合约税务处理。
 12. 亚洲预测团队普查 (Opinion 之外)。
-13. Nicholas Levenstein 身份 (需 Irene 线索; R3 判定同名者与行业无关)。
+R3 判定同名者与行业无关)。
 14. ICE→OKX $25B 再核 (单源)。
 15. Kalshi 自营 MM 利益冲突的监管走向。
 
 ## C. 长线
 
 16. 事件传导系数实测 (2025-10-10 + 世界杯样本 → event-VaR 校准)。
-17. 结算质量分方法论 (争议库 → 可发布标准) — 对外公共品线, 须 Irene 批。
-18. 欧盟 prediction contracts 咨询 (2026-09-30 止) 是否投稿 — 对外动作, 须 Irene 批。

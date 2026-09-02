@@ -22,9 +22,9 @@ related: []
 
 # REPLACE Decision | 中文名
 
-> 只有 Irene 明确做出的决定才能建此页。Assistant 建议 → hypothesis, 不是 decision。
+> 只有维护者明确做出的决定才能建此页。Assistant 建议 → hypothesis, 不是 decision。
 
-## Decision | 决定内容 (Irene 原话或忠实转述, 标明哪种)
+## Decision | 决定内容 (维护者原话或忠实转述, 标明哪种)
 
 ## Date Decided
 ## Context | 决策语境

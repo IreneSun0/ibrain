@@ -29,7 +29,7 @@ def _counts() -> dict[str, int]:
 
 def test_readme_counts_match_the_vault():
     c = _counts()
-    for readme in (ROOT / "README.md", ROOT / "README.zh-CN.md"):
+    for readme in (ROOT / "README.md", ROOT / "README.en.md"):
         text = readme.read_text(encoding="utf-8")
         nums = {int(m.replace(",", "")) for m in re.findall(r"\*\*([\d,]+)(?:\s*/|\*\*)", text)}
         for label, want in (("concepts", c["concepts"]), ("entities", c["entities"]),

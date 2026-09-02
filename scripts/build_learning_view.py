@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
-"""build_learning_view.py — Irene 的主线通关地图 (self-contained HTML).
+"""build_learning_view.py — the whole vault as one self-contained HTML page.
 
-Speedrun edition: the view renders the 81-quest mainline from
-10_LEARNING/plan/mainline.yaml (prerequisite closure of the target skill set),
-with the other 62 concepts folded away as skippable side quests. All concept
-content (definition / why / how / example / misconceptions / practice / recall) is
-inlined — no jumping out to Obsidian. Exercises are embedded per chapter.
+The landing view is the graph of every note. The reading view walks a 81-step
+reading path from 10_LEARNING/plan/mainline.yaml (the prerequisite closure of the
+core concepts), with the other 62 concepts kept alongside it as side entries. All
+concept content is inlined, so the page needs neither Obsidian nor a server.
 
-Pipeline: export_graph.build() + mainline.yaml + schedule.yaml + compute_score
-→ scripts/learning_view_template.html → dist/ibrain-learning.html.
+Pipeline: export_graph.build() + mainline.yaml → learning_view_template.html → docs/index.html.
 """
 from __future__ import annotations
 
@@ -19,8 +17,8 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import compute_score
 import export_graph
+import yaml
 from brainlib import OPS_ROOT, vault_root
 
 PLACEHOLDER = "/*__DATA__*/{}"
@@ -84,7 +82,7 @@ def main(argv: list[str] | None = None) -> int:
 
     root = vault_root()
     plan_dir = root / "10_LEARNING" / "plan"
-    mainline = compute_score.load_yaml(plan_dir / "mainline.yaml")
+    mainline = yaml.safe_load((plan_dir / "mainline.yaml").read_text(encoding="utf-8")) or {}
     chapters = mainline.get("chapters") or []
     side_map = {str(k): int(v) for k, v in (mainline.get("side_domain_chapter") or {}).items()}
 
@@ -150,24 +148,6 @@ def main(argv: list[str] | None = None) -> int:
                     {"q": "\n".join(x for x in (ex["title"], ex["body"]) if x),
                      "a": ex["answer"], "kind": ex["kind"]})
 
-    # ── training layer: personal bootcamp state, absent from any public build ──
-    training = None
-    sched_path = plan_dir / "schedule.yaml"
-    if False and sched_path.exists():
-        sched = compute_score.load_yaml(sched_path)
-        score = compute_score.build()
-        training = {
-            "deadline": str(sched.get("deadline") or ""),
-            "event": {"name": (sched.get("event") or {}).get("name", ""),
-                      "date": str(((sched.get("event") or {}).get("dates") or [""])[0])},
-            "industry": score["industry"], "pm": score["pm"],
-            "mainDone": score["concepts"]["all"],
-            "nextTarget": None if not score["nextTarget"] else
-                {k: str(v) for k, v in score["nextTarget"].items()},
-            "weeks": [{"n": w["n"], "start": str(w["start"]), "end": str(w["end"]),
-                       "chapters": w.get("chapters") or []} for w in (sched.get("weeks") or [])],
-        }
-
     # The landing graph is the whole knowledge base, not a slice of it: every note
     # and every edge, so the picture actually shows what the vault contains.
     ENTITY_TYPES = {"person", "organization", "exchange-venue", "protocol-network",
@@ -201,7 +181,6 @@ def main(argv: list[str] | None = None) -> int:
         "entityTypes": sorted(ENTITY_TYPES),
         "nodes": nodes,
         "edges": edges,
-        "training": training,
     }
 
     html = tpl.replace(PLACEHOLDER, json.dumps(data, ensure_ascii=False, separators=(",", ":")))

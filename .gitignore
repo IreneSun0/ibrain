@@ -26,7 +26,7 @@ Thumbs.db
 .claude/settings.local.json
 *.log
 
-# generated console builds (rebuild with `make console`)
+# scratch build output
 dist/
 
 # generated site (built by `make site`; deployed by .github/workflows/pages.yml)
@@ -34,6 +34,3 @@ docs/
 
 # local redaction config — never commit (it reconstructs what was redacted)
 scripts/publish_rewrites.yaml
-
-# private console panels (strategy view) — never commit
-scripts/console_template.private.html

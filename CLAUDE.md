@@ -44,9 +44,8 @@ Add new exclusions there rather than relying on anyone remembering.
 ## Where things are
 
 - Indexes: `vault/90_META/dashboards/index-*.md` (regenerate with `make indexes`)
-- Coverage gaps: `vault/90_META/coverage/KNOWLEDGE-COVERAGE-MATRIX.md` and
-  `vault/07_RESEARCH/RESEARCH-BACKLOG.md`
-- The course spine: `vault/10_LEARNING/plan/mainline.yaml` (81 quests, 9 chapters)
+- Open gaps: `vault/07_RESEARCH/RESEARCH-BACKLOG.md`
+- The reading path: `vault/10_LEARNING/plan/mainline.yaml` (81 steps, 9 chapters)
 
 ## Subagents
 
@@ -54,7 +53,7 @@ Role boundaries are defined in each agent file and are deliberately narrow:
 
 `librarian` (filing, entity disambiguation, schema) · `researcher` (primary-source
 verification, gap filling) · `fact-checker` (claim audit) · `relationship-mapper`
-(typed relationships, graphs) · `learning-designer` (curriculum, sessions, flashcards)
+(typed relationships, graphs) · `learning-designer` (reading path, exercises)
 · `vault-auditor` (health audit).
 
 A researcher does not grade importance. A learning designer does not verify facts.

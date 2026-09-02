@@ -1,24 +1,21 @@
 # `make publish SOURCE=/path/to/private-vault` (or set VAULT_PATH)
 SOURCE ?=
-# iBrain ops — command interface
+# CryptoAtlas — command interface
 # The vault resolves to ./vault (bundled) unless VAULT_PATH is set.
 
 PY := .venv/bin/python
 PIP := .venv/bin/pip
 
-.PHONY: bootstrap ingest validate normalize-links health study indexes refresh test secretscan learning-view score publish site help
+.PHONY: bootstrap validate normalize-links health indexes refresh test secretscan publish site help
 
 help:
 	@echo "make bootstrap   — create venv + install deps"
-	@echo "make ingest      — run xlsx + conversation importers (idempotent)"
 	@echo "make validate    — frontmatter + duplicate ids + wikilinks (hard checks)"
 	@echo "make normalize-links — rewrite id-only body links to native Obsidian targets"
 	@echo "make health      — full vault health report (writes VAULT-HEALTH-REPORT.md)"
-	@echo "make study       — regenerate study queue + next session sheet"
-	@echo "make indexes     — regenerate plain-md indexes + MOC auto-blocks + query eval"
-	@echo "make refresh     — indexes + study + freshness (weekly maintenance bundle)"
+	@echo "make indexes     — regenerate plain-md indexes + MOC auto-blocks"
+	@echo "make refresh     — indexes + freshness + orphans (weekly maintenance bundle)"
 	@echo "make secretscan  — scan both repos for credential-shaped content"
-	@echo "make learning-view — rebuild Irene 的学习地图 (human view, dist/ibrain-learning.html)"
 	@echo "make test        — run pytest suite"
 	@echo "make publish     — rebuild ./vault from a private vault (SOURCE=...)"
 	@echo "make site        — build the public site into docs/ (GitHub Pages)"
@@ -27,10 +24,6 @@ bootstrap:
 	python3 -m venv .venv
 	$(PIP) install -q -r requirements.txt
 	@echo "bootstrap done — try: make validate"
-
-ingest:
-	$(PY) scripts/ingest_xlsx.py
-	$(PY) scripts/ingest_chat_export.py
 
 validate:
 	$(PY) scripts/validate_frontmatter.py
@@ -44,27 +37,17 @@ normalize-links:
 health:
 	$(PY) scripts/vault_health.py
 
-study:
-	$(PY) scripts/generate_study_queue.py
-
 indexes:
 	$(PY) scripts/generate_indexes.py
 	$(PY) scripts/generate_mocs.py
-	$(PY) scripts/build_query_eval.py
 
-refresh: indexes study
+refresh: indexes
 	$(PY) scripts/check_source_freshness.py
 	$(PY) scripts/find_orphan_notes.py
 	$(PY) scripts/detect_duplicate_entities.py --report
 
 secretscan:
 	$(PY) scripts/secret_scan.py
-
-learning-view:
-	$(PY) scripts/build_learning_view.py
-
-score:
-	$(PY) scripts/compute_score.py
 
 publish:
 	@test -n "$(SOURCE)$(VAULT_PATH)" || (echo 'set SOURCE=/path/to/private-vault (or VAULT_PATH)'; exit 1)

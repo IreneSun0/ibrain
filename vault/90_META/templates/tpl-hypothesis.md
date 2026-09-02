@@ -24,7 +24,7 @@ related: []
 
 ## Claim | 假设内容
 
-## Origin | 谁提出 (Irene / assistant / 外部) — assistant 建议永远只是建议
+## Origin | 谁提出 (维护者 / assistant / 外部) — assistant 建议永远只是建议
 
 ## Evidence For
 ## Evidence Against

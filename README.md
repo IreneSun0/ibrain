@@ -1,19 +1,19 @@
 <h1 align="center">CryptoAtlas</h1>
 
 <p align="center">
-  <b>An open, sourced map of how crypto markets are actually built —<br>
-  where every claim carries its evidence tier, and CI rejects the ones that don't.</b>
+  <b>一张开放、有来源的加密市场结构地图 ——<br>
+  每条断言都带着证据等级，达不到的会被 CI 直接打回。</b>
 </p>
 
 <p align="center">
-  <a href="https://ailinsun.github.io/cryptoatlas"><b>🗺 Open the atlas</b></a> ·
-  <a href="CONTRIBUTING.md">➕ Add or correct an entry</a> ·
-  <a href="README.zh-CN.md">🇨🇳 中文</a>
+  <a href="https://ailinsun.github.io/cryptoatlas"><b>🗺 打开图谱</b></a> ·
+  <a href="CONTRIBUTING.md">➕ 补充或纠错</a> ·
+  <a href="README.en.md">🇬🇧 English</a>
 </p>
 
 <p align="center">
   <img alt="CI" src="https://github.com/ailinsun/cryptoatlas/actions/workflows/ci.yml/badge.svg">
-  <img alt="notes" src="https://img.shields.io/badge/notes-293-4c8fd6">
+  <img alt="notes" src="https://img.shields.io/badge/notes-292-4c8fd6">
   <img alt="links" src="https://img.shields.io/badge/links-2%2C813-4c8fd6">
   <img alt="code" src="https://img.shields.io/badge/code-Apache--2.0-3faa8e">
   <img alt="content" src="https://img.shields.io/badge/content-CC%20BY%204.0-3faa8e">
@@ -21,127 +21,75 @@
 
 <p align="center">
   <a href="https://ailinsun.github.io/cryptoatlas">
-    <img src=".github/assets/graph.webp" alt="CryptoAtlas — the live knowledge graph" width="100%">
+    <img src=".github/assets/graph.webp" alt="CryptoAtlas 知识图谱" width="100%">
   </a>
 </p>
 
 ---
 
-Most crypto "knowledge bases" are link dumps or confident AI slop. They read fluently,
-cite nothing, and somewhere between the first draft and the tenth a guess quietly
-becomes a fact.
+概念、场馆、做市商、监管、人 —— 以及**谁创立、谁投资、结算在哪条链、受谁监管、谁给谁做市**。全部互链，全部标注证据等级。
 
-This one is built the other way round: **the epistemic rules are enforced by CI, not by
-good intentions.** A claim marked `verified` without a source note fails the build. A
-relationship asserted without evidence fails the build. Corrections append to a timeline
-instead of overwriting history. Nothing is presented as more settled than it is.
+不同之处只有一条：**纪律由 CI 强制，不靠自觉。** 标 `verified` 却没有来源笔记，build 失败；断言一条关系却没有证据，build 失败；纠错只能追加进时间线，不能覆盖历史。
 
-The front page is a live map of the whole thing — **who founded, funded, settles on,
-regulates and makes markets for whom**, drawn from 293 interlinked notes.
+## 里面有什么
 
-## What's inside
-
-|  | count |
+|  | 数量 |
 |---|---:|
-| concepts — order books, clearing, derivatives, custody, oracles, resolution, institutional risk | **143** |
-| entities — venues, market makers, funds, protocols, regulators, jurisdictions, people | **76** |
-| typed relationships between them | **75** |
-| worked case studies (real disputes, with the money and the outcome) | 3 |
-| source notes | 21 |
-| **total notes / links** | **293 / 2,813** |
+| 概念 —— 订单簿、清算、衍生品、托管、预言机、裁决、机构风险 | **143** |
+| 实体 —— 场馆、做市商、基金、协议、监管、法域、人物 | **76** |
+| 它们之间的 typed 关系 | **75** |
+| 实证案例（真实争议，带金额与结局） | 3 |
+| 来源笔记 | 21 |
+| **总笔记 / 总链接** | **292 / 2,813** |
 
-Every concept is written out in full — a precise definition, why it matters, the
-mechanism, a worked numeric example, the common misconceptions, an applied checklist,
-and active-recall questions. Median length is about 2,000 characters.
+每个概念写到完整深度：定义、为什么重要、机制、带数字的例子、常见误解、实战清单、自测题。成熟度公开可见 —— 216 reviewed · 46 verified · 23 seed · 3 stale。
 
-Event and prediction markets are the deepest thread, because that is where settlement
-gets hardest — but they are one vertical inside a wider map, not the whole of it.
+## 参与贡献
 
-## Contributing — this is the point
-
-**Crypto moves faster than any one person can track.** A venue changes its fee model, a
-regulator shifts position, a market maker enters or leaves — and a note goes stale. If
-you work in this industry, you already know things this atlas doesn't.
-
-Contributing here is unusually easy to get *right*, because the validator tells you
-exactly what's missing:
+**一家场馆改了费率、一个监管转了态度、一家做市商进场或退场，笔记就过时了。** 如果你在这行，你一定知道一些这张地图还不知道的事。
 
 ```bash
 git clone https://github.com/ailinsun/cryptoatlas && cd cryptoatlas
-make bootstrap          # venv + deps
-# edit or add a note under vault/
-make validate           # tells you precisely what your claim is missing
+make bootstrap     # 建 venv + 装依赖
+make validate      # 精确告诉你这条断言还缺什么
 ```
 
-It will refuse a `verified` status with no source, a broken link, a duplicate id, a
-relationship with no evidence. **You don't have to guess the house style — the build
-enforces it.**
+不用猜规矩，校验器会指出来：没来源却标 `verified`、坏链、重复 id、没有证据的关系，一律拒绝。
 
-Three ways in, smallest first:
-
-| | what | where to start |
+| | 做什么 | 从哪开始 |
 |---|---|---|
-| **Correct something** | a stale fact, a wrong date, a changed fee | [open a correction issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md) |
-| **Add an entity** | a venue, fund, protocol or regulator that's missing | [CONTRIBUTING.md](CONTRIBUTING.md#adding-an-entity) |
-| **Add a concept** | a mechanism the atlas doesn't explain yet | [CONTRIBUTING.md](CONTRIBUTING.md#adding-a-concept) |
+| **纠错** | 过时的事实、错的日期、变了的费率 | [提一个纠错 issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md) |
+| **补实体** | 缺失的场馆、基金、协议或监管机构 | [CONTRIBUTING.md](CONTRIBUTING.md#adding-an-entity) |
+| **补概念** | 这张地图还没解释的机制 | [CONTRIBUTING.md](CONTRIBUTING.md#adding-a-concept) |
 
-Where an entity has no documented link to some part of the market, the note says
-`UNKNOWN` and explains why the absence is informative. **Telling us what an entry gets
-wrong is as valuable as adding a new one.**
+指出某一条写错了，和新增一条一样有价值。
 
-## The engine — fork it for your own domain
+## 引擎
 
-22 Python scripts, 57 tests, a write-time validation hook, 6 Claude Code subagents and
-11 skills. Point it at your own vault and it enforces the same discipline on your field.
+17 个 Python 脚本 · 42 个测试 · 一个写入时校验 hook · 6 个 subagent · 7 个 skill。指向你自己的 vault（`VAULT_PATH=/path/to/vault`），同一套纪律就作用在你的领域上。
 
-A fresh clone resolves to the bundled `vault/`, so every target works with no
-configuration. Point elsewhere with `VAULT_PATH=/path/to/vault make validate`.
-
-Six rules, each backed by a script that fails the build:
-
-| Rule | Enforced by |
+| 规矩 | 由谁强制 |
 |---|---|
-| **Every claim sits in one of five tiers** — confirmed / inference / hypothesis / unverified / unknown — and says which, visibly | `validate_frontmatter.py` |
-| **`verified` requires a source note** with a content hash and an access date | `validate_frontmatter.py`, `check_source_freshness.py` |
-| **Compiled truth is separated from an append-only evidence timeline.** Corrections append; they never overwrite history | vault policy §3 |
-| **Deterministic work is never done by an LLM** — ids, hashes, slugs, indexes, link resolution are code | `brainlib.py` + all generators |
-| **Confidentiality is a typed ceiling**, and a note may never be less protected than its own sources | `check_confidentiality.py` |
-| **Nothing publishes by accident** — the public tree is *derived* from a private vault by a reviewable script | `build_public_vault.py` |
+| 每条断言归入五档之一（confirmed / inference / hypothesis / unverified / unknown）并可见地标出 | `validate_frontmatter.py` |
+| 标 `verified` 必须有来源笔记，带 content hash 与访问日期 | `check_source_freshness.py` |
+| 保密是带类型的天花板：一篇笔记不得低于它自己的来源 | `check_confidentiality.py` |
+| 公开树由私库经可审计的脚本**派生**，没有东西会意外发布 | `build_public_vault.py` |
 
-That last one is the part most projects get wrong. `scripts/build_public_vault.py`
-materialises the publishable subset, and every exclusion rule is declared at the top of
-that one file: private trees, personal working state, anything above the `public-source`
-tier, and a cascade that withholds a relationship whose counterparty was withheld, so
-the published graph stays closed under its own references. It writes a `PUBLICATION.md`
-manifest recording what was held back and why.
+最后一条是多数项目做错的地方。`build_public_vault.py` 的排除规则全部声明在文件顶部，并带一条**级联**规则 —— 对手方被撤下的关系笔记一并撤下，保证公开图在自己的引用下闭合。
 
-## Layout
+## 结构
 
 ```
-vault/       the knowledge base — 293 notes (generated from a private source vault)
-scripts/     22 deterministic tools: validators, importers, generators, exporters
-tests/       57 tests, including the confidentiality-ceiling regression guards
-.claude/     6 subagents + 11 skills + the write-time validation hook
-docs/        the built site (generated; deployed to GitHub Pages)
+vault/       知识库 —— 292 篇笔记（由私有源库派生生成）
+scripts/     17 个确定性工具：校验器、生成器、导出器
+tests/       42 个测试，含保密天花板的回归防线
+.claude/     6 个 subagent + 7 个 skill + 写入时校验 hook
 ```
 
-To reuse the engine: keep `scripts/`, `tests/`, `.claude/` and `vault/90_META/` — schemas,
-the policy constitution, the relationship taxonomy and 18 note templates. Delete the rest
-of `vault/`, write your own notes against those templates, and `make validate` will tell
-you immediately and specifically where you cheated.
+复用引擎：留下 `scripts/`、`tests/`、`.claude/` 和 `vault/90_META/`（schema、政策、关系词表、18 个模板），删掉 `vault/` 其余部分，写你自己的笔记。
 
-## Status
+## 许可
 
-Note maturity is visible in the frontmatter of every page and in the graph export:
-216 reviewed, 46 verified, 32 seed, 3 stale. Dynamic facts carry `last_verified` dates
-and are refreshed rather than rewritten. Nothing claims to be settled that isn't — that
-is the whole point of the tiers.
+**代码**（`scripts/`、`tests/`、`hooks/`、`.claude/`、`Makefile`）[Apache-2.0](LICENSE) · **内容**（`vault/`、`docs/`）[CC BY 4.0](LICENSE-CONTENT)
 
-## Licence
-
-- **Code** (`scripts/`, `tests/`, `hooks/`, `.claude/`, `Makefile`) — [Apache-2.0](LICENSE)
-- **Content** (`vault/`, `docs/`) — [CC BY 4.0](LICENSE-CONTENT)
-
-Attribution: *CryptoAtlas*, https://github.com/ailinsun/cryptoatlas. Source notes cite
-their originals rather than reproducing them; copyright in those works stays with their
-publishers.
+署名：*CryptoAtlas*, https://github.com/ailinsun/cryptoatlas。来源笔记只记录元数据与摘要并注明出处，不复制原文。

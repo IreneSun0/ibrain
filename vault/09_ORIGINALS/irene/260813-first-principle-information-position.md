@@ -46,8 +46,6 @@ related:
 
 ## Publishing Potential
 
-蓝图口径可对外 (行业正名任务卡已有公共品路线); 任何公开表述先过 Irene (对外文案硬规)。
-
 <!-- timeline -->
 
 ## Timeline

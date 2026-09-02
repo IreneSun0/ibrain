@@ -4,12 +4,13 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 import build_learning_view as lv
-import compute_score as cs
+import yaml
 from brainlib import vault_root
 
 
 def test_mainline_is_closed_and_topological():
-    mainline = cs.load_yaml(vault_root() / "10_LEARNING" / "plan" / "mainline.yaml")
+    mainline = yaml.safe_load(
+        (vault_root() / "10_LEARNING" / "plan" / "mainline.yaml").read_text(encoding="utf-8"))
     chapters = mainline["chapters"]
     order = {}
     for ch in chapters:
