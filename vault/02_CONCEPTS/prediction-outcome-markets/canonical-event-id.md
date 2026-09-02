@@ -28,7 +28,7 @@ related:
     note: 跨 venue 敞口聚合的标识基础 — 没有它 exposure 无法可靠汇总
   - id: "org:opticodds"
     rel: instantiated-by
-    note: 只返回真正跨平台事件的 canonical 标识符语义 — 本赛道最锋利
+    note: 只返回真正跨平台事件的 canonical 标识符
 prerequisites:
   - "concept:contract-equivalence"
 import_origin: xlsx-learning-map+manual
@@ -82,7 +82,7 @@ import_category: 预测市场数据
 
 - **误解一："用 hash 就能生成稳定 ID。"** hash 只能保证同样的输入得到同样的输出，**不能判断两段不同文本是否指向同一事件**。那需要判断，不是哈希。
 - **误解二："ID 一样就能对冲。"** ID 表示"关于同一事件"，等价性还需要五维对齐。**同事件 ≠ 等价合约。**
-- **误解三："让平台自己出标准就行。"** 平台没有动力让自己的流动性被聚合。**中立第三方的标识层才有意义** —— 这也是这一层存在商业机会的原因。
+- **误解三："让平台自己出标准就行。"** 平台自建标识可能与自身流动性策略冲突；中立标识层更便于跨平台采用。
 
 ## In Practice | 实战里怎么用
 
@@ -111,12 +111,4 @@ import_category: 预测市场数据
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 从学习地图 workbook 导入 (分类: 预测市场数据)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
-- **2026-08-27** — 语义关联层判断 (AI seed, 待人工复核): 前置 = contract-equivalence; typed 关系 2 条。词表见 [[relationship-types|关系类型受控词表]]。
-- **2026-08-31** — 扩写为完整科普条目 (定义/机制/例子/误解/实战/自测); 原 seed 内容并入, 未删除既有断言。
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (贡献者提供)

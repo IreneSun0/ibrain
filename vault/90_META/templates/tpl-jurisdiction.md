@@ -32,9 +32,3 @@ related: []
 ## Key Companies Operating Here | 在此运营的关键公司
 
 ## Sources
-
-<!-- timeline -->
-
-## Timeline
-
-- **{{date}}** — 创建。

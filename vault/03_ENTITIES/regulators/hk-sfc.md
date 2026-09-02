@@ -49,9 +49,3 @@ CEO **Julia Leung 梁凤仪** (2025-11-14 宣布连任, 任期至 2027-12-31)。
 ## Sources
 
 [[report-2026-08-26-regulatory-landscape]] (一手: sfc.hk / info.gov.hk / hkma.gov.hk)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 建页 (web 核验)。

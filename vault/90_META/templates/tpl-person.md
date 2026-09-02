@@ -62,9 +62,3 @@ related: []
 ## Open Questions
 
 ## Sources
-
-<!-- timeline -->
-
-## Timeline
-
-- **{{date}}** — 创建。

@@ -46,11 +46,3 @@ Spot + 衍生品 (至 125x) + Web3 钱包 + Trust Wallet; **BNB / BNB Chain** (g
 ## Key People
 
 Co-CEO **Richard Teng** ([[richard-teng]]) + Co-CEO **Yi He** ([[yi-he]]); 创始人 [[changpeng-zhao-cz]] 已无职务。
-
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27 (建页)** — web 核验 2026-08-26 (证据见 [[report-2026-08-26-cex-lineage]])。
-- **2026-08-27 (修正)** — 「无预测市场产品」改为准确表述: 交易所本体未上事件合约, 但 **Binance Wallet 已内嵌 [[predict-fun]] 驱动的预测市场** (官方 Binance Academy 文档)。本页此前与 [[report-2026-08-26-prediction-venues]] 自相矛盾。 (由独立审计发现)

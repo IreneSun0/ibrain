@@ -110,13 +110,5 @@ Day 3  结算 102.0  → 收 VM +$2,500   (账户 $7,000)
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (贡献者提供)
 - [[src-2026-08-26-cftc-2026-05105-html]] — <https://www.cftc.gov/LawRegulation/FederalRegister/proposedrules/2026-05105.html>
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 从学习地图 workbook 导入 (分类: 风险管理)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
-- **2026-08-27** — 语义关联层判断 (AI seed, 待人工复核): 前置 = margin; typed 关系 1 条。词表见 [[relationship-types|关系类型受控词表]]。
-- **2026-08-31** — 扩写为完整科普条目 (定义/机制/例子/误解/实战/自测); 原 seed 内容并入, 未删除既有断言。

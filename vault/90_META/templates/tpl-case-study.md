@@ -30,9 +30,3 @@ related: []
 ## Generalizable Lesson | 可泛化的教训
 
 ## Sources
-
-<!-- timeline -->
-
-## Timeline
-
-- **{{date}}** — 创建。

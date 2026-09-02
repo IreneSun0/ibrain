@@ -36,4 +36,3 @@ flowchart TD
 ```
 
 每层的钱与最怕: 见 [[ecosystem-roles-map]] (workbook 原文 13 角色表)。概念链: [[financial-markets]] → [[exchange]] → [[clearinghouse]] → [[settlement]]。
-

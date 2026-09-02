@@ -36,9 +36,3 @@ end_date:
 若报道属实 = TRON+HTX+稳定币结算轨的垂直控制; 制裁传导 (UK/EU→HTX→Binance 切割) 已实测。
 ## What Would Change This Assessment
 法庭文件 / 监管披露 / 本人承认任一出现即定档。
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建立。

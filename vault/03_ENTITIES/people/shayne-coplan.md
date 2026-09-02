@@ -58,10 +58,3 @@ NYC 上西区公立学校 → NYU CS 辍学 → 16 岁参与 Ethereum ICO (~$0.3
 ## Open Questions
 
 POLY token TGE 时点; 离岸/美国双所合并的终局结构。
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 建页 (web 核验, 证据见 [[report-2026-08-26-prediction-venues]])。
-- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 2 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

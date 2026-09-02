@@ -25,7 +25,7 @@ related: []
 
 # 监管全景 · 2026-08-26 web 核验
 
-> 本报告 = 5 监管机构 + 5 辖区实体页的证据基座, 由 research agent 于 2026-08-26 全网核验产出。逐条标注 CONFIRMED (一手或多源) / SINGLE-SOURCE / UNVERIFIED; 引用时以各实体页的编译区为准, 冲突以一手 (cftc.gov / federalregister / mas.gov.sg / sfc.hk / ojk.go.id / esma.europa.eu) 为最终依据。
+> 本报告汇总 5 个监管机构和 5 个辖区实体页的证据。资料于 2026-08-26 核验，并逐条标注 CONFIRMED（一手或多源）、SINGLE-SOURCE 或 UNVERIFIED。来源冲突时，以相关监管机构的一手材料为准。
 
 ## TL;DR (2026-08-26 快照)
 
@@ -34,14 +34,14 @@ related: []
 3. **首例预测市场内幕交易执法**: PR 9237-26 (2026-05-27) — Google 工程师用未公开搜索榜单在 Polymarket 获利 ~$1.2M, CFTC 民事 + DOJ 刑事。
 4. **PR 9282-26 (2026-08-12)**: DCM 的 event-contract 做市激励计划 40.6(a) 备案大量缺陷 → advisory + Staff Letter 26-23。
 5. **Polymarket 已合法重返美国**: 2025-07 以 $112M 收购 CFTC 持牌 QCEX (QCX DCM + QC Clearing DCO); 2026-06 美国平台月成交 >$35 亿, 国际平台 $108 亿。行业总量: 2024-06 <$10 亿 → 2026-04 近 $240 亿。
-6. **亚洲对零售预测市场全线关门**: 新加坡 (GRA 封 Polymarket, 赌博定性) · 香港 (IFEC 警告非法赌博, 篮球博彩合法化都被叫停) · 印尼 (Komdigi 2026-05-22 DNS 封禁, 因 Prabowo 任期盘)。**亚洲机会不在零售 venue, 在合规情报/基础设施层。**
+6. **亚洲多个辖区限制零售预测市场**: 新加坡 (GRA 封 Polymarket, 赌博定性) · 香港 (IFEC 警告非法赌博, 篮球博彩合法化被叫停) · 印尼 (Komdigi 2026-05-22 DNS 封禁, 因 Prabowo 任期盘)。不同辖区的法律分类与执法方式仍需分别核验。
 7. **欧盟**: ESMA 2026-07-03 声明 — 金融底层的事件合约落入 binary options 零售禁令; 法国 ANJ 封 Polymarket; 欧盟委员会就 prediction contracts 咨询至 2026-09-30。MiCA 过渡期 2026-07-01 终结, ~331 家持牌 CASP。
 8. **美国 crypto 立法**: GENIUS Act (稳定币) 已是法律 (2025-07-18 签署); CLARITY Act (市场结构) 众议院已过、参议院 9 月中旬再表决, **未成法**。
 9. 领导层: CFTC 主席 Michael Selig (2025-12-22 就任, 单委员机关) · SEC 主席 Paul Atkins · MAS MD Chia Der Jiun · SFC CEO Julia Leung (连任至 2027) · OJK 主席 Friderica Widyasari Dewi (2026-03-12 确认, 前任 Mahendra Siregar 2026-01-30 辞职)。
 
 ## 完整证据体 (原始 research 输出)
 
-全文以带 [source: URL] 标注的形式保存于本报告的 agent 原稿; 各实体页编译区逐条转录时保留档位标注。关键一手源清单:
+各条目以 `[source: URL]` 标注；实体页转录时保留证据等级。关键一手来源如下：
 
 - CFTC: cftc.gov PR 9179/9192/9197/9206/9219/9233/9237/9239/9249/9261/9267/9271/9282-26; federalregister.gov 2026-02454, 2026-05105 (ANPRM), 2026-11854 (NPRM), 2026-13239 (NPRM); Kalshi v Flaherty (CA3 25-1922)
 - SEC: sec.gov PR 2026-26 (SEC-CFTC MOU), 2026-76 (Regulation Crypto Assets proposed); Atkins 就任页
@@ -49,9 +49,3 @@ related: []
 - SFC: sfc.hk VATP 名单 (13 家, 至 2026-05-29); info.gov.hk 稳定币首批 2 牌 (2026-04-10); Julia Leung 连任公告
 - OJK: ojk.go.id PADK 3/2026 + whitelist 页; GR 49/2024 / POJK 27/2024 移交
 - EU: esma.europa.eu Public Statement ESMA35-243228190-8148 (2026-07-03); MiCA 过渡期声明
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — research agent 全网核验产出; 转录进 5+5 实体页。

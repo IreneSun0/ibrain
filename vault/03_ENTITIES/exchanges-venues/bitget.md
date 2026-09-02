@@ -42,11 +42,3 @@ related:
 ## Key People
 
 CEO **Gracy Chen** ([[gracy-chen]]); 2025-03 公开抨击 Hyperliquid「可能是 FTX 2.0」(JELLY 事件骂战, disputed-claims 档)。
-
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建页 (web 核验 2026-08-26, 证据见 [[report-2026-08-26-cex-lineage]])。
-- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

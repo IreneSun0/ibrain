@@ -39,7 +39,7 @@ import_category: TRON生态
 
 [[tron]] 上的去中心化货币市场：存款、借贷、抵押，以及 TRON 特有的**能量租赁**（见 [[tron-energy-delegation]]）。
 
-**它在这个知识库里的意义是"资金效率"的对照**：借贷协议让抵押品可以同时生息，而事件市场的全额抵押完全做不到这一点。
+JustLend 可用于比较资金效率：借贷协议允许抵押品产生收益，而全额抵押的事件合约通常锁定资金至结算。
 
 ## What It Actually Is | 它到底是什么
 
@@ -84,13 +84,5 @@ import_category: TRON生态
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (贡献者提供)
 - [[src-2026-08-26-justlend-dao-justlend-whitepaper-en-pdf]] — <https://justlend.org/docs/justlend_whitepaper_en.pdf>
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 从学习地图 workbook 导入 (分类: TRON生态)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
-- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。
-- **2026-08-31** — 扩写为完整实体条目 (定位/运作/市场位置/风险/观察点); 原有断言保留。

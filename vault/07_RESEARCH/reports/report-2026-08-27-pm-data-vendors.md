@@ -24,14 +24,14 @@ related:
 
 # 预测市场数据/API 供应商全景 · 2026-08-27 核验
 
-> Tier B 竞品的证据基座。方法: 优先一手 (公司自家 docs / OpenAPI spec / changelog / `llms.txt`), 辅以独立媒体与投资方公告。**营销口径与规格口径冲突时以规格为准** (本轮抓到两处)。
+> 预测市场数据供应商的证据汇总。优先使用公司文档、OpenAPI 规格、changelog 与 `llms.txt`，并以独立媒体和投资方公告交叉核验；营销材料与技术规格冲突时，以规格为准。
 
 ## TL;DR — 五条改写认知的发现
 
 1. 🔴 **场馆把聚合层吞了**: **Dome** (YC F25, $5.2M, 前类别领头, 做跨平台市场匹配 + 订单路由) **被 Polymarket 收购** (2026-02-19 公布, Polymarket 继 QCEX 后第二笔), 全部 API **2026-04-28 EOL**。详见 [[case-dome-acquisition]]。
-2. **两个月后同一模式再现**: **Predexon** 退掉执行与匹配 — Trading API 2026-06-25 停, 跨场馆匹配端点 2026-07-20 起返回 `410 Gone`。它现在是**纯数据商**。 (早前的 Tier B 描述已过期约两个月。)
-3. **canonical ID 不再稀缺**: 现在**至少三家**在做 — predictrails (`PR:` 标识符) · [[kairos]] (「one canonical Kairos market id on every venue」) · [[opticodds]] (`canonical_id` / `canonical_market_id`)。**S2 数据面的商品化已经发生**, 不是未来风险。
-4. **漏了一个重要竞品**: [[opticodds]] — 体育赔率数据老玩家延伸进预测市场, **明确面向做市商**, 且 canonical 标识符的语义定义最锋利 (「同一个值出现在 Kalshi 与 Polymarket 上, 意味着这两个市场按同一件事结算」)。
+2. **Predexon 退出执行与匹配**: Trading API 于 2026-06-25 停止，跨场馆匹配端点从 2026-07-20 起返回 `410 Gone`；当前仅保留数据业务。
+3. **至少三家供应商提供 canonical ID**: predictrails（`PR:` 标识符）、[[kairos]]（“one canonical Kairos market id on every venue”）与 [[opticodds]]（`canonical_id` / `canonical_market_id`）。
+4. **OpticOdds**: 从体育赔率数据扩展到预测市场并面向做市商；其 canonical 标识符用于表示不同平台上的市场是否按同一事件结算。
 5. **出现了 benchmark 位的占位者**: [[adjacent-markets]] (原 Adjacent News, 已改名) 自称「**第一家独立第三方事件合约与预测市场指数提供商**」, 已发 22 个指数 — 这正落在「标准维护者」这个位置上。
 
 ## 能力对照 (2026-08-27)
@@ -67,12 +67,6 @@ related:
 
 ## 数据质量说明
 
-最强证据: Predexon (机器可读 OpenAPI spec + 带日期 changelog, 均已解析) · FinFeedAPI/Tatum (一手 `llms.txt` 与 `.md` 文档源) · Dome (一手文档横幅 + 独立媒体) · Kairos 融资 (a16z + Fortune 双源)。
+证据较完整的条目包括：Predexon（机器可读 OpenAPI 规格与带日期的 changelog）、FinFeedAPI/Tatum（一手 `llms.txt` 与 Markdown 文档）、Dome（一手文档公告与独立媒体）及 Kairos 融资（a16z 与 Fortune）。
 最弱证据: **一切规模与性能数字** (Blockcircle 各项指标 / Predexon「快 5 秒」/ Kairos「快 2-3 秒」) 均为一手营销未验。Predexon 创始人身份与「100+ 客户」为第三方单源, 暂按 provisional。
 访问限制: finfeedapi.com 与 apibricks.io 对非浏览器客户端返回 403, 其预测市场定价页未能读取。
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — research agent 产出 (~65 次抓取/检索); 转录进 Tier B 实体页群与 [[case-dome-acquisition]]。

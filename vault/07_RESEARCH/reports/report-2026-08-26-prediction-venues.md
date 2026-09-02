@@ -41,9 +41,3 @@ related: []
 ## 口径冲突与未决项 (照实)
 
 Kalshi $22B 轮领投 (官方 Coatue vs Wikipedia TCV, 以官方为准) · Polymarket 月量口径 ($10.5B vs >$20B, 疑单双边) · HIP-4 质押 (现行 500k vs 旧文 1M) · Opinion seed 时点 · Polymarket×xAI 合作未核实 · Hyperliquid JELLY 事件无可引用源 (UNVERIFIED) · Manifold 结算细节与规模未披露。
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — research agent 产出; 转录进 venue/人物页群。

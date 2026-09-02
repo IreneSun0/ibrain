@@ -33,10 +33,4 @@ end_date:
 ## Evidence
 rootdata/iq.wiki 聚合级 (联创 + 非执行董事, 2017 起); On Chain 载体与新火股权认购佐证 (R2)。confidence medium (聚合源)。
 ## Economic Meaning
-Huobi 系资本进入基础设施层的通道; ChainUp Hermes (白标预测市场) 背后的人脉门。
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建立。
+该关系连接 Huobi 系资本与 ChainUp 的基础设施及 Hermes 白标预测市场业务。

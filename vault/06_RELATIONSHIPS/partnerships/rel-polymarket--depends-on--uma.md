@@ -36,9 +36,3 @@ end_date:
 三连争议案 (见 [[case-uma-dispute-trilogy]]) 实证此依赖是 Polymarket 的最大结构性风险面。
 ## What Would Change This Assessment
 主观类市场迁移到新 oracle 之日, status → ended。
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建立。

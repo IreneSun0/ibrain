@@ -70,17 +70,9 @@ Founder & CEO **Shayne Coplan** ([[shayne-coplan]]); 顾问: J.C. Giancarlo (前
 
 2026-03 收购基建公司 Brahma; 内幕串案 (委内瑞拉行动 $400k / 以色列军官 Iran strike $244k); NYT/Politico 营销争议 (虚假帖/付费吹准确率)。
 
-**收购线 (三笔, 战略含义明确)**: QCEX (2025-07, $112M, 买监管牌照) → **Dome (2026-02-19, 买跨平台匹配+订单路由, API 2026-04-28 EOL)** → Brahma (2026-03, 基建)。⟹ **它在系统性地把上下游能力内化**: 牌照、聚合层、基建。Dome 案详见 [[case-dome-acquisition]] — 这是 Tier D「场馆纵向内化」威胁的实证。
+**收购线**: QCEX（2025-07，$112M，监管牌照）→ **Dome（2026-02-19，跨平台匹配与订单路由；API 于 2026-04-28 停止）** → Brahma（2026-03，基础设施）。三笔交易分别覆盖牌照、聚合与基础设施。Dome 案详见 [[case-dome-acquisition]]。
 
 
 ## Sources
 
 [[report-2026-08-26-prediction-venues]] (一手: ICE IR / PRNewswire / CFTC; 费率与收入 = Sacra 单源, 谨慎引用)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 建页 (web 核验)。workbook 「零交易费」表述已过时 (2026-01 起收费)。
-- **2026-08-27** — 补: **2026-02-19 收购 Dome** (YC F25, $5.2M, 做跨平台市场匹配与订单路由), 全部 Dome API 2026-04-28 EOL — Polymarket 继 QCEX 后第二笔收购, 是「场馆吞掉聚合层」的样本。 [Source: [[report-2026-08-27-pm-data-vendors]]]
-- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 4 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

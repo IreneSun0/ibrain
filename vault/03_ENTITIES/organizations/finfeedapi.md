@@ -39,7 +39,7 @@ related:
 
 ## Executive Summary
 
-**Tier B 里唯一有成熟母体的玩家**: 母公司 **API Bricks** 同时运营 **CoinAPI** (2017 年起家)。即 CoinAPI 团队把交易所行情 schema 套到事件市场上。其真差异化不是预测市场深度, 而是**跨资产** — 预测市场与股票/外汇/SEC filings 共用一把 key。
+母公司 **API Bricks** 同时运营 2017 年上线的 **CoinAPI**。FinFeedAPI 的特点是跨资产覆盖：预测市场与股票、外汇、SEC filings 共用一套 API 凭证。
 
 ## Key Facts (CONFIRMED, 一手 llms.txt + GitHub)
 
@@ -49,11 +49,3 @@ related:
 - 提供: 订单簿当前快照+历史 · OHLCV 历史 · 市场/成交/报价历史 · JSON-RPC API · 托管 MCP server。**无任何交易/执行端点。**
 - 裁决/结算元数据: 文档未涵盖。
 - 定价: 按量信用制, $25 免费额度; 预测市场专属价目表**未能读取** (站点对非浏览器客户端 403)。
-
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建页 (一手 docs 核验, 证据见 [[report-2026-08-27-pm-data-vendors]])。
-- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 3 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

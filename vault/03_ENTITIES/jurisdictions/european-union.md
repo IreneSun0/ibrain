@@ -34,10 +34,3 @@ related: []
 ## Crypto: MiCA 全面落地
 
 过渡期 2026-07-01 终结; ~331 家持牌 CASP; EMT 发行人 ~17 家, ART 为 0。
-
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 建页 (web 核验, 证据见 [[report-2026-08-26-regulatory-landscape]])。

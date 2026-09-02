@@ -34,9 +34,3 @@ end_date: 2015-12-31
 OKCoin CTO ~2014-15, 任期不足一年 (Wikipedia, CONFIRMED)。谱系意义: Binance 与 OKX 的共同人才源头。
 ## What Would Change This Assessment
 无 — 历史事实。CZ-Star Xu 私人关系传闻 UNVERIFIED, 不入库。
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建立。

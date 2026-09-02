@@ -53,7 +53,7 @@ import_category: 预测市场
 | **乐观预言机 + 代币投票** | [[uma]]（[[polymarket]] 离岸端） | 有人提议结果 → 挑战窗口 → 有争议则代币持有人投票终裁 | **投票权可购买**；小盘挑战激励不足 |
 | **自动化数据喂价** | [[chainlink]]（Polymarket 价格类自 2025-09 起） | 直接读取权威价格源，无需人判断 | 只适用于可量化标的；数据源本身失效 |
 
-**注意第三行的含义：行业正在把"可量化的"和"需要解释的"分开处理。** 价格类走自动化，主观类还没有好答案 —— 这是当前最大的未解难题。
+部分平台正把可量化事件与需要解释的事件分开处理：价格类合约可以自动化，主观类合约仍依赖人工、委员会或投票机制。
 
 ## Concrete Example | 具体例子
 
@@ -100,13 +100,5 @@ import_category: 预测市场
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (贡献者提供)
 - [[src-2026-08-26-polymarket-resolution]] — <https://docs.polymarket.com/concepts/resolution>
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 从学习地图 workbook 导入 (分类: 预测市场)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
-- **2026-08-27** — 语义关联层判断 (AI seed, 待人工复核): 前置 = event-contract; typed 关系 0 条。词表见 [[relationship-types|关系类型受控词表]]。
-- **2026-08-31** — 扩写为完整科普条目 (定义/机制/例子/误解/实战/自测); 原 seed 内容并入, 未删除既有断言。

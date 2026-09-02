@@ -24,7 +24,7 @@ related: []
 
 # 基础设施 · 做市商 · 稳定币 · 2026-08-26 web 核验
 
-> 本报告是 infra/MM/stablecoin 实体页群的证据基座 (research agent ~40 次检索产出, 每条带 URL 与档位)。口径冲突与未决项照实保留。
+> 本报告汇总基础设施、做市商和稳定币实体页的证据，基于约 40 次检索；每条记录保留 URL 与证据等级，口径冲突和未决项不作合并。
 
 ## TL;DR — 最重要的七件事
 
@@ -39,9 +39,3 @@ related: []
 ## 全部证据体
 
 原始 agent 输出含逐条 [source: URL, accessed 2026-08-26] 与 CONFIRMED/SINGLE-SOURCE/UNVERIFIED 档位, 已按实体转录至各页编译区。关键冲突记录: Kalshi $22B 轮日期 (Bloomberg 2026-03-19 vs TechCrunch 2026-05-07, 疑分批交割) · IMC 是否建 desk (Cobo vs Bayes Group) · Amber CEO 口径 (合并 PR: Wayne Huo; Q1 2026 PR: Michael Wu Chairman&CEO, 以后者为准) · Cumberland SEC 撤案时间 (2025-03 为准)。
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — research agent 产出; 转录进实体页群。

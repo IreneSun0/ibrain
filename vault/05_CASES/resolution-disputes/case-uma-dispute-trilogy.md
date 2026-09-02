@@ -60,9 +60,3 @@ related:
 ## Sources
 
 [[report-2026-08-26-infra-mm-stablecoins]] (一手: theblock.co 348171 / cryptopolitan / Forbes 2026-04-30)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 建页 (web 核验)。

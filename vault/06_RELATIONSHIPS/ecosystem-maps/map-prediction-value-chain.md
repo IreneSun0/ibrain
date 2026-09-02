@@ -37,4 +37,3 @@ flowchart LR
 ```
 
 链上每环的抽水与风险: venue 抽 taker 费 (Polymarket 2026 费率表 / Kalshi 费) · 裁决层出 [[resolution-risk]] (三连争议+Khamenei) · 分发层拿用户 (Robinhood 依赖 Kalshi = SEC filing 实证)。
-

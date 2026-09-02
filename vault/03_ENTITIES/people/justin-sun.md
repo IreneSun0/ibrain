@@ -49,11 +49,3 @@ TRON 创始人 (1990 年生), Forbes 身家 ~$8.5B (2026-04)。华人 crypto 里
 
 - First Digital Trust v. Sun (HK 诽谤, 2025-04 起; Sun 悬赏 $100M + 「AI 侦探」升级)。
 - Sun v. WLFI (2026, ~$75M 代币被冻结的「敲诈」指控 + WLFI 反诉诽谤; 法官保留 Sun 诉请, 8 月仍在升级)。
-
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建页 (web 核验 2026-08-26, 证据见 [[report-2026-08-26-cex-lineage]])。
-- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

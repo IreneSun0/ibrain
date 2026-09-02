@@ -85,7 +85,7 @@ import_category: Crypto市场结构
 2. **谁能移动它？** 链上：合约有没有升级权限、管理员密钥、多签阈值是多少。链下：有没有独立托管行、有没有隔离账户审计。
 3. **平台破产时会发生什么？** 客户资产是破产财产还是隔离资产？**这个问题的答案决定了你在最坏情况下能拿回多少。**
 
-**第 3 问是尽调里信息量最大的一问**，也是最少被问的。
+第 3 问用于识别极端情况下的实际资产控制权。
 
 ## Related Concepts | 相关概念
 
@@ -103,12 +103,4 @@ import_category: Crypto市场结构
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 从学习地图 workbook 导入 (分类: Crypto市场结构)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
-- **2026-08-27** — 语义关联层判断 (AI seed, 待人工复核): 前置 = 无硬前置 (判断过的空); typed 关系 1 条。词表见 [[relationship-types|关系类型受控词表]]。
-- **2026-08-31** — 扩写为完整科普条目 (定义/机制/例子/误解/实战/自测); 原 seed 内容并入, 未删除既有断言。
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (贡献者提供)

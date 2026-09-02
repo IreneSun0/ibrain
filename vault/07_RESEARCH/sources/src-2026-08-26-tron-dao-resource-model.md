@@ -32,13 +32,13 @@ import_origin: xlsx-learning-map
 
 来自学习地图 workbook 的引用 URL: <https://developers.tron.network/docs/resource-model>
 
-该 URL 由 workbook 携带, 导入时**未独立抓取验证内容** — 引用它的断言 confidence 上限为 medium, 直到 researcher 实际访问并回填 `content_hash` 与摘录。
+该 URL 由 workbook 携带, 导入时**未独立抓取验证内容** — 引用它的断言 confidence 上限为 medium, 直到实际访问并回填 `content_hash` 与摘录。
 
 ## Key Claims Extracted | 提取的关键断言
 
 | 断言 | 档位 | 被哪些页引用 |
 |---|---|---|
-| (待 researcher 回填) | | |
+| (待核验) | | |
 
 ## Reliability Notes | 可靠性备注
 

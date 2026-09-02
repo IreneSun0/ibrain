@@ -40,10 +40,3 @@ related: []
 ## Key People
 
 公众面孔 [[justin-sun]] (自称 HTX Global Advisor); 创始人 [[leon-li]] 2022 售后退出 (其 X-Spot 2023-12 在港赢得禁止 Huobi Global 用「Huobi」商标的禁令 — 单源细节)。
-
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建页 (web 核验 2026-08-26, 证据见 [[report-2026-08-26-cex-lineage]])。

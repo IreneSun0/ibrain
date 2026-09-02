@@ -33,10 +33,4 @@ end_date:
 ## Evidence
 2025-10-07 官宣至多 $2B (~$8B pre-money); 2026-03-27 完成 $600M tranche (ICE IR 一手, CONFIRMED)。
 ## Economic Meaning
-NYSE 母公司持股 = 正统化背书 + 未来分发/数据通道想象; 亦为 Polymarket 估值锚。
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建立。
+NYSE 母公司的持股为 Polymarket 提供机构投资信号，也形成一项公开估值参照。

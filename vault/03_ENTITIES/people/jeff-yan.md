@@ -31,7 +31,7 @@ related:
 
 ## Executive Summary
 
-Hyperliquid 联合创始人 (团队唯一实名者), Harvard 数学+CS, 前 Hudson River Trading 高频开发; 零 VC 自融资把链上 CLOB 做成 perp DEX 霸主, 2026 年以 HIP-4 进入结果市场。**早在 ~2018 就做过预测市场项目 "Deaux"** (单源) — 其对结果市场的兴趣先于 Hyperliquid 本体。
+Hyperliquid 联合创始人（团队唯一实名者），Harvard 数学与计算机科学背景，曾任 Hudson River Trading 高频开发；Hyperliquid 未接受 VC 融资，并成为主要的链上 CLOB 永续合约平台之一，2026 年通过 HIP-4 进入结果市场。约 2018 年参与预测市场项目 “Deaux” 的说法目前为单一来源。
 
 ## Current Roles (核实 2026-08-26)
 
@@ -46,11 +46,3 @@ Palo Alto High → 物理奥赛 2012 银/2013 金 → Harvard 数学+CS (2013-17
 ## Public Positions
 
 反 VC-token 模式; 产品先于宣传; HFT 哲学直接塑造链上 CLOB 设计。财富估算分歧巨大 (UNVERIFIED, 不采任何数字)。
-
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 建页 (web 核验, 证据见 [[report-2026-08-26-prediction-venues]])。
-- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

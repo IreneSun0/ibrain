@@ -49,7 +49,7 @@ import_category: 市场微观结构
 
 ## Why This Matters | 为什么重要
 
-流动性是事件市场唯一真正的护城河，也是它最大的结构性弱点。
+流动性是事件市场的核心竞争因素，也可能成为主要结构性弱点。
 
 原因在于一个数学事实：**事件市场的合约数量以万计，而资金是有限的。** 每开一个新事件、每加一个新场所，同一笔资金就被切得更碎。这与股票市场正好相反 —— 股票的标的数量是稳定的，事件的数量可以无限增长。
 
@@ -108,12 +108,4 @@ import_category: 市场微观结构
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 从学习地图 workbook 导入 (分类: 市场微观结构)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
-- **2026-08-27** — 语义关联层判断 (AI seed, 待人工复核): 前置 = 无硬前置 (判断过的空); typed 关系 3 条。词表见 [[relationship-types|关系类型受控词表]]。
-- **2026-08-31** — 扩写为完整科普条目 (定义/机制/例子/误解/实战/自测); 原 seed 内容并入, 未删除既有断言。
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (贡献者提供)

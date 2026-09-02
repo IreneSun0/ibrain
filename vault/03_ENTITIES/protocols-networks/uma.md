@@ -50,9 +50,3 @@ Risk Labs 开发, 2018 年由前 Goldman 交易员 Hart Lambur 与 Allison Lu �
 ## Sources
 
 [[report-2026-08-26-infra-mm-stablecoins]] (一手: docs.polymarket.com / theblock / Forbes / blog.uma.xyz)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 建页 (web 核验)。

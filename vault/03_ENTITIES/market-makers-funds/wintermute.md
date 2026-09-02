@@ -81,10 +81,3 @@ related: []
 ## Sources
 
 [[report-2026-08-26-infra-mm-stablecoins]] (一手: wintermute.com 官宣)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 建页 (web 核验)。
-- **2026-08-31** — 扩写为完整实体条目 (定位/运作/市场位置/风险/观察点); 原有断言保留。

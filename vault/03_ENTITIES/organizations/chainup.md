@@ -50,10 +50,3 @@ Hermes 已签客户? 定价? 其白标 venue 用什么 resolution 机制 (自裁
 ## Sources
 
 [[report-2026-08-26-infra-mm-stablecoins]] (一手: chainup.com / PR Newswire 2025-10-16)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 建页 (web 核验)。Tan Bin Ru 已非 ChainUp Deputy CEO (LinkedIn 现职 ST Engineering President Enterprise Digital; Crunchbase 条目滞留)。
-- **2026-08-27** — **修正** (R2 谱系核验): Sailor Zhong 本人背景 = Baidu SNS 技术总监 / START CTO / 中国移动, **非 ex-Huobi**; 「ChainUp 创始人是 Huobi 系」的说法不成立。Huobi 真实纽带 = [[du-jun]] 是联创/非执行董事 + 其 On Chain 载体与新火科技的股权认购。[Source: [[report-2026-08-26-cex-lineage]]]

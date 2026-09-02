@@ -51,9 +51,3 @@ Managing Director **Chia Der Jiun** (2024-01-01 就任, 2026-07 仍在任)。 (C
 ## Sources
 
 [[report-2026-08-26-regulatory-landscape]] (一手: mas.gov.sg)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 建页 (web 核验)。

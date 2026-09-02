@@ -45,7 +45,7 @@ import_category: TRON生态
 
 多链资产与消息互通的跨链基础设施，连接 [[tron]]、[[ethereum]]、[[bnb-chain]] 等生态。
 
-**它在这个知识库里的角色是提醒一件事**：跨链桥是链上历史上最集中的攻击面（见 [[bridge]]），而事件市场的资金进出几乎必然要经过某座桥。
+BitTorrent Chain 的相关风险主要来自跨链桥（见 [[bridge]]）；跨链事件市场的资金进出依赖这类桥接设施。
 
 ## What It Actually Is | 它到底是什么
 
@@ -88,13 +88,5 @@ import_category: TRON生态
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (贡献者提供)
 - [[src-2026-08-26-bittorrent-chain-bittorrent-chainwhitepaper-en-pdf]] — <https://bt.io/doc/BitTorrent-ChainWhitepaper_EN.pdf>
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 从学习地图 workbook 导入 (分类: TRON生态)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
-- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 3 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。
-- **2026-08-31** — 扩写为完整实体条目 (定位/运作/市场位置/风险/观察点); 原有断言保留。

@@ -2,7 +2,7 @@
 
 > 生成文件 · `generate_indexes.py` · 手改会被覆盖。
 
-更新: 2026-09-02 · 共 288 条结构化笔记
+更新: 2026-09-02 · 共 285 条结构化笔记
 
 ## (none) (19)
 
@@ -198,9 +198,8 @@
 - [[susquehanna|Susquehanna (SIG)]] · 海纳国际集团
 - [[venue|Venue]] · 交易场所
 
-## industry-strategy (22)
+## industry-strategy (20)
 
-- [[260813-first-principle-information-position|First Principle: Information Position (Irene, 2026-08-13)]] · 第一性原理 · 信息位置与规则制定层
 - [[adjacent-markets|Adjacent (adjacent.markets)]] · Adjacent 指数
 - [[case-dome-acquisition|Polymarket Acquires Dome - The Venue Absorbed the Aggregator]] · Polymarket 收购 Dome · 场馆吞掉聚合层
 - [[data-infrastructure|Data Infrastructure]] · 数据基础设施
@@ -221,7 +220,6 @@
 - [[settlement-rail|Settlement Rail]] · 结算轨道/资金铁路
 - [[src-2026-08-27-predictrails-cftc-comment|PredictRails comment to CFTC Prediction Markets ANPRM (comment 115352)]]
 - [[token-economy|Token Economy]] · 代币经济
-- [[win-safe-truth-triangle|win · safe · truth Triangle (Irene, 2026-08-13)]] · win·safe·truth 三角
 
 ## institutional-risk (37)
 
@@ -297,15 +295,14 @@
 - [[taker|Taker]] · 吃单方/消耗流动性者
 - [[wintermute|Wintermute]]
 
-## meta (7)
+## meta (6)
 
 - [[INDUSTRY-MAP|Industry Map]] · 行业地图
 - [[PEOPLE-AND-POWER-MAP|People & Power Map]] · 人物与权力图
 - [[RESEARCH-BACKLOG|Research Backlog]] · 研究积压清单
 - [[frontmatter-schema|Frontmatter Schema]] · Frontmatter 字段规范
-- [[knowledge-policies|iBrain Knowledge Policies]] · 知识库治理政策
+- [[knowledge-policies|CryptoAtlas Knowledge Policies]] · 知识库治理政策
 - [[relationship-types|Relationship Type Vocabulary]] · 关系类型受控词表
-- [[report-2026-08-27-kb-tooling-landscape|Knowledge-Base Visualization Tooling Landscape (2026-08)]] · 知识库可视化工具版图 (2026-08 核验)
 
 ## people-networks (30)
 

@@ -95,7 +95,7 @@ swap 的基本结构：
 理解 swap 对事件市场的两个实用推论：
 
 1. **看一份事件合约时，把它当 swap 读**：谁在什么条件下向谁支付多少？条件的定义精确到什么程度？
-2. **对照 ISDA 的成熟度**：CDS 花了几十年才把"什么算信用事件"定义清楚。**事件市场目前还在这个过程的起点** —— 这既是风险，也是最明确的基础设施机会（见 [[contract-semantics]]）。
+2. **对照 ISDA 的成熟度**：CDS 用长期标准化过程界定信用事件；事件市场的事件定义仍缺少同等成熟的行业标准（见 [[contract-semantics]]）。
 
 ## Related Concepts | 相关概念
 
@@ -113,13 +113,5 @@ swap 的基本结构：
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (贡献者提供)
 - [[src-2026-08-26-cftc-derivatives-basics-html]] — <https://www.cftc.gov/LearnAndProtect/AdvisoriesAndArticles/derivatives_basics.html>
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 从学习地图 workbook 导入 (分类: 衍生品)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
-- **2026-08-27** — 语义关联层判断 (AI seed, 待人工复核): 前置 = derivative; typed 关系 1 条。词表见 [[relationship-types|关系类型受控词表]]。
-- **2026-08-31** — 扩写为完整科普条目 (定义/机制/例子/误解/实战/自测); 原 seed 内容并入, 未删除既有断言。

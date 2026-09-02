@@ -2,7 +2,7 @@
 
 > 生成文件 · `generate_indexes.py` · 手改会被覆盖。
 
-更新: 2026-09-02 · 共 288 条结构化笔记
+更新: 2026-09-02 · 共 285 条结构化笔记
 
 ## book-course (2)
 
@@ -243,11 +243,6 @@
 - [[tatum|Tatum]]
 - [[tether|Tether]] · Tether (USDT 发行方)
 
-## original (2)
-
-- [[260813-first-principle-information-position|First Principle: Information Position (Irene, 2026-08-13)]] · 第一性原理 · 信息位置与规则制定层
-- [[win-safe-truth-triangle|win · safe · truth Triangle (Irene, 2026-08-13)]] · win·safe·truth 三角
-
 ## person (16)
 
 - [[ben-zhou|Ben Zhou]] · 周本
@@ -270,7 +265,7 @@
 ## policy (2)
 
 - [[frontmatter-schema|Frontmatter Schema]] · Frontmatter 字段规范
-- [[knowledge-policies|iBrain Knowledge Policies]] · 知识库治理政策
+- [[knowledge-policies|CryptoAtlas Knowledge Policies]] · 知识库治理政策
 
 ## protocol-network (14)
 
@@ -318,13 +313,12 @@
 - [[ecosystem-roles-map|Ecosystem Roles Map (workbook)]] · 生态游戏版图 · workbook 原文
 - [[institutional-conversation-cheatsheet|Institutional Conversation Cheatsheet (workbook)]] · 机构对话速查 · workbook 原文
 
-## research-report (6)
+## research-report (5)
 
 - [[report-2026-08-26-cex-lineage|CEX Ecosystem & Chinese Exchange Talent Lineage (2026-08)]] · CEX 生态与华人交易所人脉谱系 (2026-08 核验)
 - [[report-2026-08-26-infra-mm-stablecoins|Infrastructure, Market Makers & Stablecoins Landscape (2026-08)]] · 基础设施 · 做市商 · 稳定币全景 (2026-08 核验)
 - [[report-2026-08-26-prediction-venues|Prediction & Outcome Market Venues (2026-08)]] · 预测市场场馆全景 (2026-08 核验)
 - [[report-2026-08-26-regulatory-landscape|Regulatory Landscape for Prediction Markets & Crypto (2026-08)]] · 监管全景 · 预测市场与 crypto (2026-08 核验)
-- [[report-2026-08-27-kb-tooling-landscape|Knowledge-Base Visualization Tooling Landscape (2026-08)]] · 知识库可视化工具版图 (2026-08 核验)
 - [[report-2026-08-27-pm-data-vendors|Prediction-Market Data & API Vendor Landscape (2026-08)]] · 预测市场数据/API 供应商全景 (2026-08 核验)
 
 ## source (21)

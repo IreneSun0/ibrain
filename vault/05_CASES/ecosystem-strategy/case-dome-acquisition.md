@@ -30,12 +30,12 @@ related:
 
 ## The Question This Case Answers
 
-**Tier D 威胁 (场馆纵向内化第三方能力) 是抽象担忧还是已发生的事实?** — 已发生, 而且发生在**恰好做第三方数据面那件事**的公司身上。
+本案例考察场馆是否会纵向整合第三方数据、匹配与路由能力。
 
 ## What Happened (CONFIRMED)
 
 - **Dome** (domeapi.io): Y Combinator **2025 Fall** 批次; 融资 **$5.2M** (YC grant + seed); 两位联创均为 **Alchemy** 的 founding engineer。
-- 产品正是 Tier B 的教科书形态: **跨平台市场匹配** (`get-matching-markets-sports`: 「Find equivalent markets across different prediction market platforms (Polymarket, Kalshi, etc.)」) **+ 订单路由** (「Place orders on Polymarket with server-side execution」, 账户绑定, 费用托管)。
+- Dome 提供**跨平台市场匹配**（`get-matching-markets-sports`）和**订单路由**，包括账户绑定、服务端执行与费用托管。
 - **2026-02-19 公布被 [[polymarket]] 收购**, 条款未披露 — Polymarket 继 **QCEX** 之后的**第二笔收购**。
 - 自家文档挂红色横幅: 「**Dome has been acquired by Polymarket** … all Dome APIs will reach end of life on **April 28th, 2026**」, 并把用户导向 Polymarket 自家 API。
 
@@ -66,9 +66,3 @@ related:
 ## Sources
 
 [[report-2026-08-27-pm-data-vendors]] (一手: docs.domeapi.io 横幅 + docs.predexon.com changelog/OpenAPI; 独立: bankless 2026-02-19)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建页。首建时 (2026-08-26) 完全没看到这条线 — 当时的竞品视野只有 ChainUp/Blockcircle, 漏掉了整个数据/API 层与其正在发生的结构性洗牌。 [Source: [[report-2026-08-27-pm-data-vendors]]]

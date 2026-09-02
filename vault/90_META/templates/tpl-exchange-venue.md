@@ -41,9 +41,3 @@ related: []
 ## Weaknesses and Risks
 
 ## Sources
-
-<!-- timeline -->
-
-## Timeline
-
-- **{{date}}** — 创建。

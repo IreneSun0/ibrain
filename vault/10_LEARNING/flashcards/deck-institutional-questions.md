@@ -21,7 +21,7 @@ sources:
 related: []
 ---
 
-# 闪卡 · 机构对话八问 (workbook 原文, user-direct)
+# 闪卡 · 机构对话八问 (workbook 原文)
 
 **Q1** — 学习地图每阶段的四联问是哪四个?
 **A1** — 钱在哪里 / 谁承担风险 / 怎么结算 / 这个阶段必须会问什么。 → [[curriculum-source-map]]

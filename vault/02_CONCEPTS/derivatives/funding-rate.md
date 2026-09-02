@@ -92,7 +92,7 @@ import_category: 衍生品
 
 **二是仓位信号** —— 极端费率意味着一侧拥挤，反转风险上升。
 
-**跨市场对照时用同一把尺**：把事件合约全额抵押的机会成本（`本金 × 无风险利率 × 期限`）折算成"每 8 小时多少"，再和永续费率并排比较。**这是唯一公平的对比方式。**
+跨市场比较时，可以把事件合约全额抵押的机会成本（`本金 × 无风险利率 × 期限`）折算到与永续费率相同的时间尺度。
 
 ## Related Concepts | 相关概念
 
@@ -110,12 +110,4 @@ import_category: 衍生品
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 从学习地图 workbook 导入 (分类: 衍生品)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
-- **2026-08-27** — 语义关联层判断 (AI seed, 待人工复核): 前置 = perpetual-futures; typed 关系 1 条。词表见 [[relationship-types|关系类型受控词表]]。
-- **2026-08-31** — 扩写为完整科普条目 (定义/机制/例子/误解/实战/自测); 原 seed 内容并入, 未删除既有断言。
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (贡献者提供)

@@ -54,9 +54,3 @@ related:
 ## Sources
 
 [[report-2026-08-26-prediction-venues]] (Wikipedia + defirate, CONFIRMED 跨源)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 建页 (web 核验)。

@@ -76,8 +76,8 @@ Leon Li + Du Jun 共创 Huobi (2013)  [co-founded ×2]
 
 ## 行动含义
 
-1. BNB 系预测市场 (Predict.fun/Opinion) 的门 = YZi Labs (CZ+Yi He 家族办公室)。
-2. ChainUp Hermes 的门 = 杜均线 (Node/ABCDE/Sinohope 人脉)。
+1. BNB 系预测市场（Predict.fun/Opinion）通过 YZi Labs 与 CZ、Yi He 关联。
+2. ChainUp Hermes 通过杜均与 Node、ABCDE、Sinohope 关联。
 3. OKX 若上预测市场 (Star Xu 计划, 单源), 亚洲 venue 版图重画 — 盯官宣。
 4. HTX 制裁 = 谱系内第一个「辖区死亡」样本, 对手方切割速度 (Binance 限制 UK/EU HTX 交易) 是传导速度的实测。
 
@@ -98,9 +98,3 @@ Leon Li + Du Jun 共创 Huobi (2013)  [co-founded ×2]
 - [[rel-yi-he--co-founded--binance|Yi He → co-founded → Binance]] `verified`
 
 <!-- /moc:auto -->
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建立 (R2 核验产出; 谱系四问全部 VERIFIED, ChainUp 修正已记)。

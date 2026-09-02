@@ -33,7 +33,7 @@ related:
 - Web3 API/RPC 开发平台 (一套 API 跨多链), 2018 年 Jiri Kobelka 创立, HQ Miami; 总融资 ~$42.5M (2022 $41.5M, Circle 参投)。
 - 2025-26 无新融资或大事记录。
 
-## 预测市场 API (2026-08-27 核验 — 首建时未确认, 现已证实)
+## 预测市场 API（2026-08-27 核验）
 
 **存在, 但比早前描述窄得多。** (CONFIRMED, 一手 docs, `updatedAt: 2026-08-21)
 
@@ -44,12 +44,3 @@ related:
 - 定位: 零售/开发者 (博文用例是交易机器人、看板、社交排行), 无合规/审计/风险定位。
 
 ⚠ **一个未解的巧合 (UNVERIFIED, 不得当事实)**: Tatum 博文称「38 个端点 (24 个 Polymarket + 14 个 Kalshi)」, 而 [[predexon]] 自我营销也是「38+ 端点」, 且两者端点分类近乎一致。**无任何来源提及合作/白标/转售关系**, Tatum 也未指明上游供应商。另注: Tatum 公开文档只列 18 个预测端点, 与自家博文的 38 也对不上。**仅记录为待查巧合。**
-
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 建页 (web 核验, 证据见 [[report-2026-08-26-infra-mm-stablecoins]]); 当时预测市场关联未确认。
-- **2026-08-27** — **已查实**: 预测市场 API 确实存在 (`/v4/data/prediction`, 18 端点, Polymarket+Kalshi 只读)。实体重新归类为 Tier B 竞品。[Source: [[report-2026-08-27-pm-data-vendors]]]
-- **2026-09-01b** — 实体语义关联层 (2026-09-01b): 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

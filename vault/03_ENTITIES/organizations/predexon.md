@@ -31,11 +31,11 @@ related:
 
 ## Executive Summary
 
-预测市场数据层供应商 (「The data layer for prediction markets」)。**2026 年中主动退掉了执行与跨场馆匹配** — 现为纯数据商。其**真正的独特资产是 UMA 裁决数据**: oracle 状态、事件时间线, 以及推送 proposal/dispute/settlement/reset 的 WebSocket 频道。
+预测市场数据供应商。2026 年中停止执行与跨场馆匹配服务，现仅提供数据。其 UMA 数据包括 oracle 状态、事件时间线，以及推送 proposal、dispute、settlement 和 reset 的 WebSocket 频道。
 
 ## Key Facts (CONFIRMED, 一手 changelog + OpenAPI spec)
 
-**退出的能力 (早前的 Tier B 描述已过期约两个月)**:
+**已停止的能力**:
 - 2026-06-21 公告托管式 Trading API 退役 → **2026-06-25 停止交易** → 2026-07-17 最后提现
 - 2026-07-14 匹配端点弃用 → **2026-07-20 起 `/v2/matching-markets` 返回 `410 Gone`**
 - 独立佐证: 今日解析其 OpenAPI v2 spec — **62 个路径中只有 1 个非 GET 方法** (批量钱包身份查询), 零订单/账户/匹配路径。
@@ -57,10 +57,3 @@ related:
 ## Open Questions
 
 退出执行是战略聚焦还是监管/运营压力? UMA 数据线是否会向裁决质量评分延伸?
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建页 (一手 docs 核验, 证据见 [[report-2026-08-27-pm-data-vendors]])。
-- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

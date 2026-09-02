@@ -36,9 +36,3 @@ end_date:
 创始股权仍在 (具体比例未核); YZi Labs 是其资本延续。
 ## What Would Change This Assessment
 无 — 历史事实。当前角色变化看 [[changpeng-zhao-cz]] 页。
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建立。

@@ -35,7 +35,7 @@ related:
     note: 同上
   - id: "venue:hyperliquid-hip4"
     rel: integrates-with
-    note: Tier B 中少数覆盖 HIP-4 的供应商
+    note: 覆盖 HIP-4 的数据供应商
 ---
 
 # Kairos (kairos.trade)
@@ -44,7 +44,7 @@ related:
 
 ## Executive Summary
 
-Tier B 里**唯一同时具备 canonical 跨场馆 ID + 实盘路由**的供应商, 覆盖场馆最全 (Kalshi / Polymarket / Predict.fun / **Hyperliquid**)。团队来自 Cboe (交易所技术+量化), 2026-02 拿 a16z crypto 领投的 **$2.5M seed**, 2026-06-26 公开上线 — **入市仅两个月**。
+截至 2026-08，现有资料显示 Kairos 同时提供 canonical 跨场馆 ID 与实盘路由，覆盖 Kalshi、Polymarket、Predict.fun 和 Hyperliquid。团队成员来自 Cboe；2026-02 获 a16z crypto 领投的 **$2.5M seed**，并于 2026-06-26 公开上线。
 
 ## Key Facts (CONFIRMED)
 
@@ -61,10 +61,3 @@ Tier B 里**唯一同时具备 canonical 跨场馆 ID + 实盘路由**的供应�
 ## Open Questions
 
 法律实体与注册地? 私测客户是谁? 两人团队如何维持四场馆覆盖 (是否有未披露的上游供应商)?
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建页 (一手 docs 核验, 证据见 [[report-2026-08-27-pm-data-vendors]])。
-- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 4 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

@@ -55,9 +55,3 @@ end_date:
 ## Strategic Meaning | 战略含义
 
 ## What Would Change This Assessment? | 什么会改变这个判断
-
-<!-- timeline -->
-
-## Timeline
-
-- **{{date}}** — 创建。

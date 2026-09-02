@@ -91,7 +91,7 @@ import_category: 衍生品
 
 **再问一个方向性问题**：资金费率长期为正说明多头拥挤 —— 那本身是一个仓位信号。
 
-**对比事件合约时用同一把尺**：把全额抵押的机会成本（`本金 × 无风险利率 × 期限`）算出来，和永续的资金费率放一起比。**这是唯一公平的对照方式。**
+对比事件合约时，可以把全额抵押的机会成本（`本金 × 无风险利率 × 期限`）与永续资金费率换算到相同时间尺度后比较。
 
 ## Related Concepts | 相关概念
 
@@ -109,12 +109,4 @@ import_category: 衍生品
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 从学习地图 workbook 导入 (分类: 衍生品)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
-- **2026-08-27** — 语义关联层判断 (AI seed, 待人工复核): 前置 = futures-contract; typed 关系 1 条。词表见 [[relationship-types|关系类型受控词表]]。
-- **2026-08-31** — 扩写为完整科普条目 (定义/机制/例子/误解/实战/自测); 原 seed 内容并入, 未删除既有断言。
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (贡献者提供)

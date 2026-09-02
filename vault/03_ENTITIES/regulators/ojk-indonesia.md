@@ -52,9 +52,3 @@ P2SK 法 (Law 4/2023) → GR 49/2024 + POJK 27/2024: crypto 归 OJK「数字金�
 ## Sources
 
 [[report-2026-08-26-regulatory-landscape]] (一手: ojk.go.id)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 建页 (web 核验)。

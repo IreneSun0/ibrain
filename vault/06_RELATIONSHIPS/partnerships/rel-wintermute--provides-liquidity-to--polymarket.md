@@ -34,9 +34,3 @@ end_date:
 2026-05-29 官宣双场馆机构流动性 (wintermute.com, CONFIRMED)。
 ## Economic Meaning
 事件市场从 32 个小 LP/400bps 中位报价的早期结构走向专业做市 — 盘口质量拐点的标志。
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建立。

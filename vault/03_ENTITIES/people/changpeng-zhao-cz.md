@@ -48,10 +48,3 @@ McGill CS → 东京证交所撮合系统外包 → Bloomberg Tradebook (~4 年)
 
 - 赦免与 USD1/MGX/Trump 家族生意关联: 大量报道 (FactCheck/NPR), **无法律裁决**; CZ 称关联被曲解 (disputed-claims 档)。
 - 与 Star Xu 的关系: 交恶传闻 UNVERIFIED — 只记 OKCoin 任职事实。
-
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建页 (web 核验 2026-08-26, 证据见 [[report-2026-08-26-cex-lineage]])。

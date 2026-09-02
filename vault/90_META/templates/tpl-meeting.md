@@ -31,9 +31,3 @@ related: []
 ## New Hypotheses Triggered
 ## Follow-ups
 ## Sources
-
-<!-- timeline -->
-
-## Timeline
-
-- **{{date}}** — 创建。

@@ -167,7 +167,7 @@
 - `jurisdiction:singapore` — [[singapore|Singapore]] · 新加坡
 - `jurisdiction:united-states` — [[united-states|United States]] · 美国
 - `meta:frontmatter-schema` — [[frontmatter-schema|Frontmatter Schema]] · Frontmatter 字段规范
-- `meta:knowledge-policies` — [[knowledge-policies|iBrain Knowledge Policies]] · 知识库治理政策
+- `meta:knowledge-policies` — [[knowledge-policies|CryptoAtlas Knowledge Policies]] · 知识库治理政策
 - `meta:relationship-types` — [[relationship-types|Relationship Type Vocabulary]] · 关系类型受控词表
 - `mmf:amber-group` — [[amber-group|Amber Group / Amber International]] · Amber (AMBR)
 - `mmf:b2c2` — [[b2c2|B2C2]]
@@ -202,8 +202,6 @@
 - `org:predexon` — [[predexon|Predexon]]
 - `org:tatum` — [[tatum|Tatum]]
 - `org:tether` — [[tether|Tether]] · Tether (USDT 发行方)
-- `orig:260813-first-principle-information-position` — [[260813-first-principle-information-position|First Principle: Information Position (Irene, 2026-08-13)]] · 第一性原理 · 信息位置与规则制定层
-- `orig:win-safe-truth-triangle` — [[win-safe-truth-triangle|win · safe · truth Triangle (Irene, 2026-08-13)]] · win·safe·truth 三角
 - `person:ben-zhou` — [[ben-zhou|Ben Zhou]] · 周本
 - `person:bobby-lee` — [[bobby-lee|Bobby Lee]] · 李启元
 - `person:changpeng-zhao-cz` — [[changpeng-zhao-cz|Changpeng Zhao (CZ)]] · 赵长鹏
@@ -254,7 +252,6 @@
 - `report:2026-08-26-infra-mm-stablecoins` — [[report-2026-08-26-infra-mm-stablecoins|Infrastructure, Market Makers & Stablecoins Landscape (2026-08)]] · 基础设施 · 做市商 · 稳定币全景 (2026-08 核验)
 - `report:2026-08-26-prediction-venues` — [[report-2026-08-26-prediction-venues|Prediction & Outcome Market Venues (2026-08)]] · 预测市场场馆全景 (2026-08 核验)
 - `report:2026-08-26-regulatory-landscape` — [[report-2026-08-26-regulatory-landscape|Regulatory Landscape for Prediction Markets & Crypto (2026-08)]] · 监管全景 · 预测市场与 crypto (2026-08 核验)
-- `report:2026-08-27-kb-tooling-landscape` — [[report-2026-08-27-kb-tooling-landscape|Knowledge-Base Visualization Tooling Landscape (2026-08)]] · 知识库可视化工具版图 (2026-08 核验)
 - `report:2026-08-27-pm-data-vendors` — [[report-2026-08-27-pm-data-vendors|Prediction-Market Data & API Vendor Landscape (2026-08)]] · 预测市场数据/API 供应商全景 (2026-08 核验)
 - `report:ecosystem-roles-map` — [[ecosystem-roles-map|Ecosystem Roles Map (workbook)]] · 生态游戏版图 · workbook 原文
 - `report:institutional-conversation-cheatsheet` — [[institutional-conversation-cheatsheet|Institutional Conversation Cheatsheet (workbook)]] · 机构对话速查 · workbook 原文

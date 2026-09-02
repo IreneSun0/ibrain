@@ -42,9 +42,3 @@ related: []
 ## 残余未决项 (照实)
 
 Bitget 创始人身份 · Bybit 母公司注册地 · HTX CEO · Hyperliquid Labs 注册地 · ICE→OKX 与 EU 制裁 HTX 均单源 (Wikipedia) 需再核 · CZ 与 Star Xu 是否交恶 UNVERIFIED (只记任职事实)。
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — research agent 产出转录 (research 执行日 2026-08-26)。

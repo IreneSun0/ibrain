@@ -38,7 +38,7 @@ OK Group 旗下交易所 (2013 OKCoin 起家, 2022 更名 OKX), >60M 用户 (公
 
 - 运营实体 Aux Cayes FinTech (Seychelles); 2025-02-24 认罪无照汇款 ($84.4M 罚 + $420.3M 没收; 曾为美国用户处理 >$1T); 合规监察至 ~2027 (单源)。
 - Malta FIAU AML 罚 ~$1.2M (2025-04, 单源); Dubai VARA/France/HK 多辖区牌照推进。
-- **ICE 以 $25B 估值投资 (2026-03)** — 单源 (Wikipedia), 承重使用前必须再核; 若实, ICE 同时押 Polymarket + OKX + Circle Arc = 传统交易所巨头的事件/crypto 全栈布局。
+- **ICE 以 $25B 估值投资（2026-03）** — 单一来源，引用前必须复核；若属实，ICE 的相关投资还包括 Polymarket 与 Circle Arc。
 - 2025-06 「绝对会考虑」美国 IPO (报道存在, 计划未证)。
 
 ## Business & Chain
@@ -48,11 +48,3 @@ Spot + 衍生品 + Web3 钱包 (130+ 链); **OKB / X Layer** (ETH L2): 2025-08-1
 ## Key People
 
 Founder **Star Xu** ([[star-xu]], 2025-26 报道称 CEO, 单源级); US CEO Roshan Robert (2025-04 起)。
-
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建页 (web 核验 2026-08-26, 证据见 [[report-2026-08-26-cex-lineage]])。
-- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

@@ -36,6 +36,9 @@ DEFAULT_EXCLUDE_FILES = (
     "BUILD-REPORT.md", "IMPORT-REPORT.md", "IMPORT_REQUIRED.md", "VAULT-HEALTH-REPORT.md",
     "UNRESOLVED-QUESTIONS.md", "OBSIDIAN-SETUP.md", "GBRAIN-INTEGRATION.md",
     "CODEX-AUDIT-REPORT.md", "CODEX-HARDENING-REPORT.md",
+    "07_RESEARCH/reports/report-2026-08-27-kb-tooling-landscape.md",
+    "09_ORIGINALS/founder-theses/win-safe-truth-triangle.md",
+    "09_ORIGINALS/irene/260813-first-principle-information-position.md",
 )
 
 BLOCK_CONFIDENTIALITY = {"confidential", "strictly-private"}
@@ -76,6 +79,32 @@ def drop_pitch_questions(body: str) -> str:
         if not drop:
             out.append(line)
     return "\n".join(out)
+
+
+# Private authoring milestones add noise to the published knowledge graph and
+# expose implementation details without helping readers evaluate a claim.
+PROCESS_TIMELINE_LINES = (
+    r"语义关联层判断 \(AI seed",
+    r"扩写为完整科普条目",
+    r"手写创建 \(补任务清单缺口",
+)
+
+
+def drop_process_timeline_lines(body: str) -> str:
+    return "\n".join(
+        line for line in body.split("\n")
+        if not any(re.search(pattern, line) for pattern in PROCESS_TIMELINE_LINES)
+    )
+
+
+def drop_revision_timeline(body: str) -> str:
+    """Remove end-of-note authoring logs while preserving topical chronologies."""
+    return re.sub(
+        r"\n(?:[ \t]*\n)*<!-- timeline -->\s*\n## Timeline\s*\n.*\Z",
+        "\n",
+        body,
+        flags=re.DOTALL,
+    )
 
 # Rewrites run in order; publish_rewrites.example.yaml defines the config format.
 REWRITES_FILE = Path(__file__).resolve().parent / "publish_rewrites.yaml"
@@ -324,7 +353,9 @@ def main() -> int:
         fm_end = text.find("\n---", 4)
         fm_part, body_part = (text[: fm_end + 4], text[fm_end + 4 :]) if text.startswith("---") and fm_end > 0 else ("", text)
         fm_part = relabel_confidentiality(drop_fm_refs(fm_part, dead_ids))
-        body_part = strip_sections(body_part)
+        body_part = drop_revision_timeline(
+            drop_process_timeline_lines(strip_sections(body_part))
+        )
         if rel.startswith("10_LEARNING/exercises/"):
             body_part = drop_marking_scheme(drop_pitch_questions(body_part))
         body_part = unlink_dead_wikilinks(body_part, dead_targets)

@@ -2,11 +2,10 @@
 
 > 生成文件 · `generate_indexes.py` · 手改会被覆盖。
 
-更新: 2026-09-02 · 共 288 条结构化笔记
+更新: 2026-09-02 · 共 285 条结构化笔记
 
-## reviewed (216)
+## reviewed (213)
 
-- [[260813-first-principle-information-position|First Principle: Information Position (Irene, 2026-08-13)]] · 第一性原理 · 信息位置与规则制定层
 - [[INDUSTRY-MAP|Industry Map]] · 行业地图
 - [[PEOPLE-AND-POWER-MAP|People & Power Map]] · 人物与权力图
 - [[README-flashcards|Flashcards — Rules & Index]] · 闪卡 · 规则与索引
@@ -109,7 +108,7 @@
 - [[justlend|JUST / JustLend DAO]] · TRON借贷与DeFi体系
 - [[know-your-customer|KYC]] · 了解你的客户/身份验证
 - [[know-your-transaction|KYT]] · 了解交易/链上交易监控
-- [[knowledge-policies|iBrain Knowledge Policies]] · 知识库治理政策
+- [[knowledge-policies|CryptoAtlas Knowledge Policies]] · 知识库治理政策
 - [[layer-1|L1]] · 第一层/基础公链
 - [[layer-2|L2]] · 第二层扩容网络
 - [[ledger|Ledger]] · 账本
@@ -175,7 +174,6 @@
 - [[report-2026-08-26-infra-mm-stablecoins|Infrastructure, Market Makers & Stablecoins Landscape (2026-08)]] · 基础设施 · 做市商 · 稳定币全景 (2026-08 核验)
 - [[report-2026-08-26-prediction-venues|Prediction & Outcome Market Venues (2026-08)]] · 预测市场场馆全景 (2026-08 核验)
 - [[report-2026-08-26-regulatory-landscape|Regulatory Landscape for Prediction Markets & Crypto (2026-08)]] · 监管全景 · 预测市场与 crypto (2026-08 核验)
-- [[report-2026-08-27-kb-tooling-landscape|Knowledge-Base Visualization Tooling Landscape (2026-08)]] · 知识库可视化工具版图 (2026-08 核验)
 - [[report-2026-08-27-pm-data-vendors|Prediction-Market Data & API Vendor Landscape (2026-08)]] · 预测市场数据/API 供应商全景 (2026-08 核验)
 - [[request-for-quote|RFQ]] · 询价交易
 - [[resolution|Resolution]] · 结果判定/裁决
@@ -217,7 +215,6 @@
 - [[variation-margin|Variation Margin]] · 变动保证金
 - [[venue|Venue]] · 交易场所
 - [[wallet|Wallet]] · 钱包
-- [[win-safe-truth-triangle|win · safe · truth Triangle (Irene, 2026-08-13)]] · win·safe·truth 三角
 - [[winklink|WINkLink]] · TRON预言机网络
 - [[wintermute|Wintermute]]
 - [[x-layer|X Layer]] · X Layer (OKX L2)

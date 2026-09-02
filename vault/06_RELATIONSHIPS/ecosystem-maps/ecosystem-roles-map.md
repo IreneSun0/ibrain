@@ -44,9 +44,3 @@ import_origin: xlsx-learning-map
 ## Sources
 
 - [[src-2026-08-26-industry-learning-map-xlsx]]
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 从学习地图 workbook 原文导入。

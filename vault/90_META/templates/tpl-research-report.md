@@ -29,9 +29,3 @@ related: []
 ## Conflicts in Evidence | 证据冲突
 
 ## Sources
-
-<!-- timeline -->
-
-## Timeline
-
-- **{{date}}** — 创建。

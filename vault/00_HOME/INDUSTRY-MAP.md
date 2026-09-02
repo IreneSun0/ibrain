@@ -67,8 +67,8 @@ related: []
 - Oracle/结算: [[uma]] ⭐ · [[chainlink]] ⭐ · [[winklink]] · [[pyth-network]]
 - MM/机构: [[wintermute]] ⭐ · [[susquehanna]] ⭐ · [[cumberland-drw]] · [[gsr]] · [[falconx]] · [[b2c2]] · [[jane-street]] · [[jump-crypto]] · [[amber-group]] · [[flowdesk]]
 - 稳定币/基础设施: [[tether]] ⭐ · [[circle]] ⭐ · [[chainup]] ⭐ · [[fireblocks]] · [[chainalysis]] · [[intercontinental-exchange]]
-- **预测市场数据/API 层 (2026-08-27 新增)**: predictrails ⭐ (Tier A, 最近竞品) · [[kairos]] ⭐ · [[opticodds]] ⭐ · [[predexon]] · [[finfeedapi]] · [[tatum]] · [[adjacent-markets]] · [[03_ENTITIES/organizations/dome|Dome]] (已被 Polymarket 收购关停)
+- **预测市场数据/API 层**: predictrails ⭐ · [[kairos]] ⭐ · [[opticodds]] ⭐ · [[predexon]] · [[finfeedapi]] · [[tatum]] · [[adjacent-markets]] · [[03_ENTITIES/organizations/dome|Dome]]（已被 Polymarket 收购并关停 API）
 
 ## 案例
 
-[[case-uma-dispute-trilogy]] ⭐ (乐观预言机三缺陷) · [[case-kalshi-khamenei-settlement]] ⭐ (中心化轨也爆雷 + 赔付先例) · [[case-dome-acquisition]] ⭐ (**场馆吞掉聚合层** — Tier D 威胁的实证) · eu-mica-2026-prediction-markets-consultation 🔴 (有截止日)
+[[case-uma-dispute-trilogy]] ⭐（乐观预言机三类缺陷）· [[case-kalshi-khamenei-settlement]] ⭐（中心化裁决争议与赔付先例）· [[case-dome-acquisition]] ⭐（场馆纵向整合聚合层）· eu-mica-2026-prediction-markets-consultation 🔴（有截止日）

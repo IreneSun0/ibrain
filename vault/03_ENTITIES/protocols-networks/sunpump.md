@@ -66,9 +66,9 @@ import_category: TRON生态
 
 ## Position in the Market | 它在市场里的位置
 
-在这个知识库里，SunPump 的作用是**机制对照**，不是行业参与者。
+SunPump 不是事件市场参与者，此处仅用于比较长尾资产的批量上线机制。
 
-它说明了一件事：**长尾资产的批量上线在技术上是已解决问题，在质量上不是。** 事件市场如果照搬这套，会同时继承它的效率和它的质量问题。
+长尾资产可以批量上线，但批量化不能同时保证资产质量；事件市场采用相同机制时也会继承这一取舍。
 
 ## What Could Break It | 什么会让它出问题
 
@@ -81,13 +81,5 @@ import_category: TRON生态
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (贡献者提供)
 - [[src-2026-08-26-tron-dao-tron-network]] — <https://tron.network/>
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 从学习地图 workbook 导入 (分类: TRON生态)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
-- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 1 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。
-- **2026-08-31** — 扩写为完整实体条目 (定位/运作/市场位置/风险/观察点); 原有断言保留。

@@ -30,9 +30,3 @@ related: []
 ## Market Impact | 市场影响
 ## Regulatory Impact | 监管影响
 ## Lessons | 教训
-
-<!-- timeline -->
-
-## Timeline
-
-- **{{date}}** — 创建。

@@ -54,7 +54,7 @@ import_category: 预测市场
 
 代价同样彻底：**资本效率极低**。一个"12 个月后某事发生"的合约，你的钱要在合约里躺 12 个月，什么都干不了。这就是为什么机构资金进不来 —— 不是不信任，是算不过账。
 
-**这个取舍是事件市场目前最重要的结构性约束**，也是所有"如何在保证结算确定性的前提下提高资本效率"的探索的起点。
+这个取舍是事件市场的主要结构性约束之一：提高资本效率不能以削弱结算确定性为代价。
 
 ## How It Works | 机制怎么运转
 
@@ -118,13 +118,5 @@ import_category: 预测市场
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (贡献者提供)
 - [[src-2026-08-26-cftc-2026-05105-html]] — <https://www.cftc.gov/LawRegulation/FederalRegister/proposedrules/2026-05105.html>
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 从学习地图 workbook 导入 (分类: 预测市场)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
-- **2026-08-27** — 语义关联层判断 (AI seed, 待人工复核): 前置 = collateral; typed 关系 3 条。词表见 [[relationship-types|关系类型受控词表]]。
-- **2026-08-31** — 扩写为完整科普条目 (定义/机制/例子/误解/实战/自测); 原 seed 内容并入, 未删除既有断言。

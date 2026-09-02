@@ -33,11 +33,9 @@ related:
 
 # OpticOdds
 
-> **首建时完全漏掉的竞品** — 它不在早前的 Tier B 清单里, 是本轮核验主动扫出来的。
-
 ## Executive Summary
 
-体育赔率/行情数据的老牌供应商, 延伸进预测市场, 并**明确面向做市商**。它对 canonical 标识符的语义定义是本赛道最锋利的一个, 且**只返回真正跨平台的事件** — 这是把「匹配」做成产品约束而非尽力而为。
+OpticOdds 从体育赔率和行情数据扩展至预测市场，并面向做市商提供服务。其 canonical 端点只返回覆盖至少两个平台的事件，把跨平台匹配设为接口约束。
 
 ## Key Facts (CONFIRMED, 一手 developer docs)
 
@@ -52,10 +50,3 @@ related:
 ## Open Questions
 
 定价与客户规模? 是否在做裁决/结算元数据 (目前未文档化)? 与体育博彩业务的资源分配?
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建页 (一手 docs 核验, 证据见 [[report-2026-08-27-pm-data-vendors]])。
-- **2026-09-01** — 实体语义关联层: 依实体页已有 CONFIRMED 事实补 2 条 typed 关系 (词表见 [[relationship-types|关系类型受控词表]]); 证据为本页来源, 未新增断言。

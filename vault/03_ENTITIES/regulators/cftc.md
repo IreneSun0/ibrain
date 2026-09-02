@@ -70,9 +70,3 @@ Chairman **Michael S. Selig** (2025-12-22 宣誓; 前任 Acting Chair Caroline P
 ## Sources
 
 [[report-2026-08-26-regulatory-landscape]] (一手: cftc.gov / federalregister.gov, 逐条 URL 见报告)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 建页 (web 核验)。**修正 workbook 粗糙表述**: 2026-05105 是 ANPRM 而非 proposed rule; 引用时必须区分。

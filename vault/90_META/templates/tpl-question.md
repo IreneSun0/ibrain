@@ -29,9 +29,3 @@ related: []
 ## Best People to Ask | 最该问谁
 ## Status | open / partially-answered / answered
 ## Answer (填答后, 带来源)
-
-<!-- timeline -->
-
-## Timeline
-
-- **{{date}}** — 创建。

@@ -48,7 +48,7 @@ import_category: 预测市场监管
 2. **事件本身** —— **让那件事真的发生或不发生。** 这在价格市场里几乎不可能，在事件市场里对某些事件是可行的（小范围的、参与者可影响的事件）。
 3. **裁决** —— 影响判定结果，无需影响价格或事件（见 [[oracle-risk]]）。
 
-**第 2 和第 3 条是这个赛道独有的攻击面**，而现有的市场监察框架完全没有为它们设计。
+第 2 和第 3 条是事件市场特有的攻击面，需要在传统价格操纵监测之外增加事件与裁决维度。
 
 ## How It Works | 机制怎么运转
 
@@ -113,13 +113,5 @@ import_category: 预测市场监管
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (贡献者提供)
 - [[src-2026-08-26-cftc-2026-05105-html]] — <https://www.cftc.gov/LawRegulation/FederalRegister/proposedrules/2026-05105.html>
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 从学习地图 workbook 导入 (分类: 预测市场监管)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
-- **2026-08-27** — 语义关联层判断 (AI seed, 待人工复核): 前置 = 无硬前置 (判断过的空); typed 关系 1 条。词表见 [[relationship-types|关系类型受控词表]]。
-- **2026-08-31** — 扩写为完整科普条目 (定义/机制/例子/误解/实战/自测); 原 seed 内容并入, 未删除既有断言。

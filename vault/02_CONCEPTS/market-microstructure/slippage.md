@@ -44,7 +44,7 @@ import_category: 市场微观结构
 
 ## Why This Matters | 为什么重要
 
-滑点是从"纸面策略"到"真实收益"之间最大的一道减法，也是几乎所有回测失真的主因。
+滑点会使实际成交结果偏离纸面策略，也是回测与实盘出现差异的常见原因。
 
 在事件市场里它尤其致命：合约价格本身在 0–1 之间，**1 分钱的滑点在 0.63 的合约上就是 1.6%**。一个胜率 55% 的策略，扣掉往返滑点可能直接变成负期望。
 
@@ -111,12 +111,4 @@ import_category: 市场微观结构
 
 ## Sources
 
-- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (user-direct, 作者提供)
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 从学习地图 workbook 导入 (分类: 市场微观结构)。 [Source: [[src-2026-08-26-industry-learning-map-xlsx]]]
-- **2026-08-27** — 语义关联层判断 (AI seed, 待人工复核): 前置 = depth; typed 关系 2 条。词表见 [[relationship-types|关系类型受控词表]]。
-- **2026-08-31** — 扩写为完整科普条目 (定义/机制/例子/误解/实战/自测); 原 seed 内容并入, 未删除既有断言。
+- [[src-2026-08-26-industry-learning-map-xlsx]] — 学习地图 workbook (贡献者提供)

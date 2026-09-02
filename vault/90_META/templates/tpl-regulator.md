@@ -33,9 +33,3 @@ related: []
 ## Current Open Proceedings | 进行中的规则/诉讼 (必须带 last_verified)
 
 ## Sources
-
-<!-- timeline -->
-
-## Timeline
-
-- **{{date}}** — 创建。

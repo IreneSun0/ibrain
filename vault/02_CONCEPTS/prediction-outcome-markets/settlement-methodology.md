@@ -108,11 +108,3 @@ prerequisites:
 
 
 ## Sources
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-26** — 手写创建 (补任务清单缺口; 教科书级概念, 行内一手引用待 researcher 回填)。
-- **2026-08-27** — 语义关联层判断 (AI seed, 待人工复核): 前置 = resolution, settlement; typed 关系 1 条。词表见 [[relationship-types|关系类型受控词表]]。
-- **2026-08-31** — 扩写为完整科普条目 (定义/机制/例子/误解/实战/自测); 原 seed 内容并入, 未删除既有断言。

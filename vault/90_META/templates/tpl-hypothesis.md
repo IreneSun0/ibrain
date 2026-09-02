@@ -33,9 +33,3 @@ related: []
 ## Minimum Test | 最小验证动作
 ## Status | open / testing / supported / falsified / superseded
 ## Sources
-
-<!-- timeline -->
-
-## Timeline
-
-- **{{date}}** — 创建。

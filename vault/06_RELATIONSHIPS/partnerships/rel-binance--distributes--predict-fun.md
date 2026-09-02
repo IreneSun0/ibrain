@@ -34,9 +34,3 @@ end_date:
 2026-04 Binance Wallet 内嵌预测市场由 Predict.fun 驱动 (TheBlock + CMC, CONFIRMED); 2 亿+ 用户入口, 一键免 gas。
 ## Economic Meaning
 hyp-wallet-exchange-embedding 的第一个市场实证; 通道由 YZi 生态资本连线而非公开招标。
-
-<!-- timeline -->
-
-## Timeline
-
-- **2026-08-27** — 建立。
