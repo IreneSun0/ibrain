@@ -60,8 +60,16 @@ def test_view_builds_with_full_coverage(tmp_path):
     concept_ids = {n["id"] for n in data["nodes"] if n["type"] == "concept"}
     assert main_ids | side_ids == concept_ids, "every concept is mainline or side"
     assert not (main_ids & side_ids)
-    # pitch-rehearsal questions are stripped at publish; the practice problems stay
-    assert sum(len(ch["exercises"]) for ch in data["chapters"]) >= 24
+    # Exercises and a concept's own recall prompts are one list, attached to the
+    # concept — not a chapter appendix. Pitch rehearsals are stripped at publish;
+    # the practice problems stay, and every one lands on a concept that exists.
+    assert not any("exercises" in ch for ch in data["chapters"])
+    graded = [q for n in data["nodes"] for q in (n.get("content") or {}).get("recall") or []
+              if q.get("kind") and q["kind"] != "\u5fc6"]
+    assert len(graded) >= 10, "typed practice problems reached their concepts"
+    assert all(q.get("kind") for n in data["nodes"]
+               for q in (n.get("content") or {}).get("recall") or []
+               if n["id"] in {"concept:slippage", "concept:venue"})
     # inline content present on mainline quests
     node = next(n for n in data["nodes"] if n["id"] == "concept:contract-equivalence")
     assert node["definition"] and node["content"]["why"]

@@ -74,21 +74,11 @@
     overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:0 1 auto}
   .quest.dim{opacity:.22}
 
-  details.fold{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
-  details.fold summary{cursor:pointer;color:var(--muted);font-size:12.5px;user-select:none}
-  details.fold summary:hover{color:var(--ink)}  .spill{border:1px dashed var(--line);background:transparent;border-radius:14px;padding:3px 10px;
+  .spill{border:1px dashed var(--line);background:transparent;border-radius:14px;padding:3px 10px;
     font-size:12px;color:var(--muted);cursor:pointer}  .spill.done{border-style:solid;color:var(--done)}
 
-  .ex{margin-top:8px;border:1px solid var(--line);border-radius:9px;padding:8px 12px}
-  .ex .ex-t{font-size:13px;font-weight:600}
-  .ex .ex-kind{font-size:11px;color:var(--accent);background:var(--accent-soft);border-radius:5px;padding:0 6px;margin-right:6px}
-  .ex .ex-body{font-size:13px;margin:4px 0;white-space:pre-wrap}
-  .ex .ans{margin-top:6px}
-  .ex .ans>button, .qa button{font-size:12px;border:1px solid var(--line);background:var(--pill);color:var(--ink);
+  .qa button{font-size:12px;border:1px solid var(--line);background:var(--pill);color:var(--ink);
     border-radius:7px;padding:2px 10px;cursor:pointer}
-  .ex .ans .ans-body{display:none;font-size:12.5px;color:var(--muted);border-left:3px solid var(--done);
-    padding:6px 10px;margin-top:6px;white-space:pre-wrap;background:var(--def-bg);border-radius:0 8px 8px 0}
-  .ex .ans.open .ans-body{display:block}
 
   .card{max-width:730px;margin:0 auto;padding:26px 34px 90px}
   .f-head{padding:0 0 14px;border-bottom:1px solid var(--line);margin:0 0 22px}
@@ -124,7 +114,12 @@
   .rel-note{display:block;color:var(--note);font-size:12px}
   .qa{margin:8px 0;padding:8px 12px;border:1px solid var(--line);border-radius:9px}
   .qa .q{font-size:13px;font-weight:600}
-  .qa .a{display:none;margin-top:6px;font-size:13px;color:var(--muted)}
+  .qa .q-kind{font-size:11px;font-weight:600;color:var(--accent);background:var(--accent-soft);
+    border-radius:5px;padding:0 6px;margin-right:7px;vertical-align:1px}
+  .qa .q-body{font-size:13px;font-weight:400;color:var(--ink);margin-top:5px;line-height:1.65}
+  .qa .a{display:none;margin-top:8px;font-size:13px;color:var(--muted);line-height:1.7;
+    border-left:3px solid var(--done);padding-left:10px}
+  .qa .a p{margin:0 0 6px}  .qa .a p:last-child{margin:0}
   .qa.open .a{display:block}
   .res a{display:block;font-size:13px;margin:2px 0}  mark{background:transparent;color:var(--accent);font-weight:700}  .zcard{margin:12px 0;padding:12px 14px;border:1.5px solid var(--accent);border-radius:12px;background:var(--accent-soft)}  .zcard .zk{flex:0 0 auto;font-size:11px;color:var(--accent);font-weight:700;border:1px solid var(--accent);
     border-radius:5px;padding:0 6px;line-height:1.8;margin-top:1px}
@@ -174,9 +169,6 @@
   .ext-list{margin-top:2px}
   .f-def{font-size:15px;line-height:1.8;margin:4px 0 0}
 
-  .ch-svg.top{margin:0 0 18px;padding:12px;background:var(--bg);border:1px solid var(--line);
-    border-radius:10px;overflow-x:auto}
-  .ch-svg.top svg{max-width:100%;height:auto;display:block}
 
   /* Clicking a node should tell you about it, not throw you onto another screen. */
   #node-card{position:absolute;z-index:25;width:290px;max-height:60vh;overflow:auto;
@@ -195,9 +187,12 @@
   #node-card .nc-x{position:absolute;top:7px;right:9px;background:none;border:0;
     color:var(--muted);cursor:pointer;font-size:14px}
 
-  .ch-svg.top{margin:0 0 20px;padding:12px;background:var(--bg);
+
+  /* Scrolls with the article. Deliberately not sticky, and deliberately not named
+     `.top` — that is the page header's class, and it was pinning this. */
+  .ch-diagram{position:static;margin:0 0 22px;padding:12px;background:var(--bg);
     border:1px solid var(--line);border-radius:10px;overflow-x:auto}
-  .ch-svg.top svg{max-width:100%;height:auto;display:block}
+  .ch-diagram svg{max-width:100%;height:auto;display:block}
 </style>
 </head>
 <body>
@@ -241,7 +236,7 @@ const T = {
   misconceptions: '常见误解', practice: '实战里怎么用',
   prereq: '先读这些', unlocks: '读懂它之后', relations: '关联', world: '真实世界',
   recall: '自测', showAnswer: '看答案', hide: '收起',
-  exercises: '本章练习', diagram: '机制图', relatedEntities: '关系',
+  diagram: '机制图', relatedEntities: '关系',
   graph: '知识图谱', concepts: '概念',
   empty: '从左侧选一个概念，或在图谱里点一个节点。',
   more: '展开延伸概念', less: '收起延伸概念',
@@ -898,7 +893,7 @@ function renderTopBar() {
 // ── chapters ─────────────────────────────────────────────────────────────────
 // One numbering scheme, one meaning: position within the chapter. Extended
 // concepts continue the same count rather than sitting numberless beside it.
-// Chapter diagrams and exercises live in the reading pane, not the nav rail.
+// Chapter diagrams live in the reading pane, not the nav rail.
 const CH_POS = {};                     // concept id → "chapter.index"
 const CH_INDEX = {};                   // concept id → index within its chapter
 DATA.chapters.forEach(ch => {
@@ -954,37 +949,13 @@ function renderPath() {
   }
 }
 
-// Chapter-level material (mechanism diagram, exercises) belongs in the reading
-// pane with the concept, not stacked into the navigation rail.
+// The chapter mechanism diagram belongs in the reading pane with the concept,
+// not stacked into the navigation rail.
 function chapterDiagram(ch) {
   if (!ch || !ch.svg) return null;
-  const box = el('div', 'ch-svg top');
+  const box = el('div', 'ch-diagram');
   box.innerHTML = ch.svg;   // build-time trusted asset
   return box;
-}
-
-function chapterExtras(ch) {
-  const frag = document.createDocumentFragment();
-  if (ch.exercises && ch.exercises.length) {
-    const d = el('details', 'fold');
-    d.appendChild(el('summary', '', `${t_('exercises')} ×${ch.exercises.length}`));
-    for (const ex of ch.exercises) {
-      const box = el('div', 'ex');
-      box.appendChild(el('div', 'ex-t', `<span class="ex-kind">${esc(ex.kind)}</span>${esc(ex.title)}`));
-      if (ex.body) box.appendChild(el('div', 'ex-body', esc(ex.body)));
-      if (ex.answer) {
-        const ans = el('div', 'ans');
-        const b = el('button', '', t_('showAnswer'));
-        b.onclick = () => { ans.classList.toggle('open'); b.textContent = ans.classList.contains('open') ? t_('hide') : t_('showAnswer'); };
-        ans.appendChild(b);
-        ans.appendChild(el('div', 'ans-body', esc(ex.answer)));
-        box.appendChild(ans);
-      }
-      d.appendChild(box);
-    }
-    frag.appendChild(d);
-  }
-  return frag;
 }
 
 // ── focus detail (everything inline) ──
@@ -1157,12 +1128,17 @@ function focusOn(id, push = true) {
 
   if ((content.recall || []).length) {
     const s = el('div', 'sec');
-    s.appendChild(el('h4', '', '🗣 盲答'));
+    s.appendChild(el('h4', '', `🗣 自测 ×${content.recall.length}`));
     for (const qa of content.recall) {
       const q = el('div', 'qa');
-      q.appendChild(el('div', 'q', esc(qa.q)));
+      const head = el('div', 'q');
+      head.appendChild(el('span', 'q-kind', esc(qa.kind || '忆')));
+      const [lead, ...rest] = String(qa.q).split('\n');
+      head.appendChild(el('span', '', mdInline(lead)));
+      q.appendChild(head);
+      if (rest.length) q.appendChild(el('div', 'q-body', md(rest.join('\n'))));
       const b = el('button', '', '看答案');
-      const a = el('div', 'a', esc(qa.a));
+      const a = el('div', 'a', md(qa.a));
       b.onclick = () => { q.classList.toggle('open'); b.textContent = q.classList.contains('open') ? '收起' : '看答案'; };
       q.appendChild(b); q.appendChild(a);
       s.appendChild(q);
@@ -1180,8 +1156,6 @@ function focusOn(id, push = true) {
     }
     card.appendChild(s);
   }
-
-  if (ch) card.appendChild(chapterExtras(ch));
 
   box.appendChild(card);
   box.scrollTop = 0;

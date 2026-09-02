@@ -31,7 +31,12 @@ SUB_RE = re.compile(r"^### (hook|card|mechanism|traps|ammo|drill)\s*$")
 
 
 def parse_exercises(path: Path) -> list[dict]:
-    """Parse a deck file's `## Qn [type] title` blocks; quoted lines = answer."""
+    """Parse a deck file's `## Qn [type] title` blocks; quoted lines = answer.
+
+    A `concept: concept:<slug>` line directly under the heading attaches the
+    question to that concept. Exercises and a concept's own recall questions are
+    the same object — a prompt with a hidden answer — so they end up in one list.
+    """
     items: list[dict] = []
     cur: dict | None = None
     body_lines: list[str] = []
@@ -51,6 +56,9 @@ def parse_exercises(path: Path) -> list[dict]:
             body_lines, ans_lines = [], []
             continue
         if cur is None:
+            continue
+        if line.startswith("concept:") and not cur.get("concept"):
+            cur["concept"] = line.split(":", 1)[1].strip()
             continue
         if line.startswith(">"):
             ans_lines.append(line.lstrip("> ").rstrip())
@@ -79,7 +87,6 @@ def main(argv: list[str] | None = None) -> int:
     mainline = compute_score.load_yaml(plan_dir / "mainline.yaml")
     chapters = mainline.get("chapters") or []
     side_map = {str(k): int(v) for k, v in (mainline.get("side_domain_chapter") or {}).items()}
-    ex_map = {str(k): int(v) for k, v in (mainline.get("exercise_chapter") or {}).items()}
 
     graph = export_graph.build()
     concepts = {n["id"]: n for n in graph["nodes"] if n["type"] == "concept"}
@@ -129,19 +136,19 @@ def main(argv: list[str] | None = None) -> int:
         if p.exists():
             svgs[int(ch["n"])] = p.read_text(encoding="utf-8")
 
-    # ── exercises embedded per chapter ──
-    ex_of: dict[int, list[dict]] = {}
+    # ── exercises: same shape as recall, so they merge into the same list ──
+    ex_of: dict[str, list[dict]] = {}
     ex_dir = root / "10_LEARNING" / "exercises"
     if ex_dir.exists():
         for p in sorted(ex_dir.glob("*.md")):
-            chn = ex_map.get(p.stem)
-            if chn is None:
-                m = re.match(r"chapter-(\d+)", p.stem)
-                chn = int(m.group(1)) if m else None
-            if chn is None:
-                print(f"WARNING: exercises file {p.name} has no chapter mapping; skipped")
-                continue
-            ex_of.setdefault(chn, []).extend(parse_exercises(p))
+            for ex in parse_exercises(p):
+                cid = ex.get("concept")
+                if not cid:
+                    print(f"WARNING: {p.name} {ex['n']} has no concept: marker; skipped")
+                    continue
+                ex_of.setdefault(cid, []).append(
+                    {"q": "\n".join(x for x in (ex["title"], ex["body"]) if x),
+                     "a": ex["answer"], "kind": ex["kind"]})
 
     # ── training layer: personal bootcamp state, absent from any public build ──
     training = None
@@ -168,6 +175,19 @@ def main(argv: list[str] | None = None) -> int:
     nodes = graph["nodes"]
     edges = graph["edges"]
 
+    # One self-test list per concept: its own recall prompts, then the exercises
+    # written against it. Same object, so they are not shown as two sections.
+    unattached = set(ex_of)
+    for n in nodes:
+        extra = ex_of.get(n["id"])
+        if not extra:
+            continue
+        unattached.discard(n["id"])
+        c = n.setdefault("content", {})
+        c["recall"] = [dict(q, kind=q.get("kind", "\u5fc6")) for q in (c.get("recall") or [])] + extra
+    for cid in sorted(unattached):
+        print(f"WARNING: exercises reference unknown concept {cid}")
+
     data = {
         "generated": graph["generated"],
         "chapters": [{"n": int(ch["n"]), "title": str(ch["title"]),
@@ -176,7 +196,6 @@ def main(argv: list[str] | None = None) -> int:
                       "questionEn": str(ch.get("question_en") or ""),
                       "concepts": list(ch.get("concepts") or []),
                       "side": side_of.get(int(ch["n"]), []),
-                      "exercises": ex_of.get(int(ch["n"]), []),
                       "svg": svgs.get(int(ch["n"]), "")} for ch in chapters],
         "mainOrder": order,
         "entityTypes": sorted(ENTITY_TYPES),

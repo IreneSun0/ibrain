@@ -2,7 +2,7 @@
 
 > 生成文件 · `generate_indexes.py` · 手改会被覆盖。
 
-更新: 2026-09-01
+更新: 2026-09-02
 
 - `book:options-futures-hull` — [[book-options-futures-hull|Options, Futures, and Other Derivatives (John Hull)]] · 《期权、期货及其他衍生品》
 - `book:trading-and-exchanges` — [[book-trading-and-exchanges|Trading and Exchanges (Larry Harris)]] · 《交易与交易所》

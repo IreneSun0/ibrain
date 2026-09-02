@@ -13,10 +13,16 @@
 
 <p align="center">
   <img alt="CI" src="https://github.com/ailinsun/cryptoatlas/actions/workflows/ci.yml/badge.svg">
-  <img alt="notes" src="https://img.shields.io/badge/notes-297-4c8fd6">
-  <img alt="links" src="https://img.shields.io/badge/links-2%2C848-4c8fd6">
+  <img alt="notes" src="https://img.shields.io/badge/notes-293-4c8fd6">
+  <img alt="links" src="https://img.shields.io/badge/links-2%2C813-4c8fd6">
   <img alt="code" src="https://img.shields.io/badge/code-Apache--2.0-3faa8e">
   <img alt="content" src="https://img.shields.io/badge/content-CC%20BY%204.0-3faa8e">
+</p>
+
+<p align="center">
+  <a href="https://ailinsun.github.io/cryptoatlas">
+    <img src=".github/assets/graph.webp" alt="CryptoAtlas — the live knowledge graph" width="100%">
+  </a>
 </p>
 
 ---
@@ -31,7 +37,7 @@ relationship asserted without evidence fails the build. Corrections append to a 
 instead of overwriting history. Nothing is presented as more settled than it is.
 
 The front page is a live map of the whole thing — **who founded, funded, settles on,
-regulates and makes markets for whom**, drawn from 297 interlinked notes.
+regulates and makes markets for whom**, drawn from 293 interlinked notes.
 
 ## What's inside
 
@@ -42,7 +48,7 @@ regulates and makes markets for whom**, drawn from 297 interlinked notes.
 | typed relationships between them | **75** |
 | worked case studies (real disputes, with the money and the outcome) | 3 |
 | source notes | 21 |
-| **total notes / links** | **297 / 2,848** |
+| **total notes / links** | **293 / 2,813** |
 
 Every concept is written out in full — a precise definition, why it matters, the
 mechanism, a worked numeric example, the common misconceptions, an applied checklist,
@@ -112,7 +118,7 @@ manifest recording what was held back and why.
 ## Layout
 
 ```
-vault/       the knowledge base — 297 notes (generated from a private source vault)
+vault/       the knowledge base — 293 notes (generated from a private source vault)
 scripts/     22 deterministic tools: validators, importers, generators, exporters
 tests/       57 tests, including the confidentiality-ceiling regression guards
 .claude/     6 subagents + 11 skills + the write-time validation hook

@@ -61,6 +61,29 @@ DROP_QUESTIONS = (
 )
 
 
+# Exercise answers are written as a marked sheet: a reference answer plus the
+# per-point scoring split used to grade one learner. The answer publishes; the
+# rubric is an artefact of a private course and does not.
+# Also dropped: the deck preambles, which tell one student how to drill the sheet
+# (self-score each question, log the misses) rather than saying anything about the
+# subject. The question-type legend on the next line is the part worth keeping.
+DROP_LINES = (
+    r"^\s*(?:>\s*)?\*\*给分点\*\*",
+    r"^\s*>\s*用法[:：]",
+    r"^\s*>\s*本阶段",
+)
+STRIP_INLINE = ((r"\*\*参考(?:骨架)?\*\*[:：]\s*", ""), (r"\s*\(curriculum 原题\)", ""))
+
+
+def drop_marking_scheme(body: str) -> str:
+    out = [ln for ln in body.split("\n")
+           if not any(re.search(p, ln) for p in DROP_LINES)]
+    text = "\n".join(out)
+    for pat, rep in STRIP_INLINE:
+        text = re.sub(pat, rep, text)
+    return text
+
+
 def drop_pitch_questions(body: str) -> str:
     out, drop = [], False
     for line in body.split("\n"):
@@ -190,6 +213,7 @@ def unlink_dead_wikilinks(body: str, dead_targets: set[str]) -> str:
 # through a pitch. That is the leak that actually embarrasses you, so it gets its
 # own gate: copy addressed to the author, or framing the work as their opportunity.
 AUTHOR_VOICE = (
+    r"每题自评", r"记入当日日志",
     r"愿意付费的故事", r"你的机会", r"对你的(?:意义|价值)", r"求职", r"面试准备",
     r"路演", r"融资材料", r"设计伙伴", r"客户访谈脚本",
     r"脱稿讲", r"弹药库", r"见.{0,6}之前.{0,8}过一遍", r"收束成一个",
@@ -319,7 +343,7 @@ def main() -> int:
         fm_part = relabel_confidentiality(drop_fm_refs(fm_part, dead_ids))
         body_part = strip_sections(body_part)
         if rel.startswith("10_LEARNING/exercises/"):
-            body_part = drop_pitch_questions(body_part)
+            body_part = drop_marking_scheme(drop_pitch_questions(body_part))
         body_part = unlink_dead_wikilinks(body_part, dead_targets)
         new = apply_rewrites(fm_part + body_part)
         hits = sum(len(re.findall(t, new, re.I)) for t in PRIVATE_TERMS)
