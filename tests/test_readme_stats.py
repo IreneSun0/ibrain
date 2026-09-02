@@ -27,15 +27,13 @@ def test_readme_counts_match_the_vault():
         assert want in stated, f"README states no {label} count of {want}"
 
 
-def test_readme_quotes_the_chapters_verbatim():
+def test_readme_quotes_the_chapters_verbatim(tmp_path):
     """The reading path is the README's main content. If a chapter is renamed or
     rewritten, the README must be rewritten with it — not left describing a version
     of the atlas that no longer ships."""
     out = subprocess.run([sys.executable, str(ROOT / "scripts" / "build_learning_view.py"),
-                          "--out", "/dev/null"], capture_output=True, text=True)
+                          "--out", str(tmp_path / "index.html")], capture_output=True, text=True)
     assert out.returncode == 0, out.stderr
-    sys.path.insert(0, str(ROOT / "scripts"))
-    import build_learning_view as blv  # noqa: E402
     import yaml  # noqa: E402
 
     mainline = yaml.safe_load(

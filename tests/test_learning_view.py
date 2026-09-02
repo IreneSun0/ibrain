@@ -1,4 +1,5 @@
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -82,3 +83,18 @@ def test_view_builds_with_full_coverage(tmp_path):
     with_practice = sum(1 for n in concepts if (n.get("content") or {}).get("practice"))
     assert with_practice >= MIN_PRACTICE, (
         f"practice-section coverage regressed: {with_practice} < {MIN_PRACTICE}")
+
+
+def test_link_preview_metadata_ships_with_the_page(tmp_path):
+    """Sharing either URL must show the graph. The card is an absolute URL on this
+    site's own origin, so the image has to be emitted next to index.html."""
+    out = tmp_path / "index.html"
+    assert lv.main(["--out", str(out)]) == 0
+    html = out.read_text(encoding="utf-8")
+    for tag in ('property="og:image"', 'property="og:title"', 'property="og:url"',
+                'name="twitter:card" content="summary_large_image"'):
+        assert tag in html, f"missing link-preview tag: {tag}"
+    card = re.search(r'property="og:image" content="([^"]+)"', html).group(1)
+    assert card.startswith("https://"), "og:image must be absolute"
+    assert (out.parent / card.rsplit("/", 1)[-1]).exists(), \
+        "og:image is not emitted beside the page it points from"

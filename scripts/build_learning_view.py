@@ -13,7 +13,10 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import shutil
+import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -185,9 +188,16 @@ def main(argv: list[str] | None = None) -> int:
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html, encoding="utf-8")
 
+    # the link-preview image every social platform fetches; it must sit beside the
+    # page, because og:image is an absolute URL on this site's own origin
+    card = OPS_ROOT / ".github" / "assets" / "social-card.png"
+    if card.exists():
+        shutil.copyfile(card, out.parent / "social-card.png")
+    else:
+        print("WARNING: .github/assets/social-card.png missing — link previews will be blank")
+
     # A syntax error in the template silently ships a blank page, so fail the build
     # instead. Skipped (with a warning) where node is unavailable.
-    import shutil, subprocess, tempfile
     node = shutil.which("node")
     if node:
         m = re.search(r"<script>\n(.*)\n</script>", html, re.S)
