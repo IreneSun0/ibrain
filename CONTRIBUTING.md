@@ -25,11 +25,12 @@ make validate      # should be green before you start
 | **Inference** | You reasoned it from facts | mark `(inference)` inline |
 | **Hypothesis** | Plausible, untested | `epistemic_status: hypothesis` |
 | **Unverified** | Reported, not confirmed | mark `(unverified)` inline |
-| **Unknown** | Nobody knows, or you couldn't find out | write `UNKNOWN` — do not guess |
+| **Unknown** | Not disclosed, or a search turned up nothing | say which, with a date — never a placeholder, never a guess |
 
-`UNKNOWN` is a first-class answer. "This firm has no documented event-market activity,
-and here is why that absence is informative" beats an entry that quietly implies
-otherwise.
+A gap is worth writing down — but write it as a claim, not a shrug. "As of 2026-08 a
+targeted search found no public event-market activity, and that absence is itself
+informative" can be checked and proved wrong. A placeholder cannot. If a number is
+simply not published, say it is not published; do not invent one to fill the space.
 
 **Two things the build will reject outright:**
 - `status: verified` on a note with no source note behind it

@@ -194,6 +194,11 @@ def unlink_dead_wikilinks(body: str, dead_targets: set[str]) -> str:
 # A name filter catches a codename but not a sentence written to coach one reader
 # through a pitch, so that gets its own gate: copy addressed to the author, framing
 # the work as their opportunity, or an operating rule naming a person as approver.
+# "UNKNOWN" reads as a shrug where a sentence belongs. Anything genuinely not public
+# is written as a fact about the world — "未披露", or a dated negative finding that
+# can be proved wrong — never as a placeholder standing in for the answer.
+PLACEHOLDER_ANSWERS = (r"\bUNKNOWN\b",)
+
 AUTHOR_VOICE = (
     r"每题自评", r"记入当日日志",
     r"须 \S{1,12} 批", r"先过 \S{1,12} \(对外", r"对外文案硬规",
@@ -210,6 +215,7 @@ def verify_output(out: Path) -> int:
     bad_terms: list[tuple[str, str, int]] = []
     bad_voice: list[tuple[str, str]] = []
     bad_tier: list[str] = []
+    bad_placeholder: list[tuple[str, str]] = []
     for p in sorted(out.rglob("*")):
         if p.is_dir() or p.suffix not in (".md", ".yaml", ".yml", ".json", ".base", ".txt"):
             continue
@@ -223,11 +229,15 @@ def verify_output(out: Path) -> int:
             m2 = re.search(pat, text)
             if m2:
                 bad_voice.append((rel, m2.group(0)))
+        for pat in PLACEHOLDER_ANSWERS:
+            m3 = re.search(pat, text)
+            if m3 and "templates/" not in rel:
+                bad_placeholder.append((rel, m3.group(0)))
         if p.suffix == ".md":
             m = re.search(r"(?m)^confidentiality: (\S+)", text)
             if m and m.group(1) not in ("public-source",):
                 bad_tier.append(f"{rel}: {m.group(1)}")
-    if not bad_terms and not bad_voice and not bad_tier:
+    if not bad_terms and not bad_voice and not bad_tier and not bad_placeholder:
         print(f"verify: OK (no private term, no author-directed copy, "
               f"nothing above `public-source`) — {out}")
         return 0
@@ -235,6 +245,8 @@ def verify_output(out: Path) -> int:
         print(f"  private term in {rel} ({n}x)")
     for rel, phrase in bad_voice:
         print(f"  copy written for the author in {rel}: {phrase!r}")
+    for rel, phrase in bad_placeholder:
+        print(f"  placeholder standing in for an answer in {rel}: {phrase!r}")
     for line in bad_tier:
         print(f"  tier above public-source — {line}")
     print(f"verify: {len(bad_terms) + len(bad_voice) + len(bad_tier)} violation(s)")

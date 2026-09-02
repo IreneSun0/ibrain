@@ -16,9 +16,9 @@
   </a>
 </p>
 
-加密这行的资料有两种：交易所的营销稿，和只有圈内人看得懂的黑话。中间那层——**这套东西到底怎么运转的**——很少有人写清楚。
+交易所的营销稿讲不清机制，圈内黑话又不解释。这里补的是中间那一层。
 
-这里是 143 个概念、76 个机构和人、75 条有出处的关系，按九个问题串起来。每条断言都写明了它的把握程度，说不准的地方直接写 `UNKNOWN`。
+143 个概念、76 个机构和人、75 条有出处的关系，按九个问题串起来，每条都写明出处。
 
 ## 从哪读
 
@@ -36,35 +36,13 @@
 | **七 · 机构风险语言** | 看对方向以后，还有什么能让我拿不到钱或被迫退出？ | 事件风险价值 · 交易对手风险 · 集中度风险 · 监管准入 |
 | **终章 · 从知识到系统** | 要让前面这些判断真正可用，必须先造出什么？ | 数据基础设施 · 可审计性 · 风险引擎 |
 
-不想按顺序也行——图谱上点任何一个节点，Kalshi、Polymarket、Jane Street、CFTC、赵长鹏、USDT，都能从那里开始走。
-
-## 一条词条长什么样
-
-每个概念都有定义、机制、**带数字的例子**、常见误解、自测题。比如「滑点」那条里的算题：
-
-> 某 YES 合约卖侧盘口：0.52 × 5,000 份 · 0.53 × 8,000 份 · 0.55 × 20,000 份。
-> 你市价买入 $10,000。吃几档、成交均价、相对 best ask 的滑点是多少？
->
-> 前两档吃掉 $6,840，剩 $3,160 进第三档买 5,745 份。共 18,745 份，均价 **0.5335**，
-> 滑点 **2.6%**。在事件市场里这尤其致命：合约价格本身在 0–1 之间，1 分钱的滑点在
-> 0.63 的合约上就是 1.6%，胜率 55% 的策略扣掉往返滑点可能直接变负。
-
-机构和人的词条同理——不写「X 是一家大型做市商」，而是写它在这张图上的位置、谁跟它有关系、什么会让它退出。
-
-## 为什么可以信
-
-- **每条断言标着自己的证据等级**：confirmed / inference / hypothesis / unverified / unknown，直接写在页面上
-- **`verified` 必须有来源笔记**，带内容哈希和访问日期；没有就进不了库
-- **纠错是往时间线里追加一条**，不覆盖旧的——你能看到一个判断是怎么变的
-- **说不准就写 `UNKNOWN`**，不猜
+也可以不按顺序：图谱上任何一个节点都是入口 —— Kalshi、Polymarket、Jane Street、CFTC、赵长鹏、USDT。
 
 ## 一起写
 
-一家场馆改了费率、一个监管改了口径，笔记就过时了。你要是在这行，你一定知道一些这张图还不知道的事。
+费率改了、监管口径变了，笔记就过时。[提一个纠错 issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md)，或者直接改 —— `make validate` 会指出这条断言还缺什么。写法见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
-[提一个纠错 issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md)，或者直接改——`make validate` 会告诉你这条断言还缺什么。写法见 [CONTRIBUTING.md](CONTRIBUTING.md)。
-
-内容 [CC BY 4.0](LICENSE-CONTENT)，工具 [Apache-2.0](LICENSE)。把 `VAULT_PATH` 指向你自己的库，同一套校验就作用在你的领域。
+内容 [CC BY 4.0](LICENSE-CONTENT)，工具 [Apache-2.0](LICENSE)。
 
 <br>
 
@@ -77,13 +55,11 @@
 **A knowledge graph of crypto market structure.**
 [Open the atlas](https://ailinsun.github.io/cryptoatlas) · [Add or correct an entry](CONTRIBUTING.md)
 
-Writing about crypto comes in two flavours: exchange marketing, and jargon only insiders
-parse. The layer in between — **how this machinery actually works** — rarely gets written
-down.
+Exchange marketing skips the mechanism; insider shorthand assumes it. This fills the
+layer in between.
 
-This is 143 concepts, 76 organisations and people, and 75 sourced relationships, strung
-along nine questions. Every claim states how sure it is, and where nobody knows, it says
-`UNKNOWN`.
+143 concepts, 76 organisations and people, 75 sourced relationships, strung along nine
+questions, each one attributed.
 
 ### Where to start
 
@@ -99,43 +75,14 @@ along nine questions. Every claim states how sure it is, and where nobody knows,
 | **7 · The Language Institutions Speak** | How do I express this exposure in the vocabulary of a risk desk? | Event VaR · Counterparty Risk · Concentration Risk · Regulatory Access |
 | **8 · From Knowledge to Systems** | What has to be built for any of this to be usable at scale? | Data Infrastructure · Auditability · Risk Engine |
 
-Or ignore the order — click any node on the graph. Kalshi, Polymarket, Jane Street, the
-CFTC, CZ and USDT are all valid places to start.
-
-### What an entry looks like
-
-Every concept carries a definition, the mechanism, **a worked numeric example**, the
-common misconceptions, and self-test questions. From the one on slippage:
-
-> The ask side of a YES contract: 0.52 × 5,000 · 0.53 × 8,000 · 0.55 × 20,000.
-> You market-buy $10,000. How many levels do you clear, at what average, and what is the
-> slippage against best ask?
->
-> The first two levels take $6,840; the remaining $3,160 buys 5,745 at the third.
-> 18,745 contracts at an average of **0.5335** — **2.6%** slippage. This bites harder in
-> event markets, where the contract itself trades between 0 and 1: a cent of slippage on
-> a 0.63 contract is 1.6%, and a 55%-edge strategy can go negative on the round trip.
-
-Entries on firms and people work the same way. Not "X is a large market maker", but where
-it sits on this map, who it is connected to, and what would make it leave.
-
-### Why you can trust it
-
-- **Every claim carries its evidence tier** — confirmed / inference / hypothesis /
-  unverified / unknown — visibly, on the page
-- **`verified` requires a source note** with a content hash and an access date
-- **Corrections append to a timeline** rather than overwriting it, so you can see how a
-  judgement changed
-- **Where nobody knows, it says `UNKNOWN`** instead of guessing
+Or ignore the order — any node on the graph is an entry point: Kalshi, Polymarket, Jane
+Street, the CFTC, CZ, USDT.
 
 ### Contributing
 
-A venue changes its fees, a regulator shifts position, and a note goes stale. If you work
-in this market, you know something this map doesn't.
-
+Fees change, regulators move, and a note goes stale.
 [Open a correction issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md),
 or fix it yourself — `make validate` names what a claim is still missing. Conventions are
 in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Content [CC BY 4.0](LICENSE-CONTENT), tooling [Apache-2.0](LICENSE). Point `VAULT_PATH` at
-your own vault and the same checks apply to your domain.
+Content [CC BY 4.0](LICENSE-CONTENT), tooling [Apache-2.0](LICENSE).

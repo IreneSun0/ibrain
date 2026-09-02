@@ -39,7 +39,7 @@ related: []
 9. **Bitmain 谱系 VERIFIED**: 吴忌寒+詹克团 2013 共创; 2021-01 和解分家 (吴带走 Bitdeer+BTC.com); 现任 Bitdeer chairman/CEO (Nasdaq: BTDR) + Matrixport chairman。Bobby Lee: BTCC 2018-01 售出, 现 Ballet 创始人/CEO。
 10. **争议登记册纪律**: documented (法院/和解: Binance $4.3B / OKX $504M / SEC v. Sun 和解 / Bybit-FTX $228M / UK 制裁 HTX) 与 active litigation (First Digital v. Sun 诽谤案 / Sun v. WLFI 「敲诈」互诉) 与 disputed claims (HTX 所有权 / Gracy Chen 「Hyperliquid=FTX 2.0」骂战 / 赦免-生意关联叙事) 三档分开, 不混。
 
-## 残余 UNKNOWN (照实)
+## 残余未决项 (照实)
 
 Bitget 创始人身份 · Bybit 母公司注册地 · HTX CEO · Hyperliquid Labs 注册地 · ICE→OKX 与 EU 制裁 HTX 均单源 (Wikipedia) 需再核 · CZ 与 Star Xu 是否交恶 UNVERIFIED (只记任职事实)。
 

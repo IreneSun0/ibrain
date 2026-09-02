@@ -31,7 +31,7 @@ related:
 
 ## Executive Summary
 
-2018 年创立 (Seychelles 基底, 创始人身份 UNKNOWN), CEO **Gracy Chen** (2024-05 起)。主打跟单交易 + Bitget Wallet (ex-BitKeep, 90M 用户口径); 2025-26 转型「Universal Exchange」(代币化股票/黄金/pre-IPO)。**2025-09 把全部 440M BGB 移交 Morph Foundation** (220M 烧 + 220M 锁), BGB 成为 Morph 链 gas+治理代币。
+2018 年创立 (Seychelles 基底, 创始人身份从未公开), CEO **Gracy Chen** (2024-05 起)。主打跟单交易 + Bitget Wallet (ex-BitKeep, 90M 用户口径); 2025-26 转型「Universal Exchange」(代币化股票/黄金/pre-IPO)。**2025-09 把全部 440M BGB 移交 Morph Foundation** (220M 烧 + 220M 锁), BGB 成为 Morph 链 gas+治理代币。
 
 ## Corporate & Regulatory (CONFIRMED + 冲突注记)
 

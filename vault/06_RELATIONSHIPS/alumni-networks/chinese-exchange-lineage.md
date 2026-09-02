@@ -72,7 +72,7 @@ Leon Li + Du Jun 共创 Huobi (2013)  [co-founded ×2]
 
 ### ⑤ 新生代 (非谱系内, 对照组)
 
-[[ben-zhou]] (Bybit, XM 外汇出身) / Bitget (创始人身份 UNKNOWN, [[gracy-chen]] 职业经理人) / [[jeff-yan]] (Hyperliquid, Harvard-HRT, 华裔美籍) — 与三大源头系无履历交集; 「华人 crypto」不是一张网, 是几张。
+[[ben-zhou]] (Bybit, XM 外汇出身) / Bitget (创始人身份从未公开, [[gracy-chen]] 职业经理人) / [[jeff-yan]] (Hyperliquid, Harvard-HRT, 华裔美籍) — 与三大源头系无履历交集; 「华人 crypto」不是一张网, 是几张。
 
 ## 行动含义
 

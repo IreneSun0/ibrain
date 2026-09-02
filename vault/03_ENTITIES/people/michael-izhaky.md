@@ -42,7 +42,7 @@ predictrails 的 CEO — 但更重要的是他**不是 crypto 圈的新人**: �
 
 ⚠ **两处需注意**:
 1. **他本人的 LinkedIn 完全没提 PredictRails** — 2026-08-27 的 headline 是「Michael Izhaky – Qualtrate, LLC」, 公开经历栏只有 Qualtrate。
-2. **同时挂两个 CEO 头衔**, 两家公司互不提及。**PredictRails 是否全职 = UNKNOWN。**
+2. **同时挂两个 CEO 头衔**, 两家公司互不提及。**两边都没有说明他在 PredictRails 是否全职。**
 
 ## Career Timeline (CONFIRMED, 除注明外)
 

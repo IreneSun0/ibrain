@@ -24,7 +24,7 @@ related: []
 
 # 基础设施 · 做市商 · 稳定币 · 2026-08-26 web 核验
 
-> 本报告是 infra/MM/stablecoin 实体页群的证据基座 (research agent ~40 次检索产出, 每条带 URL 与档位)。冲突与 UNKNOWN 照实保留。
+> 本报告是 infra/MM/stablecoin 实体页群的证据基座 (research agent ~40 次检索产出, 每条带 URL 与档位)。口径冲突与未决项照实保留。
 
 ## TL;DR — 最重要的七件事
 

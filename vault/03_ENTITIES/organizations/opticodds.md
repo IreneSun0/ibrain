@@ -46,7 +46,7 @@ related:
 - **订单簿**: SSE 流推送**全订单簿快照** (top-of-book + 完整买卖深度), 覆盖每个支持平台的每个市场。
 - **覆盖**: Kalshi + Polymarket, 含**非体育**类 (选举 / 经济指标 / 加密价位 / 文化结果)。
 - **机构定位**: 有专门的 *OpticOdds for Prediction Market Makers* 指南; 提供校准概率与自定义定价模型; 给 **native exchange ID 供客户自行路由** (自己不做执行)。
-- 定价未公开 (UNKNOWN)。
+- 定价未公开，需联系销售。
 
 
 ## Open Questions

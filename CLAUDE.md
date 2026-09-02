@@ -23,8 +23,9 @@ and the policy note — do not quietly work around it.
   frontmatter, links, and a clearly marked `> AI interpretation:` block. Nothing else.
 - **Suggestions land as `hypothesis`**, never as a decision page. Decision pages are
   created only when a human has actually decided.
-- **Dynamic facts** (roles, current status) require `last_verified` plus a source. If
-  you are unsure, write `UNKNOWN`. Never invent.
+- **Dynamic facts** (roles, current status) require `last_verified` plus a source. Where
+  something is not public, write the fact — "未披露", or a dated negative finding a reader
+  could disprove. Never a placeholder standing in for the answer, and never a guess.
 - **The timeline below `<!-- timeline -->` is append-only.** Corrections are new
   entries. Existing entries are never silently edited.
 - **Secrets never enter the repo** (`make secretscan`).

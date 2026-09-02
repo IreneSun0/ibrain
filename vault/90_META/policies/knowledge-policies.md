@@ -42,7 +42,7 @@ related: []
 | Inference | 由事实合理推出的判断 | 行内标 `(inference)` |
 | Hypothesis | 待验证假设 | `epistemic_status: hypothesis` |
 | Rumor / Unverified | 有说法但未证实 | 行内标 `(unverified)` |
-| Unknown | 明确不知道 | 写 "Unknown", 不留空糊弄 |
+| Unknown | 未公开或检索无果 | 写明是哪一种并带日期 (「未披露」/「截至 YYYY-MM 无公开记录」), 不写占位词, 不猜 |
 
 规则:
 - **禁止**把 inference 静默升级成 fact。

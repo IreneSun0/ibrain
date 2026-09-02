@@ -40,7 +40,7 @@ related:
 
 # Kairos (kairos.trade)
 
-> ⚠ **认域名**: 「Kairos」撞名极多 (Kairos Power 核电 / Kairos 人脸识别 / 多个同名 crypto 基金 / GitHub 上一个同名开源 Polymarket 策略引擎)。本页只指 **kairos.trade / kairoslive.com** — a16z crypto 投的预测市场交易终端。法律实体名未公开 (UNKNOWN)。
+> ⚠ **认域名**: 「Kairos」撞名极多 (Kairos Power 核电 / Kairos 人脸识别 / 多个同名 crypto 基金 / GitHub 上一个同名开源 Polymarket 策略引擎)。本页只指 **kairos.trade / kairoslive.com** — a16z crypto 投的预测市场交易终端。法律实体名未公开。
 
 ## Executive Summary
 
@@ -53,7 +53,7 @@ Tier B 里**唯一同时具备 canonical 跨场馆 ID + 实盘路由**的供应�
 - **canonical ID (一手原话)**: 「Cross-venue matching and identifier resolution mean the same event is addressable through **one canonical Kairos market id on every venue**.」
 - **执行**: `POST /orders` + **NBBO 路由** (「order sent to the NBBO endpoint routes to whichever venue is actually showing that price」) + **EIP-712 外部签名通道** (机构账户可非托管签名) + 费用预估端点。
 - **结算原语**: CTF split (mint YES/NO 各 $0.50) / CTF merge / 程序化 redeem / NegRisk 自动 unwrap。
-- **机构化配置**: scoped API key (`trade:execute` / `trade:read` / `position:read`) + IP 白名单。无公开 SOC2/审计背书 (UNKNOWN)。
+- **机构化配置**: scoped API key (`trade:execute` / `trade:read` / `position:read`) + IP 白名单。无公开 SOC2/审计背书。
 - **定价**: 企业 API **按量报价不公开** (原话: 按 credential、场馆组合、taker/maker 定价); 零售终端定价未公开。
 - **规模**: 无公开用户/成交数字。「比原生界面快 2-3 秒」为一手营销未验。
 

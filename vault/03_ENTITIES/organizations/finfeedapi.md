@@ -47,7 +47,7 @@ related:
 - **覆盖**: Polymarket · Kalshi · Manifold · Myriad · **Hyperliquid (HIP-4 outcome markets)**。另有博文声称扩到八家 (加 Gemini/Pascal/Crypto.com) — **单源未验**。
 - **架构决定了能力边界**: 每个 REST 路径都是 `{exchange_id}/{market_id}` 作用域 (CoinAPI 的 `exchange_id/symbol_id` 模式移植) ⟹ **无 canonical 跨场馆 ID, 无匹配端点** — 得到的是「每场馆统一 schema」, 不是「统一工具」。
 - 提供: 订单簿当前快照+历史 · OHLCV 历史 · 市场/成交/报价历史 · JSON-RPC API · 托管 MCP server。**无任何交易/执行端点。**
-- 裁决/结算元数据: 未文档化 (UNKNOWN)。
+- 裁决/结算元数据: 文档未涵盖。
 - 定价: 按量信用制, $25 免费额度; 预测市场专属价目表**未能读取** (站点对非浏览器客户端 403)。
 
 

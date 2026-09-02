@@ -38,9 +38,9 @@ related: []
 9. **PredictIt 复活**: 2025-07 胜诉 CFTC + 和解, 仓位上限 $850→$3,500, 学术 consortium 接管 — 政治预测的学术豁免轨道续命。
 10. **Opinion (BNB) 体量存疑**: 自称月 $8.08B 但单笔均值 13-27 倍于同业 + 积分激励结构 ⟹ wash-trading 折扣假设下引用。刷量污染度量的又一应用场景。
 
-## 冲突与 UNKNOWN (照实)
+## 口径冲突与未决项 (照实)
 
-Kalshi $22B 轮领投 (官方 Coatue vs Wikipedia TCV, 以官方为准) · Polymarket 月量口径 ($10.5B vs >$20B, 疑单双边) · HIP-4 质押 (现行 500k vs 旧文 1M) · Opinion seed 时点 · Polymarket×xAI 合作未核实 · Hyperliquid JELLY 事件无可引用源 (UNVERIFIED) · Manifold 结算细节与规模 UNKNOWN。
+Kalshi $22B 轮领投 (官方 Coatue vs Wikipedia TCV, 以官方为准) · Polymarket 月量口径 ($10.5B vs >$20B, 疑单双边) · HIP-4 质押 (现行 500k vs 旧文 1M) · Opinion seed 时点 · Polymarket×xAI 合作未核实 · Hyperliquid JELLY 事件无可引用源 (UNVERIFIED) · Manifold 结算细节与规模未披露。
 
 <!-- timeline -->
 

@@ -33,7 +33,7 @@ related: []
 
 ## Corporate & Regulatory (CONFIRMED)
 
-- Seychelles 注册; 无公开 CEO (UNKNOWN); HTX DAO ($HTX token, 与 TRON 深绑) 做治理层。
+- Seychelles 注册; 无公开 CEO; HTX DAO ($HTX token, 与 TRON 深绑) 做治理层。
 - UK FCDO 制裁 (Reg 17A 首次用于 crypto 交易所, OFSI 资产冻结义务); Sun 公开承诺「full compliance」。
 - 2025 recap (公司口径): >55M 用户, 年成交 ~$3.3T。
 
