@@ -108,7 +108,7 @@
 - [[justlend|JUST / JustLend DAO]] · TRON借贷与DeFi体系
 - [[know-your-customer|KYC]] · 了解你的客户/身份验证
 - [[know-your-transaction|KYT]] · 了解交易/链上交易监控
-- [[knowledge-policies|CryptoAtlas Knowledge Policies]] · 知识库治理政策
+- [[knowledge-policies|iBrain Knowledge Policies]] · 知识库治理政策
 - [[layer-1|L1]] · 第一层/基础公链
 - [[layer-2|L2]] · 第二层扩容网络
 - [[ledger|Ledger]] · 账本

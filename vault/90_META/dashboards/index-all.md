@@ -167,7 +167,7 @@
 - `jurisdiction:singapore` — [[singapore|Singapore]] · 新加坡
 - `jurisdiction:united-states` — [[united-states|United States]] · 美国
 - `meta:frontmatter-schema` — [[frontmatter-schema|Frontmatter Schema]] · Frontmatter 字段规范
-- `meta:knowledge-policies` — [[knowledge-policies|CryptoAtlas Knowledge Policies]] · 知识库治理政策
+- `meta:knowledge-policies` — [[knowledge-policies|iBrain Knowledge Policies]] · 知识库治理政策
 - `meta:relationship-types` — [[relationship-types|Relationship Type Vocabulary]] · 关系类型受控词表
 - `mmf:amber-group` — [[amber-group|Amber Group / Amber International]] · Amber (AMBR)
 - `mmf:b2c2` — [[b2c2|B2C2]]

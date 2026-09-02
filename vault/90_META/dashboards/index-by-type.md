@@ -265,7 +265,7 @@
 ## policy (2)
 
 - [[frontmatter-schema|Frontmatter Schema]] · Frontmatter 字段规范
-- [[knowledge-policies|CryptoAtlas Knowledge Policies]] · 知识库治理政策
+- [[knowledge-policies|iBrain Knowledge Policies]] · 知识库治理政策
 
 ## protocol-network (14)
 

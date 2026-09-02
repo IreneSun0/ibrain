@@ -37,3 +37,4 @@ flowchart LR
 ```
 
 关键实测数字 (2026-08 核验): USDT $189B (TRON 占 48.67%) · USDC $73.3B · 事件市场月成交 $44.8B。冻结权/挤兑风险沿 T→CH→EX 每一跳都在: 见 [[stablecoin]] / [[settlement-rail]] / [[custody]]。
+

@@ -32,7 +32,7 @@ related: []
 - **[[michael-izhaky]]** ⭐ (predictrails CEO) — **美国规则制定层的活跃参与者**。Cboe 系: 前 FT Options 创始人 (2020 被 Cboe 收购) → Cboe 资本效率负责人 (SPX 期权 Compression) → 头寸压缩专利 US11823264B1。宾大 M&T + Kellogg MBA。⚠ 其 LinkedIn 不提 PredictRails, 同时挂另一家公司 CEO 头衔。
 - Jay Malavia + Zayd Alzein ([[kairos]], 均 ex-Cboe) — a16z crypto 投资。
 - Lucas Kohorst ([[adjacent-markets]]) — 指数/基准位。
-- nicholas-levenstein（小型基金）— 其公开记录包含一次因退出路径缺失而失败的预测市场操作。
+- nicholas-levenstein (小型基金, tier-3) — 规模不入机构名单, 但其公开的操作失败细节 (退出腿缺失) 是 S1/S3 痛点的野外原型。
 
 ## CEX 轴
 
