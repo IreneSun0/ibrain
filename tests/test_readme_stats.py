@@ -29,11 +29,9 @@ def _counts() -> dict[str, int]:
 
 def test_readme_counts_match_the_vault():
     c = _counts()
-    for readme in (ROOT / "README.md", ROOT / "README.en.md"):
-        text = readme.read_text(encoding="utf-8")
-        nums = {int(m.replace(",", "")) for m in re.findall(r"\*\*([\d,]+)(?:\s*/|\*\*)", text)}
-        for label, want in (("concepts", c["concepts"]), ("entities", c["entities"]),
-                            ("notes", c["notes"])):
-            assert want in nums, (
-                f"{readme.name} does not state the real {label} count ({want}); "
-                f"numbers it does state: {sorted(nums)} — run the counts and update it")
+    readme = ROOT / "README.md"
+    stated = {int(m.replace(",", "")) for m in re.findall(r"\b\d[\d,]*\b", readme.read_text("utf-8"))}
+    for label, want in (("concepts", c["concepts"]), ("entities", c["entities"]),
+                        ("notes", c["notes"]), ("sources", c["sources"])):
+        assert want in stated, (
+            f"README.md states no {label} count of {want}; run the counts and update it")

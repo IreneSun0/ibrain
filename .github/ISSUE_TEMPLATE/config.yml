@@ -2,7 +2,7 @@ blank_issues_enabled: true
 contact_links:
   - name: Read the atlas
     url: https://ailinsun.github.io/cryptoatlas
-    about: The live map and all 297 notes.
+    about: The live map and every note in it.
   - name: How to contribute
     url: https://github.com/ailinsun/cryptoatlas/blob/main/CONTRIBUTING.md
     about: Templates, the evidence tiers, and what the validator checks.

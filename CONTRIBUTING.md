@@ -1,12 +1,11 @@
 # Contributing to CryptoAtlas
 
-The atlas is only as current as the people who work in this market. A venue changes its
-fee model, a regulator shifts position, a market maker enters or leaves — and a note goes
-stale. **If you know something this atlas doesn't, or something it gets wrong, that is
-exactly the contribution wanted.**
+A venue changes its fee model, a regulator shifts position, and a note goes stale. If you
+know something this atlas doesn't, or something it gets wrong, that is the contribution
+worth making.
 
-Contributing here is unusually easy to get right, because the validator tells you what is
-missing before a reviewer has to.
+You don't have to guess the conventions — the validator names what is missing before a
+reviewer has to.
 
 ```bash
 git clone https://github.com/ailinsun/cryptoatlas && cd cryptoatlas
@@ -28,9 +27,9 @@ make validate      # should be green before you start
 | **Unverified** | Reported, not confirmed | mark `(unverified)` inline |
 | **Unknown** | Nobody knows, or you couldn't find out | write `UNKNOWN` — do not guess |
 
-`UNKNOWN` is a first-class answer here. An entry that says "this firm has no documented
-event-market activity, and here is why that absence is informative" is more useful than
-one that quietly implies otherwise.
+`UNKNOWN` is a first-class answer. "This firm has no documented event-market activity,
+and here is why that absence is informative" beats an entry that quietly implies
+otherwise.
 
 **Two things the build will reject outright:**
 - `status: verified` on a note with no source note behind it
@@ -39,8 +38,6 @@ one that quietly implies otherwise.
 ---
 
 ## Correcting something
-
-The lowest-friction and most valuable contribution.
 
 1. [Open a correction issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md) — say which note, what's wrong, and what it should be.
 2. If you have a source, name it. If you don't, say so; a flagged uncertainty still helps.
@@ -126,12 +123,12 @@ make health      # soft audits: evidence coverage, stale sources, orphans
 make site        # rebuild docs/
 ```
 
-CI runs the hard gates, the secret scan, the confidentiality ceiling and the test suite
-on every PR. If it's green, a reviewer only has to judge the substance.
+CI runs the hard gates, the secret scan, the confidentiality ceiling and the test suite on
+every PR, so review is about substance rather than form.
 
 ---
 
 ## Licences
 
-By contributing you agree that your content is licensed under
-[CC BY 4.0](LICENSE-CONTENT) and any code under [Apache-2.0](LICENSE).
+By contributing you agree that your content is licensed under [CC BY 4.0](LICENSE-CONTENT)
+and any code under [Apache-2.0](LICENSE).

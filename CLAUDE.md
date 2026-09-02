@@ -10,7 +10,7 @@ and the policy note — do not quietly work around it.
    especially: the five evidence tiers / compiled-truth + append-only timeline /
    a suggestion is not a decision / `verified` requires a source).
 2. `vault/90_META/schemas/frontmatter-schema.md` — field spec (machine-readable JSON alongside).
-3. `OPERATIONS.md` — the maintenance loop and the command surface.
+3. `make help` — the command surface.
 
 ## Hard rules (violating one invalidates the work)
 
@@ -46,6 +46,34 @@ Add new exclusions there rather than relying on anyone remembering.
 - Indexes: `vault/90_META/dashboards/index-*.md` (regenerate with `make indexes`)
 - Open gaps: `vault/07_RESEARCH/RESEARCH-BACKLOG.md`
 - The reading path: `vault/10_LEARNING/plan/mainline.yaml` (81 steps, 9 chapters)
+
+## The write-time hook
+
+`.claude/settings.json` registers a PostToolUse hook that runs after every markdown
+write inside the resolved vault: frontmatter validation for that file, plus a repo-wide
+duplicate-id and broken-link check. It reports, never rewrites, and never touches
+`09_ORIGINALS/`. If a rule it enforces is itself wrong, fix
+`.claude/hooks/validate_md_write.sh` rather than working around it.
+
+## Weekly maintenance
+
+`make refresh` does the mechanical half. The judgement half:
+
+1. Resolve the name collisions `detect_duplicate_entities.py` reports.
+2. Fold new evidence into the compiled section of each affected page.
+3. Append to timelines; never edit an existing entry.
+4. `fact-checker` audits claims carrying no source; `relationship-mapper` fills weak
+   relationships; `check_source_freshness.py` findings go into the queue by priority.
+
+## Publishing
+
+```bash
+make publish SOURCE=/path/to/private-vault   # rebuild vault/ + indexes + validate
+make site                                    # rebuild docs/
+```
+
+`make validate && make secretscan && make test` must be green first. The publish run
+reports how many notes it withheld and why, and refuses to write onto its own source.
 
 ## Subagents
 

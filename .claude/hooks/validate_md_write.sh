@@ -3,7 +3,7 @@
 # Reads hook JSON from stdin; extracts file_path; runs validators scoped to the file
 # plus fast global checks. Exit 2 = feed problems back to Claude (blocking feedback).
 set -u
-OPS_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+OPS_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 PY="$OPS_DIR/.venv/bin/python"
 [ -x "$PY" ] || PY="python3"
 
