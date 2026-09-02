@@ -16,13 +16,9 @@
   </a>
 </p>
 
-交易所的营销稿讲不清机制，圈内黑话又不解释。这里补的是中间那一层。
-
-143 个概念、76 个机构和人、75 条有出处的关系，按九个问题串起来，每条都写明出处。
+143 个概念、76 个机构和人、75 条关系，全部标注出处，按九个问题串起来。
 
 ## 从哪读
-
-九章按一条线走下来，每章回答一个问题：
 
 | 章节 | 回答什么 | 会读到 |
 |---|---|---|
@@ -36,11 +32,9 @@
 | **七 · 机构风险语言** | 看对方向以后，还有什么能让我拿不到钱或被迫退出？ | 事件风险价值 · 交易对手风险 · 集中度风险 · 监管准入 |
 | **终章 · 从知识到系统** | 要让前面这些判断真正可用，必须先造出什么？ | 数据基础设施 · 可审计性 · 风险引擎 |
 
-也可以不按顺序：图谱上任何一个节点都是入口 —— Kalshi、Polymarket、Jane Street、CFTC、赵长鹏、USDT。
-
 ## 一起写
 
-费率改了、监管口径变了，笔记就过时。[提一个纠错 issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md)，或者直接改 —— `make validate` 会指出这条断言还缺什么。写法见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+[提一个纠错 issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md)，或者直接改 —— `make validate` 会指出这条断言还缺什么。写法见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 内容 [CC BY 4.0](LICENSE-CONTENT)，工具 [Apache-2.0](LICENSE)。
 
@@ -55,11 +49,7 @@
 **A knowledge graph of crypto market structure.**
 [Open the atlas](https://ailinsun.github.io/cryptoatlas) · [Add or correct an entry](CONTRIBUTING.md)
 
-Exchange marketing skips the mechanism; insider shorthand assumes it. This fills the
-layer in between.
-
-143 concepts, 76 organisations and people, 75 sourced relationships, strung along nine
-questions, each one attributed.
+143 concepts, 76 organisations and people, 75 relationships, all attributed, along nine questions.
 
 ### Where to start
 
@@ -75,12 +65,8 @@ questions, each one attributed.
 | **7 · The Language Institutions Speak** | How do I express this exposure in the vocabulary of a risk desk? | Event VaR · Counterparty Risk · Concentration Risk · Regulatory Access |
 | **8 · From Knowledge to Systems** | What has to be built for any of this to be usable at scale? | Data Infrastructure · Auditability · Risk Engine |
 
-Or ignore the order — any node on the graph is an entry point: Kalshi, Polymarket, Jane
-Street, the CFTC, CZ, USDT.
-
 ### Contributing
 
-Fees change, regulators move, and a note goes stale.
 [Open a correction issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md),
 or fix it yourself — `make validate` names what a claim is still missing. Conventions are
 in [CONTRIBUTING.md](CONTRIBUTING.md).

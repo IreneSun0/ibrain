@@ -1,18 +1,17 @@
 # CLAUDE.md — working on CryptoAtlas with Claude Code
 
-You are maintaining a knowledge base whose value is its **discipline**, not its volume.
-Everything below is enforced by scripts; if you disagree with a rule, change the script
-and the policy note — do not quietly work around it.
+Every rule below is enforced by a script. If you disagree with one, change the script and
+the policy note — do not work around it.
 
 **Read before writing anything** (in order):
 
-1. `vault/90_META/policies/knowledge-policies.md` — the constitution (ten rules; note
-   especially: the five evidence tiers / compiled-truth + append-only timeline /
-   a suggestion is not a decision / `verified` requires a source).
+1. `vault/90_META/policies/knowledge-policies.md` — ten rules. The load-bearing ones:
+   five evidence tiers · compiled truth + append-only timeline · a suggestion is not a
+   decision · `verified` requires a source.
 2. `vault/90_META/schemas/frontmatter-schema.md` — field spec (machine-readable JSON alongside).
 3. `make help` — the command surface.
 
-## Hard rules (violating one invalidates the work)
+## Hard rules
 
 - **Deterministic work goes to scripts, never to you.** IDs, slugs, hashes, indexes,
   queues, link resolution → `scripts/`. You do explanation, synthesis, relationship
@@ -38,9 +37,8 @@ content, edit the source vault (`VAULT_PATH=...`) and re-run `make publish`.
 
 The *mechanism* is `build_public_vault.py`; the site-specific values (which trees are
 private, which sections to strip, which terms must never survive) live in the untracked
-`scripts/publish_rewrites.yaml` — see `publish_rewrites.example.yaml`. A committed list
-of redacted terms would reconstruct exactly what it redacted, so it stays local.
-Add new exclusions there rather than relying on anyone remembering.
+`scripts/publish_rewrites.yaml` — see `publish_rewrites.example.yaml`. It stays untracked because a
+committed list of redacted terms reconstructs what it redacted. New exclusions go there.
 
 ## Where things are
 
@@ -73,17 +71,15 @@ make publish SOURCE=/path/to/private-vault   # rebuild vault/ + indexes + valida
 make site                                    # rebuild docs/
 ```
 
-`make validate && make secretscan && make test` must be green first. The publish run
-reports how many notes it withheld and why, and refuses to write onto its own source.
+`make validate && make secretscan && make test` must be green first. The script refuses
+to write onto its own source.
 
 ## Subagents
-
-Role boundaries are defined in each agent file and are deliberately narrow:
 
 `librarian` (filing, entity disambiguation, schema) · `researcher` (primary-source
 verification, gap filling) · `fact-checker` (claim audit) · `relationship-mapper`
 (typed relationships, graphs) · `learning-designer` (reading path, exercises)
 · `vault-auditor` (health audit).
 
-A researcher does not grade importance. A learning designer does not verify facts.
-Keeping these separate is what stops one confident pass from contaminating everything.
+A researcher does not grade importance; a learning designer does not verify facts.
+Separating them is what stops one confident pass from contaminating the whole vault.

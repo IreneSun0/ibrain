@@ -1,11 +1,8 @@
 # Contributing to CryptoAtlas
 
-A venue changes its fee model, a regulator shifts position, and a note goes stale. If you
-know something this atlas doesn't, or something it gets wrong, that is the contribution
-worth making.
-
-You don't have to guess the conventions — the validator names what is missing before a
-reviewer has to.
+If you know something this atlas doesn't, or something it gets wrong, that is the
+contribution worth making. You don't have to learn the conventions first — the validator
+names what a claim is missing.
 
 ```bash
 git clone https://github.com/ailinsun/cryptoatlas && cd cryptoatlas
@@ -15,7 +12,7 @@ make validate      # should be green before you start
 
 ---
 
-## The one rule that matters
+## Evidence tiers
 
 **Every claim carries its evidence tier, and says which.**
 
@@ -27,10 +24,9 @@ make validate      # should be green before you start
 | **Unverified** | Reported, not confirmed | mark `(unverified)` inline |
 | **Unknown** | Not disclosed, or a search turned up nothing | say which, with a date — never a placeholder, never a guess |
 
-A gap is worth writing down — but write it as a claim, not a shrug. "As of 2026-08 a
-targeted search found no public event-market activity, and that absence is itself
-informative" can be checked and proved wrong. A placeholder cannot. If a number is
-simply not published, say it is not published; do not invent one to fill the space.
+Write a gap as a claim, not a shrug: "as of 2026-08 a targeted search found no public
+event-market activity" can be disproved, a placeholder cannot. And if the absence answers
+nothing the reader came with, leave the line out rather than reporting it.
 
 **Two things the build will reject outright:**
 - `status: verified` on a note with no source note behind it
@@ -41,12 +37,11 @@ simply not published, say it is not published; do not invent one to fill the spa
 ## Correcting something
 
 1. [Open a correction issue](https://github.com/ailinsun/cryptoatlas/issues/new?template=correction.md) — say which note, what's wrong, and what it should be.
-2. If you have a source, name it. If you don't, say so; a flagged uncertainty still helps.
+2. Name your source. Without one, say so — a flagged uncertainty is still worth filing.
 
 Or fix it directly: edit the note, **append** a dated line to its `## Timeline` section
-explaining the correction, and open a PR. Timelines are append-only — never edit or
-delete an existing entry. A correction is a new entry that supersedes an old one, and
-both stay visible.
+explaining the correction, and open a PR. Timelines are append-only: a correction is a new entry that
+supersedes an old one, and both stay visible.
 
 ---
 
@@ -70,10 +65,9 @@ Venues, market makers, funds, protocols, regulators, jurisdictions, people.
    `note` saying why it holds.
 5. `make validate`.
 
-**What makes an entry good**: it lands on something a reader can use. Not "X is a large
-market maker" but "X has every capability and has not entered this market — because a
-pure market maker will not carry an unhedgeable book, which is a fact about the market,
-not about X."
+**What makes an entry good** — not "X is a large market maker" but "X has every
+capability and has not entered this market, because a pure market maker will not carry an
+unhedgeable book. That is a fact about the market, not about X."
 
 ---
 
@@ -124,8 +118,8 @@ make health      # soft audits: evidence coverage, stale sources, orphans
 make site        # rebuild docs/
 ```
 
-CI runs the hard gates, the secret scan, the confidentiality ceiling and the test suite on
-every PR, so review is about substance rather than form.
+CI runs the hard gates, the secret scan, the confidentiality ceiling and the tests on
+every PR.
 
 ---
 
