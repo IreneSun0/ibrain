@@ -29,8 +29,8 @@ related:
 ## TL;DR — 五条改写认知的发现
 
 1. 🔴 **场馆把聚合层吞了**: **Dome** (YC F25, $5.2M, 前类别领头, 做跨平台市场匹配 + 订单路由) **被 Polymarket 收购** (2026-02-19 公布, Polymarket 继 QCEX 后第二笔), 全部 API **2026-04-28 EOL**。详见 [[case-dome-acquisition]]。
-2. **两个月后同一模式再现**: **Predexon** 退掉执行与匹配 — Trading API 2026-06-25 停, 跨场馆匹配端点 2026-07-20 起返回 `410 Gone`。它现在是**纯数据商**。 (早前的 Tier B 描述已过期约两个月。)
-3. **canonical ID 不再稀缺**: 现在**至少三家**在做 — predictrails (`PR:` 标识符) · [[kairos]] (「one canonical Kairos market id on every venue」) · [[opticodds]] (`canonical_id` / `canonical_market_id`)。**S2 数据面的商品化已经发生**, 不是未来风险。
+2. **Predexon 退出执行与匹配**: Trading API 2026-06-25 停, 跨场馆匹配端点 2026-07-20 起返回 `410 Gone`。它现在是**纯数据商**。
+3. **至少三家供应商提供 canonical ID**: predictrails (`PR:` 标识符) · [[kairos]] (「one canonical Kairos market id on every venue」) · [[opticodds]] (`canonical_id` / `canonical_market_id`)。**S2 数据面的商品化已经发生**, 不是未来风险。
 4. **OpticOdds**: 从体育赔率数据扩展到预测市场并面向做市商；其 canonical 标识符用于表示不同平台上的市场是否按同一事件结算。
 5. **出现了 benchmark 位的占位者**: [[adjacent-markets]] (原 Adjacent News, 已改名) 自称「**第一家独立第三方事件合约与预测市场指数提供商**」, 已发 22 个指数 — 这正落在「标准维护者」这个位置上。
 

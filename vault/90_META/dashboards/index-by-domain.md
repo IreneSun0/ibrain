@@ -2,7 +2,7 @@
 
 > 生成文件 · `generate_indexes.py` · 手改会被覆盖。
 
-更新: 2026-09-02 · 共 285 条结构化笔记
+更新: 2026-09-03 · 共 285 条结构化笔记
 
 ## (none) (19)
 
@@ -301,7 +301,7 @@
 - [[PEOPLE-AND-POWER-MAP|People & Power Map]] · 人物与权力图
 - [[RESEARCH-BACKLOG|Research Backlog]] · 研究积压清单
 - [[frontmatter-schema|Frontmatter Schema]] · Frontmatter 字段规范
-- [[knowledge-policies|iBrain Knowledge Policies]] · 知识库治理政策
+- [[knowledge-policies|CryptoAtlas Knowledge Policies]] · 知识库治理政策
 - [[relationship-types|Relationship Type Vocabulary]] · 关系类型受控词表
 
 ## people-networks (30)

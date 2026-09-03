@@ -33,8 +33,6 @@ related:
 
 # OpticOdds
 
-> **首建时完全漏掉的竞品** — 它不在早前的 Tier B 清单里, 是本轮核验主动扫出来的。
-
 ## Executive Summary
 
 OpticOdds 从体育赔率和行情数据扩展至预测市场，并面向做市商提供服务。其 canonical 端点只返回覆盖至少两个平台的事件，把跨平台匹配设为接口约束。

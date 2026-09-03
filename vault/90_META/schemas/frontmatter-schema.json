@@ -1,5 +1,5 @@
 {
- "$comment": "Machine-readable frontmatter schema for iBrain. Consumed by validate_frontmatter.py. Human doc: frontmatter-schema.md. A source note does not self-reference, but the validator requires at least one locator (url, content_hash, or archive_path); URL-only evidence remains mutable. Concept-level typed relations live in concept-page frontmatter `related` (string id = legacy untyped, or {id, rel, note}); vocabulary in allowed_concept_relation_types, human doc: 90_META/taxonomy/relationship-types.md.",
+ "$comment": "Machine-readable frontmatter schema for CryptoAtlas. Consumed by validate_frontmatter.py. Human doc: frontmatter-schema.md. A source note does not self-reference, but the validator requires at least one locator (url, content_hash, or archive_path); URL-only evidence remains mutable. Concept-level typed relations live in concept-page frontmatter `related` (string id = legacy untyped, or {id, rel, note}); vocabulary in allowed_concept_relation_types, human doc: 90_META/taxonomy/relationship-types.md.",
  "required_fields": [
   "id",
   "type",

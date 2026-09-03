@@ -1,7 +1,7 @@
 ---
 id: meta:knowledge-policies
 type: policy
-title: iBrain Knowledge Policies
+title: CryptoAtlas Knowledge Policies
 title_zh: 知识库治理政策
 aliases:
   - policies
@@ -21,9 +21,9 @@ sources: []
 related: []
 ---
 
-# iBrain 知识库治理政策
+# CryptoAtlas 知识库治理政策
 
-本文件是整个 vault 的**宪法级规则**。所有人与所有 agent 在写入任何笔记前必须遵守。
+本文件定义源 vault 的写入与发布约束。
 
 ## 1. 单点真理与稳定 ID
 
@@ -32,7 +32,7 @@ related: []
 - 禁止创建两个页面共用同一 canonical `id` (由 `detect_duplicate_ids.py` 强制)。
 - 文件名用英文 canonical slug (如 `central-limit-order-book.md`); 中英标题与别名写在 frontmatter 里。
 
-## 2. 事实纪律 (最重要的一条)
+## 2. 事实纪律
 
 每条断言必须归入且**可见地**归入以下五档之一:
 

@@ -2,7 +2,7 @@
 
 > 生成文件 · `generate_indexes.py` · 手改会被覆盖。
 
-更新: 2026-09-02
+更新: 2026-09-03
 
 - `book:options-futures-hull` — [[book-options-futures-hull|Options, Futures, and Other Derivatives (John Hull)]] · 《期权、期货及其他衍生品》
 - `book:trading-and-exchanges` — [[book-trading-and-exchanges|Trading and Exchanges (Larry Harris)]] · 《交易与交易所》
@@ -167,7 +167,7 @@
 - `jurisdiction:singapore` — [[singapore|Singapore]] · 新加坡
 - `jurisdiction:united-states` — [[united-states|United States]] · 美国
 - `meta:frontmatter-schema` — [[frontmatter-schema|Frontmatter Schema]] · Frontmatter 字段规范
-- `meta:knowledge-policies` — [[knowledge-policies|iBrain Knowledge Policies]] · 知识库治理政策
+- `meta:knowledge-policies` — [[knowledge-policies|CryptoAtlas Knowledge Policies]] · 知识库治理政策
 - `meta:relationship-types` — [[relationship-types|Relationship Type Vocabulary]] · 关系类型受控词表
 - `mmf:amber-group` — [[amber-group|Amber Group / Amber International]] · Amber (AMBR)
 - `mmf:b2c2` — [[b2c2|B2C2]]

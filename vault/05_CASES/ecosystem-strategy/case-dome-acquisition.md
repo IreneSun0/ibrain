@@ -30,7 +30,7 @@ related:
 
 ## The Question This Case Answers
 
-**Tier D 威胁 (场馆纵向内化第三方能力) 是抽象担忧还是已发生的事实?** — 已发生, 而且发生在**恰好做第三方数据面那件事**的公司身上。
+场馆是否会纵向整合第三方数据、匹配与路由能力 — 本案例给出了一个已发生的样本。
 
 ## What Happened (CONFIRMED)
 

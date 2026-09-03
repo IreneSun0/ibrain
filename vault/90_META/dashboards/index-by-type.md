@@ -2,7 +2,7 @@
 
 > 生成文件 · `generate_indexes.py` · 手改会被覆盖。
 
-更新: 2026-09-02 · 共 285 条结构化笔记
+更新: 2026-09-03 · 共 285 条结构化笔记
 
 ## book-course (2)
 
@@ -265,7 +265,7 @@
 ## policy (2)
 
 - [[frontmatter-schema|Frontmatter Schema]] · Frontmatter 字段规范
-- [[knowledge-policies|iBrain Knowledge Policies]] · 知识库治理政策
+- [[knowledge-policies|CryptoAtlas Knowledge Policies]] · 知识库治理政策
 
 ## protocol-network (14)
 

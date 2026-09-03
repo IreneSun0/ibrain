@@ -31,7 +31,7 @@ related:
 
 predictrails 的 CEO — 但更重要的是他**不是 crypto 圈的新人**: 从 O'Connor and Associates 的 CME 场内外汇期权交易员起步, 经高盛, 2003 年创立期权/波动率分析平台 **FT Options**, **2020-02 被 Cboe 收购**, 之后任 **Cboe 资本效率负责人 (VP, Head of Capital Efficiencies)**, 主导 SPX 期权 **Compression** 服务, 并有一项**头寸压缩专利** (US 11,823,264 B1, 受让人 Cboe)。宾大 M&T 双学位 + Kellogg MBA。
 
-⟹ **他的履历与 S3 (cross-margining / 资本效率) 高度重合。** 他在 CFTC 申报里强调 cross-margining 对机构必需, 不是照本宣科 — 那是他在 Cboe 干了几年的事。
+其 Cboe 履历集中在 cross-margining 与资本效率。他在 CFTC 申报中对 cross-margining 的主张与这段从业经历一致。
 
 ## Current Roles (核实 2026-08-26/27)
 

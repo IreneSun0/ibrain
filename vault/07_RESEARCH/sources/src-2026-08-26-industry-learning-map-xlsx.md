@@ -35,7 +35,7 @@ import_origin: xlsx-learning-map
 
 ## Reliability Notes | 可靠性备注
 
-user-direct 优先级最高, 但其中的**行业事实**仍按 workbook 内嵌 URL / 后续 research 独立核验; workbook 里的战略判断按 hypothesis/analysis 处理, 不自动升级为 decision。
+其中的行业事实仍需按 workbook 内嵌 URL 或其他来源独立核验；战略判断按 hypothesis/analysis 处理，不直接采信。
 
 ## Freshness
 
